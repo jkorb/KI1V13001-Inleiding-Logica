@@ -1,0 +1,1217 @@
+\chapter{Semantics for First-Order Logic}
+
+\section{Truth, Models, and Assignments}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item In this chapter, we're going to develop the standard semantics for the first-order languages we've described and studied in the previous chapter. That is, we want to define the concept of a \emph{model} for these languages. The aim is, as always in logical semantics, to give a formal account of valid inference using truth-preservation across all models (cf. 1.1.5 and 5.2.1). We will do so, making use of several ideas from the elementary set-theory chapter, in particular \S3.6. So, make sure you're up to speed on properties, relations, and functions.
+		
+		\item Note that a model for propositional logic, i.e. a assignment, interprets the \emph{non-logical} vocabulary of the language in question (as truth-values). The meaning of logical vocabulary, i.e. the sentential operators, is given by the truth-functions. In first-order logic, the situation is similar. A model interprets the non-logical vocabulary of the first-order language in question, i.e. the signature. The meaning of the sentential operators is still given by the truth-functions, and we know how those work. The meaning of the quantifiers, instead, we'll have to study in a bit more detail. 
+		
+		\item Let's begin by informally describing the idea of how we use the concepts from set-theory to provide the notion of a model for a first-order language. In \S8.1, we discussed the idea that in first-order logic, we need to take the subject-predicate structure of sentences into account but we abstract away from the concrete terms and predicates involved. For now, let's focus on simple, term-property sentences, like ``the ball is red.'' Logically speaking, i.e. abstracting away from the concrete terms and predicates involved, the structure of this sentence is \[P(a),\] where $a$ is a constant and $P$ is a unary predicate. Now, constants denote objects and unary predicates express properties. But remember that a property, at least for us, is just a set of objects, the set of objects with the property (cf. 3.6.1). The property of being red, in this picture, is the set of all red things. Now ask yourself, when is the sentence ``the ball is red'' true? Well, the natural answer is, just in case the ball is actually red, i.e. iff the ball is a member of the set of red things. 
+		
+		\item How can we formally model this? Well, by assigning the ball as the denotation to $a$ and the set of all red things, $\{x:\text{x is red}\}$, as the interpretation to $P$. To distinguish the actual ball from it's name, we call the ball $\llbracket a\rrbracket$ and use $a$ as its name. Our observation, so far, is that $P(a)$ should be true \emph{under the intended interpretation} of $a$ and $P$ iff $\llbracket a\rrbracket\in\{x:\text{x is red}\}$, i.e. iff the ball is a member of the set of red things. But now remember that for our logical purposes, we abstract away from the concrete terms and predicates involved, so we should forget about their meaning, too: $P(a)$ is just a formula. But we can use the idea we just described to obtain natural truth-conditions for $P(a)$. All we need to know os which object $a$ denotes and which property, conceived as a set, $P$ expresses. Then, we can say that $P(a)$ is true iff the object denoted by $a$ is in the set expressed by $P$. And that's precisely what a model for first-order logic does: it tells us which objects the terms denote and it tells us which properties (i.e. sets) the predicates express. From there, the definition of truth-in-a-model flows rather naturally.
+		
+		\item Now let's generalize the idea from the previous point. Remember, from 8.1.5, that the general form of a simple sentence in first-order logic is \[R(t_1, \mathellipsis, t_n),\] where $R$ is an $n$-ary predicate and $t_1,\mathellipsis, t_n$ are terms. For example, the structure of ``the letter is in the left drawer'' is $R(t,u)$, where $t$ stands for ``the letter,'' $u$ stands for ``the left drawer,'' and $R$ stands for ``\dots is in \underline{\phantom{\dots}}.'' Now, on the intended interpretation, the terms denote the objects in question, that's clear: $\llbracket t\rrbracket$ is the letter and $\llbracket u\rrbracket$ is the left drawer. The predicate $R$ instead denotes the relation of one thing being inside another. Remember, from 3.6.2, that a binary relation is a set of ordered pairs: the set of pairs where the first thing stands in the relation to the second. So the relation of one thing being inside another is the set $\{(x,y):x\text{ is inside }y\}$. On the intended interpretation, therefore, $R(t,u)$ is true iff $(\llbracket t\rrbracket, \llbracket u\rrbracket)\in \{(x,y):x\text{ is inside }y\}$. Now, generally speaking, a model $\mathcal{M}$ gives us for each term $t$ an object $\llbracket t\rrbracket^\mathcal{M}$ denoted by $t$ in $\mathcal{M}$, and the model gives us for each $n$-ary predicate $R$ a set $R^\mathcal{M}$ of $n$-tuples. A formula $R(t_1, \mathellipsis, t_n)$, then, will be true in model $\mathcal{M}$ iff $(\llbracket t_1\rrbracket^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket^\mathcal{M})\in R^\mathcal{M}$. This is the general idea for truth of simple sentences in a model: a simple sentence is true iff the objects denoted by the terms stand in the relation expressed by the predicate. 		
+		
+	\item Note that in the case of the distinguished identity predicate, $=$, the situation is even easier. In 8.2.4, we discussed the idea that we want $=$ to express actual identity. The simple identity claim ``Darth Sidious is Palpatine'' is true, for example, iff ``Darth Sidious'' and ``Palpatine'' denote the same person (and for those of you who don't like Star Wars, they do!). This straight-forwardly generalizes to abstract models: the (one and only) way to achieve what we want is by saying that $t_1=t_2$ is true in a model $\mathcal{M}$ iff $t_1$ and $t_1$ denote the same object in the model, i.e. iff $\llbracket t_1\rrbracket^\mathcal{M}=\llbracket t_2\rrbracket^\mathcal{M}$.
+	
+	\item Let's continue thinking about the denotations of terms a bit more. In 8.1.3--4, we discussed the different kinds of terms recognized in classical, first order logic: constants, variables, and function expressions. Now, constants denote fixed objects, so it's quite clear how to interpret them in a model $\mathcal{M}$: just assign an object $a^\mathcal{M}$ to each constant $a$. Also with function expressions, it's quite clear what to do. If we have a function expression like ``the LCA of \dots and \underline{\phantom{\dots}},'' formalized as a binary function symbol $f$, the intended interpretation is the function that maps any two individuals to their LCA. And abstractly speaking, the interpretation of $f$ in a model $\mathcal{M}$ should just be a binary function, $f^\mathcal{M}$. In fact, when we consider iterations of functions, it's quite clear how to calculate their semantic values using recursion. Take ``the LCA of Ada Lovelace and the LCA of Alan Turing and Angela Merkel,'' for example. If we formalize this term as \[f(a,f(b,c)),\] where $a$ stands for ``Ada Lovelace,'' $b$ for ``Alan Turing,'' $c$ for ``Angela Merkel,'' and $f$ for `the LCA of \dots and \underline{\phantom{\dots}},'' then the value $\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}$ in a model $\mathcal{M}$ can be calculated as follows: 
+	\begin{align*}
+	\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}&=f^\mathcal{M}(a^\mathcal{M}, \llbracket f(b,c)\rrbracket^\mathcal{M})\\
+	&=f^\mathcal{M}(a^\mathcal{M}, f(b^\mathcal{M}, c^\mathcal{M}))
+	\end{align*} where $a^\mathcal{M}$ is the object denoted by $a$ in $\mathcal{M}$, $b^\mathcal{M}$ is the object denoted by $b$ in $\mathcal{M}$, $c^\mathcal{M}$ is the object denoted by $c$ in $\mathcal{M}$, and $f^\mathcal{M}$ is the function expressed by $f$ in $\mathcal{M}$. What's not so clear is how to handle variables, which is what we're going to discuss next.
+	
+	\item Remember that the variables $x,y,z,\mathellipsis$ are, essentially, logical pronouns, i.e. expressions like ``he,'' ``she,'' ``it.'' How do you figure out what a pronoun like ``it'' refers to? Take the sentence ``it is red,'' for example. Formally, we abstract this to \[P(x),\] where $x$ stands for ``it,'' and $P$ stands for ``\dots is red.'' If we want to know whether $P(x)$ is true, we need to know what $x$ stands for. And even on the intended reading, the natural language sentence itself doesn't give us any clue towards the denotation of $x$. We need more information. If, for example, you're talking to a friend and she says ``Yesterday, I bought a ball. It is red.'' Then you know that $x$ is supposed to refer to the ball. Or if another friend says ``My favorite pen is lying there on the table. It's red.'' Then $x$ is supposed to refer to the pen. There are two important points here: (i) you need some context to determine what pronouns stand for, and (ii) the denotation of the same pronoun in the same sentence can change from context to context. This is all in line with the way we think about variables in mathematics (cf.  2.2.3--10). How can we formally model this behavior? There is nothing in the formula $P(x)$ itself that lets us determine the relevant context, so we shall model the context as \emph{additional semantic information}: we will introduce the notion of an \emph{assignment} $\alpha$, which is essentially just a function that assigns to every variable $x\in\mathcal{V}$ an object $\alpha(x)$. In the same spirit as before, using assignments, we will be able to say that $P(x)$ is true in a model $\mathcal{M}$ \emph{under an assignment} $\alpha$ iff $\alpha(x)\in P^\mathcal{M}$. That is, in order to be able to think about variables, our definition of truth will be relative to a model \emph{and} an assignment. In order to take into account that the same variable, even within the same sentence, can have different meanings in different contexts, we'll consider different assignments in the same model. 
+	
+		\item The information provided by a model and assignment together is enough to recursively calculate the truth-value $\llbracket\phi\rrbracket^\mathcal{M}_\alpha$ (in a model $\mathcal{M}$ under an assignment $\alpha$) for formulas $\phi$, which involve only the sentential operators $\neg,\land,\lor,\to,\leftrightarrow$. We do this just as in propositional logic, i.e. using the truth-functions. The only really interesting question is how to handle the quantifiers. The questions are: \[\llbracket \exists x\phi\rrbracket^\mathcal{M}_\alpha=???\]\[\llbracket \forall x\phi\rrbracket^\mathcal{M}_\alpha=???\] Let's consider the latter, i.e. universal statements like ``everything that's scarlet is red,'' in some more detail (the case for existential claims is analogous). The form of this statement, as discussed in the previous chapter, is \[\forall x(S(x)\to R(x)),\] where $S$ stands for ``\dots is scarlet'' and $R$ stands for ``\dots is red.'' Now, in light of this, we intuitively want ``everything that's scarlet is red'' to be true iff every object that is scarlet is also red. Modeling this in a model under an assignment is not straight-forward, however. Suppose we're dealing with a model $\mathcal{M}$ which interprets $S$ and $R$ as the sets $S^\mathcal{M}$ and $R^\mathcal{M}$ respectively and an assignment $\alpha$ which tells us that $\alpha(x)$ is the ball. This allows us to determine the value of $\llbracket S(x)\to R(x)\rrbracket^\mathcal{M}_\alpha$. We get the value $0$ if the ball is a member of $S^\mathcal{M}$ (the set of scarlet things in the model) but not of $R^\mathcal{M}$ (the set of red things in the model); otherwise we get the value 1. But that is just the truth-value of the formula for \emph{one} possible value of $x$, namely the the value under $\alpha$---the ball. To be able to talk about truly \emph{all} objects, all possible values $x$ can take, we simply \emph{change} the values of $x$ under $\alpha$. Let's write $\alpha[x\mapsto d]$ for the assignment that is defined just like $\alpha$ for all variables other than $x$ but assigns the value $d$ to $x$. With this notation, we can simply go through all the possible values $x$ can take and check whether $R(x)\to S(x)$ is true. If this is the case, we declare $\forall x(R(x)\to S(x))$ true; if we can find a value for $x$ such that $R(x)\to S(x)$ is false, we declare $\forall x(R(x)\to S(x))$ false. A bit more precisely, we get:
+		\[\llbracket \forall x(S(x)\to R(x))\rrbracket^\mathcal{M}_\alpha=1\text{ iff for all objects }d,\llbracket S(x)\to R(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1\]
+		More generally, we get the following truth-condition for $\forall x\phi$ in a model under an assignment $\alpha$:
+		\[\llbracket \forall x\phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for all objects }d,\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1\]
+		In words, $\forall x\phi$ is true in a model under an assignment iff for every possible value of $x$, if we change the value of $x$ to that value (while keeping all the other values the same), $\phi$ comes out true in the model. Analogously, we can motivate the following clause for $\exists$:
+			\[\llbracket \exists x\phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for some }d,\text{ we have }\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1\]
+		That is, $\exists x\phi$ is true in a model under an assignment iff there is a possible value for $x$, such that if we change the value of $x$ to that value (keeping the rest fixed), we get $\phi$ to be true. This is the fundamental idea of how the semantics for $\forall$ and $\exists$ works.
+
+		\item Should we really consider \emph{all} possible values $x$ can take in the recursive clauses for $\forall$ and $\exists$? There are good, intuitive reasons to say that the answer is: \emph{no}! Huh? Well, consider the statement ``everybody passes the course.'' The logical form of this statement is $\forall xP(x)$, where $P$ stands for ``\dots passes.'' If we consider all things as possible values for $x$, this sentence clearly is false: if $x$ denotes the ball, for example, then $P(x)$ is clearly false---a ball can't pass the course. But that's also not what I meant. I mean that every \emph{student} passes the course. Now, there are two ways of going about modeling this: \emph{either} we revise the grammatical structure of our sentence to $\forall x(S(x)\to P(x))$ \emph{or} we restrict the possible values for $x$. In the former case, we get the right result, since trivial counterexamples like the ball no longer make problems: if $x$ denotes the ball, then $S(x)$ is false and so $S(x)\to P(x)$ is true. The only real counterexample will now be a student, i.e. a member of $S^\mathcal{M}$, that is not a member of $P^\mathcal{M}$.	So, the solution works. But it has a certain flair of ``cheating:'' we revised the grammatical structure of the sentence we wanted to model to something else than what we actually said. In general, this sort of move is not liked by logicians. The other solution, restricting the possible values, is more generally liked. It's the one we shall adopt: in a model $\mathcal{M}$, we shall restrict the values for all our syntactic expressions to values from a fixed set $D^\mathcal{M}$---the \emph{domain} of discourse in the model. The domain of discourse fixes the kinds of things we're talking about. In our example, ``everybody passes,'' the intended domain of discourse should include all and only the students in the course. In arbitrary model, however, the domain can, of course, be arbitrary.\footnote{There is also a deeper, more technical reason: there is no \emph{universal} set $U$ of absolutely everything. To see this, note that a set is a thing, so we'd get $U\in U$. But this kind of thing usually spells trouble: we can quickly derive paradoxes when we allow for sets to contain themselves. This is why in standard set-theory, universal sets, and more generally, sets containing themselves are banned.}
+		
+	\item Now everything is in place. We will spend the rest of the chapter pouring the previous ideas into fully formal, precise definitions. But before we do so, it's worth going through two ideas that one might have for how the quantifiers should work that actually \emph{don't} work. This will shed light on the idea that we're actually using in this course. The first idea is to use substitution as follows: why don't we say that $\forall x\phi$ is true iff $(\phi)[x:=t]$ is true for every term $t$, and, analogously, $\exists x\phi$ is true iff for some term $t$, $(\phi)[x:=t]$? This is known as the \emph{substitutional account of the quantifiers}. Considering an example of a concrete language and intuitive model quickly shows why this account can't be correct. Take the statement ``there is a red thing,'' which we formalize as $\exists xR(x)$ in a language with the predicate $R$ for ``\dots is red'' and additionally only the constant $a$ for the ball. Suppose that we're in a model $\mathcal{M}$ where there are only two things, the cup and the ball. The constant $a$ duly denotes the ball and $R$ expresses the property of being red, which in our model is such that the cup is red but the ball is not. Additionally, we're working with an assignment $\alpha$ such that $\alpha(x)$ is the ball for all variables $x\in\mathcal{V}$. Intuitively, it's correct that there is a red thing, namely the cup. So, $\exists R(x)$ should be true in the model. And, in fact, if we use our idea from above, we get this result: simply change the value of $x$ to the cup and $R(x)$ becomes true. But there is no term that, given our model and assignment, denotes the cup. So, we can't find a $t$ such that  $(R(x))[x:=t]$ comes out true. Our language is just not expressive enough to talk about all the objects in our model. There is no natural way of fixing this. It's simply unfeasible to postulate that we have names for all objects in all models---there are simply to many. There is a way of \emph{somehow} fixing the idea, but we won't explore it in the course. We'll return to the idea of substitution in the proof theory chapter.
+		
+	\item Another approach we might be tempted to say that: \[\llbracket \forall x(S(x)\to R(x))\rrbracket^\mathcal{M}_\alpha=1\text{ iff for every assignment }\beta, \llbracket S(x)\to R(x)\rrbracket^\mathcal{M}_\beta=1\] That is, we might be tempted to say that $\forall x(S(x)\to R(x))$ is true in a model under an assignment iff $S(x)\to R(x)$ is true under every other possible assignment in the model. This actually works in the case of relatively ``simple'' statements like $\forall x(S(x)\to R(x))$---if $S(x)\to R(x)$ is true under every assignment, then it must be true for every object, since for each object we will find at least one assignment $\beta$ such that $\beta(x)$ is the object. 
+	
+	The approach, however, doesn't work in general. To be precise, we can't say the following:
+	 \[\llbracket \forall \phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for every assignment }\beta, \llbracket \phi\rrbracket^\mathcal{M}_\beta=1\]
+	  \[\llbracket \exists \phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for some assignment }\beta, \llbracket \phi\rrbracket^\mathcal{M}_\beta=1\]
+	Once the quantificational structure of formulas gets more involved, the approach yields the intuitively wrong outcomes. Actually, to illustrate the problem, we can look at a statement with just one quantifier but one other kind of variable. Suppose that we're in a context where ``it'' clearly refers to the smallest natural number, i.e. 0. Then consider the statement ``every natural number is bigger than it.'' Formally, we'd represent this statement as \[\forall yR(x,y),\] where $R$ stands for ``\dots is smaller than (or equal to) \underline{\phantom{\dots}}.'' To model the intended reading suggests is to let $D^\mathcal{M}=\mathbb{N}$, i.e. we talk about the natural numbers, $R^\mathcal{M}=\{(n,m):n\leq m\}$ (i.e. the relation of being smaller than: the set of numbers such that the first is smaller than (or equal) to the second), and $\alpha(x)$ is the number zero. Intuitively speaking, on this reading, $\forall yR(x,y)$ should come out true in such a modeling situation: zero is indeed such that it is smaller than every other number (and identical to itself). But, alas, the present proposal gives another verdict: it's not the case that for every assignment $\beta$, $\llbracket R(x,y)\rrbracket^\mathcal{M}_\beta=1$. Just take any assignment $\beta$ which assigns $2$ to $x$ and $1$ to $y$. Since $(2,1)\notin \{(n,m):n\leq m\}=R^\mathcal{M}$, we get $\llbracket R(x,y)\rrbracket^\mathcal{M}_\beta=0$. And so, according to the proposal, $\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\alpha=0$. ---The problem is that, intuitively, the value of $x$ needs to remain fixed. Our official account from 9.1.9 guarantees this, but the account under consideration does not. The problem is has very much to do with what happens when we have more than one quantifier in a statement. In fact, our argument can be used to show that in our intended momdel,  $\llbracket \exists x\forall yR(x,y)\rrbracket^\mathcal{M}_\alpha$ turns out to be $0$, though intuitively it should be $1$. To see this, note that our proposal would say that $\llbracket \exists x\forall yR(x,y)\rrbracket^\mathcal{M}_\alpha=1$ iff there exists a assignment $\beta$, such that $\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\beta=1$, which in turn would be the case iff for every assignment $\gamma$, we have $\llbracket R(x,y)\rrbracket^\mathcal{M}_\gamma=1$. But we just figured out that no-matter what we start with, while there is a assignment $\beta$ such that  $\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\beta=1$, it's not the case that, then, for all assignments $\gamma$, $\llbracket R(x,y)\rrbracket^\mathcal{M}_\gamma=1$. Nested quantifiers are, in fact, the ultimate reason why we need the official definition that we endorse.
+	
+	\item That's it, these are the ideas that we're going to develop on this chapter. Let's briefly sum up:
+	
+	\begin{itemize}
+	
+		\item A model interprets the signature by assigning denotation to every constant, a function to every function symbol, and an $n$-ary relation to every $n$-ary relation symbol
+		
+		\item An assignment in a model tells us what the variables denote. It plays the role of the context in natural language. 
+	
+		\item We can recursively calculate the denotation of arbitrary terms in a model under an assignment.
+		
+		\item We can recursively calculate the truth-value of a formula relative to a model under an assignment.
+	
+	\end{itemize}
+	
+	The rest is, more or less, standard. Validity will be defined as truth-preservation across all models, just like in propositional logic. We'll now make these concepts fully precise.
+	
+	\end{enumerate}
+	
+\section{Models and Assignments}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item As we just said, a model interprets the signature. So, let $\mathcal{S}=(\mathcal{C}, \mathcal{F}, \mathcal{R})$ be a signature. A \emph{model} for $\mathcal{S}$ is a structure $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$, such that:
+		\begin{enumerate}[(i)]
+		
+			\item $D^\mathcal{M}$ is a non-empty (!) set, the \emph{domain} of $\mathcal{M}$
+			
+			\item $\cdot^\mathcal{M}$ is an \emph{interpretation function}, which assigns to:
+			\begin{enumerate}[(a)]
+			
+				\item every constant $c\in\mathcal{M}$ an element $c^\mathcal{M}\in D^\mathcal{M}$ of the domain
+				
+				\item every function symbol $f^n\in\mathcal{F}$, a function $f^\mathcal{M}:D^n\to D$
+				
+				\item every predicate $R^n\in\mathcal{R}$, a set $R^\mathcal{M}\subseteq D^n$.
+			
+			\end{enumerate}
+					
+		\end{enumerate}
+		
+		\item \emph{Examples}. The following are all examples of models for their respective signatures (I took the signatures from Example 7.2.3). It's important to note that for signatures with an intended reading (as in the cases of arithmetic and set-theory), there are both ``intended'' and ``unintended'' models:
+		
+			\begin{enumerate}[(i)]
+			
+					
+				\item Signature $\mathcal{S}_{PA}=(\{0\}, \{S^1, +^2, \cdot^2\}, \emptyset)$
+				
+				\begin{enumerate}[(a)]
+				
+					\item The standard, intended model:
+					
+						\begin{itemize}
+					
+							\item $D^\mathcal{M}=\mathbb{N}$
+							
+							\item $0^\mathcal{M}=0$
+					
+							\item $S^\mathcal{M}(n)=n+1$
+							
+							\item $+^\mathcal{M}(n,m)=n+m$
+							
+							\item $\cdot^\mathcal{M}(n,m)=n\cdot m$
+					
+						\end{itemize}
+						
+					\item A natural, but non-intended model on the even numbers:
+					
+						\begin{itemize}
+					
+							\item $D^\mathcal{M}=\{n\in\mathbb{N}:n\text{ is even}\}$
+																					\item $0^\mathcal{M}=0$
+					
+							\item $S^\mathcal{M}(n)=n+2$
+							
+							\item $+^\mathcal{M}(n,m)=n+m$
+							
+							\item $\cdot^\mathcal{M}(n,m)=n\cdot m$
+					
+						\end{itemize}
+						
+					\item A natural, but non-intended model on the odd numbers:
+					
+						\begin{itemize}
+					
+							\item $D^\mathcal{M}=\{n\in\mathbb{N}:n\text{ is odd}\}$
+																					\item $0^\mathcal{M}=1$
+					
+							\item $S^\mathcal{M}(n)=n+2$
+							
+							\item $+^\mathcal{M}(n,m)=\begin{cases}n+m&\text{if }n+m\text{ is odd}\\n+m+1&\text{ otherwise}\end{cases}$
+							
+							\item $\cdot^\mathcal{M}(n,m)=n\cdot m$
+					
+						\end{itemize}
+						
+					Why the weird clause for $+^\mathcal{M}$? Because $+^\mathcal{M}$ needs to be a function from $\{n\in\mathbb{N}:n\text{ is odd}\}$ to $\{n\in\mathbb{N}:n\text{ is odd}\}$ and $n+m$ can be even if $n,m$ are both odd: just take $1+1$.
+						
+					\item A weird, non-intended model:
+					
+						\begin{itemize}
+					
+							\item $D^\mathcal{M}=\mathbb{N}$
+							
+																					\item $0^\mathcal{M}=42$
+					
+							\item $S^\mathcal{M}(n)=n$
+							
+							\item $+^\mathcal{M}(n,m)=n\cdot m$
+							
+							\item $\cdot^\mathcal{M}(n,m)=n^m$
+					
+						\end{itemize}
+											
+					\item A \emph{really} weird, non-intended model:
+					
+						\begin{itemize}
+					
+							\item $D^\mathcal{M}=\{\ast\}$
+																					\item $0^\mathcal{M}=\ast$
+					
+							\item $S^\mathcal{M}(\ast)=\ast$
+							
+							\item $+^\mathcal{M}(\ast,\ast)=\ast$
+							
+							\item $\cdot^\mathcal{M}(\ast,\ast)=\ast$
+					
+						\end{itemize}
+							
+				
+				\end{enumerate}
+				
+				
+				\item $\mathcal{S}_\emptyset=(\emptyset,\emptyset,\emptyset)$
+	
+				\begin{itemize}
+				
+					\item Literally, every set is a model!
+				
+				\end{itemize}
+				
+				\item $\mathcal{S}_\in=(\{\emptyset\}, \emptyset, \{\in^2\})$
+				
+				\begin{enumerate}[(a)]
+				
+				
+					\item The intended model cannot be described using our methods, since there is no set of all sets (leads to paradox). But here is a natural, model for the language:
+					
+					\begin{itemize}
+					
+						\item $D^\mathcal{M}=\mathbb{N}\cup\wp(\mathbb{N})$
+						
+						\item $\emptyset^\mathcal{M}=\emptyset$
+						
+						\item $\in^\mathcal{M}=\{(x,X)\in \mathbb{N}\times\wp(\mathbb{N}): x\in X\}$
+						
+					\end{itemize}
+					
+					\item The following model is not really intended, but works:
+					
+					\begin{itemize}
+					
+						\item $D^\mathcal{M}=\wp(\mathbb{N})$
+						
+						\item $\emptyset^\mathcal{M}=\emptyset$
+						
+						\item $\in^\mathcal{M}=\{(X,Y): X\subseteq Y\}$
+						
+					\end{itemize}
+					
+					\item The following model is weird:
+					
+					\begin{itemize}
+					
+						\item $D^\mathcal{M}=\{a,b,c\}$
+						
+						\item $\emptyset^\mathcal{M}=c$
+						
+						\item $\in^\mathcal{M}=\{(a,c), (b,c), (c,c), (a,b)\}$
+						
+					\end{itemize}
+					
+					
+				\end{enumerate}
+			
+			
+				\item $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$
+							
+					\begin{itemize}
+					
+						\item There is no real intended model, so let's just describe some arbitrary one.
+						
+						\begin{itemize}
+						
+							\item $D^\mathcal{M}=\{1,2,3,4\}$
+							
+							\item $a^\mathcal{M}=1, b^\mathcal{M}=3, c^\mathcal{M}=2$
+						
+							\item $f^\mathcal{M}(x)=x$ for each $x\in D^\mathcal{M}$
+							
+							\item $g^\mathcal{M}(x,y)=min(x,y)$ for all $x,y\in D^\mathcal{M}$
+							
+							\item $P^\mathcal{M}=\{1,3\}$
+							
+							\item $R^\mathcal{M}=\{(1,1), (1,2),(2,2) (2,3), (3,3)\}$
+						
+						\end{itemize}
+						
+						
+					
+					\end{itemize}		
+							
+			\end{enumerate}		
+			
+			\item \label{fo_sem_empty} Note that the domain in every model is postulated to be non-empty. The reason for this is that otherwise, we'd get weird results, which we'll be able to see in a moment. But for now, you can already note that if we had an empty domain, we couldn't assign denotations to the constants. But in natural language reasoning, it's a standard presupposition that if you're talking about something, if you give it a name, then it exists---at least for the purpose of your reasoning process. 
+	
+		\item Next, we give a precise formulation to the concept of an assignment in a model. This is easy: an \emph{assignment} in a model $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$ of signature $\mathcal{S}$ is a function $\alpha:\mathcal{V}\to D^\mathcal{M}$. 
+		
+		\item \emph{Examples}: Note that for the assignment, the only component of the model that matters is the domain, since the variables assume values from here.
+		
+		\begin{enumerate}[(i)]
+		
+			\item Models with domain $D^\mathcal{M}=\mathbb{N}$ (9.2.2.i.a--d):
+			
+				\begin{enumerate}[(a)]
+				
+					\item $\alpha(x_1)=0, \alpha(y)=1, \alpha(z)=2$
+					
+					\item $\alpha(x)=1, \alpha(y)=0, \alpha(z)=3$
+					
+					\item $\alpha(x)=0, \alpha(y)=0, \alpha(z)=0$
+					
+					\item For $\mathcal{V}=\{x_i:i\in\mathbb{N}\}$, $\alpha(x_i)=i$.
+					\item $\alpha(x)=1$ for all $x\in\mathcal{V}$.
+									
+				\end{enumerate}
+				
+			\item Models with domain $D^\mathcal{M}=\mathbb{N}\cup\wp(\mathbb{N})$ (9.2.2.iii.a):
+
+					\begin{enumerate}[(a)]
+
+						\item $\alpha(x)=2, \alpha(y)=\{2\}, \alpha(z)=\mathbb{N}$
+						
+						\item $\alpha(x)=\{x\in\mathbb{N}:n\text{ is even}\}, \alpha(y)=\{n\in\mathbb{N}:x\text{ is odd}\}, \alpha(x)=\{n\in\mathbb{N}:x\text{ is prime}\}$
+						
+						\item $\alpha(x)=0$ for all $x\in\mathcal{V}$.
+
+						\end{enumerate}
+
+			\item For $D^\mathcal{M}=\{\ast\}$ (9.2.2.i.e) there is only \emph{one} assignment, which is the constant assignment $\alpha(x)=\ast$ for all $x\in\mathcal{V}$
+
+		\end{enumerate}
+		
+		
+		Note that \emph{any} function $\alpha:\mathcal{V}\to D^\mathcal{M}$ is an assignment: we can have that multiple variables assume the same value or that some values are not assumed by any variable.
+		
+		\item With the concept of a model and an assignment in place, we can define the \emph{denotation} $\llbracket t\rrbracket_\alpha^\mathcal{M}$ of a term $t$ in a model $\mathcal{M}$ under assignment $\alpha$ by the following recursion:
+		
+			\begin{enumerate}[(a)]
+			
+				\item		\begin{enumerate}[(i)]
+
+					\item $\llbracket x\rrbracket_\alpha^\mathcal{M}=\alpha(x)$
+					\item $\llbracket c\rrbracket_\alpha^\mathcal{M}=c^\mathcal{M}$
+				
+				\end{enumerate}
+				
+				\item $\llbracket f(t_1,\mathellipsis,t_n)\rrbracket_\alpha^\mathcal{M}=f^\mathcal{M}(\llbracket t_1\rrbracket_\alpha^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket_\alpha^\mathcal{M})$
+			
+			\end{enumerate}
+			
+		\item \emph{Examples}: 
+		
+		\begin{enumerate}[(i)]
+		
+			\item In the standard model for $\mathcal{S}_{PA}$ (9.1.2.i.a) with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
+			\begin{align*}
+			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=0\\
+			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
+			\llbracket S(0)\rrbracket^\mathcal{M}_\alpha&=1\\
+			\llbracket y\cdot S(0)\rrbracket^\mathcal{M}_\alpha&=1\\
+			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=3
+			\end{align*}
+			
+			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.b), which has $D^\mathcal{M}=\{x:x\text{ is even}\}$, with $\alpha(x)=0,\alpha(y)=0,\alpha(z)=0$ (9.2.5.i.c):
+			\begin{align*}
+			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=0\\
+			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
+			\llbracket S(0)\rrbracket^\mathcal{M}_\alpha&=2\\
+			\llbracket y\cdot S(0)\rrbracket^\mathcal{M}_\alpha&=0\\
+			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=2
+			\end{align*}
+			
+			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.c), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=1$ for all $x\in\mathcal{V}$ (9.2.5.i.e):
+			
+			\begin{align*}
+			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=1\\
+			\llbracket x\rrbracket^\mathcal{M}_\alpha&=1\\
+			\llbracket S(0)\rrbracket^\mathcal{M}_\alpha&=3\\
+			\llbracket y\cdot S(0)\rrbracket^\mathcal{M}_\alpha&=3\\
+			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=5
+			\end{align*}
+			
+			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.d), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
+			
+			\begin{align*}
+			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=42\\
+			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
+			\llbracket S(0)\rrbracket^\mathcal{M}_\alpha&=42\\
+			\llbracket y\cdot S(0)\rrbracket^\mathcal{M}_\alpha&=1^{42}=1\\
+			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=(0^1)\cdot 2=2
+			\end{align*}
+			
+		\item Consider the abstract model (9.2.2.iv). In that model we have under the assignment $\alpha(x)=1, \alpha(y)=4, \alpha(z)=2$, we have:		
+		\begin{align*}
+		\llbracket f(f(x))\rrbracket^\mathcal{M}_\alpha&=1\\
+		\llbracket g(b,c)\rrbracket^\mathcal{M}_\alpha&=2\\	
+		\llbracket g(b,y)\rrbracket^\mathcal{M}_\alpha&=4\\	
+		\llbracket g(f(f(x)), g(b,c))\rrbracket^\mathcal{M}_\alpha&=1\\
+		\llbracket f(g(g(a,b),g(b,c))))\rrbracket^\mathcal{M}_\alpha&=1\\
+		\end{align*}
+		
+		\end{enumerate}
+		Note that both the model and assignment crucially affect the values of terms. The results in weird models can be weird. Try some more examples by yourself.
+		
+		\item Finally, we shall define the crucial operation of changing the value of a variable under an assignment, which we need for the clauses for the quantifiers. Let $\alpha$ be an assignment in a model $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$. We define the function $\alpha[x\mapsto d]$, which is the result of setting the value of variable $x\in\mathcal{V}$ to $d\in D^\mathcal{M}$, by the following condition:
+		
+		\begin{itemize}
+		
+			\item $\alpha[x\mapsto d](y)=\begin{cases} \alpha(y) &\text{if }y\neq x\\ d & \text{if }y=x\end{cases}$
+		
+		\end{itemize}
+		
+		It follows immediately from the definition that for all  $d\in D^\mathcal{M}$, \[\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=d.\] We introduce the following useful notation for iterated changes: instead of $\alpha[x\mapsto d][y\mapsto e]$ we write $\alpha[x\mapsto d, y\mapsto e]$.
+		
+		\item To tighten our understanding of terms and their denotations, we shall prove the following lemma:
+		\begin{lemma}[Term Locality Lemma]
+		Let $\mathcal{M}$ be a model and $t$ a term with precisely the variables in set $V$ in it. Then for all valuations $\alpha$ and $\beta$ in $\mathcal{M}$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
+		\end{lemma}
+		\begin{proof}
+		We also prove this fact by induction on terms. 
+		
+		\begin{itemize}
+		
+		\item For the induction base, note we distinguish two cases: (a) $t$ is a constant or (b) $t$ is a variable. If (a), $t$ is a constant $a\in\mathcal{C}$, we can reason that $\llbracket a\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}=\llbracket a\rrbracket^\mathcal{M}_\beta$ for all assignments $\alpha,\beta$. If (b) $t$ is a variable $x$, then $V=\{x\}$ and so $\llbracket x\rrbracket^\mathcal{M}_\alpha=\alpha(x)=\beta(x)=\llbracket a\rrbracket^\mathcal{M}_\beta$. 
+		
+		\item For the induction step, consider a term $f(t_1, \mathellipsis, t_n)$ and suppose the induction hypothesis for all $t_i$, i.e. if $t_i$ contains precisely variables $V_i$ and $\alpha(x)=\beta(x)$ for all $x\in V_i$, then $\llbracket t_i\rrbracket_\alpha^\mathcal{M}=\llbracket t_i\rrbracket_\beta^\mathcal{M}$. Now suppose that $f(t_1, \mathellipsis, t_n)$ contains variables $V$ and $\alpha(x)=\beta(x)$ for all $x\in V$. Now for each $t_i$, we get that the variables $V_i$ in $t_i$ are also in $t$, i.e. $V_i\subseteq V$. Since $\alpha(x)=\beta(x)$ for all $x\in V$, it follows that $\alpha(x)=\beta(x)$ for all $x\in V_i$. But then, by the induction hypothesis, we get for each $t_i$ that $\llbracket t_i\rrbracket_\alpha^\mathcal{M}=\llbracket t_i\rrbracket_\beta^\mathcal{M}$. We can conclude that:
+	\begin{center}
+		\begin{tabular}{c c c c c c ll}
+		$\llbracket f(t_1, \mathellipsis, t_n)\rrbracket^\mathcal{M}_\alpha$ = & $f^\mathcal{M}($ & $\llbracket t_1\rrbracket^\mathcal{M}_\alpha$ &  \dots & $\llbracket t_n\rrbracket^\mathcal{M}_\alpha)$\\
+		 & & \rotatebox{90}{=} & & \rotatebox{90}{=} &\\
+		& $f^\mathcal{M}($ & $\llbracket t_1\rrbracket^\mathcal{M}_\beta$ &  \dots & $\llbracket t_n\rrbracket^\mathcal{M}_\beta)$&=$\llbracket f(t_1, \mathellipsis, t_n)\rrbracket^\mathcal{M}_\beta$ \\
+		\end{tabular}
+		\end{center}
+		
+	\end{itemize}
+This concludes our induction.				
+		
+	\end{proof}
+	The Locality Lemma essentially states that the value of a term under an assignment only depends on the values the assignment gives to the variables in the term. In fact, we can infer the following corollary about \emph{ground terms}, i.e. terms without variables in them
+		\begin{corollary}[Ground Terms Lemma]
+		Let $\mathcal{M}$ be a model and $t\in\mathcal{T}$ a ground term. Then for all assignments $\alpha,\beta$, we have $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
+		\end{corollary}
+		\begin{proof}
+		Exercise 1.7.3.
+		\end{proof}
+	
+              \item \textbf{This passage has been added for clarificatory purposes.}
+
+                There was some confusion about how to solve exercise 9.7.2, also among the TAs. So, I suppose I should have been clearer on the different variants of inductive proof, and so I'm trying to remedy the situation here. Remember that for \emph{every} inductively defined set, we have a corresponding principle for proof by induction. The idea is that if we can establish that all the basic or initial elements of the set have a property and the property is preserved under the constructions, then all elements of the set have the property. We're mainly relying on two versions of this proof principle, induction on terms and inductions of formulas. But sometimes, we want to prove things about inductively defined \emph{subsets} of the terms or formulas. This exercise is such a case.
+
+                In this exercise, we want to prove that all terms of a certain form, namely numerals of the form $S(\underbrace{\mathellipsis}_{n\text{ times}}S(0)\mathellipsis))=n$ have a certain semantic property: a given denotation. In order to use proof by induction for this purpose, we need to recognize that the terms in question have an inductive structure: their set can be defined by induction. The definition, in this case, is simple: the initial element is the term (!) 0 and the construction is writing the function symbol $S$ in front of a term. Let's call the terms constructed in this way \emph{natural numerals}. The corresponding induction principle for the construction of natural numerals states that if the natural numeral 0 has a property, and if a natural numeral $n$ has the property then the numeral $S(n)$ has the property, then all natural numerals have the property in question. Here is the solition for exercise i) of 9.7.2:
+
+	\begin{lemma}[9.7.2.i]
+          Let $\mathcal{M}$ be the standard model for the $PA$ (as defined in 9.2.2) and $\alpha$ an arbitrary assignment. Then for all terms of the form $n\in\mathcal{T}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$. 
+	\end{lemma}
+        \begin{proof}
+          We prove this fact using induction on the natural numerals, i.e. terms of the of the form $n=S(\mathellipsis S(0)\mathellipsis)$. For the base case, consider the term $0$. By definition, we have that $\llbracket 0\rrbracket^\mathcal{M}_\alpha=0^\mathcal{M}=0$. Now, for the induction step, assume the induction hypothesis, that for the term $n=S(\mathellipsis S(0)\mathellipsis)$ we have  $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$. We need to show that for the term $S(n)=n+1$, we have  $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=n+1$. Now note that $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=S^\mathcal{M}(\llbracket n\rrbracket^\mathcal{M}_\alpha)=\llbracket n\rrbracket^\mathcal{M}_\alpha+1$. But by the induction hypothesis, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$, so we have  $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=n+1$, as desired.
+        \end{proof}
+
+        Note that we can use similar methods for other inductively definable subsets of terms or formulas. We can, for example, prove facts about all terms without variables (i.e. \emph{ground terms}) by showing that all constants have the property and the property is preserved under applying function symbols. Or, we can show that all formulas with an even number of negations have a property by showing that all atomic formulas have the property and that the property is preserved under writing two negations in front of a formula. In the following, we shall often (sometimes implicitly) make use of such ``restricted'' forms of induction on terms or variables.
+	
+	\end{enumerate}
+
+
+\section{Truth in a Model}
+
+
+	\begin{enumerate}[\thesection.1]
+			
+		\item Using the ideas from \S9.1, we can now define the truth-value $\llbracket\phi\rrbracket^\mathcal{M}_\alpha$ of a formula $\phi$ under an assignment $\alpha$ in a model $\mathcal{M}$ by the following recursion:
+		
+		\begin{enumerate}[(i)]
+			
+				\item		\begin{enumerate}[(a)]
+
+					\item $\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}$
+					\item $\llbracket t_1=t_2\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha)\\0 &\text{otherwise}\end{cases}$				
+				\end{enumerate}
+				
+				\item \begin{enumerate}[(a)]
+
+					\item  $\llbracket\neg \phi\rrbracket^\mathcal{M}_\alpha=f_\neg(\llbracket\phi\rrbracket^\mathcal{M}_\alpha)$
+				
+				\item  $\llbracket(\phi\circ \psi)\rrbracket^\mathcal{M}_\alpha=f_\circ( \llbracket\phi\rrbracket^\mathcal{M}_\alpha, \llbracket\psi\rrbracket^\mathcal{M}_\alpha)$ for $\circ=\land,\lor,\to,\leftrightarrow$
+				
+				\item $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=max(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+				
+				\item[] $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=min(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+								
+				\end{enumerate}
+			
+			\end{enumerate}
+			
+			Note that we're using the $min$ and $max$ functions here as functions defined on (non-empty) \emph{sets} of truth-values $X\subseteq\{0,1\}$, i.e. $min(X)$ is the smallest element of $X$ and $max(X)$ is the biggest element of $X$. More explicitly, we have $max(\{0\})=0, max(\{1\})=1, max(\{1,0\})=1$, and $min(\{0\})=0, min(\{1\})=1, min(\{1,0\})=0$. It might \emph{look} like $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is a (possibly) quite big set, depending on the size of $D^\mathcal{M}$. But note that each of the individual values $\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}$ is either $0$ or $1$. Since multiplicity doesn't matter in sets, the set $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is either $\{0\}$, $\{1\}$, or $\{0,1\}$.
+		
+			
+			\item Just like in (5.1.11), we can define truth in a model under a assignment as a \emph{property} of formulas. Here, we don't do this as an alternative definition, as we did in \S5.1, but rather, we take the property $\mathcal{M},\alpha\vDash\phi$ of a formula being true in a model under a assignment to be \emph{defined} as follows:
+			
+			\begin{itemize}
+			
+				\item $\mathcal{M},\alpha\vDash\phi$ iff $\llbracket\phi\rrbracket^\mathcal{M}_\alpha=1$
+			
+			\end{itemize}
+			
+		\item Using this definition, we can provide the following lemma, which has the potential to make Definition 9.3.1 more transparent:
+			
+			\begin{lemma} For every model $\mathcal{M}$ and assignment $\alpha$, we have:
+			
+			\begin{enumerate}[(i)]
+			
+				\item $\mathcal{M},\alpha\vDash R(t_1,\mathellipsis, t_n)$ iff $(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$
+				
+				\item $\mathcal{M},\alpha\vDash t_1=t_2$ iff $\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha$								
+				\item $\mathcal{M},\alpha\vDash \neg\phi$ iff $\mathcal{M},\alpha\nvDash\phi$
+					
+				\item $\mathcal{M},\alpha\vDash(\phi\land\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$
+				
+				\item $\mathcal{M},\alpha\vDash(\phi\lor\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
+				
+				\item $\mathcal{M},\alpha\vDash(\phi\to\psi)$ iff $\mathcal{M},\alpha\nvDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
+				
+				\item $\mathcal{M},\alpha\vDash(\phi\leftrightarrow\psi)$ iff   either $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$, or $\mathcal{M},\alpha\nvDash\phi$ and $\mathcal{M},\alpha\nvDash\psi$.				
+				\item $\mathcal{M},\alpha\vDash\exists x\phi$ iff there exists a $d\in D^\mathcal{M}$, such that  $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
+				
+				\item $\mathcal{M},\alpha\vDash\forall x\phi$ iff for all $d\in D^\mathcal{M}$, we have $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
+											
+			\end{enumerate}
+
+			
+			\end{lemma}
+			
+			\begin{proof}
+			By a straightforward induction on complexity, which is left as an exercise.
+			\end{proof}
+			
+		Note that clauses (viii) and (ix) are, more or less, explicitly the clauses we gave as our motivation in \S9.1.
+			
+		\item \emph{Examples}: Here are some examples of truth in a model. 
+		
+		\begin{enumerate}[(i)]
+		
+			\item First, let's take the standard model (9.2.2.i.a) of $\mathcal{S}_{PA}$. Let's take an assignment $\alpha$ with $\alpha(x)=0, \alpha(y)=1, \alpha(z)=2$. We get
+			
+			\begin{enumerate}[(a)]
+			
+				\item $\mathcal{M},\alpha\vDash S(0)=y$
+				
+				To see this, simply note that $\llbracket S(0)\rrbracket^\mathcal{M}_\alpha=S^\mathcal{M}(\llbracket 0\rrbracket^\mathcal{M}_\alpha)=S^\mathcal{M}(0)=1$ and $\llbracket y\rrbracket^\mathcal{M}_\alpha=\alpha(y)=1$.
+				
+				\item $\mathcal{M},\alpha\nvDash S(0)=x$
+				
+				This follows from the previous observation that $\llbracket S(0)\rrbracket^\mathcal{M}_\alpha=1$ and $\llbracket x\rrbracket^\mathcal{M}_\alpha=\alpha(x)=0$
+				
+				\item $\mathcal{M},\alpha\vDash S(0)\neq x$
+				
+				This follows from the previous by propositional reasoning.
+				
+				\item $\mathcal{M},\alpha\vDash (S(0)\neq x\lor 4\neq 4)$
+				
+					This follows from the previous by propositional reasoning.
+					
+				\item $\mathcal{M},\alpha\vDash S(0)=x\to 1\neq 1$
+				
+				Follows from (b) and propositional reasoning.
+					
+				\item $\mathcal{M},\alpha\vDash\forall x(S(x)\neq 0)$
+
+				We need to show that for each  $n\in D^\mathcal{M}=\mathbb{N}$, we have $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)\neq 0$. So let $n\in \mathbb{N}$ be an arbitrary number. We know that  $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)\neq 0$ iff $\mathcal{M},\alpha[x\mapsto n]\nvDash S(x)=0$. So, we can use indirect proof to establish that $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)\neq 0$ by leading $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)=0$ to a contradiction. So, assume $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)=0$. It follows that $\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}=\llbracket0\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}$. We have $\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}=S^\mathcal{M}(n)=n+1$. And we have $0^\mathcal{M}=0$. So we get that $n+1=0$. But we know that there is no natural number $n\in\mathbb{N}$ such that $n+1=0$. So, we can conclude that $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)\neq 0$, as desired.
+				
+				\item $\mathcal{M},\alpha\vDash \exists x S(x)=S(S(0))$
+				
+				To show this, we need to establish that there exists an $n\in\mathbb{N}$ such that  $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)=S(S(0))$. We can easily check that $\llbracket S(S(0))\rrbracket_\alpha^\mathcal{M}=2$. So, we let $n=1$. For $n=1$, we have $\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto 1]}=S^\mathcal{M}(\alpha[x\mapsto 1](x))=S^\mathcal{M}(1)=2$. By Lemma 9.2.9, we have $\llbracket S(S(0))\rrbracket_{\alpha[x\mapsto1]}^\mathcal{M}=2$ since $\llbracket S(S(0))\rrbracket_\alpha^\mathcal{M}=2$ and $S(S(0))$ is a ground-term. Hence: \[\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}=\llbracket S(S(0))\rrbracket_{\alpha[x\mapsto1]}^\mathcal{M},\] as desired.			
+				
+				\item $\mathcal{M},\alpha\vDash \forall x\exists y x\cdot y=x$.
+				
+				This formula involves a nested quantifier. Let's first unfold what we have to show: $\mathcal{M},\alpha\vDash \forall x\exists y x\cdot y=x$ iff for all $n\in\mathbb{N}$, we have $\mathcal{M},\alpha[x\mapsto n]\vDash \exists y x\cdot y=x$. And we have $\mathcal{M},\alpha[x\mapsto n]\vDash \exists y x\cdot y=x$ iff there exists an $m\in\mathbb{N}$ such that $\mathcal{M},\alpha[x\mapsto n, y\mapsto m]\vDash x\cdot y=x$. So, what we need to show in order to prove that $\mathcal{M},\alpha\vDash \forall x\exists y x\cdot y=x$ is that for each $n\in\mathbb{N}$, there exists an $m\in\mathbb{N}$ such that $\mathcal{M},\alpha[x\mapsto n, y\mapsto m]\vDash x\cdot y=x$. So let $n\in\mathbb{N}$ be arbitrary. Now if we set $m=1$, then we get 
+				\begin{align*}
+				\llbracket x\cdot y\rrbracket^\mathcal{M}_{\alpha[x\mapsto n, y\mapsto 1]}&=\alpha[x\mapsto n, y\mapsto 1](x)\cdot \alpha[x\mapsto n, y\mapsto 1](y)\\
+				&=n\cdot 1\\
+				&=n
+				\end{align*}
+			But surely, also $\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto n, y\mapsto 1]}=n$. So, we have \[\llbracket x\cdot y\rrbracket^\mathcal{M}_{\alpha[x\mapsto n, y\mapsto 1]}=\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto n, y\mapsto 1]},\] meaning $\mathcal{M},\alpha[x\mapsto n, y\mapsto 1]\vDash x\cdot y=x$. So, we have $\mathcal{M},\alpha[x\mapsto n]\vDash \exists y x\cdot y=x$ and, since $n$ was arbitrary $\mathcal{M},\alpha\vDash \forall x \exists y x\cdot y=x$, as desired.
+				
+			\end{enumerate}
+			
+			\item Let's consider some examples in the abstract structure (9.2.2.iv) under the assignment $\alpha(x)=1, \alpha(y)=3, $ and $\alpha(z)=4$.
+			
+			\begin{enumerate}[(a)]
+			
+			\item $\mathcal{M},\alpha\vDash P(a)$
+				
+				Simply note that $\llbracket A\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}=1\in \{1,3\}=P^\mathcal{M}$		
+					
+				\item $\mathcal{M},\alpha\vDash P(x)$
+				
+				Simply note that $\llbracket x\rrbracket^\mathcal{M}_\alpha=\alpha(x)=1\in \{1,3\}=P^\mathcal{M}$
+				
+				\item $\mathcal{M},\alpha\nvDash P(z)$
+				
+				Simply note that $\llbracket z\rrbracket^\mathcal{M}_\alpha=\alpha(z)=4\notin \{1,3\}=P^\mathcal{M}$
+				
+				
+				\item $\mathcal{M},\alpha\vDash R(x,x)$
+				
+				First,  remember that $\llbracket x\rrbracket^\mathcal{M}_\alpha=1.$ It follows that $(\llbracket x\rrbracket^\mathcal{M}_\alpha,\llbracket x\rrbracket^\mathcal{M}_\alpha)=(1,1)\in\{(1,1), (1,2),(2,2) (2,3), (3,3)\}\in R^\mathcal{M}$.
+				
+				\item $\mathcal{M},\alpha\vDash \exists y (y\neq x\land R(y,y))$
+				
+				We need to show that there exists a $d\in D^\mathcal{M}$ such that $\mathcal{M},\alpha[y\mapsto d]\vDash y\neq x\land R(y,y)$. Let $d=3$. We get $\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]}=\alpha[y\mapsto 3](y)=3$  and $3\neq 1=\alpha[y\mapsto 3](x)$. Hence $\mathcal{M},\alpha[y\mapsto 3]\vDash y\neq x$. Further, since $\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]}=3,$ we have that $(\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]},\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]})=(3,3)\in R^\mathcal{M}$. So, we have $\mathcal{M},\alpha[y\mapsto 3]\vDash R(y,y)$. At this point, we have $\mathcal{M},\alpha[y\mapsto 3]\vDash y\neq x\land R(y,y)$. We get $\mathcal{M},\alpha\vDash \exists y (y\neq x\land R(y,y))$, as desired.
+				
+				\item $\mathcal{M},\alpha\vDash \forall x P(g(a,x))$
+				
+				We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(g(a,x))$. We will do this by showing that for each $d\in D^\mathcal{M},$ we have $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. Since $1\in P^\mathcal{M}$, the claim follows.  Why should it be that $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$? Well, we know that $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=g^\mathcal{M}(\llbracket a\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}, \llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]})$, since $g^\mathcal{M}(x,y)=min(x,y)$, $\llbracket a\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=a^\mathcal{M}$, and $\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=\alpha[x\mapsto d](d)=d$, we get $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=min(1,d)$. Now, $D^\mathcal{M}=\{1,2,3,4\}$, so for each $d\in D^\mathcal{M}$, we have $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=min(1,d)=1$. But that's all we needed to show.
+				
+				\item $\mathcal{M},\alpha\vDash \forall x P(a)$. 
+				
+				We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each valuation: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
+			
+			\end{enumerate}
+		
+		\end{enumerate}
+		
+		\item Note that in order to show that quantified claims are true in a model under an assignment we actually need to do some work. A stark contrast between first-order logic and propositional logic is that in the latter, we can simply calculate the truth-value of a formula under a valuation without too much effort. In first-order logic, in contrast, the definition of truth in a model under an assignment \emph{is} recursive and can thus be calculated, but it is not always easy to do so; we often need to prove non-trivial claims to establish that a quantified claim is true in a model. 			
+		\item Nested quantifiers, as example 9.3.4.i.h, are somewhat tricky to wrap your head around. Here are some reading guidelines that might help understand what's going on:
+		
+		\begin{enumerate}[(a)]
+		
+			\item $\mathcal{M},\alpha\vDash \exists x\forall y \phi$ iff there is a change of value of $x$ such that for all subsequent changes of $y$ which keep $x$ fixed, $\phi$ is true.
+		
+		\item $\mathcal{M},\alpha\vDash \exists x\forall y\phi$ iff for all changes of $x$ there is a subsequent change of $y$ (which keeps $x$ the same) such that $\phi$ becomes false.
+		
+		\item $\mathcal{M},\alpha\vDash \forall x\forall y\phi$ iff for all changes of $x$ and $y$ $\phi$ is true.
+		
+		\item $\mathcal{M},\alpha\vDash \forall x\forall y\phi$ iff for some change of $x$'s value there is a change of $y$'s value which keeps $x$'s value fixed and makes $\phi$ false.
+		
+		\item $\mathcal{M},\alpha\vDash \exists x\exists y\phi $ iff for somme change of $x$'s value there is a subsequent change of $y$'s value, which keeps the value of $x$ fixed and makes $\phi$ true
+		
+		\item $\mathcal{M},\alpha\vDash \exists x\exists y\phi $ iff for somme change of $x$'s value there is a subsequent change of $y$'s value, which keeps the value of $x$ fixed and makes $\phi$ true
+		
+		\end{enumerate}	
+		
+		These clauses can be used to help you think about what you need to show in order to establish whether a complex quantified claim is true.
+		
+		\item We conclude our discussion of truth in a model by proving that sentences, that is formulas with no free variables, have determinate truth-values, i.e. their truth-values don't depend on valuations:
+		\begin{proposition}[Sentence Lemma]
+		Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ a sentence (i.e. a formula with no free variables). Then for all assignments $\alpha,\beta$, we have $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
+		\end{proposition}
+		We're actually going to prove something slightly stronger:
+		\begin{lemma}[Formula Locality Lemma]
+		Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ whose free variables form the set $V$. Then for all valuations $\alpha$ and $\beta$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
+		\end{lemma}
+		\begin{proof}
+		We prove the claim using induction.
+		
+		\begin{enumerate}[(i)]
+		
+			\item \emph{Base cases}: \begin{enumerate}[(a)]
+			
+				\item Note that if the free variables in  $R(t_1,\mathellipsis, t_n)$ form the set $V$, then for each term $t_i$, the free variables in $t_i$ are all in $V$. So, if $\alpha(x)=\beta(x)$ for all $x\in V$, we can infer using the Term Locality Lemma that $\llbracket t_i\rrbracket_\alpha^\mathcal{M}=\llbracket t_i\rrbracket_\beta^\mathcal{M}$.  From this the claim quickly follows. For note that we get that   $(\llbracket t_1\rrbracket_\alpha^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket_\alpha^\mathcal{M})\in R^\mathcal{M}$ iff  $(\llbracket t_1\rrbracket_\beta^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket_\beta^\mathcal{M})\in R^\mathcal{M}$. Since
+				
+				\[\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}\]
+				and 
+				\[\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\beta^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\beta,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\beta)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}\]
+				the claim follows immediately.
+				
+								\item The case for $t_1=t_2$ is completely analogous to (a) except that there are just two terms involved.
+				
+			
+			\end{enumerate}
+			
+			\item  \emph{Induction Steps}: \begin{enumerate}[(a)]
+			
+			\item Suppose the induction hypothesis that if the free variables in $\phi$ are in $V$ and $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$. Now consider $\neg\phi$. Clearly, the free variables in $\neg\phi$ are the same as in $\phi$. So, we can conclude that  $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$ by the induction hypothesis. Since further $\llbracket\neg\phi\rrbracket_\alpha^\mathcal{M}=1-\llbracket\phi\rrbracket_\alpha^\mathcal{M}$ and $\llbracket\neg\phi\rrbracket_\beta^\mathcal{M}=1-\llbracket\phi\rrbracket_\beta^\mathcal{M}$, the claim follows as desired.
+			
+			\item The case for $(\phi\circ \psi)$ works similar to the case for $\neg\phi$ and is left as an exercise.
+			
+			\item Suppose the induction hypothesis that if the free variables in $\phi$ are in $V$ and $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$. We only consider $\forall y\phi$ and leave $\exists y\phi$ as an exercise. Suppose that the free variables in $\forall y\phi$ are the $V$'s and $\alpha(x)=\beta(x)$ for all $x\in V$. Then, the free variables in $\phi$ are $V\cup\{y\}$ (or $V$ if $y$ does not occur in $\phi$, but then the proof is even easier). Now we distinguish two cases: (i) $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=1$ or (ii)  $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=0$. 
+			
+			\begin{itemize}
+			
+				\item From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=1$, it follows that for all $d\in D^\mathcal{M}$ we have $\mathcal{M},\alpha[y\mapsto d]\vDash\phi$. But for each $d$, consider $\beta[y\mapsto d]$. Since $\alpha(x)=\beta(x)$ for all $x\in V$, we have that $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V$. Moreover, $\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$. Hence $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V\cup\{y\}$. But by the induction hypothesis, this means that $\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=1$. So, $\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=1$, as desired.
+				
+				\item  From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=1$, it follows that for some $d\in D^\mathcal{M}$ we have $\mathcal{M},\alpha[y\mapsto d]\nvDash\phi$. For this $d$, consider $\beta[y\mapsto d]$. Since $\alpha(x)=\beta(x)$ for all $x\in V$, we have that $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V$. Moreover, $\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$. Hence $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V\cup\{y\}$. But by the induction hypothesis, this means that $\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=0$. So, $\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=0$, as desired.
+				
+			\end{itemize}
+			
+			\end{enumerate}
+		
+		\end{enumerate}
+		This concludes our induction.
+		\end{proof}
+		The Sentence Lemma is a simple corollary of the Formula Locality Lemma.
+		
+		\item We can use the Sentence Lemma to justify the following definition of truth in a model:
+		
+		\begin{itemize}
+		
+			\item For $\phi$ a sentence, we define $\mathcal{M}\vDash\phi$ as $\mathcal{M},\alpha\vDash\phi$.
+		
+		\end{itemize}
+		
+		By the Sentence Lemma, if $\phi$ is true under one valuation, then $\phi$ is true under all of them; and similarly, if $\phi$ is false under some valuation, then $\phi$ is false under all of them. So, whenever we're reasoning about $\mathcal{M}\vDash\phi$, we can supply an arbitrary assignment $\alpha$ as needed for the above definitions to work.
+				
+	\end{enumerate}
+
+
+\section{Consequence and Validity}
+
+
+	\begin{enumerate}[\thesection.1]
+
+
+		\item In this section, we discuss the notion of valid inference in first-order logic. This makes the section one of the core sections of the lecture. At the same time, we can be relatively brief, since all the work we've been doing so-far was to make this part here easy. So, we begin by giving the official definition of validity in first-order logic. As we indicated before, we define the notion for sentences:
+		
+		\begin{itemize}
+		
+			\item For $\Gamma$ a set of sentences and $\phi$ a sentence, we say that $\Gamma\vDash\phi$ iff for all models $\mathcal{M}$, if $\mathcal{M}\vDash\psi$ for all $\psi\in\Gamma$, then $\mathcal{M}\vDash\phi$.
+			
+			\item This gives us:  $\Gamma\nvDash\phi$ iff there exists a (counter)model $\mathcal{M}$, such taht $\mathcal{M}\vDash\psi$ for all $\psi\in\Gamma$, but $\mathcal{M}\nvDash\phi$
+		
+		\end{itemize}
+		
+		The notion of logical equivalence is defined just like propositional logic $\phi\equi \psi$ means both $\phi\vDash\psi$ and $\psi\vDash\phi$. Similarly, logical truth is defined as being a consequence of the empty set, i.e. $\vDash\phi$ means $\emptyset\vDash\phi$.
+		
+		\item \emph{Examples}
+		
+		\begin{enumerate}[(i)]
+		
+		\item $\forall xP(x)\vDash P(a)$
+		
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
+		
+		\item $P(a)\vDash\exists xP(x)$
+		
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
+		
+\item $\exists x(P(x)\land Q(x))\vDash \exists xP(x)\land \exists xQ(x)$
+
+		\item[] Suppose that $\llbracket\exists x(P(x)\land Q(x))\rrbracket^\mathcal{M}_\alpha=1$. That means that we can change the value of only $x$ to $d$ such that $\llbracket P(x)\land Q(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. Hence $\llbracket P(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$ and $\llbracket Q(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. So we can change the value of only $x$ to $d$ such that $\llbracket P(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$, meaning $\llbracket\exists xP(x)\rrbracket^\mathcal{M}_\alpha=1$; and we can change the value of only $x$ to $d$ such that $\llbracket Q(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$, meaning $\llbracket\exists xQ(x)\rrbracket^\mathcal{M}_\alpha=1$. Hence $\llbracket\exists xP(x)\land \exists xQ(x)\rrbracket^\mathcal{M}_\alpha=1$, as desired.
+
+		\item $\forall x(P(x)\to \exists yR(x,y))\vDash \neg \exists x(P(x)\land \forall y\neg R(x,y))$
+		
+		\item[] Suppose that $\llbracket \forall x(P(x)\to \exists yR(x,y))\rrbracket^\mathcal{M}_\alpha=1$. This means that for every change of $x$ to $d$, $\llbracket P(x)\to \exists yR(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. Now suppose for proof by contradiction that $\llbracket\neg \exists x(P(x)\land \forall y\neg R(x,y))\rrbracket^\mathcal{M}_\alpha=0$ meaning  \[\llbracket\exists x(P(x)\land \forall y\neg R(x,y))\rrbracket^\mathcal{M}_\alpha=1.\] Then there is a change of $x$ to $d$ such that $\llbracket P(x)\land \forall y\neg R(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. Hence $\llbracket P(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$ and $\llbracket\forall y\neg R(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. But if $\llbracket P(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$, then we must have $\llbracket\exists yR(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$, since $\llbracket P(x)\to \exists yR(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$ (by the above reasoning). So, to take stock, we have $\llbracket\forall y\neg R(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$ and $\llbracket \exists yR(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$, which quickly leads to contradiction. For example, it's easily observed in class that $\exists yR(x,y)$ is equivalent to $\neg\forall y\neg R(x,y)$, so we get $\llbracket\neg\forall y\neg R(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$, which gives a contradiction to $\llbracket\forall y\neg R(x,y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. Hence using proof by contradiction, we get $\llbracket \neg \exists x(P(x)\land \forall y\neg R(x,y))\rrbracket^\mathcal{M}_\alpha,$ as desired.
+		
+		\item $\vDash \forall x(P(x)\lor \neg P(x))$
+		
+		\item[] To see this, suppose that for some model $\mathcal{M}$ and assignment $\alpha$, we have $\mathcal{M},\alpha\nvDash  \forall x(P(x)\lor \neg P(x))$. This means that there exists a $d\in D^\mathcal{M}$ such that $\mathcal{M},\alpha[x\mapsto d]\nvDash  P(x)\lor \neg P(x)$. But this means that both $\mathcal{M},\alpha[x\mapsto d]\nvDash  P(x)$ and $\mathcal{M},\alpha[x\mapsto d]\nvDash  \neg P(x)$ and so both $\mathcal{M},\alpha[x\mapsto d]\nvDash  P(x)$ and $\mathcal{M},\alpha[x\mapsto d]\vDash  P(x),$ which is a contradiction. Hence $\mathcal{M},\alpha\nvDash  \forall x(P(x)\lor \neg P(x))$ for all models $\mathcal{M}$ and assignments $\alpha$.
+		
+		\item $\vDash\exists x~x=\mathsf{Batman}$ (it's logically true that Batman exists)
+		
+		\item[] Let $\mathcal{M}$ be an arbitrary model and $\alpha$ an arbitrary assignment therein. We have $\mathsf{Batman}^\mathcal{M}\in D^\mathcal{M}$; that is, the denotation of $\mathsf{Batman}$ is a member of the domain. So, set set $d=\mathsf{Batman}^\mathcal{M}$ and consider  $\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto\mathsf{Batman}^\mathcal{M}]}=\mathsf{Batman}^\mathcal{M}=\llbracket\mathsf{Batman}\rrbracket^\mathcal{M}_{\alpha[x\mapsto\mathsf{Batman}^\mathcal{M}]}$. So $\llbracket x=\mathsf{Batman}\rrbracket^\mathcal{M}_{\alpha[x\mapsto\mathsf{Batman}^\mathcal{M}]}=1$. So $\llbracket\exists x~x=\mathsf{Batman}\rrbracket^\mathcal{M}_\alpha=1$, which is what we needed to show.
+		
+		\item $\forall x\exists y R(x,y)\nvDash \exists y \forall xR(x,y)$ 
+		
+		\item[] To show this, we need to provide a countermodel:
+		
+		\begin{itemize}
+		
+			\item $D^\mathcal{M}=\mathbb{N}$
+			
+			\item $R^\mathcal{M}=\{(n,m):n\leq m\}$
+		
+		\end{itemize}
+		
+		It's relatively easily checked that $\forall x\exists y R(x,y)$ is true under every valuation in this model, since for every number there's a bigger number: for every $n\in\mathbb{N}$ we can pick $n+1\in\mathbb{N}$ and get $\mathcal{M},\alpha[x\mapsto n, y\mapsto n+1]\vDash R(x,y)$. At the same time, it's not the case that some number is bigger than all others: there is $n\in\mathbb{N}$ such that for all $m\in\mathcal{M}$, $\mathcal{M},\alpha[x\mapsto n, y\mapsto n+1]\vDash R(x,y)$.
+		
+		\item $\exists xP(x)\land \exists x Q(x)\nvDash \exists x(P(x)\land Q(x))$ 
+		
+		\item[] Here's a countermodel:
+		
+		\begin{itemize}
+		
+			\item $D^\mathcal{M}=\{a,b\}$
+			
+			\item $P^\mathcal{M}=\{a\}$
+			\item $Q^\mathcal{M}=\{b\}$
+		
+		\end{itemize}
+		
+		In this model, there we can find $a^\mathcal{M}$ such that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists x P(x)$, and we can find $b^\mathcal{M}$ such that $\mathcal{M},\alpha[x\mapsto b^\mathcal{M}]\vDash Q(x)$ and so $\mathcal{M},\alpha\vDash\exists x Q(x)$. But neither $a^\mathcal{M}$ nor $b^\mathcal{M}$ is such that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}/b^\mathcal{M}]\vDash P(x)\land Q(x)$---nothing is both $P$ and $Q$. 
+		
+		\item $\forall x(P(x)\lor Q(x))\nvDash \forall xP(x)\lor \forall xQ(x)$
+
+	\item[] The same countermodel works:
+		
+		\begin{itemize}
+		
+			\item $D^\mathcal{M}=\{a,b\}$
+			
+			\item $P^\mathcal{M}=\{a\}$
+			\item $Q^\mathcal{M}=\{b\}$
+		
+		\end{itemize}
+
+
+\end{enumerate}
+		
+		
+		\item We note that all the laws of classical propositional logic are valid in first-order logic (cf. 5.2.6). Additionally, we can prove the following logical laws concerning the quantifiers:
+				
+		\begin{proposition}[Quantifier Laws] For all formulas $\phi$ and $\psi$, we have:
+		
+		\begin{enumerate}[(i)]
+		
+		\item $\forall x\phi\vDash(\phi)[x:=t]$  where $t$ is a ground term
+%		
+		\item $(\phi)[x:=t]\vDash\exists x\phi$ where $t$ is a ground term
+
+		\item $\forall x\phi\vDash\exists x\phi$
+		
+		\item $\forall x\phi\equi \neg \exists x\neg\phi$
+	
+			\item $\exists x\phi\equi \neg \forall x\neg \phi$
+		
+			\item $\forall x\forall y\phi\equi \forall y\forall x\phi$
+
+	\item $\exists x\exists y\phi\equi \exists y\exists x\phi$
+
+	\item $\exists x\forall y\phi\vDash \forall y \exists x\phi$
+		
+	\item $(\forall x\phi\land \forall x\psi)\equi \forall x(\phi\land \psi)$
+
+	\item $(\exists x\phi\lor \exists x\psi)\equi \exists x(\phi\lor \psi)$
+
+	\item $\forall x\phi\lor \forall x\psi\vDash \forall x(\phi\lor \psi)$  
+
+	\item  $\exists x(\phi\land \psi)\vDash \exists x\phi\land \exists x \psi$  
+	\item $(\phi\to \forall x\psi)\equi \forall x(\phi\to \psi)$ if $x$ is not free in $\phi$
+
+	\item $(\phi\to \exists x\psi)\equi \exists x(\phi\to \psi)$ if $x$ is not free in $\phi$
+
+	\item $(\forall x\phi\to \psi)\equi \exists x(\phi\to \psi)$ if $x$ is not free in $\psi$
+
+	\item $(\exists x\phi\to \psi)\equi \forall x(\phi\to \psi)$ if $x$ is not free in $\psi$
+
+		\end{enumerate}
+
+	\end{proposition}
+	
+	\begin{proof}
+	We only prove (iii) and leave the rest as \emph{very} useful exercises.
+	
+	\begin{enumerate}[(i)]
+	\setcounter{enumi}{2}
+		\item  This law holds because we stipulated that $D^\mathcal{M}\neq \emptyset$ in Definition 9.2.1. Since $D^\mathcal{M}\neq \emptyset$, if $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=1$, i.e. for all $d\in D^\mathcal{M},$ we have $\llbracket\phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$, we can always pick a $d\in D^\mathcal{M}$ such that $\llbracket\phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. But that just means $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=1$.
+			
+	
+%		\item Suppose that $\mathcal{M}$ is a model such that $\mathcal{M},\alpha\vDash\forall x\phi$ (for some arbitrary $\alpha$). This means that for all $d\in D^\mathcal{M}$, $\mathcal{M},\alpha[x\mapsto d]\vDash\phi$. Since $\forall x\phi$ is a sentence, $\phi$ has precisely one free variable, $x$. Therefore, the result of $(\phi)[x:=t]$ is also a sentence. 
+	
+	\end{enumerate}
+	
+	\end{proof}
+	
+	
+		\item \label{fo_sem_free} The law $\forall x\phi\vDash\exists x\phi$ might seem strange, but the underlying assumption that leads to it,  $D^\mathcal{M}\neq \emptyset$, is necessary to get some important logical laws to work. For example, we clearly want that $\forall xP(x)\vDash P(a)$ (9.4.2.i): if everybody passes, then you pass. But if we'd allow for $D^\mathcal{M}= \emptyset$, this law could fail. For simply consider a model with $D^\mathcal{M}= \emptyset$. In that model $\forall xP(x)$ would be \emph{trivially} true: for every $d\in D^\mathcal{M}$, we'd have that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But since $D^\mathcal{M}= \emptyset$, we can't have $a^\mathcal{M}\in D^\mathcal{M}$ and so also not in $P^\mathcal{M}$, which means that $\mathcal{M}\nvDash P(a)$.
+		
+		
+		\item Next, we observe that the Deduction Theorem and the I Can't Get No Satisfaction Theorem both hold for first-order logic as well:
+		\begin{theorem}[Deduction Theorem]
+			Let $\phi,\psi\in\mathcal{L}$ be formulas and $\Gamma\subseteq\mathcal{L}$ a set of formulas. Then the following two are equivalent:
+			\begin{enumerate}[1.]
+			
+				\item $\Gamma\cup\{\phi\}\vDash\psi$
+				
+				\item $\Gamma\vDash \phi\to\psi$
+			
+			\end{enumerate}
+			\end{theorem}
+			\begin{proof}
+			Exactly as in 5.2.14.
+			\end{proof}
+			\begin{theorem}[I Can't Get No Satisfaction]
+			Let $\Gamma\subseteq\mathcal{L}$ be a set of formulas and $\phi\in\mathcal{L}$ a formula. Then, the following are equivalent:
+			\begin{enumerate}[1.]
+			
+				\item $\Gamma\vDash\phi$
+				
+				\item $\Gamma\cup\{\neg\phi\}$ is unsatisfiable
+			
+			\end{enumerate}
+			\end{theorem} 
+			\begin{proof}
+			Exactly as in 6.2.6.
+			\end{proof}
+		However, as we'll see in the next chapter, the deduction theorem doesn't give us decidability anymore. We can use it, however, to derive interesting logical truths, such as \[\vDash \forall x\phi\to (\phi)[x:=t]\] for $t$ a ground term, which we can infer directly from 9.4.3.i. The I Can't Get No Satisfaction Theorem, instead, will play the same role in first-order logic as in propositional logic: it's the foundation of the tableau method, which we'll discuss in the next chapter. 
+		
+		\item We conclude this chapter with a long example in which we're going to \emph{prove} the correct answer for the Albert, Betty, Charles puzzle from the first lecture. Here we go:
+		
+		\begin{itemize}
+		
+		\item Consider the signature $\mathcal{S}=(\{a,b,c\}, \emptyset, \{M^1, L^2\})$.
+
+		\item Our intended reading is that $M$ stands for ``\dots is married'', $L$ stands for ``\dots looks at \underline{\phantom{\dots}}'', $a$ means ``Albert,'' $b$ stands for ``Betty,'' and $c$ stands for ``Charles.''
+		
+		\item \emph{Claim}: \[\neg M(a), M(c), L(c,b), L(b,a)\vDash \exists x\exists y(M(x)\land \neg M(y)\land L(x,y)).\]
+		
+		\item \emph{Proof}: 	
+		
+		Let $\mathcal{M}$ be a model and $\alpha$ arbitrary, such that $\llbracket M(c)\rrbracket_\alpha^\mathcal{M}=1$, $\llbracket\neg M(a)\rrbracket_\alpha^\mathcal{M}=1$, $\llbracket L(c,b)\rrbracket_\alpha^\mathcal{M}=1$, and $\llbracket L(b,a)\rrbracket_\alpha^\mathcal{M}=1$. So $a^\mathcal{M}\notin M^\mathcal{M}$, $c^\mathcal{M}\in M^\mathcal{M}$, and $( c^\mathcal{M}, b^\mathcal{M}), ( b^\mathcal{M}, a^\mathcal{M})\in L^\mathcal{M}$. We have that $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y))\rrbracket_\alpha^\mathcal{M}=1$ holds iff there are changes for $x$ to $d$ and $y$ to $d'$ such that \[\llbracket (M(x)\land \neg M(y)\land L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1.\] Now, we know that either (i) $b^\mathcal{M}\in M^\mathcal{M}$ or (ii) $b^\mathcal{M}\notin M^\mathcal{M}$. 	
+		
+		\begin{itemize}
+			
+			\item If (i) $b^\mathcal{M}\in M^\mathcal{M}$, then we can set $d=b^\mathcal{M}$ and $d'=a^\mathcal{M}$. We'd get $d\in M^\mathcal{M}$ and so $\llbracket M(x))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$; $d'\notin M^\mathcal{M}$ and so $\llbracket\neg M(y)\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$; and $( d,d')\in L^\mathcal{M}$ and so $\llbracket L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$; giving us, $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$. 
+			
+		\item If (ii) $b^\mathcal{M}\notin M^\mathcal{M}$, we can set $d=c^\mathcal{M}$ and $d'=b^\mathcal{M}$. In a similar way, we get 
+				
+		\end{itemize}
+
+Either way, we get $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$, which is what we wanted to show.
+
+	\end{itemize}
+	
+	\smiley
+
+	\end{enumerate}
+
+
+%\section{Expressivity and Theories}
+
+\section{Core Ideas}
+
+\begin{itemize}
+	
+		\item A model interprets the signature by assigning denotation to every constant, a function to every function symbol, and an $n$-ary relation to every $n$-ary relation symbol
+		
+		\item An assignment in a model tells us what the variables denote. It plays the role of the context in natural language. 
+	
+		\item We can recursively calculate the denotation of arbitrary terms in a model under an assignment.
+		
+		\item We can recursively calculate the truth-value of a formula relative to a model under an assignment:
+		
+		\begin{itemize}
+		
+			\item a universally quantified claim is true in a model under a assignment iff the formula after the quantifier remains true for every possible change of the value of the variable in the assignment
+			
+			\item an existentially quantified claim is true in a model under a assignment iff the formula after the quantifier becomes true for at least one possible change of the value of the variable in the assignment
+		
+		\end{itemize}
+		
+		\item Validity is defined as in every logic as truth-preservation across models.
+		
+		\item The Deduction Theorem holds for first-order logic but doesn't lead to decidability.
+	
+	\end{itemize}
+
+
+\section{Self Study Questions}
+
+\begin{enumerate}[\thesection.1]
+
+\item Which of the following entails that $\mathcal{M},\alpha\vDash
+  \forall x (P(x)\to Q(x))$?
+
+  \begin{enumerate}[(a)]
+
+  \item There exists no $d\in D^\mathcal{M}$ such that $d\in
+  P^\mathcal{M}$.
+    
+  \item There exists no $d\in D^\mathcal{M}$ such that $d\in
+    Q^\mathcal{M}$.
+  
+  \item There exists no $d\in D^\mathcal{M}$ such that $d\in
+    P^\mathcal{M}$ and $d\in Q^\mathcal{M}$.
+
+  \item There exists no $d\in D^\mathcal{M}$ such that $d\in
+    P^\mathcal{M}$ and $d\notin Q^\mathcal{M}$.
+
+   \item For all $d\in D^\mathcal{M}$, it holds that  $d\in
+  P^\mathcal{M}$.
+
+   \item For all $d\in D^\mathcal{M}$, it holds that  $d\in
+  Q^\mathcal{M}$.
+    
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\in
+    P^\mathcal{M}$, then $d\in Q^\mathcal{M}$
+
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\in
+    Q^\mathcal{M}$, then $d\in P^\mathcal{M}$
+    
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\notin
+    P^\mathcal{M}$, then $d\notin Q^\mathcal{M}$
+
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\notin
+    Q^\mathcal{M}$, then $d\notin P^\mathcal{M}$
+    
+  \end{enumerate}
+
+\item Which of the following entails that $\mathcal{M},\alpha\nvDash
+  \forall x (P(x)\to Q(x))$?
+
+  \begin{enumerate}[(a)]
+
+  \item There exists a $d\in D^\mathcal{M}$ such that $d\notin
+  P^\mathcal{M}$.
+    
+  \item There exists a $d\in D^\mathcal{M}$ such that $d\notin
+    Q^\mathcal{M}$.
+  
+  \item There exists a $d\in D^\mathcal{M}$ such that $d\in
+    P^\mathcal{M}$ and $d\in Q^\mathcal{M}$.
+
+  \item There exists a $d\in D^\mathcal{M}$ such that $d\in
+    P^\mathcal{M}$ and $d\notin Q^\mathcal{M}$.
+
+   \item For all $d\in D^\mathcal{M}$, it holds that  $d\in
+  P^\mathcal{M}$.
+
+   \item For all $d\in D^\mathcal{M}$, it holds that  $d\in
+  Q^\mathcal{M}$.
+    
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\in
+    P^\mathcal{M}$, then $d\in Q^\mathcal{M}$
+
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\in
+    Q^\mathcal{M}$, then $d\in P^\mathcal{M}$
+    
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\notin
+    P^\mathcal{M}$, then $d\notin Q^\mathcal{M}$
+
+  \item For all $d\in D^\mathcal{M}$, it holds that if $d\notin
+    Q^\mathcal{M}$, then $d\notin P^\mathcal{M}$
+    
+  \end{enumerate}
+
+\item Which of the following entails that $\mathcal{M},\alpha\vDash
+  \exists x (P(x)\to Q(x))$?
+
+\begin{enumerate}[(a)]
+
+\item There exists a $d\in D^\mathcal{M}$ such that $d\in
+  P^\mathcal{M}$.
+
+  \item There exists a $d\in D^\mathcal{M}$ such that $d\in Q^\mathcal{M}$.
+  
+\item There exists a $d\in D^\mathcal{M}$ such that $d\in
+  P^\mathcal{M}$ and $d\in Q^\mathcal{M}$.
+
+\item There exists a $d\in D^\mathcal{M}$ such that $d\notin
+  P^\mathcal{M}$.
+
+\item There exists a $d\in D^\mathcal{M}$ such that $d\notin
+  Q^\mathcal{M}$.
+
+\item For all $d\in D^\mathcal{M}$, if $d\in P^\mathcal{M}$, then
+  $d\in Q^\mathcal{M}$.
+
+\item For all $d\in D^\mathcal{M}$, if $d\in Q^\mathcal{M}$, then
+  $d\in P^\mathcal{M}$.
+
+\item For all $d\in D^\mathcal{M}$, $d\in P^\mathcal{M}$
+
+\item For all $d\in D^\mathcal{M}$, $d\notin P^\mathcal{M}$
+
+\item For all $d\in D^\mathcal{M}$, $d\in Q^\mathcal{M}$
+  
+\item For all $d\in D^\mathcal{M}$, $d\notin Q^\mathcal{M}$
+  
+\end{enumerate}
+  
+\end{enumerate}
+
+\section{Exercises}
+	
+	\begin{enumerate}[\thesection.1]
+	
+			\item Determine the denotation of the following terms in the models $\mathcal{M}$ from (9.2.2.i.d) under the assignment $\alpha(x_i)=2i+1$ for $i\in\mathbb{N}$:
+			
+			\begin{enumerate}
+			
+				\item $x_2$
+				
+				\item $S(x_2)$
+				
+				\item $(x_1+x_3)$
+				
+				\item $S(S(S(x_0)))$
+				
+				\item $S(0\cdot x_1)$
+				
+				\item $2+2$
+				
+				\item $[h]$ $(x_1\cdot x_2)+x_3$
+
+				\item $0+0$
+				
+				\item $(0\cdot 0)+1$ (you can write down a shorthand version)
+				
+				\item $42$
+			
+			\end{enumerate}
+			
+			\item \begin{enumerate}[(a)]
+
+		
+			\item $[h]$ Prove, using induction on terms, that in model (9.2.2.i.a) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$, for all valuations $\alpha$
+						
+			\item Prove, using induction on terms, that in model (9.2.2.i.b) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=2\cdot n$, for all valuations $\alpha$
+
+			\item Prove, using induction on terms, that in model (9.2.2.i.d) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=42$, for all valuations $\alpha$
+			
+			\end{enumerate}
+			
+			\item Prove the Ground Terms Lemma as a corollary of the Term Locality Lemma.
+			
+			\item $[\nosym]$ Explain why and how the law of bivalence holds on the first-order semantics.
+			
+			\item Determine whether the following claims hold in the standard model (9.2.2.i.a) of $\mathcal{S}_{PA}$ under the assignment $\alpha(x)=1, \alpha(y)=2,\alpha(z)=3$:
+			
+			\begin{enumerate}[(a)]
+			
+			\item $\mathcal{M},\alpha\vDash x=1$
+					\item $\mathcal{M},\alpha\vDash S(x)=S(S(x))$
+					\item $\mathcal{M},\alpha\vDash2+2=4$
+					\item $\mathcal{M},\alpha\vDash1\cdot1=0$
+					\item $\mathcal{M},\alpha\vDash\forall x S(x)\neq 0$
+					\item $\mathcal{M},\alpha\vDash((2\cdot 2)=5\land S(44)=7)$
+					\item $[h]$ $\mathcal{M},\alpha\vDash\forall x\forall y(S(x)= S(y)\to x= y)$
+					\item $\mathcal{M},\alpha\vDash\forall x\forall y(S(x)=(y+1)\to S(x)=S(y))$
+					\item $\mathcal{M},\alpha\vDash\forall x\exists yS(x)=y$
+					\item $\mathcal{M},\alpha\vDash \exists x\forall yS(x)=y$
+			
+			\end{enumerate}
+						
+			
+		
+		\item Take the model (9.2.2.iii.a) for $\mathcal{S}_\in$. Consider the assignment $\alpha$ with $\alpha(x)=\{x:x\text{ is even}\}$ and $\alpha(y)=\{x:x\text{ is odd}\}$.
+		Prove the following facts:
+		
+		\begin{enumerate}[(a)]
+		
+			\item  $\mathcal{M},\alpha\vDash \exists y~y\in x$
+		
+			\item $[h]$ $\mathcal{M},\alpha\vDash\forall x\neg x\in \emptyset$
+			
+			\item $\mathcal{M},\alpha\vDash\neg\exists z(z\in x\land z\in y)$			
+			\item $\mathcal{M},\alpha\vDash\exists z\forall u(u\in z\leftrightarrow u\in x\lor u\in y)$
+		
+			\item $\mathcal{M},\alpha\nvDash \forall x\forall y(x=y\leftrightarrow \forall z(z\in x\leftrightarrow z\in y))$ (\emph{Hint}: Note that counterexamples can't be sets!)
+		
+		\end{enumerate}
+		
+		\emph{Hint}: You will need to rely on basic number theoretic and set-theoretic facts.
+		
+		\item Prove Lemma 9.3.3.
+				
+		\item Find a model that shows that $\{(\phi)[x:=t]:t\in\mathcal{T}\}\nvDash\forall x\phi$ (cf. 9.1.11).
+		
+		\item Is it the case that $\{(\phi)[x:=t]:t\in\mathcal{T}\}\vDash\exists x\phi$? Prove it or provide a countermodel.
+		
+		\item Remember the numeric quantifiers from 8.6.7. Prove the following facts:
+		
+		\begin{enumerate}[(i)]
+		
+		\item $\mathcal{M}\vDash \exists x\exists y(P(x)\land P(y)\land x\neq y)$ iff $P^\mathcal{M}$ has at least two elements.
+		
+		\item $\mathcal{M}\vDash \forall x\forall y\forall z(P(x)\land P(y)\land P(z)\to x=y\lor x=z\lor y=z)$ iff $P^\mathcal{M}$ has at most two elements.
+		
+		\item $\mathcal{M}\vDash \exists x\exists y(P(x)\land P(y)\land \forall z(P(z)\to x=z\lor y=z))$ iff $P^\mathcal{M}$ has precisely two elements.
+		
+		\end{enumerate}
+		
+		\item This one's a real challenge. Suppose that $\mathcal{M}$ is a model for a language with a function symbol $f^1\in\mathcal{F}$ such that:
+		
+		\begin{itemize}
+		
+			\item $\mathcal{M}\vDash \forall x\forall y(f(x)=f(y)\to x=y)$
+			
+			\item $\mathcal{M}\vDash \forall xf(x)\neq x$
+			
+			\item $\mathcal{M}\vDash\exists x\neg\exists yf(y)=x$
+		
+		\end{itemize}
+
+		Show that the domain $D^\mathcal{M}$ cannot be finite, i.e. there is no number $n$ such that there are exactly $n$ elements in $D^\mathcal{M}$.
+		
+		\item Prove the remaining quantifier laws 9.4.3.
+		
+		\item Prove the following:
+		
+		\begin{enumerate}[(a)]
+		
+		\item $\forall xP(x)\vDash \forall yP(y)$
+
+		\item $\exists x\exists yS(x,y)\vDash \exists y\exists xS(x,y)$
+
+		\item $[h]$ $\neg \exists xP(x)\vDash \forall x(P(x)\to Q(x))$
+
+		\item $\forall xP(x)\vDash \forall x(Q(x)\to P(x)\lor R(x))$
+
+		\end{enumerate}
+		
+		\item Check the following:
+		
+		\begin{enumerate}[(a)]
+
+			\item $[h]$ $\forall x(P(x)\to Q(x)), \exists x\neg P(x)\vDash \forall x\neg Q(x)$
+
+			\item $\forall x(P(x)\to \exists yS(x,y))\vDash \forall x\exists y(P(x)\to S(x,y))$
+
+			\item $\forall xP(x)\to \forall yQ(y)\vDash \forall x(P(x)\to \forall yQ(y))$
+
+			\item $\exists x(P(x)\to \forall yQ(y))\vDash \exists xP(x)\to \forall yQ(y)$
+
+			\item $\vDash \forall x\exists yS(x,y)\to \exists xS(x,x)$
+
+			\item $\exists x\neg\exists yS(x,y)\vDash \exists x\forall yS(x,y)$
+		
+		\end{enumerate}
+		
+		\item For each of the following formulas, provide a model $\mathcal{M}^+$ and an assignment $\alpha^+$ such that the formula is true in the model under the assignment, as well as a model $\mathcal{M}^-$ and an assignment $\alpha^-$ such that the formula is false.
+
+\begin{enumerate}[(i)]
+
+\item $R(x,y)\to \forall x\forall yR(x,y)$
+
+\item $\forall x\forall y(R(x,y)\land R(y,x)\to R(x,x))$
+
+\item $\forall x\exists yR(x,y)\to \exists y \forall xR(x,y)$
+
+\end{enumerate}
+
+	
+\end{enumerate}
+
+\vfill
+
+\hfill \rotatebox[origin=c]{180}{
+\fbox{
+\begin{minipage}{0.5\linewidth}
+
+\subsection*{Self Study Solutions}
+
+%\emph{Some explanations in the appendix.}
+
+\begin{enumerate}
+
+\item[9.6.1] (a), (d), (f), (g), (j)
+
+\item[9.6.2] (d)
+
+\item[9.6.3] (b), (c), (d), (f), (i), (j)
+
+\end{enumerate}
+
+
+\end{minipage}}}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 
+

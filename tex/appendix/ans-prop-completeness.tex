@@ -1,0 +1,39 @@
+\chapter{Chapter 7. Soundness and Completeness}
+
+\section*{7.6 Self-Study Questions}
+
+	\begin{enumerate}
+	
+		\item[7.6.1] (a) contradicts completeness, not soundness; (b) is in direct contradiction to soundness; (c) this just means that the set is not consistent, in classical propositional logic, we have, for example, $\{p,\neg p\}\vdash p$ and $\{p,\neg p\}\vdash \neg p$, (d) this would quickly lead to a contradiction if the calculus were sound: if you can derive any formula whatsoever from m$\Gamma$, you get $\Gamma\vdash p\land \neg p$; by soundness  $\Gamma\vDash p\land \neg p$; by $\Gamma$ being satisfiable, say via $v$, we get that $\llbracket p\land\neg p\rrbracket_v=1$; contradiction. 
+		
+		\item[7.6.2] (a) directly contradicts completeness; (b) doesn't contradict completeness but soundness (note that a calculus can be complete but not sound: take the trivial calculus in which everything can be derived from everything, this calculus is certainly complete but not sound); (c) every logical truth follows from every set (you can see this from the definition of logical truth $\emptyset\vDash\phi$ and monotonicity (5.2.6.(iii)); (d) this is perfectly fine since there are sets from which both a formula and a negation do follow (see above).
+				
+	\end{enumerate}
+
+\section*{7.7 Exercises}
+
+	\begin{enumerate}
+	
+	
+		\item[7.7.3] \begin{enumerate}[(a)]
+		
+			\item \emph{Claim}. Every proof theoretically inconsistent set is unsatisfiable. 
+			
+			\begin{proof}
+			Suppose that $\Gamma$ is proof-theoretically inconsistent, i.e. there exists a $\phi$ such that $\Gamma\vdash\phi$ and $\Gamma\vdash\neg\phi$. By the soundness theorem, we can infer that $\Gamma\vDash\phi$ and $\Gamma\vDash\neg\phi$. We now show that $\Gamma$ is unsatisfiable using indirect proof. For suppose that $\Gamma$ is satisfiable, i.e. there exists a $v$ such that all the formulas in $\Gamma$ are true under $v$. Since  $\Gamma\vDash\phi$, it follows that $\llbracket\phi\rrbracket_v=1$. And since $\Gamma\vDash\neg\phi$, it follows that $\llbracket\neg\phi\rrbracket_v=1$. But since $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket_v=1$, we can infer that $\llbracket\phi\rrbracket_v=0$. Contradiction. Hence $\Gamma$ must be unsatisfiable, which is what we needed to show.
+			\end{proof}
+			
+			\item \emph{Claim} Every proof theoretically consistent set is satisfiable. 
+			
+			\begin{proof}
+			We're going to prove the contrapositive, i.e. that if $\Gamma$ is unsatisfiable, then $\Gamma$ is proof-theoretically inconsistent. Suppose that $\Gamma$ is unsatisfiable. We're going to show that it follows that $\Gamma\vDash p$ for some arbitrary $p\in\mathcal{P}$. To see this, note that if $\Gamma$ is unsatisfiable, since $\Gamma\subseteq \Gamma\cup\{\neg p\}$, it follows by Proposition 6.2.5.(c) that $\Gamma\cup\{\neg p\}$ is also unsatisfiable. But this, by Theorem 6.2.6, is equivalent to $\Gamma\vDash p$. Similarly, we can see that $\Gamma\vDash\neg p$. For since $\Gamma$ is unsatisfiable and $\Gamma\subseteq\Gamma\cup\{\neg\neg p\}$, we have that $\Gamma\cup\{\neg\neg p\}$ is unsatisfiable, which gives us $\Gamma\vDash\neg p$. So, we have $\Gamma\vDash p$ and $\Gamma\vDash\neg p$. By the completeness theorem, this means that $\Gamma\vdash p$ and $\Gamma\vdash\neg p$, which means that $\Gamma$ is proof-theoretically inconsistent and is what we wanted to show.
+			\end{proof}
+		
+		\end{enumerate}
+	
+	\end{enumerate}
+	
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

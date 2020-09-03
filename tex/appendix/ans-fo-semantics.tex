@@ -1,0 +1,164 @@
+%by Maarten Burger, Alexander Apers, and Jos Zuiderwijk
+\chapter{Chapter 9. Semantics for First-Order Logic}
+
+\section*{9.7 Exercises}
+
+\subsection*{9.7.1}
+\begin{enumerate}
+
+\item[(a)] $\llbracket
+  x_2\rrbracket^\mathcal{M}_\alpha=\alpha(x_2)=2\cdot 2+1=5$
+
+\item[(b)] $\llbracket S(x_2)\rrbracket^\mathcal{M}_\alpha=S^\mathcal{M}(\llbracket
+  x_2\rrbracket^\mathcal{M}_\alpha)=\llbracket
+  x_2\rrbracket^\mathcal{M}_\alpha=2\cdot 2+1=5$
+
+\item[(c)] $\llbracket
+  (x_1+x_3)\rrbracket^\mathcal{M}_\alpha=+^\mathcal{M}(\llbracket
+  x_1\rrbracket^\mathcal{M}_\alpha, \llbracket
+  x_3\rrbracket^\mathcal{M}_\alpha)=+^\mathcal{M}(\alpha(x_1),
+  \alpha(x_3))=+^\mathcal{M}(2, 7)=2\cdot 7=14.$
+
+\item[(d)] $\llbracket
+  S(S(S(x_0)))\rrbracket^\mathcal{M}_\alpha=S^\mathcal{M}(\llbracket
+  S(S(x_0))\rrbracket^\mathcal{M}_\alpha=\llbracket
+  S(S(x_0))\rrbracket^\mathcal{M}_\alpha=\mathellipsis=\llbracket
+  x_0\rrbracket^\mathcal{M}_\alpha=\alpha(x_0)=1$.
+
+\item[(e)] $\llbracket S(0\cdot
+  x_1)\rrbracket^\mathcal{M}_\alpha=S^\mathcal{M}(\llbracket 0\cdot
+  x_1\rrbracket^\mathcal{M}_\alpha)=\llbracket 0\cdot
+  x_1\rrbracket^\mathcal{M}_\alpha=\cdot^\mathcal{M}(\llbracket
+  0\rrbracket^\mathcal{M}_\alpha, \llbracket
+  x_1\rrbracket^\mathcal{M}_\alpha)=\cdot^\mathcal{M}(0^\mathcal{M},
+  \alpha(x_1))=42^3=74088$
+
+\item[(f)] $\llbracket
+  2+2\rrbracket^\mathcal{M}_\alpha=+^\mathcal{M}(\llbracket
+  2\rrbracket^\mathcal{M},\llbracket
+  2\rrbracket^\mathcal{M})=+^\mathcal{M}(\llbracket
+  S(S(0))\rrbracket^\mathcal{M}_\alpha, \llbracket
+  S(S(0))\rrbracket^\mathcal{M}_\alpha)=+^\mathcal{M}(S^\mathcal{M}(\llbracket
+  S(0)\rrbracket^\mathcal{M}_\alpha),S^\mathcal{M}(\llbracket
+  S(0)\rrbracket^\mathcal{M}_\alpha))=+^\mathcal{M}(S^\mathcal{M}(\llbracket
+  0\rrbracket^\mathcal{M}_\alpha),S^\mathcal{M}(\llbracket
+  0\rrbracket^\mathcal{M}_\alpha))=+^\mathcal{M}(42,42)=42\cdot 42=1764$
+  
+\item[(g)] $\llbracket (x_1 \cdot x_2) +
+  x_3\rrbracket_\alpha^\mathcal{M} = \llbracket(3 \cdot
+  5)\rrbracket_\alpha^\mathcal{M} +^\mathcal{M}
+  \llbracket7\rrbracket_\alpha^\mathcal{M} = (\llbracket
+  3\rrbracket_\alpha^\mathcal{M} \cdot^\mathcal{M} \llbracket
+  5\rrbracket_\alpha^\mathcal{M}) \cdot 7 = 3^5 \cdot 7 = 1701$
+
+\item[(h)] $\llbracket
+    0+0\rrbracket^\mathcal{M}_\alpha=+^\mathcal{M}(\llbracket
+    0\rrbracket^\mathcal{M}_\alpha,\llbracket
+    0\rrbracket^\mathcal{M}_\alpha)=+^\mathcal{M}(0^\mathcal{M},
+    0^\mathcal{M})=42\cdot 42=1764$
+
+\item[(i)] $\llbracket (0\cdot
+  0)+1\rrbracket^\mathcal{M}_\alpha=+^\mathcal{M}(\llbracket 0\cdot
+  0\rrbracket^\mathcal{M}, \llbracket
+  S(0)\rrbracket\rrbracket^\mathcal{M}_\alpha)=+^\mathcal{M}((\cdot^\mathcal{M}(0^\mathcal{M},
+  0^\mathcal{M}), S^\mathcal{M}(0^\mathcal{M}))=42^{42}\cdot
+  42=42^{43}$
+
+\item[(j)] $\llbracket
+  42\rrbracket^\mathcal{M}_\alpha=\llbracket\underbrace{S(\mathellipsis(S}_{42\text{
+      times}}(0)\mathellipsis)\rrbracket^\mathcal{M}=S^\mathcal{M}(\llbracket\underbrace{S(\mathellipsis(S}_{41\text{
+      times}}(0)\mathellipsis)\rrbracket^\mathcal{M})=\llbracket\underbrace{S(\mathellipsis(S}_{41\text{
+      times}}(0)\mathellipsis)\rrbracket^\mathcal{M}=\mathellipsis
+    =\llbracket 0\rrbracket^\mathcal{M}_\alpha=0^\mathcal{M}=42$.
+
+\end{enumerate}
+
+\subsection*{9.7.2}
+
+See the added bullet 9.2.10 for (a). (b) and (c) work completely analogously.
+
+\subsection*{9.7.5}
+\begin{enumerate}
+    \item[(g)] %We will show that the claim holds for every $x,\ y$ by induction over $D^\mathcal{M} = \mathcal{M}athbb{N}$. We need to show that if $S(x) = S(y)$, then $x = y$ \\
+    %Base case: Suppose $x=0$. $S(x) = x + 1 = 0 + 1 = 1$. As we assumed $S(x) = S(y), S(y) = 1$. $S(y) = 1 = y + 1$, so $y = 0$, therefore $x = y$.\\
+    %Induction step: we assume that $S(n) = S(m) \rightarrow n = m$. We need to show that $S(n+1) = S(m+1) \rightarrow n+1 = m+1$ holds. $S(n+1) = n + 1 + 1 = S(n) + 1$ and $S(m+1)= m +1+1 = S(m) +1$. This can only be the case if $S(m) = S(n)$. But that just means by our induction hypothesis that $n = m$, Then it must also be the case that $n + 1 = m + 1$, which is what we needed to show. $\square$
+    We will show that for any $x,\ y \in D^\mathcal{M}$, $S(x) = S(y)
+    \rightarrow x = y$ holds. We will use proof by
+    contradiction. Assume there is some pair $a,\ b \in D^\mathcal{M}$
+    for which the claim doesn't hold. For an implication to be false,
+    the premises have to be true, where the conclusion is false. So
+    $S(a) = S(b)$ and $ a \neq b$. But $S(a) = S(b)$ means just that
+    $a + 1 = b + 1$. As $a \neq b$, we've arrived at the conclusion
+    that $1 \neq 1$, which is a contradiction. Hence such a pair $a,\
+    b$ cannot exist and therefore the claim is true for all $x,\ y$.
+\end{enumerate}
+\subsection*{9.7.6}
+
+\begin{enumerate}
+
+  \item[(a)] In order to show that $\mathcal{M},\alpha\vDash \exists
+    y~y\in x$, we need to establish (by definition) that there exists
+    a $d\in D^\mathcal{M}$ such that $\mathcal{M},\alpha[y\mapsto
+    d]\vDash y\in x$. This, in turn, is the case iff $(\llbracket
+    y\rrbracket^\mathcal{M}_{\alpha[y\mapsto d}, \llbracket
+    x\rrbracket^\mathcal{M}_{\alpha[y\mapsto d})=(d, \alpha(x))=(d,
+    \{x:x\text{ is even}\})\in \in ^\mathcal{M}$. Since we have
+    $\in^\mathcal{M}=\{(x,X): x\in \mathbb{N}, X\in \wp(\mathbb{N}),
+    x\in X\}$, we get that $\mathcal{M},\alpha[y\mapsto
+    d]\vDash y\in x$ iff $d\in \{x:x\text{ is even}\}$. So, let
+    $d=2$. Clearly, $2\in \{x:x\text{ is even}\}$ and so $\mathcal{M},\alpha[y\mapsto
+    2]\vDash y\in x$. So, $\mathcal{M},\alpha\vDash \exists
+    y~y\in x$.
+
+  \item[(b)] We will show $\mathcal{M}, \alpha \vDash \forall x \neg x
+    \in \emptyset$ holds by using proof by contradiction. Assume there
+    is some $x$ such that $x \in \emptyset$ is true in our
+    model. $\llbracket x \in \emptyset \rrbracket^\mathcal{M} =
+    \llbracket x \rrbracket_\beta \in^\mathcal{M} \llbracket
+    \emptyset\rrbracket^\mathcal{M}$. As $\in^\mathcal{M}$ denotes
+    just the set theoretical relation $\in$ and
+    $\emptyset^\mathcal{M}$ denotes the empty set, we can infer that
+    $x \in \emptyset$ is true iff $x$ (whatever $x$ is), is in the
+    empty set. We know that the empty set doesn't contain any
+    elements, so this cannot be the case. But we assumed that $x \in
+    \emptyset$ is true, so we've arrived at a contradiction. Hence
+    such an $x$ cannot exist. Therefore, $\forall x \neg x \in
+    \emptyset$ is valid in our model.
+\end{enumerate}
+
+\subsection*{9.7.13}
+
+\begin{enumerate}
+
+\item[(a)] We want to show that $\forall x P(x)\vDash \forall
+  yP(y)$. So, let $\mathcal{M}$ and $\alpha$ be arbitrary such that
+  $\mathcal{M}\vDash\forall xP(x)$. This means that for all $d\in
+  D^\mathcal{M}$, $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$,
+  i.e. for all $d\in D^\mathcal{M}$, $\llbracket
+  x\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}\in P^\mathcal{M}$. But
+  that just means that for all $d\in D^\mathcal{M}$, $d\in
+  P^\mathcal{M}$. Hence, we also have that for all $d\in
+  D^\mathcal{M}$,   $d=\llbracket
+  y\rrbracket^\mathcal{M}_{\alpha[y\mapsto d]}\in P^\mathcal{M}$,
+  which gives us that $\mathcal{M},\alpha\vDash\forall y P(y)$.
+  
+\item[(c)] We will prove the contrapositive. Assume for arbitrary $\mathcal{M}, \alpha$ that $\mathcal{M}, \alpha \vDash \neg \forall x (P(x) \rightarrow Q(x))$. We will show that $\mathcal{M}, \alpha \vDash \neg \neg \exists x P(x)$. As we know $\neg \neg \phi$ is equivalent to $\phi$, showing $\llbracket\exists P(x)\rrbracket_\alpha^\mathcal{M} =1$ is sufficient.\\\textit{Proof:} $\neg \forall x (P(x) \rightarrow Q(x)) $ means just that there is some element $d \in D^\mathcal{M}$ such that $P(d) \rightarrow Q(d)$ is false. This can only be the case if $P(d)$ is true and $Q(d)$ is false. From $\llbracket P(d)\rrbracket_\alpha^\mathcal{M}=1$,\ follows that $\llbracket \exists x P(x)\rrbracket_\alpha^\mathcal{M} =1$, which is what we needed to show. $\square$
+
+\end{enumerate}
+
+
+    
+
+\subsection*{9.7.14}
+\begin{enumerate}
+    \item[(a)] Deze claim is niet waar. Dit kan geïllustreerd worden met het onderstaande tegenvoorbeeld:\\
+    $ D^\mathcal{M} = \{a,b\} \\
+    P^\mathcal{M} = \{a\} \\
+    Q^\mathcal{M} = \{a,b\}
+    \\ \forall x (P(x)\rightarrow Q(x))$ is waar: als we $x$ vervangen door $a$ dan hebben we dat $P(a)$ en $Q(a)$ waar zijn, dus $P(a)\rightarrow Q(a)$ is ook waar. Als we $x$ vervangen door $b$ krijgen we $\neg P(b)$, dus dan is de implicatie $P(b)\rightarrow Q(b)$ waar. $\neg \exists P(x)$ is ook waar, want $\neg P(b)$ is waar. $\forall x \neg Q(x)$ is echter niet waar, want er is een element waarvoor geldt $Q(X)$, namelijk $a$. 
+\end{enumerate}
+	
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

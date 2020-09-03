@@ -1,0 +1,123 @@
+\chapter{Chapter 3. Elementary Set Theory}
+
+\section*{3.9 Self-Study Questions}
+
+	\begin{enumerate}
+	
+		\item[3.9.1] (a) is the definition of $X\subseteq Y$. Note that (d) is equivalent to (a): if there exists no $x\in X$ such that $x\notin Y$, then every $x\in X$ must also be in $Y$. Why? Well, can you find a counterexample? (h) is perhaps the most difficult to see to be correct. Also here it helps to think whether you can find a counterexample if (h) holds. Suppose that $X\nsubseteq Y$ and that (h) holds. That $X\nsubseteq Y$ means that there exists an $x\in X$ and $x\notin Y$. And (h) says that every $x\notin Y$ is also such that $x\notin X$. This would mean that some $x$ would need to be both such that $x\in Y$ and $x\notin X$, which is impossible. Hence $X\nsubseteq Y$ cannot be and we have to have $X\subseteq Y$, instead.
+		
+		\item[3.9.2] (e) is the only correct answer.
+		
+		\item[3.9.3] (a) is correct by the axiom of extensionality. (b) is not correct, since we might have, for example, \emph{one} element which is in both sets (and hence in the one iff in the other), but \emph{another} which is only in one and not the other (and hence the sets are different). (c) is more or less obviously not enough. (d) can be seen to be correct by the reasoning from 3.9.1.(d). (e) is not correct since it's not enough that we can ``pair'' the elements, they need to be the same. And (f) is too weak, it only implies $X\subseteq Y$.
+		
+		\item[3.9.4] Remember that two sets are distinct as soon as they have different members.
+	
+		\item[3.9.5--3.9.8] The correct answers follow immediately from the definitions of $\cap$ and $\cup$. Note that in logic and mathematics, we read ``or'' inclusively and therefore (e) is also correct in 3.9.5. Note further that to say that it's not the case that one thing or the other is the case is to say that both are not the case. Similarly, to say that it's not the case that two things are the case is to say that at least one of them is not the case. This, hopefully, helps with 3.9.6 and 3.9.8. 
+		
+		\item[3.9.9] The correct answers follow directly from the conditions on what a function needs to do.
+		
+		\item[3.9.10] Remember from 3.6.11 that $\{f(x):x\in X'\}$ for $f:X\to Y$ and $X'\subseteq X$ is defined as the set $\{y:\text{there exists a }x\in X'\text{, such that }y=f(x)\}$. This means that an element $m$ is not in the set $\{n^2:n\in\mathbb{N}\text{ and }0\leq n\leq 10\}$ just in case it's not the case that there exists an $n\in\mathbb{N}$ such that $0\leq n\leq 10$ and $m=n^2$. But that's just the same as (b). Note that (a) is not correct since $4\in \{n^2:n\in\mathbb{N}\text{ and }0\leq n\leq 10\}$ since $0\leq 2\leq 4$ and $2^2=4$ but there exists nine numbers $0\leq n\leq 10$ with $n^2\neq 4$: $0^2=0, 1^2=1, 3^2=9, \mathellipsis, 10^2=100$. 
+	
+	\end{enumerate}
+
+\section*{3.10 Exercises}
+
+	\begin{itemize}
+
+	\item[3.10.1]
+	
+	\begin{enumerate}[(a)]
+		    \item $\{1,3\}$
+ 		   \item $\{1,2,3,5\}$
+ 		   \item $X\setminus Y = \{2\},\ Y\setminus X = \{5\}$
+   		 \item $\wp(X) = \{\emptyset,\{1\},\{2\},\{3\}, \{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}$\\$\wp(Y)=\{\emptyset,\{1\},\{3\},\{5\}, \{1,3\},\{1,5\},\{3,5\},\{1,3,5\}\} $
+   		 \item $X \times Y = \{(1,1),(1,3),(1,5),(2,1),(2,3),(2,5),(3,1),(3,3),(3,5)\}$\\$Y \times X = \{(1,1),(1,2),(1,3),(3,1),(3,2),(3,3),(5,1),(5,2),(5,3)\}$
+		\end{enumerate}
+
+	\item[3.10.2]
+
+			\begin{enumerate}[(a)]
+
+			    \item To prove $X\subseteq Y$ iff $X\cup Y = Y$, we need to prove both directions.\\$\Rightarrow\\ to\ prove:\\$If $ X\subseteq Y,\ $then $ X\cup Y = Y \\$ Suppose $X \subseteq Y$. We'll show that $X \cup Y = Y$. To show this, we must prove two things: \begin{enumerate}[(i)]
+    			    \item $Y \subseteq X \cup Y$: from the definition of union follows that $X\cup Y$ consists of all elements in $X$ and all elements in $Y$, hence all elements in $Y$ are in $X\cup Y$, which is what we needed to show.
+ 			       \item $X\cup Y \subseteq Y$ Let $x$ be an arbitrary element of $X \cup Y$. By the definition of union, we know that $x \in Y$ or $X \in X$. When $x \in Y$, we are fine, as we want to show that $x \in Y$. When $x \in X$, we know by our assumption that $X\subseteq Y$, that $x \in Y$. Therefore all $x \in X\cup Y$ are in $Y$, therefore $X\cup Y \subseteq Y$. 
+    \end{enumerate}
+  			  Using the axiom of Extensionality, we can now conclude that $X \cup Y = Y$. \\\\
+   			 $\Leftarrow\\to\ prove:$\\If $X\cup Y=Y$, then $X\subseteq Y$. We'll prove the contrapositive. We assume that $X \not \subseteq Y$. Hence there must be some element $x\in X$ such that $x\not \in Y$. As $X \cup Y$ contains all elements of $X$, it must also contain $x$. As there's one element that is in $X\cup Y$ and not in $Y$, $X \cup Y \neq Y$, which is what we needed to prove.\\\\ As we've now proved both directions, we've proved $X\subseteq Y$ iff $X\cup Y = Y \square$
+    
+\end{enumerate}
+\item[3.10.3] \
+\begin{enumerate}
+    \item $	\begin{matrix}
+		(1,1) && \overset{f}{\mapsto} && 1 \\ 
+		(1,2) && \overset{f}{\mapsto} && 1 \\ 
+		(1,3) && \overset{f}{\mapsto} && 1 \\
+	\end{matrix} 
+	\qquad	
+	\begin{matrix}
+		(2,1) && \overset{f}{\mapsto} && 1 \\
+		(2,2) && \overset{f}{\mapsto} && 2\\
+		(2,3) && \overset{f}{\mapsto} && 2\\
+	\end{matrix}
+	\qquad
+		\begin{matrix}
+ 		(3,1)&& \overset{f}{\mapsto} && 1\\
+		(3,2)&& \overset{f}{\mapsto} && 1\\
+		(3,3) && \overset{f}{\mapsto} && 3\\
+	\end{matrix}$
+	\item $\begin{array}{c|ccc}
+		f & 1 & 2 & 3 \\ \hline
+		1 & 1& 1& 1 \\
+		2 & 1 & 2 &2 \\
+		3 & 1 & 2 & 3 
+	\end{array}$
+	\item 	$
+	f((x, y)) = 
+	\begin{cases}
+	x \text{ if } x < y,\\
+	y \text{ otherwise}
+	\end{cases}
+	$
+\end{enumerate}{}
+
+\item[3.10.7]
+\begin{enumerate}[(a)]
+    \item 
+    $l: Gargle \rightarrow \mathbb{N}$:\begin{enumerate}[(i)]
+        \item \begin{enumerate}[(a)]
+            \item $l(\clubsuit) = 1$
+        \item $l(\spadesuit) = 1$
+        \end{enumerate}
+        \item \begin{enumerate}[(a)]
+            \item $l(\Diamond x\Diamond)= l(x) + 2$
+            \item $l(x\heartsuit y)= l(x)+l(y)+1 $
+        \end{enumerate}
+    \end{enumerate}
+
+
+    \item     $\textbf{1}_\heartsuit: Gargle \rightarrow \{0,1\}$:\begin{enumerate}[(i)]
+        \item    $\textbf{1}_\heartsuit(\clubsuit) =\textbf{1}_\heartsuit(\spadesuit) = 0$
+        \item \begin{enumerate}[(a)]
+            \item $\textbf{1}_\heartsuit(\Diamond x\Diamond)= \textbf{1}_\heartsuit(x)$
+            \item $\textbf{1}_\heartsuit (x\heartsuit y)= 1$
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\item[3.10.8] We will prove by induction that the amount of $\Diamond$'s in a gargle is always even.
+\begin{enumerate}[(i)]
+    \item Base case 1: $\spadesuit$ has an even number of $\Diamond$'s, as 0 is even.
+Base case 2: $\clubsuit$ has an even number of $\Diamond$'s, as 0 is even.
+\item \begin{enumerate}[(a)]
+    \item Assume $x$ has an even number of $\Diamond$'s.Then $\Diamond x \Diamond$ must also have an even number of $\Diamond$'s, as the number of $\Diamond$'s of $\Diamond x \Diamond$ is the number of $\Diamond$'s of $x$+2. We know that an even number +2 results in another even number.
+    \item Assume $x,\ y$ have an even number of $\Diamond$'s. Then the number of $\Diamond$'s of $x\heartsuit y$ will be the number of $\Diamond$'s of $x$ + the number of $\Diamond$'s of $y$, which will be an even number, as an even number added to an even number results in an even number, which is what we needed to show.\\
+\end{enumerate}
+\end{enumerate}
+    By means of induction we've now proved that the number of $\Diamond$'s in a Gargle is always even. 
+\item[3.10.9]
+We will prove that $\spadesuit\Diamond\heartsuit\spadesuit \not \in Gargle$. We have just proven that every gargle has an even amount of $\Diamond$, but this one has exactly 1, and $1 = 0 \cdot 2 + 1$. Therefore 1 is odd, and not even. So we must conclude it's not a Gargle.
+\end{itemize}	
+	
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

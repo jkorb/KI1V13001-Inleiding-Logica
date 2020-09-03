@@ -1,0 +1,90 @@
+\ProvidesPackage{mystyle}
+
+\usepackage{pdfsync}
+
+\synctex=1
+
+\usepackage{graphicx} %allow picture inclusion, probably not needed
+
+\graphicspath{{images/}{/images/}} %say where 
+
+\usepackage[utf8]{inputenc} %input encoding
+
+\usepackage{amssymb,amsmath,amsthm} %the math tripos
+
+\usepackage{stmaryrd} %give commands \llbracket and \rrbracket
+
+\usepackage{enumerate} %allow changing enumerate counters
+
+\usepackage{wasysym} %?
+
+\usepackage{hyperref} %allow hyperlinks, make toc clickable
+
+\usepackage{proof} %give \infer{}{} command for inferences
+	
+\usepackage{prooftrees} %give tree commands for tableaux
+
+\usepackage{longtable} %give longtables with pagebreaks
+
+\usepackage{rotating} %give \rotate{degree}{argument} command
+
+\usepackage{tikz} %tikz! used everywhere
+
+\usetikzlibrary{fit,shapes} %standard tikzlibrary, used for tree shapes
+
+\usepackage{tikz-qtree} %make better trees in tikz
+
+\tikzset{edge from parent/.append style={->}} %globally create pointed arrows in trees
+
+\usepackage[all]{xy} %make diagrams?
+
+\usepackage{lscape} %allow landscape, used for long solutions in the appendix
+
+\usepackage{pifont} %give the following cmark and xmark, used in tableaux
+	
+%Commands and Symbols		
+		
+\newcommand{\cmark}{\ding{51}} %create checkmark, used in tableaux and algorithms
+	
+\newcommand{\xmark}{\ding{55}} %create x mark, used in tableaux
+
+%The following generates a nice equivalence symbol. However it's very tex level.
+
+\makeatletter
+\providecommand*{\equi}{%
+  \mathrel{%
+    \mathpalette\@equi\vDash
+  }%
+}
+
+\newcommand*{\@equi}[2]{%
+  \reflectbox{$\vDash$}\hspace{-0.5ex}\vDash %
+}
+	\makeatother
+
+	\frenchspacing %This way's the only way.
+
+	%\newcommand{\first}[1]{\textbf{#1}}
+
+	%\newcommand{\formaldef}[1]{\emph{#1}}
+	
+	%\newcommand{\informaldef}[1]{\textbf{#1}}
+
+	\newcommand{\nosym}{\not\hspace{-.5ex}x} %used for no-math exercises
+
+%Theoremstyles
+
+	\theoremstyle{definition} %make theorems look the way i want
+                                %them to
+
+	\newtheorem*{definition}{Definition}
+	
+	\newtheorem*{lemma}{Lemma}
+
+	\newtheorem*{proposition}{Proposition}
+
+	\newtheorem*{theorem}{Theorem}
+
+	\newtheorem*{corollary}{Corollary}
+
+	\newtheorem*{conjecture}{Conjecture}

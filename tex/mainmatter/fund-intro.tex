@@ -1,0 +1,263 @@
+\chapter{Introduction}
+\label{chapter:intro}
+
+\emph{The entire manuscript is typeset with numbered items, consecutively numbered per section and subsection. The main reason for this is to facilitate reference in the slides, homework, and discussion.}
+
+\section{Valid Inferences}
+\label{intro:valid}
+
+\begin{enumerate}[\thesection.1]
+
+\item Logic is concerned with reasoning, more specifically
+  \emph{valid} reasoning. Here are some pieces of reasoning or, as logicians call them, \emph{inferences}:	
+		
+	\begin{enumerate}[(1)]
+	
+		\item The letter is either in the left drawer or in the right drawer, and it's not in the left drawer. So, the letter is in the right drawer.
+		
+		\item If the ball is scarlet, then it's red, and the ball is red. So, the ball is scarlet. 
+					
+	\end{enumerate}
+	In an inference, the statements that come before the ``so'' are called the \emph{premises}, and the statement that comes after is called the \emph{conclusion}.
+	
+	Inference (1) is clearly a pretty solid piece of reasoning. If you know for sure that the letter is either in the left or in the right drawer, but you can exclude that it's in the left drawer, then the letter \emph{must} be in the right drawer. Inference (2), in contrast, is pretty bad. Sure, if the ball is scarlet, then it's red. That's a conceptual truth. And let's grant for the sake of argument that the ball is red. But that doesn't mean that the ball has to be scarlet. There are many other shades of red: crimson, burgundy, maroon, \dots. In logician's terminology, (1) is a \emph{valid} inference, while (2) is \emph{in}valid. The aim of logic is to develop a theory of valid inference.\footnote{The notion of validity at play here, the one that mathematical logic courses typically focus on, is a very strong notion of validity: it requires that the truth of the premises \emph{necessitates} the truth of the conclusion. The notion is also known as \emph{deductive} validity in the literature. In this course, we'll be exclusively concerned with deductive validity and I shall, correspondingly, omit the qualifying adjective. Other, weaker notions of validity include, for example, what's known in the literature as \emph{inductive} validity, where it's only required that the premises make the conclusion \emph{more likely}. Inductive validity is of special importance, for example, in scientific reasoning and it's mainly dealt with in courses on probability theory and statistics.}
+	
+	\item \label{intro:valid:math1} In modern logic, accounts of validity are typically formulated in a formal, \emph{mathematical} setting. In a first step towards the formalization of logic, we abstract away from the logically irrelevant aspects of ordinary language to obtain the notion of a \emph{formal language}: an artificial language whose grammar is given by precise mathematical rules. The main benefit of the mathematization of ordinary language is that it makes the notion of validity amenable to mathematical analysis. A very welcome side-effect is that it allows us to implement logical reasoning into computer programs. The sub-discipline of logic that deals with the definition of formal languages is called \emph{syntax}. Whenever we develop a logic, we first have to deal with syntax.   
+	
+	\item When we're developing a formal language, we have to pay particularly close attention to the relationship between the symbols of our formal language and the ordinary language expressions they are supposed to formalize. The process of translating from natural language (English, Dutch, \dots) into a formal language is called \emph{formalization}. Being able to adequately formalize natural language expressions is an important skill you will learn in this course. As you will see, formalization is not an automatic process, it requires finesse and attention to linguistic subtlety. But most of all, it requires a solid understanding of how formal languages work.
+	
+	\item \label{intro:valid:math2} The notion of validity is standardly defined for inferences formulated in a formal language. This language is then called the \emph{object language}, the language that we're reasoning \emph{about}. The definition of validity itself is, of course, also formulated in a language, in our case, mathematical English or, as it's sometimes called, \emph{mathemateze}. This language is our \emph{meta-language}, the language that we're reasoning \emph{in}. 
+	
+	\item \label{intro:valid:valid} In modern logic, validity is typically understood in terms of \emph{truth-preservation} from premises to conclusion. The idea is that an inference is valid iff (i.e. `if and only if'\footnote{The expression `if and only if' or `iff' for short is used in mathemateze to express that two things are equivalent or, for all practical purposes, the same. We'll discuss this and other standard expressions of mathemateze in more detail in the following chapter.}) in every possible situation where the premises are true, the conclusion is true as well. To illustrate, consider inference (1) from 1.1.1. Suppose that in some situation, the premises are true, i.e. the letter is in the left drawer or in the right drawer and it's not in the left drawer. Can it be the case that in such a situation, the conclusion is \emph{not} true, i.e. the letter is also \emph{not} in the right drawer? Clearly not, for this would lead to a contradiction: we'd have that the letter is either in the left or the right drawer and, at the same, it's also neither in the left nor in the the right drawer. And surely, we can't have a contradiction in a \emph{possible} situation, so the letter must be in the right drawer, i.e. the conclusion must be true. Since we were reasoning about an \emph{arbitrary} possible situation, we can conclude that in \emph{every} possible situation in which the premises are true, the conclusion is true as well. So, the argument is valid.
+	
+	\item On the standard account, we correspondingly get that an argument is \emph{in}valid iff there exists a possible situation in which the premises are true and the conclusion is false. We can use this criterion to see why inference (2) from 1.1.1. is invalid. The premise that if the ball is scarlet, then it is red will be true in any reasonable possible situation. But the ball could surely be maroon, so take a possible situation in which it is. In such a situation, the ball will be red but not scarlet, so the premises are true and the conclusion is false. The argument is invalid.
+	
+	\item Note that an inference can be valid even if the conclusion is actually false! This can happen (only) if at least one of its premises is false, too. Take the following inference as an example: if Bremen is part of the Netherlands, then Johannes is Dutch, and Bremen is part of the Netherlands; so, Johannes is Dutch. It's easy to convince yourself that the inference is valid but the conclusion is false (I'm German, from around Bremen). But that's OK, since all we need that in every \emph{possible situation} in which the premises are true, the conclusion is true---and that's the case. It's just that in the real world, which is a very possible situation, one of the premises is false: Bremen is not part of the Netherlands. The account of validity as truth-preservation only talks about the truth of the conclusion in situations where the premises are true, it remains silent about what happens if the premises are false. Validity is, in a sense, a \emph{hypothetical} concept. There is a stronger concept of correct reasoning which demands that the premises be true as well: an inference is said to \emph{sound} iff it is valid and the premises are actually true. With a sound inference it's certainly impossible that the conclusion is false. The reason why we primarily study validity and not soundness is that it allows us to focus on the logical aspects of reasoning, leaving facts out of the picture---those are for scientists to figure out.
+	
+	\item The informal idea of validity as truth preservation is made mathematically precise in the logical discipline of \emph{semantics}. The fundamental concept of semantics is that of a \emph{model} for a formal language. A model is essentially the formal counterpart to a possible situation: it's a well-defined mathematical object which decides for each statement in the language whether the statement is true or false. Once we've syntactically defined our formal language, we need to say what a model for that language is and what it means for a formal statement to be true in a model. For this purpose, we'll essentially make use of the famous definition of truth due to the Polish logician Alfred Tarski. Once we've got this settled, we get our desired account of validity as truth preservation across all models, now understood in a precise mathematical sense. Carrying out the details will be the second step in developing a logic. 
+		
+	\item There is a third and final step, which consists in determining a \emph{proof system} for the logic. The aim is to formulate inference rules that allow us to \emph{derive} the conclusion from the premises in all (and only) the valid inferences. These inference rules, however, are supposed to be purely syntactic in the sense that they only make reference to the formal symbols and not to the concepts of semantics, like truth in a model. As you will see, showing that an inference is valid using the official definition of validity as truth preservation across all models can be difficult, it typically requires creative thinking and it's not at all obvious how to proceed. The point of a proof system is to make establishing validity more tractable, especially for an artificial intelligence. From a more philosophical vantage point, the idea of a proof system is to formally model the kind of step-by-step reasoning that we typically do in logical situations. The subfield of logic that deals with proof systems is called \emph{proof theory}. In this course, we'll work with the proof system of \emph{semantic tableaux}, which was invented by the Dutch logician Evert Willem Beth.
+	
+	\item Once we've laid down a set of inference rules, it's an important mathematical fact to establish that using these rules, we can derive the conclusion from the premises in all and only the valid inferences. So, we have to show two things: first that we can derive the conclusion from the premises \emph{only} if the inference is valid, and second that we can derive the conclusion from the premises \emph{whenever} the inference is valid. The first part, is called the \emph{soundness theorem}. For most logics it's quite easy to establish soundness. What's more difficult but possible to show is the second part, that every valid inference can be shown to be valid by our purely formal means. This is \emph{(G\"odel's) completeness theorem}, named after Austrian logician Kurt G\"odel. In this course, we'll prove both soundness and completeness for the tableaux method. This will be our most important mathematical result.
+				
+\end{enumerate}
+
+\section{Propositional and First-Order Logic}
+
+\begin{enumerate}[\thesection.1]
+
+	\item In this course, we'll cover standard propositional and first-order logic. These are two logical systems with different scopes, though first-order logic, in a sense, contains propositional logic as a part.
+	
+	\item Propositional logic deals with inferences that are valid because of the meaning of the so-called \emph{sentential connectives}: ``not,'' ``and,'' ``or,'' ``if \dots, then \dots,'' and so on. The two inferences we discussed in 1.1.1 are valid/invalid  in  precisely this sense: (1) is valid because of the meaning of ``not'' and ''or'' and (2) is invalid because of the meaning of ``if \dots, then \dots.'' In the second part of this course, after having dealt with some mathematical prolegomena, we'll develop standard propositional logic ``from scratch:'' we'll cover its syntax, semantics, and proof theory. In a sense, we could save us some work and move immediately to first-order logic, since the syntax, semantics, and proof theory for first-order logic are \emph{extensions} of those for propositional logic. But for propaedeutic reasons, we'll cover propositional logic separately. In propositional logic, the definitions of a formal language, a model, truth in a model, and derivability are all straight-forward enough so that we can focus on how they exemplify the underlying ideas sketched in \S1.1.
+	
+	\item First-order logic deals with all of the inferences of propositional logic \emph{plus} inferences involving \emph{generality}. There are inferences that are easily seen to be valid but we can't account for their validity purely in terms of the behavior of the sentential connectives. Consider, e.g.:
+	
+	\begin{enumerate}[(1)]
+		\setcounter{enumii}{2}
+	
+		\item This ball is scarlet and everything that's scarlet is red. So, this ball is red.
+		
+		\item The letter is in the left drawer. So there is something in the left drawer.
+	
+	\end{enumerate}
+	
+	It's easily checked that, intuitively, in every situation where the premises of these arguments are true, the conclusion is too. But the (formal) language of propositional logic lacks the expressive resources to capture the meaning of the crucial premise in (3) or the conclusion in (4). Claims like ``everything that's scarlet is red'' or ``there is something in the left drawer'' cannot be analyzed purely in terms of ``not,'' ``and,'' ``or,'' \dots. To deal with such claims, we need \emph{quantifiers}, which are linguistic devices, like ``for all'' and ``there exists,'' that allow us to express \emph{general} claims, i.e. claims that are, in a sense, about all objects.
+	
+	\item Developing a formal language with quantifiers and, in particular, developing an adequate notion of a model for such a language is mathematically significantly more involved than in the simpler case of propositional logic (though it is, as I said, really just a generalization). We'll tackle this task in the third part of the course. There are a variety of issues that we'll have to deal with here, involving, for example, identity and infinity. But it'll be worth it. First-order logic provides the paradigm of logical reasoning in mathematics, computer science, linguistics, and many other disciplines. And at the end of the course, you'll have mastered its corner-stones.
+
+\end{enumerate}
+
+\section{Classical Logic}
+
+\begin{enumerate}[\thesection.1]
+
+	\item In this course, we'll only cover what's known as \emph{classical logic}. It's actually a bit tricky to say what classical logic precisely is. Perhaps the most accurate description is that classical logic is \emph{standard} logic, it's the logic characterized by the assumptions, techniques, and results that are usually made, used, and referenced without further justification in the many applications of logic in philosophy, mathematics, linguistics, computer science, and so on. We won't go through all of them one-by-one, but throughout the course, I'll highlight which of our assumptions are assumptions of classical logic. Here, let me just mention one assumption that will be of fundamental importance throughout the course.
+	
+	\item Note that when we argued that inference (1) from 1.1.1 is valid in 1.1.5, we assumed that we can't have contradictions in possible situations. This is a kind of \emph{consistency} assumption and it's characteristic of classical logic. Note that without the consistency assumption, inference (1) wouldn't be valid, since we could find a situation in which the premises are true but the conclusion not. This would be a situation in which the letter is not in the right drawer but it's both in the left drawer and not in the left drawer. 	Since the letter is in the left drawer, it's in the left or the right drawer, meaning the first premise is true. And since the letter is also not in the left drawer, the second premise is true. But the letter is not in the right drawer, so the conclusion is false. Hence, if we were to allow for such an impossible situation (which we're not!), the inference would be invalid.
+	
+	\item An important logical consequence of the consistency assumption is that every inference with inconsistent premises is valid. For suppose that we have some inconsistent premises, say ``the ball is red'' and ``the ball is not red,'' and any arbitrary conclusion, say ``the moon is made of green cheese.'' The inference is valid iff in every possible situation where the premises are true, the conclusion is true as well. But by the consistency assumption, there are no possible situations where the premises are true. Hence, \emph{trivially}, in every situation where the premises are true, so is the conclusion.\footnote{Note that this also means that \emph{trivially} in every situation where the premises are true, the conclusion is \emph{false}. To see this, ask yourself: can there be a situation where the premises are true and the conclusion is \emph{not} false. The answer needs to be: no! Why? Because in such a situation, the premises would need to be true, which we've already seen is impossible. Hence, there cannot be a counterexample to the claim that in every situation where the premises are true, the conclusion is false---there is no situation in which the premises are true and the conclusion is not false. } To drive the point home, think of it in another way. Ask yourself: Can the inference be \emph{in}valid? Well, there would have to be a possible situation where the premises are true and the conclusion is not. But that would need to be a situation in which the ball is red and not red, which is excluded by the consistency assumption. This means that the argument cannot be invalid, which is just another way to say that it's valid. Clearly, the point generalizes to arbitrary inferences with inconsistent premises. Bottom-line: \emph{every} inference with inconsistent premises is valid. This is known as the principle of \emph{ex falso quodlibet} and it's  an example of a law of classical logic.
+	
+	\item There are logics which don't share the consistency assumptions, so-called \emph{paraconsistent} logics. We won't deal with them in the course, but as AI students, you should know that they exist. There are a variety of reasons for why one might be interested in paraconsistent logics, but a simple example, which is close to home for AI purposes, involves reasoning with information provided by (possibly) \emph{inconsistent databases}. We often have to reason with information provided by databases where we don't have control over how information is fed into them, and which therefore might turn out to be inconsistent. Just think of the internet! This means that if we use classical logic to reason with the information provided by such an inconsistent database, \emph{every} inference which uses all the information in the database as premises would turn out to be valid, which is clearly undesirable. To obtain useful information from inconsistent databases using logic, we need a paraconsistent logic. Classical logic, instead, is more suited to reasoning about the real world (rather than about information), where inconsistencies arguably can't occur.
+	
+	\item The consistency assumption has a flip-side, which is equally characteristic of classical logic. It states that in every situation, each statement is either true or not: the ball is either red or not, the letter is either in the left drawer or not, \dots. This is a \emph{completeness assumption}. Contravening it would be a situation in which some fact remains unsettled: whether the ball is red, where the letter is, or the like. The completeness assumption, too, has logical consequences. In particular, it means that every inference whose conclusion says that something is the case or not is valid. Take, for example, an inference with the conclusion ``the ball is red or not.'' For that inference, no matter what the premises are, to be invalid, we'd need a situation in which the premises are true but the conclusion is not. But that would require it to be the case that in that situation the ball is neither red nor not red, the question of its redness would need to be unsettled. Given the completeness assumption, that's impossible. Hence, the argument can't be invalid. So it's valid. This is known as the classical law of \emph{verum ex quodlibet}. 
+	
+	\item Statements like ``the ball is red or not,'' which in classical logic are true in all situations, are also called \emph{logical truths}. Conversely, contradictions, like ``the ball is both red and not,'' are called \emph{logical falsehoods}. Logical truths and falsehoods are not very informative considered as statements about the real world, but they play a central role in classical logic. We'll see later that the logical truth of certain statements coincides with the validity of certain inferences. So, in a sense, we can focus on the logical truth of statements rather than the validity of inferences. 
+	
+	\item Logics without the completeness assumption also exist. They are called \emph{paracomplete} logics, and again, we won't cover them in this course. They are equally useful in the case of reasoning with databases, albeit for slightly different reasons. Just like databases can turn out to be inconsistent, they might be incomplete by failing to provide information about a certain subject matter, e.g. the redness of the ball. In such cases, we arguably don't want to be able to conclude from the database that the ball is either red or not, since that's not what the database says---it remains quiet about this. This is what a paracomplete logic allows us to do.
+	
+	\item On our mathematical approach to logic, the completeness and consistency assumption are implemented via a semantic principle, which governs our definition of truth in a model:
+	
+	\begin{description}
+	
+		\item[Bivalence.] For every model of a formal language, every statement of the language is either true or false in the model and never both.
+	
+	\end{description}
+	
+	The principle of bivalence corresponds to the conjunction of the consistency and the completeness assumption, spelled out in our formal terms. We will always assume bivalence in our semantics, which is one way in which we're doing classical logic. This principle will be implemented in different ways for propositional and first-order logic, but the underlying idea always remains the same.
+	
+	\item There are many other characteristics of what's called classical logic. Here are just a few:
+	\begin{itemize}
+	
+		\item Focusing only on propositional and first-order logic, leaving other connectives like the modal operators ``necessarily'' or ``possibly'' out of the picture.
+		
+		\item Focusing on truth preservation as the definition of validity, instead of more proof-focused accounts.
+		
+		\item Dealing with ``if \dots, then \dots'' statements by means of the so-called \emph{material conditional} (which we'll discuss extensively in the context of propositional logic).
+			
+	\end{itemize}
+	
+	\item In this course, you'll get familiar with classical logic and you'll get an ``I know it when I see it'' kind of acquaintance with the subject.
+	
+\end{enumerate}
+
+\section{Decidability}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item As a computer science-minded person, you might ask: Is it perhaps possible to write a computer program, such that if I give it an arbitrary inference, the program will determine (in  a finite amount of time) \emph{whether} the argument is valid? Meaning, the program will spit out ``yes'' if the inference is valid, and it will spit out ``no'' if the argument is invalid. This is (roughly) what logicians call the question of \emph{decidability} of validity. And indeed, in propositional logic, it's possible to write such a computer program: classical propositional logic is decidable. We will, indeed, prove this result by describing two decision procedures for propositional logic, one using models and one using proof systems. 
+		
+		\item It might be surprising to learn that first-order logic is \emph{not} decidable. It can be proven with mathematical certainty that there exists no computer program as described above. This was proven by Alonzo Church and Alan Turing in the 1930's. We shall not prove the result in the course, but you'll be able to get an idea of \emph{why} it holds.
+		
+		\item Decidability shouldn't be confused with completeness (see 1.1.9). The point of completeness is that we can derive, by purely formal means, all the valid inferences. The point of decidability is whether this can be automatized in such a way that we'll always get a yes-or-no answer after finitely many steps. In a sense, the undecidability of first-order logic means that finding purely formal demonstrations of valid inferences in first-order logic is a \emph{hard} problem, it requires intelligence and creativity to become computationally feasible.
+		 
+		 \item Even though first-order logic is undecidable, we can still write a computer program that \emph{attempts} to find a derivation of a given conclusion from some premises. We just have to keep in mind that even if the inference in question is valid, it's possible that the program doesn't find a proof in a reasonable amount of time. A program like this is called a \emph{theorem prover}. The method of semantic tableaux we use in this course is often used in theorem provers (in fact, for propositional logic, it essentially \emph{is} a theorem prover). We'll look a bit at the problems we face when trying to write efficient theorem provers.
+		 
+	\end{enumerate}
+
+\section{Core Ideas}
+
+\emph{At the end of every chapter, you will find a summary of the most important concepts and ideas of the chapter. NB: This is not a comprehensive summary of the chapter, in only covers the most important points.}
+
+	\begin{itemize}
+
+		\item An inference is valid iff in every situation in which the premises are true, so is the conclusion; an inference is invalid iff there is a situation in which the premises are true but the conclusion is not.
+		
+		\item We model ordinary language by means of formal languages, artificial languages whose grammar is given by precise mathematical rules.
+		
+		\item We model a possible situation by means of a model for a formal language. The statements of the formal language are assigned truth-values relative to a model.
+		
+		\item We model step--by-step reasoning by means of proof systems, formal systems of inference rules. In this course, we use the tableaux method.
+		
+		\item A proof system is sound and complete iff the valid inferences are precisely the ones whose conclusion can be derived from the premises.
+		
+		\item Propositional logic deals with inferences involving the sentential connectives ``not,'' ``and,'' ``or,'' \dots; first-order logic also allows for the quantifiers ``for all'' and ``there exists.''
+		
+		\item We only focus on classical logic, which importantly means that we assume bivalence: in every model, every statement of our formal language is either true or false and never both.
+		
+		\item A logic is decidable iff there is a step-by-step algorithm which after finitely many steps tells us whether a given inference is valid or not. Propositional logic is decidable, but first-order logic is not.
+
+	\end{itemize}
+	
+\section{Self-Study Questions}
+
+\emph{Every the summary of the core ideas, there will always be a set of multiple-choice questions, which test your understanding of the core concepts. You can find the answers on the last page of the chapter. Explanations for why these are the correct answers can be found in the appendix.}
+
+	\begin{enumerate}[\thesection.1]
+	
+		\item Which of the following entails that a given inference is valid:
+		
+			\begin{enumerate}[(a)]
+				
+				\item In every situation, the premises are false.
+				
+				\item In some situation, the premises are true and conclusion is not.
+				
+				\item In no situation, the premises are true and the conclusion is not.
+				
+				\item In no situation, the conclusion is false.
+				
+				\item In every situation, the conclusion is false.
+				
+				\item In every situation where the conclusion is false, at least one of the premises is false.
+
+			\end{enumerate}
+
+		\item Which of the following entails that the inference is \emph{in}valid:
+		
+			\begin{enumerate}[(a)]
+			
+				\item There is a situation in which premises and conclusion are  all false.
+				
+				\item In every situation where the conclusion is false, the premises are true.
+
+				\item There is a situation in which the premises are true and there is no situation in which the conclusion is true.
+				
+				\item There is a situation in which the premises are true and the conclusion is false.
+				
+				\item In every situation where the premises are true, the conclusion is false.
+															
+				\item There is no situation in which the premises are true and the conclusion as well.
+							
+			\end{enumerate}
+
+
+	\end{enumerate}
+	
+\section{Exercises}
+
+\emph{Each chapter contains a set of exercises. Solutions to selected exercises can be found in the appendix. The exercises marked $[h]$ are homework assignments, which are always due in the workgroup meeting preceding the one in which they are going to be discussed.}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item $[h]$ Are the following inferences valid or invalid? Provide an explanation!
+
+			\begin{enumerate}[(a)]
+			
+				\item Every blue fish is a whale. This is a whale. So, this is a blue fish. 
+			
+				\item Well, I didn't not miss the train. So, I missed the train.
+			
+				\item If you had checked your email, then you'd have seen my message, and you didn't see my message. So you didn't check your email. 
+
+				\item Every rose is red. So there's at least one red rose.
+				
+				\item If you did that, then pigs can fly. So, you didn't do it.
+
+			\end{enumerate}
+			
+		\item $[h]$ Give an argument that if an inference is valid, then adding additional premises doesn't cancel the validity of the inference.
+			
+		\item $[h]$ For every invalid inference, it's possible to add one or more premises to make it valid. Why? (There's actually more than one way of achieving this, find at least two.)
+
+	\end{enumerate}
+	
+\section{Further Readings}
+
+\emph{At the very end of some chapters, I provide a list to further literature. These are not mandatory readings, but they can help you understand the material of the chapter better.}
+
+\vspace{2ex}
+
+\noindent A (very) short, informal introduction to the core ideas of logic that I can warmly recommend is:
+
+	\begin{itemize}
+	
+		\item Priest, Graham. 2017. \emph{Logic. A Very Short Introduction}. 2nd Edition. Oxford, UK: Oxford University Press. 
+	
+	\end{itemize}
+	
+\noindent The first four chapters of that book give you a slightly more detailed, informal overview of the material that we're going to cover. The author, Graham Priest, is a famous \emph{non-classical} logician, he believes that there are true contradictions. Because of this, his booklet is particularly good at taking non-classical views into account. The later chapters of that book can also be recommended, by way of outlook on the broader field of modern logic.
+
+\vfill
+
+\hfill \rotatebox[origin=c]{180}{
+\fbox{
+\begin{minipage}{0.5\linewidth}
+
+\subsection*{Self Study Solutions}
+
+\begin{enumerate}
+
+	\item[1.6.1]  (a), (c), (d), (f)
+
+	\item[1.6.2] (c), (d)
+
+\end{enumerate}
+
+Explanations in the appendix.
+
+\end{minipage}}}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

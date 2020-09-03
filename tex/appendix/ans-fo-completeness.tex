@@ -1,0 +1,1024 @@
+%by Maarten Burger, Alexander Apers, and Jos Zuiderwijk
+\chapter{Chapter 11. Soundness and Completeness}
+
+\section*{11.7.1 Part A --- Doing}
+
+In the following, I give both full, detailed answers to the questions
+and an indication of the expectations I have for a good answer. Note
+that my way of answering is very detailed and there might be many
+different, equally valid ways of writing up the same result. Note that
+the correctness of the answer is always a factor but by far not the
+only one. If, as in 11.7.3, the correctness of the answer is one out
+of 4 elements of a correct answer, just writing down the correct
+answer can give at most 1/4th of the points.
+
+Keep in mind that since this is your first formal course, I give you a
+lot of leeway when it comes to precise, mathematical formulations, but
+the elements of a good answer should always be there to get decent
+points.
+
+\begin{itemize}
+
+\item[11.7.1] \emph{Long answer}: In order to determine all variable and
+  quantifier occurrences, we first construct the stripped parsing
+  tree for the formula:
+  \begin{center}
+    \Tree [.{$\forall x$}
+             [.{$\exists y$}
+                [.{$\to$}
+                 [.{$R$}
+                   [.{$x$} ]
+                   [.{$y$} ]
+                 ]
+                 [.{$\forall x$}
+                    [.{$\land$}
+                         [.{$P$} [.$x$ ] ]
+                         [.{$\exists y$} [.{$R$} [.$x$ ] [.$y$ ] ] ]
+                    ]
+                 ]
+                ]
+             ]
+             ]
+  \end{center}
+  The following table contains the information which variable
+  occurrence is bound by which quantifier occurrence:
+    \begin{longtable}{c | c}
+      Variable occurrence      & Quantifier occurrence that binds it\\\hline
+      $((r,1,1,1,1), x)$       & $(r, \forall x)$\\
+      $((r,1,1,1,2), y)$       & $((r,1), \exists y)$\\
+      $((r,1,1,2,1,1,1), x)$   & $((r,1,1,2), \forall x)$\\
+      $((r,1,1,2,1,2,1,1), x)$ & $((r,1,1,2), \forall x)$\\
+      $((r,1,1,2,1,2,1,2), y)$ & $((r,1,1,2,1,2), \exists y)$
+    \end{longtable}
+
+    \emph{Elements of a good answer}:
+
+    \begin{itemize}
+    \item Proper naming of the occurrences.
+    \item Clear statement which variable occurrence is bound by which
+      quantifier occurrence.
+    \item Correct answer.
+    \item Fully formulated sentences. 
+    \end{itemize}
+    
+  \item[11.7.2] \emph{Full answer}:
+    \begin{enumerate}
+    \item $\forall x(V(x)\to L(x))$
+    \item $\neg \forall x(L(x)\to \forall y(\neg L(y)\to I(x,y)))$
+    \item $H(x)\land \neg V(x)\land \neg D(x)$
+    \item $\exists x(\neg L(x)\land \neg D(x))$
+    \end{enumerate}
+
+    \emph{Elements of a good answer}:
+
+    \begin{itemize}
+    \item Formalizations are indeed formulas.
+    \item Adequate formalizations.
+    \item Recognizes $V(x)\to L(x)$ as the best formalization of ``only
+      if''
+    \item Recognizes ``he'' as an indefinite pronoun, i.e. free
+      variable.
+      \item Recognizes the subordinate clause indicated by the commas
+        in (iv) to indicate an existential quantifier.
+    \end{itemize}
+
+   \item[11.7.3] \emph{Long answer}: We are asked to determine the value of $\llbracket
+     (0+x)\cdot S(0)\rrbracket^\mathcal{M}_\alpha$ for the given model
+     and assignment. Applying the recursive definition of the
+     denotation of a term in a model under an assignment, we get the
+     following calculation:
+     \begin{align*}
+       \llbracket (0+x)\cdot
+       S(0)\rrbracket^\mathcal{M}_\alpha&=\llbracket
+                                          0+x\rrbracket^\mathcal{M}_\alpha\cdot^\mathcal{M} 
+                                          \llbracket
+                                          S(0)\rrbracket^\mathcal{M}_\alpha
+       \\
+       &=(\llbracket
+         0\rrbracket^\mathcal{M}_\alpha+^\mathcal{M}\llbracket
+         x\rrbracket^\mathcal{M}_\alpha)\cdot^\mathcal{M}
+         S^\mathcal{M}(\llbracket 0\rrbracket^\mathcal{M}_\alpha)\\
+                                        &=(0^\mathcal{M}+^\mathcal{M}\alpha(x))\cdot^\mathcal{M}S^\mathcal{M}(0^\mathcal{M})\\
+                                        &=(1 +^\mathcal{M}3)\cdot ^\mathcal{M}S^\mathcal{M}(1)\\
+                                        &= 5\cdot 3\\
+                                        &=15
+     \end{align*}
+
+     \emph{Elements of a good answer}:
+
+     \begin{itemize}
+     \item Explains what's being done.
+     \item Applies the recursive clauses in sufficient detail.
+     \item Applies the functions from the model correctly.
+     \item Gets the correct result.
+     \end{itemize}
+
+     \item[11.7.4] \emph{(Very) Long Answer}: We claim that $\mathcal{M},\alpha\vDash \forall
+       x\forall y(R(x,y)\to R(f(y), f(x))$. In order to determine what
+       we need to show is, we observe the following
+       \begin{itemize}
+       \item[] $\mathcal{M},\alpha\vDash \forall
+         x\forall y(R(x,y)\to R(f(y), f(x))$
+       \item[\emph{iff}] for all $d\in D^\mathcal{M}$,
+         $\mathcal{M},\alpha[x\mapsto d]\vDash \forall y(R(x,y)\to
+         R(f(y), f(x)))$
+       \item[\emph{iff}] for all $d,d'\in D^\mathcal{M}$,
+         $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
+         R(f(y), f(x))$  
+       \end{itemize}
+      Since there are only 2 elements in $D^\mathcal{M}=\{1,2\}$,
+      there are 4 possible choices for $d$ and $d'$ to consider:
+      \begin{itemize}
+      \item $d=1, d'=1$
+      \item $d=1, d'=2$
+      \item $d=2, d'=1$
+      \item $d=2, d'=2$
+      \end{itemize}
+      Since for all choices of $d$ and $d'$ other than $d=1, d'=2$, we
+      have that $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\nvDash
+      R(x,y)$, so we don't have to check anything else to see that $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
+      R(f(y), f(x))$. 
+
+      For $d=1, d'=2$, we observe that:\[\llbracket
+      f(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d, y\mapsto
+        d']}=f^\mathcal{M}(1)=2\]\[\llbracket
+      f(y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d, y\mapsto
+        d']}=f^\mathcal{M}(2)=1.\]
+    But then, we have $\mathcal{M}, \alpha[x\mapsto d, y\mapsto
+        d'\vDash R(f(y), f(x))$ and so  $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
+      R(f(y), f(x))$.
+
+      So, for each choice of $d,d'\in D^\mathcal{M}$, we have \[\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
+      R(f(y), f(x))\] and so \[\mathcal{M},\alpha\vDash \forall
+      x\forall y(R(x,y)\to R(f(y), f(x)),\] as desired.
+
+    \emph{Elements of a good answer}:
+
+    \begin{itemize}
+    \item Applies the clause for the universal quantifier.
+    \item Considers all the values for the variables.
+    \item Notices that the only interesting case is when the value of
+      $x$ is 1 and the value of $y$ 2.
+    \item Gives the correct answer.
+    \item Explains reasoning.
+    \item Is written in full, comprehensible sentences.
+    \end{itemize}
+
+  \item[11.7.5]
+
+    \begin{enumerate}
+
+    \item By definition, $\exists x(P(x)\land x=c),\forall x(P(x)\to
+      Q(x))\vdash  Q(c)$ iff the tableau for $\{ \exists x(P(x)\land x=c),\forall x(P(x)\to
+      Q(x)),\neg Q(c)\}$ is closed. Here is the tableau:
+
+      \begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x(P(x)\land x=c)}, grouped 
+     [{\forall x(P(x)\to Q(x))}, grouped
+          [{\neg Q(c)}, grouped
+               [{P(p)\land p=c}
+                    [{P(p)}
+                       [{p=c}
+                          [{P(p)\to Q(p)}
+                             [{\neg P(p)}, close ]
+                             [{Q(p)}
+                                [{\neg Q(c)}, close]
+                             ]
+                          ]      
+                       ]
+                    ]
+               ]
+          ]
+     ]
+]
+\end{prooftree}
+\end{center}
+Since the tableau is closed, we can infer the conclusion from the
+premises as claimed. 
+
+\emph{Elements of a good answer}:
+\begin{itemize}
+\item Explains why the tableau is done.
+  \item Makes a tableau for $\Gamma\cup\{\neg\phi\}$ not for
+    $\Gamma\cup\{\phi\}$.
+    \item Applies all rules correctly.
+    \item Recognizes the correct application of the identity rule to
+      close the second branch.
+      \item Gets the correct answer.
+\end{itemize}
+
+\item By definition, $P(c)\lor (P(c)\land Q(c)), \forall x(Q(x)\to
+  \neg P(c))\vdash \neg P(c)$ iff the tableau for $\{P(c)\lor (P(c)\land Q(c)), \forall x(Q(x)\to
+  \neg P(c)), \neg\neg P(c)\}$ is closed. Here is the tableau:
+
+  \begin{center}
+  \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{P(c)\lor (P(c)\land Q(c))}, grouped 
+     [{\forall x(Q(x)\to \neg
+  P(x)}, grouped
+          [{\neg\neg P(c)}, grouped
+                 [{P(c)}
+                     [{P(c)}
+                          [{Q(c)\to \neg P(c)}
+                               [{\neg Q(c)}]
+                               [{\neg P(c)}, close]
+                          ]
+                     ]
+                     [{P(c)\land Q(c)}
+                          [{P(c)}
+                              [{Q(c)}
+                                   [{Q(c)\to \neg P(c)}
+                                     [{\neg Q(c)}, close]
+                                     [{\neg P(c)}, close]
+                                   ]
+                              ]
+                         ]
+                     ]
+                 ]
+          ]
+     ]
+]
+\end{prooftree}
+\end{center}
+Since the tableau is open, we cannot infer the conclusion from the
+premises, as claimed. The associated model of the only open branch is
+given by the following specification:
+\begin{itemize}
+   \item $D^\mathcal{M}=\{c\}$
+   \item $c^\mathcal{M}=c$
+   \item $P^\mathcal{M}=\{c\}$
+   \item $Q^\mathcal{M}=\emptyset$
+   \end{itemize}
+
+   \emph{Elements of a good answer}:
+
+   \begin{itemize}
+   \item  Explains why the tableau is done.
+  \item Makes a tableau for $\Gamma\cup\{\neg\phi\}$ not for
+    $\Gamma\cup\{\phi\}$.
+  \item Applies all rules correctly.
+    \item Makes a complete tableau (i.e. applies \emph{all} possible
+      rules).
+  \item Gets the correct tableau.
+   \item Specifies the associated model completely (including the
+     interpretation of $c$ and $Q$).
+    \item Gets the correct model.
+   \end{itemize}
+   
+    \end{enumerate}
+
+    \item[11.7.6] \emph{Long answer}: We're asked to determine whether
+      the following 
+      inference is valid:
+      \begin{itemize}
+      \item The ball is round, and everything round comes from
+        Mars. So, the ball comes from Mars. 
+      \end{itemize}
+      In order to determine the validity of the argument, we first
+      formalize it. We make use of the following translation key:
+      \begin{center}
+        \begin{tabular}[!h]{c c c}
+          $b$   & : & the ball\\
+          $R^1$ & : & \dots is round\\
+          $M^1$ & : & \dots comes from Mars
+        \end{tabular}
+      \end{center}
+      We obtain \[R(b), \forall x(R(x)\to M(x))\therefore M(b)\]
+
+      I claim that this inference is valid, i.e. \[R(b), \forall
+        x(R(x)\to M(x))\vDash M(b)\]
+
+      In order to show that I'm making use of the tableau method. We
+      know that $R(b), \forall
+        x(R(x)\to M(x))\vdash M(b)$ iff the tableau for $\{R(b), \forall
+        x(R(x)\to M(x)),\neg  M(b)\}$ is closed. Here is that tableau:
+
+        \begin{center}
+  \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{R(b)}, grouped
+[{\forall x(R(x)\to M(x))}, grouped
+[\neg M(b), grouped
+[{R(b)\to M(b)}
+    [{\neg R(b)}, close]
+    [{M(b)}, close]
+]
+]
+]
+]
+\end{prooftree}
+\end{center}
+Since the tableau is closed, we can infer that \[R(b), \forall
+        x(R(x)\to M(x))\vdash M(b).\] By the soundness theorem, our
+        claim that \[R(b), \forall
+        x(R(x)\to M(x))\vDash M(b)\] follows from this.
+
+        We have now shown that the formal inference \[R(b), \forall
+        x(R(x)\to M(x))\therefore M(b)\] is valid. Since this formal
+        inference is a formalization of the natural language inference
+        we started with, we can infer that the natural language
+        inference is valid, too.
+
+        \emph{Elements of a good answer}:
+
+        \begin{itemize}
+        \item Explains what is done.
+        \item Formalizes the inference.
+        \item Gets a decent formalization.
+        \item Checks whether the inferences entail the conclusion with
+          a suitable method (tableau or semantics).
+        \item Applies that method correctly.
+        \item Transfers the results back to the natural language
+          inference.
+        \item Gets the correct result.
+        \end{itemize}
+    
+      \end{itemize}
+
+      \section*{11.7.2 Part B --- Proving}
+
+      Below, I provide a proof for each of the claimed
+      theorems. Please keep in mind that, as I said in the last
+      lecture, if a mathematical claim is provable, then there is
+      always more than one proof of it. This means, the proofs I
+      provide are not the only possible proofs. The merit of the%$
+      answers I formulate below is that they might give you a better
+      idea of what I expect a good answer to look like. Also keep in
+      mind that my answer are always as explicit as possible, and I
+      don't necessarily expect the same level of attention to detail
+      from you.
+      
+      The
+      \emph{elements of a good answer} are the same in every case:
+      \begin{itemize}
+      \item Recognizes correctly what needs to be shown.
+      \item Explains each reasoning step, doesn't have gaps in the
+        argumentation.
+      \item Uses correct reasoning, doesn't commit fallacies.
+      \item Applies the definitions correctly.
+      \item Is written in full, grammatical English/Dutch sentences.
+      \item Obtains the correct result.
+      \end{itemize}
+
+      Here is a (non-exhaustive) list of marking categories that we
+      use:
+      \begin{longtable}{c | l}
+		Abbreviation & Mistake \\
+		\hline
+		\lightning & Error/mistake (generic)\\
+		Df. & Incorrect or imprecise definition \\
+		Q\textbf{?} & Question not read correctly\\
+		$\not\Rightarrow$ & Non-sequitur, reasoning mistake\\
+		$\neq$ & Calculation mistake \\
+		$\qedsymbol$? & QED missing, reasoning incomplete\\
+		\textbf{x}? & Undeclared variables\\
+		$\Rightarrow$\textbf{?} & Right-to-left direction missing \\
+		$\Leftarrow$\textbf{?} & Left-to-right direction missing \\
+		$\underline{\lor}$ & Distinction by cases not exhaustive\\
+		$abc$ & Write complete sentences.\\
+		{[squiggles]} & No (unexplained)  paintings!
+		\end{longtable}
+
+                \begin{itemize}
+                \item[11.7.1] We're asked to show that if $\phi$ is an
+                  open formula with $y$ as its only free variable,
+                  then $\forall x\phi$ is also an open formula
+                  (i.e. not a sentence). We
+                  show this claim by showing that for every free
+                  occurrence of $y$ in $\phi$ there will be a
+                  corresponding free occurrence of $y$ in $\forall
+                  x\phi$. Since there are free occurrences of $y$ in
+                  $\phi$, from this the claim follows.
+
+                  So, consider a free occurrence of $y$ in
+                  $\phi$. Clearly, there is a corresponding occurrence
+                  of $y$ in $\forall x\phi$. What remains
+                  to be shown is that the occurrence is free. Suppose,
+                  for indirect proof, that it's not. This would mean
+                  that there's a quantifier occurrence of the form
+                  $Qy$ in $\forall x\phi$, which binds the occurrence
+                  of $y$. That quantifier occurrence cannot have a
+                  corresponding occurrence in $\phi$, because then the
+                  occurrence of $y$ in $\phi$ would be bound, contrary
+                  to our assumption. But the only quantifier
+                  occurrence that's in $\forall x\phi$ without a
+                  corresponding occurrence in $\phi$ is $(r,\forall
+                  x)$. But this occurrence cannot bind any occurrence
+                  of $y$ since $x\neq y$. Hence, $y$ needs to be free
+                  in $\forall y\phi$, as desired.%$
+
+                  \emph{Alternative strategy (way more complicated)}:
+                  Using induction on formulas.
+
+                  \item[11.7.2] We're asked to show that for all $\Gamma$, we
+                    have $\Gamma\vdash P(c)\lor \neg P(c)$. We know,
+                    by definition, that this is the case iff the
+                    tableau for $\Gamma\cup\{\neg (P(c)\lor \neg
+                    P(c))\}$ is closed. But we can infer that this
+                    tableau is closed even without knowing what the
+                    members of $\Gamma$ are. To see this, note that
+                    the initial list consists in $\Gamma\cup\{\neg (P(c)\lor \neg
+                    P(c))\}$, so we can always close the tableau as follows:
+                    \begin{center}
+  \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\Gamma}, grouped
+[{\neg (P(c)\lor\neg P(c)}, grouped
+[{\neg P(c)}
+[{\neg\neg P(c)}
+[{P(c)}, close
+]
+]
+]
+]
+]
+\end{prooftree}
+\end{center}
+Hence the tableau is always closed, which is what we needed to show.
+
+                \emph{Alternative strategy}: Semantically show that
+                $\Gamma\vDash P(c)\lor\neg P(c)$ and then use
+                completeness to infer the result.
+
+                \item[11.7.3] We aim to show that $\forall
+                  x(\phi\to\psi)\vDash\neg \exists x(\phi\land
+                  \neg\psi)$. By definition, we know that $\forall
+                  x(\phi\to\psi)\vDash\neg \exists x(\phi\land
+                  \neg\psi)$ iff for all models $\mathcal{M}$, we have
+                  that if $\mathcal{M},\alpha\vDash \forall
+                  x(\phi\to\psi$, then $\mathcal{M},\alpha\vDash\neg
+                  \exists x(\phi\land\neg\psi)$ (for some arbitrary
+                  assignment $\alpha$). So, let $\mathcal{M}$ be an
+                  arbitrary model and suppose that
+                  $\mathcal{M},\alpha\vDash\forall x(\phi\to
+                  \psi)$. This means, by definition, that for all
+                  $d\in D^\mathcal{M}$ we have
+                  $\mathcal{M},\alpha[x\mapsto d]\vDash
+                  \phi\to\psi$. From this, we need to derive that
+                  $\mathcal{M},\alpha\vDash\neg \exists
+                  (\phi\land\neg\psi)$. We do this indirectly. Suppose
+                  that $\mathcal{M},\alpha\nvDash\neg \exists
+                  (\phi\land\neg\psi)$. It follows that  $\mathcal{M},\alpha\vDash \exists
+                  (\phi\land\neg\psi)$. This means, by definition,
+                  that there must be a $d\in D^\mathcal{M}$ such that
+                  $\mathcal{M},\alpha[x\mapsto d]\vDash
+                  \phi\land\neg\psi$. From this it would follow
+                  that $\mathcal{M},\alpha[x\mapsto d]\vDash
+                  \phi$ and $\mathcal{M},\alpha[x\mapsto
+                  d]\nvDash\psi$, and so $\mathcal{M},\alpha[x\mapsto d]\nvDash
+                  \phi\to\psi$. But this would contradict our
+                  assumption that  $\mathcal{M},\alpha[x\mapsto d]\vDash
+                  \phi\to\psi$ for all $d\in D^\mathcal{M}$. So, by
+                  indirect proof, we can infer that  $\mathcal{M},\alpha\vDash\neg
+                  \exists x(\phi\land\neg\psi)$, as desired.
+                  
+                  \item[11.7.4] We want to find a model
+                    $\mathcal{M}^+$ that makes
+                    $\forall x\exists yR(x,y)$ true and a model
+                    $\mathcal{M}^-$ that makes the formula
+                    false. There are different ways in which
+                    we can achieve this, for example via tableau. You
+                    know how that works, so I provide an answer that
+                    I found by thinking about what needs to be the
+                    case for the formula to be true/false
+
+                    First, consider the model $\mathcal{M}^+$ given by:
+                    \begin{itemize}
+                    \item $D^{\mathcal{M}^+}=\{\ast\}$
+                    \item $R^{\mathcal{M}^+}=\{(\ast,\ast)\}$
+                    \end{itemize}
+                    I claim that we have $\mathcal{M}^+,\alpha\vDash
+                    \forall x\exists yR(x,y)$. To see this, remember
+                    that $\mathcal{M}^+,\alpha\vDash
+                    \forall x\exists yR(x,y)$ iff for all
+                    $d\in D^{mathcal{M}^+}$, we have
+                    $\mathcal{M}^+,\alpha[x\mapsto d]\vDash
+                    \exists yR(x,y)$. And we have $\mathcal{M}^+,\alpha[x\mapsto d]\vDash
+                    \exists yR(x,y)$ iff for some $d'\in
+                    D^{\mathcal{M}^+}$, we have
+                    $\mathcal{M}^+,\alpha[x\mapsto d, y\mapsto d']\vDash
+                    R(x,y)$. So, we have that $\mathcal{M}^+,\alpha\vDash
+                    \forall x\exists yR(x,y)$ iff for all $d\in
+                    D^{\mathcal{M}^+}$ there exists a $d'\in
+                    D^{\mathcal{M}^+}$ such that  $\mathcal{M}^+,\alpha[x\mapsto d, y\mapsto d']\vDash
+                    R(x,y)$. But there is only one element in
+                    $D^{\mathcal{M}^+}$, namely $\ast$. And for
+                    $d=\ast$, we can easily find a $d'$ such that $\mathcal{M}^+,\alpha[x\mapsto d, y\mapsto d']\vDash
+                    R(x,y)$, namely $d'=\ast$. To see this, just note
+                    that $\mathcal{M}^+,\alpha[x\mapsto \ast, y\mapsto \ast]\vDash
+                    yR(x,y)$ since
+                    $(\ast, \ast)\in R^\mathcal{M}$. So, $\mathcal{M}^+,\alpha\vDash
+                    \forall x\exists yR(x,y)$, as desired.
+
+                    Now, consider the model $\mathcal{M}^-$ given by:
+                    \begin{itemize}
+                    \item $D^{\mathcal{M}^+}=\{\ast\}$
+                    \item $R^{\mathcal{M}^+}=\emptyset$
+                    \end{itemize}
+                   As in the case of $\mathcal{M}^+$, we can infer
+                   that $\mathcal{M}^-,\alpha\vDash
+                    \forall x\exists yR(x,y)$ iff for all $d\in
+                    D^{\mathcal{M}^-}$ there exists a $d'\in
+                    D^{\mathcal{M}^-}$ such that  $\mathcal{M}^-,\alpha[x\mapsto d, y\mapsto d']\vDash
+                    R(x,y)$. Again, there is only one element in
+                    $D^{\mathcal{M}^-}$, namely $\ast$. But for
+                    $d=\ast$, there exists no $d'$ such that $\mathcal{M}^-,\alpha[x\mapsto d, y\mapsto d']\vDash
+                    R(x,y)$. For the only possible $d'$ would $\ast$
+                    itself and we have $\mathcal{M}^-,\alpha[x\mapsto \ast, y\mapsto \ast]\nvDash
+                    R(x,y)$ since $R^{\mathcal{M}-}=\emptyset$. So  $\mathcal{M}^-,\alpha\nvDash
+                    \forall x\exists yR(x,y)$, as desired.
+                    
+                    \item[11.7.5]We need to show that if $\Gamma\vDash
+                      c\neq c$, then $\Gamma$ is unsatisfiable. By
+                      definition $\Gamma$ is satisfiable iff there is
+                      a model $\mathcal{M}$ and assignment $\alpha$
+                      such that $\mathcal{M},\alpha\vDash \phi$ for
+                      all $\phi\in\Gamma$. So, assume that $\Gamma\vDash
+                      c\neq c$. We derive that $\Gamma$ is
+                      unsatisfiable using indirect proof. So suppose
+                      that $\Gamma$ is satisfiable, that is there is
+                      a model $\mathcal{M}$ and assignment $\alpha$
+                      such that $\mathcal{M},\alpha\vDash \phi$ for
+                      all $\phi\in\Gamma$. Since $\mathcal{M},\alpha\vDash \phi$ for
+                      all $\phi\in\Gamma$ and $\Gamma\vDash c\neq c$,
+                      it follows that $\mathcal{M},\alpha\vDash c\neq
+                      c$. But that would entail that
+                      $c^\mathcal{M}\neq c^\mathcal{M}$, which is
+                      impossible. So, there is no such $\mathcal{M}$
+                      and $\alpha$ and $\Gamma$ is therefore unsatisfiable.
+
+                  \item[11.7.6] We're asked to prove that for all
+                    terms $s$ and $t$ we have, in the given model
+                    $\mathcal{M}$ and under the given assignment
+                    $\alpha$, that $\llbracket
+                    s\rrbracket^\mathcal{M}_\alpha=\llbracket
+                    t\rrbracket^\mathcal{M}_\alpha$. In order to prove
+                    this fact, we show that for all $t$ we have $\llbracket
+                    t\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}$. From
+                    this, the claim follows immediately since then we
+                    have: \[\llbracket
+                    s\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}=\llbracket
+                    t\rrbracket^\mathcal{M}_\alpha\]
+
+                    So, we want to prove by induction that for all $t$ we have $\llbracket
+                    t\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}$. We
+                    have two base cases: (i) either $t$ is a constant
+                    or (ii) $t$ a variable. If (i) $t$ is a constant, then
+                    $t=a$, since $a$ is the only constant of
+                    $\mathcal{S}$. And trivially, if $t=a$,  we have
+                    $\llbracket t\rrbracket^\mathcal{M}=\llbracket
+                    a\rrbracket^\mathcal{M}=a^\mathcal{M}$. If (ii)
+                    $t$ is a variable $x\in \mathcal{V}$, then
+                    $\llbracket t\rrbracket^\mathcal{M}=\llbracket
+                    x\rrbracket^\mathcal{M}=\alpha(x)=a^\mathcal{M}$,
+                    as desired.
+
+                    For the induction step, assume the induction
+                    hypothesis that $\llbracket
+                    t\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}$. We
+                    need to derive from this that $\llbracket
+                    f(t)\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}$,
+                    as well. To see this, we can reason as follows:
+                    \[\llbracket
+                    f(t)\rrbracket^\mathcal{M}_\alpha=f^\mathcal{M}(\llbracket
+                    t\rrbracket^\mathcal{M}_\alpha)=f^\mathcal{M}(a^\mathcal{M})=a^\mathcal{M}\]
+
+                  So, using the principle of induction on terms, we
+                  have seen that  $\llbracket
+                    t\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}$ for
+                    all terms $t$, from which our main claim follows
+                    as explained before.
+
+                  \item[11.7.7] We're asked to prove by induction that
+                    if $\phi$ is an open formula with $x$ as its only
+                    free variable, then $(\phi)[x:=c]$ where $c$ is a
+                    constant is a closed formula, i.e. a sentence.
+
+                    For the base case, we need to consider two
+                    situations: (i) $\phi$ is of the form $R(t_1,
+                    \mathellipsis, x, \mathellipsis, t_n)$ where the
+                    $t_i$ are ground terms or (ii)
+                    $\phi$ is of the form $t=x$ or $x=t$ where $t$ is
+                    a ground term. In case (i),
+                    we simply observe that since each $t_i$ is a
+                    ground term and thus doesn't contain $x$, we have $(R(t_1,
+                    \mathellipsis, x, \mathellipsis,
+                    t_n))[x:=c]=R(t_1, \mathellipsis, c,\mathellipsis,
+                    t_n)$. Since all of the $t_i$'s are ground-terms
+                    and $c$ is a constant, there is no free variable
+                    in this formula and the claim holds. In case (ii),
+                    we only consider the situation where $\phi$ is of
+                    the form $t=x$ since $x=t$ is completely
+                    analogous. We simply note that  since $t$ is a
+                    ground term and thus doesn't contain $x$, we have
+                    $(t=x)[x:=c]=t=c$. And since, again, $t$ is a
+                    ground term and $c$ a constant, $t=c$ contains no
+                    variables at all and is thus closed.
+
+                    We go through the induction steps one by one:
+
+                    \begin{itemize}
+                    \item Assume the induction hypothesis that if
+                      $\phi$ has only $x$ free, then $(\phi)[x:=c]$ is a
+                    sentence. We need to derive that then also if
+                    $\neg\phi$ contains only $x$ free, then 
+                    $(\neg\phi)[x:=c]$ is a sentence. But suppose that
+                    $\neg\phi$ contains only $x$ free. We have by
+                    definition that $(\neg\phi)[x:=c]=\neg
+                    (\phi)[x:=c]$. And since if $\neg \phi$ contains
+                    only $x$ free, then also $\phi$ can only contain
+                    $x$ free. Hence $(\phi)[x:=c]$ is a sentence by
+                    the induction hypothesis and so $\neg(\phi)[x:=c]$
+                    is also sentence.
+
+
+                    \item Assume the induction hypotheses that (a) if
+                      $\phi$ has only $x$ free, then $(\phi)[x:=c]$ is a
+                    sentence and that (b) if
+                      $\psi$ has only $x$ free, then $(\psi)[x:=c]$ is a
+                    sentence. Now consider $\phi\circ\psi$ with only
+                    $x$ free for
+                    $\circ=\land,\lor,\to,\leftrightarrow$. We know that
+                    $(\phi\circ\psi)[x:=c]=(\phi)[x:=c]\circ
+                    (\psi)[x:=c]$ by definition. Now if
+                    $\phi\circ\psi$ has only $x$ free, each of $\phi$
+                    and $\psi$ can only have $x$ free. So, by the
+                    induction hypotheses (a) and (b), we have that
+                    $(\phi)[x:=c]$ and $(\psi)[x:=c]$ are both
+                    sentences. But if $(\phi)[x:=c]$ and
+                    $(\psi)[x:=c]$, then
+                    $(\phi)[x:=c]\circ(\psi)[x:=c]$ is a sentence,
+                    too, as desired.
+
+                    \item Assume the induction hypothesis that if
+                      $\phi$ has only $x$ free, then $(\phi)[x:=c]$ is a
+                    sentence. Consider $Qy\phi$ with only $x$ free for
+                    $Q=\forall,\exists$. Note that if $Qy\phi$
+                    contains $x$ free, then we need to have that
+                    $y\neq x$. For in $Qx\phi$, every occurrence of
+                    $x$ would be bound by $(r,Qx)$. But if $y\neq x$,
+                    then we know that
+                    $(Qy\phi)[x:=c]=Qy(\phi)[x:=c]$. And since
+                    $(\phi)[x:=c]$ is a sentence by the induction
+                    hypothesis, so is $Qy(\phi)[x:=c]$. 
+                    \end{itemize}
+                    This completes our proof, we can now infer by the
+                    principle of induction over formulas that for all
+                    $\phi$ with only $x$ free, $(\phi)[x:=c]$ is a
+                    sentence.
+
+                    \item We're essentially asked to show that for all
+                      models $\mathcal{M}$ and assignments $\alpha$,
+                      we have 
+                      $\mathcal{M},\alpha\vDash \forall xR(x,x)$ iff
+                      $(d,d)\in R^\mathcal{M}$ for all $d\in
+                      D^\mathcal{M}$. That is, we need to show two
+                      things:
+
+                      \begin{enumerate}[(a)]
+                      \item If  $\mathcal{M},\alpha\vDash \forall
+                        xR(x,x)$, then
+                      $(d,d)\in R^\mathcal{M}$ for all $d\in
+                      D^\mathcal{M}$
+                      \item If 
+                      $(d,d)\in R^\mathcal{M}$ for all $d\in
+                      D^\mathcal{M}$, then  $\mathcal{M},\alpha\vDash \forall
+                        xR(x,x)$.
+                      \end{enumerate}
+
+                      To see that (a) holds, assume that
+                      $\mathcal{M},\alpha\vDash \forall 
+                        xR(x,x)$. This means, by definition, that
+                        $\mathcal{M},\alpha[x\mapsto d]\vDash
+                        R(x,x)$. We derive that  $(d,d)\in R^\mathcal{M}$ for all $d\in
+                      D^\mathcal{M}$ by contradiction. Suppose that
+                      there exists a $d\in D^\mathcal{M}$ such that
+                      $(d,d)\notin R^\mathcal{M}$. But then, we'd have
+                      that $\mathcal{M},\alpha[x\mapsto d]\nvDash
+                        R(x,x)$, contrary to our assumption that for
+                        \emph{all} $d\in 
+                        D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash
+                        R(x,x)$. Hence $(d,d)\in R^\mathcal{M}$ for all $d\in
+                        D^\mathcal{M}$, as desired.
+
+                        To see that (b) holds assume that $(d,d)\in R^\mathcal{M}$ for all $d\in
+                      D^\mathcal{M}$. We need to derive that  $\mathcal{M},\alpha\vDash \forall 
+                        xR(x,x)$, i.e. for all $d\in D^\mathcal{M}$ we have
+                        $\mathcal{M},\alpha[x\mapsto d]\vDash
+                        R(x,x)$. But this follows immediately since  $\mathcal{M},\alpha[x\mapsto d]\vDash
+                        R(x,x)$ iff $(\llbracket
+                        x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
+                          d]},(\llbracket
+                        x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
+                          d]})=(d,d)\in R^\mathcal{M}$. 
+
+                        \item[11.7.9]. We're asked to show that in the
+                          given model $\mathcal{M}$ we have
+                          \[\mathcal{M},\alpha\vDash \exists xP(x)\to
+                          P(a)\lor P(b)\lor P(b)\] for each
+                          $\alpha$. We know that, by definition, $\mathcal{M},\alpha\vDash \exists xP(x)\to
+                          P(a)\lor P(b)\lor P(b)$ iff either (i)
+                          $\mathcal{M},\alpha\nvDash \exists xP(x)$ or (ii)
+                          $\mathcal{M},\alpha\vDash
+                          P(a)\lor P(b)\lor P(b)$. Now clearly, we
+                          either have (a) $\mathcal{M},\alpha\vDash
+                          \exists xP(x)$ or (b)
+                          $\mathcal{M},\alpha\nvDash \exists xP(x)$ by
+                          bivalence. In case (b), we can immediately
+                          infer that $\mathcal{M},\alpha\vDash \exists xP(x)\to
+                          P(a)\lor P(b)\lor P(b)$, so we focus on case
+                          (a). Suppose that $\mathcal{M},\alpha\vDash
+                          \exists xP(x)$. This means, by definition,
+                          that there exists a $d\in D^\mathcal{M}$
+                          such that $\mathcal{M},\alpha[x\mapsto d]\vDash
+                           P(x)$. Now, since
+                           $D^\mathcal{M}=\{1,2,3\}$, we can only have
+                           $d=1,2,3$. If $d=1$, then, since
+                           $a^\mathcal{M}=1$, we have that
+                           $\mathcal{M},\alpha[x\mapsto \llbracket
+                           a\rrbracket^\mathcal{M}_\alpha]\vDash 
+                           P(x)$. By the denotation lemma, this gives
+                           us $\mathcal{M},\alpha\vDash 
+                           (P(x))[x:=a]$, i.e. $\mathcal{M},\alpha\vDash 
+                           P(a)$. But if $\mathcal{M},\alpha\vDash 
+                           P(a)$, then $\mathcal{M},\alpha\vDash 
+                           P(a)\lor P(b)\lor P(c)$ and so $\mathcal{M},\alpha\vDash \exists xP(x)\to
+                          P(a)\lor P(b)\lor P(b)$ by (ii), as
+                          desired. If $d=2,3$, we can give the same,
+                          analogous argument using the denotation
+                          lemma. So, either way,  $\mathcal{M},\alpha\vDash \exists xP(x)\to
+                          P(a)\lor P(b)\lor P(b)$, as desired.
+
+                          \item[11.7.10] We're asked to prove that if
+                            $\phi\vdash\psi$ and $\psi\vdash\phi$,
+                            then $\phi\vdash\psi$. There are many
+                            different ways we could do this, but I'll
+                            use soundness and completeness. First,
+                            I'll show my (Lemma) that  if
+                            $\phi\vDash\psi$ and $\psi\vDash\phi$,
+                            then $\phi\vDash\psi$.\footnote{We
+                              actually proved this in class, so you
+                              could, in principle just use this
+                              without proof.} For suppose that
+                            $\phi\vDash\psi$ and
+                            $\psi\vDash\phi$. By definition, this
+                            means that in every 
+                            model $\mathcal{M}$, (a) if $\mathcal{M}\vDash
+                            \phi$, then $\mathcal{M}\vDash \psi$ and (b)
+                            if $\mathcal{M}\vDash \psi$, then
+                            $\mathcal{M}\vDash\theta$. I want to
+                            derive $\phi\vDash\psi$, i.e. for every
+                            model $\mathcal{M}$,
+                            such that $\mathcal{M}\vDash\phi$, we also
+                            have $\mathcal{M}\vDash\psi$. But if
+                            $\mathcal{M}\vDash\phi$, then by (a)
+                            $\mathcal{M}\vDash\psi$, and then by (b)
+                            $\mathcal{M}\vDash\psi$, as desired. Now,
+                            to prove our initial claim, suppose that
+                            $\phi\vdash\psi$ and $\psi\vdash\phi$. By
+                            soundness, I have that  $\phi\vDash\psi$
+                            and $\psi\vDash\phi$. So, by my (Lemma), we
+                            have $\phi\vDash\theta$. But then, by
+                            completeness, we have $\phi\vdash\theta$,
+                            as desired.
+
+                            \item[11.7.11] We want to show that if
+                              $\Gamma\vDash c\neq c$, then for all
+                              formulas $\phi$, either $\Gamma\vDash\phi$ or
+                              $\Gamma\vDash\neg\phi$ (the either
+                              \dots or was meant
+                              inclusively, otherwise the claim doesn't
+                              hold). We actually show the stronger
+                              claim that if $\Gamma\vDash c\neq c$,
+                              then $\Gamma\vdash\phi$ for all $\phi$,
+                              so certainly also for $\phi$ and
+                              $\neg\phi$.
+
+                              Above, we proved that if $\Gamma\vDash
+                              c\neq c$, then $\Gamma$ is
+                              unsatisfiable. We're going to use this
+                              result. Since $\Gamma$ is unsatisfiable,
+                              so is $\Gamma\cup\{\neg\phi\}$ for every
+                              $\phi$ (we proved this in 6.2.5.(c) for
+                              propositional logic, but the proof
+                              clearly goes through for first-order
+                              logic, too). But we know by the ``I
+                              Can't Get No Satisfaction'' Theorem,
+                              that $\Gamma\cup\{\neg\phi\}$ iff
+                              $\Gamma\vDash\phi$. So, we can conclude
+                              that if $\Gamma\vDash
+                              c\neq c$, then $\Gamma\vDash\phi$, as
+                              desired.
+
+                              \item[11.7.12] In order to define the
+                                desired function, we first define the
+                                auxiliary function
+                                $c:\mathcal{T}\to\mathbb{N}$ given by
+                                the following recursion:
+                                \begin{itemize}
+                                \item $c(x)=1$ and $c(c)=1$
+                                \item $c(f(t_1, \mathellipsis, t_n))=c(t_1)+\mathellipsis+c(t_n)+1$
+                                \end{itemize}
+                               We then define the desired function as
+                               follows:
+                               \begin{itemize}
+                               \item $c(R(t_1, \mathellipsis,
+                                 t_n))=c(t_1)+\mathellipsis+c(t_n)+1$
+
+                               \item $c(s=t)=c(s)+c(t)+1$
+
+                               \item $c(\neg \phi)=c(\phi)+1$
+                               \item
+                                 $c(\phi\circ\psi)=c(\phi)+c(\psi)+1$
+                               \item $c(\forall x\phi)=c(\phi)+1$
+                               \end{itemize}
+
+                               We now need to prove that the number of
+                               nodes in $T(\phi)$, $\#T(\phi)$, is
+                               $c(\phi)$ for all 
+                               $\phi$. We do this by induction. Well,
+                               first we prove the lemma that
+                               for all $\#T(t)=c(t)$.
+
+                               For the induction base, note that the
+                               parsing tree for both $x\in\mathcal{V}$
+                               and $c\in\mathcal{C}$ contains
+                               precisely one node. So the claim
+                               holds that $\#T(x)=\#T(c)=c(x)=c(c)=1$.
+
+                               So, assume the induction hypothesis
+                               that  $\#T(t_i)=c(t_i)$ for $1\leq
+                               i\leq n$ and consider the number of
+                               nodes in $T(f(t_1, \mathellipsis,
+                               t_n))$. Since $T(f(t_1, \mathellipsis,
+                               t_n))=$
+
+                               \begin{center}
+                               \Tree[.{$f(t_1, \mathellipsis,
+                                 t_n)$} [.{$T(t_1)$} ] [
+                               .{\dots} ]
+                             [.{$T(t_n)$} ] ]
+                           \end{center}
+                           We have that $\#T(f(t_1, \mathellipsis,
+                               t_n))=\#T(t_1)+\mathellipsis+\#T(t_n)+1$,
+                               which, by the induction hypothesis is
+                               identical to
+                               $c(t_1)+\mathellipsis+c(t_n)+1=c(f(t_1,
+                               \mathellipsis, t_n)$, as
+                               desired.
+
+                               Now, for our main claim, we prove by
+                               induction that $\#T(\phi)=c(\phi)$.
+
+                               For the first base case, we note that
+                               $T(R(t_1, \mathellipsis, t_n)=$
+                               \begin{center}
+                               \Tree[.{$R(t_1, \mathellipsis,
+                                 t_n)$} [.{$T(t_1)$} ] [
+                               .{\dots} ]
+                             [.{$T(t_n)$} ] ]
+                           \end{center}
+                           And so $\#T(R(t_1, \mathellipsis,
+                           t_n)=c(t_1)+\mathellipsis+c(t_n)+1=c(R(t_1,
+                           \mathellipsis, t_n)$, as
+                           desired. For the second base case, we note
+                           that $T(s=t)=$
+                           \begin{center}
+                               \Tree[.{$s=t$} [.{$T(s)$} ]
+                             [.{$T(t)$} ] ]
+                           \end{center}
+                           And so
+                           $\#T(s=t)=\#T(s)+\#T(t)+1=c(s)+c(t)+1=c(s=t)$, as
+                           desired.
+
+                           For the induction steps,
+                           \begin{itemize}
+                           \item Assume that  $\#T(\phi)=c(\phi)$ and
+                             consider $T(\neg \phi)=$
+                             \begin{center}
+                               \Tree[.{$\neg \phi$} [.{$T(\phi)$} ] ]
+                             \end{center}
+                             and so
+                             $\#T(\neg\phi)=\#T(\phi)+1=c(\phi)+1$ by
+                             the induction hypothesis, as desired. 
+
+                             \item Assume that  $\#T(\phi)=c(\phi)$
+                               and that  $\#T(\psi)=c(\psi)$ and
+                               consider $T(\phi\circ\psi)=$
+                                \begin{center}
+                               \Tree[.{$\phi\circ\psi$} [.{$T(\phi)$} ]  [.{$T(\psi)$} ]]
+                             \end{center}
+                             So,
+                             $\#T(\phi\circ\psi)=\#T(\phi)+\#T(\psi)+1=c(\phi)+c(\psi)+1$
+                             by the induction hypothesis, as desired.
+                             
+                              \item Assume that  $\#T(\phi)=c(\phi)$ and
+                             consider $T(Qx \phi)=$
+                             \begin{center}
+                               \Tree[.{$Qx \phi$} [.{$T(\phi)$} ] ]
+                             \end{center}
+                             and so
+                             $\#T(Qx\phi)=\#T(\phi)+1=c(\phi)+1$ by
+                             the induction hypothesis, as desired.
+                           \end{itemize}
+
+                           So, by induction, we indeed have
+                           $\#T(\phi)=c(\phi)$, as desired.
+
+                         \item[11.7.13]
+
+                           We show that Betrand is correct using
+                           logic. First, we formalize the stranger's
+                           claim using the following translation key:
+
+                           \begin{center}
+                             \begin{tabular}[!h]{c c c}
+                               $K^1$ & \dots is a barber\\
+                               $S^2$ & \dots shaves \underline{\phantom{\dots}}
+                             \end{tabular}
+                           \end{center}
+
+                           The stranger's claim becomes:
+
+                           \[ \exists x(K(x)\land \forall y(\neg
+                             S(y,y)\leftrightarrow S(x,y)))\]
+
+                           We now prove that Betrand is correct, since
+                           the stranger's claim is a logical
+                           falsehood. We show this using
+                           tableaux. More specifically, we show that
+                           $\vdash \neg \exists x(K(x)\land \forall y(\neg
+                             S(y,y)\leftrightarrow S(x,y)))$. By
+                             definition, what we need to show is that
+                             the tableau for $\{\neg\neg\exists x(K(x)\land \forall y(\neg
+                             S(y,y)\leftrightarrow S(x,y)))\}$
+                             closes. This can be seen as follows:
+
+                             \begin{center}
+                           \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+	[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+		[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+					[{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
+						[{K(p)}
+							[{\forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
+								[{\neg S(p,p)\leftrightarrow S(p,p)}
+									[{\neg S(p,p)}
+										[{S(p,p)}, close ]
+									]
+									[{S(p,p)}
+										[{\neg S(p,p)}, close ]
+									]
+								]
+							]
+						]				
+					]
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+
+Now, since  $\vdash \neg \exists x(K(x)\land \forall y(\neg
+                             S(y,y)\leftrightarrow S(x,y)))$, by
+                             soundness, we have  $\vDash \neg \exists x(K(x)\land \forall y(\neg
+                             S(y,y)\leftrightarrow S(x,y)))$. That is
+                             the stranger's claim cannot be true in
+                             any model, so also not in the actual
+                             world. Bertrand is right.
+
+                             
+                \end{itemize}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End:                

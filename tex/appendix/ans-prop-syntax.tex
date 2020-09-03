@@ -1,0 +1,344 @@
+\chapter{Chapter 4. Syntax of Propositional Logic}
+
+\section*{4.7 Self-Study Questions}
+
+	\begin{enumerate}
+	
+		\item[4.7.1]  
+		
+		\begin{enumerate}
+		
+			\item Well, the formula could be sentence letter, which is a formula but contains no parentheses.
+			
+			\item This is not true: also a formula that is formed from a single sentence letter by means of some negations, such as $\neg p$ or $\neg\neg p$ etc., would not contain any parentheses.
+			
+			\item This is the only option which is guaranteed to hold: if a formula contains $\land,\lor,\to,\leftrightarrow$, then it needs to contain parentheses.
+			
+			\item This is simply not true: $\neg p$ contains an odd number of negations, but no parentheses.
+			
+		\end{enumerate}
+		
+		\item[4.7.2] Strategy (a) is the hardest to apply, which we've seen by means of our example. Strategy (c) will always give the right result but may take a long time. Strategy (d) is actually included in strategy (c)---just look at the second step of the algorithm. So, before you employ (c) fully, you just do (d). Having tried strategy (b) is a prerequisite for applying the algorithm (as we say before we describe the algorithm). But note that (b) can fail to tell you that something's not a formula even if it isn't: $(p\land\neg())$ is not a formula, but you actually need to apply the algorithm to see this, not even parentheses checking will help immediately.
+		
+		\item[4.7.3] The only correct answer is (d): conventional notation is just that, conventional, and so we need to make clear that we're using it.
+		
+		\item[4.7.4] To see why (b) is not correct, consider the formula $\phi=(\neg\neg\neg p\lor \neg p)$. It's easily checked that $c(\phi)=4$, but there are 5 connectives in $\phi$. To see that (f) is correct, we can use the Proposition 4.4.5: the complexity of a formula corresponds to the longest path from the root in its parsing tree. Since each step in path goes from one node to another, we have the starting node, the root, plus at least four other nodes, meaning five nodes. Note that there can be more than five nodes in the tree, as you can check by doing the parsing tree for $\phi$, which we used to explain why (b) is incorrect.
+	
+	\end{enumerate}
+
+\section*{4.8 Exercises}
+
+\begin{enumerate}
+	
+		\item[4.8.1] Translation key:
+		
+				\begin{longtable}{c c c}
+				$p$ & : & Alan Turing built the first computer\\
+				$q$ & : & Ada Lovelace invented the first computer algorithm\\
+				$r$ & : & Today is Monday\\
+				$s$ & : & Alan Turing is your favorite computer scientist\\
+				$t$ & : & Ada Lovelace is your favorite computer scientist\\
+				$u$ & : & Yesterday was Tuesday\\
+				$v$ & : & Tomorrow is Saturday\\				
+			\end{longtable}
+		
+		\begin{enumerate}[(a)]
+		
+			\item $(p\land q)$
+			
+			\item $(r\to p)$
+			
+			\item Inclusive reading: $(s\lor t)$; Exclusive reading: $((s\lor t)\land\neg(s\land t))$
+			
+			\item $(r\leftrightarrow (u\land v))$.
+		
+		\end{enumerate}
+		
+		
+		\item (For now, English only)
+		
+			\begin{enumerate}[(a)]
+			
+				\item It's not the case that I'm not both happy and clapping my hands.
+				
+				\item If I'm not happy, then I don't clap my hands.
+				
+				\item I'm happy if and only if you're not happy and I clap my hands.
+				
+				\item If I clap my hands and you clap your hands, then we both clap our hands.
+				
+				\item If I clap my hands and you clap your hands, then either I'm happy or you're happy.
+				
+				\item \emph{Either} I'm happy and clap my hands \emph{or} you're happy and clap your hands.			
+			\end{enumerate}
+		
+		\item[4.8.3] The set of all formulas of $\mathcal{L}$ that only contain (symbols from) $p,q,\neg,\land,(,$ and $)$ is the smallest set $X$ such that:
+		
+		\begin{itemize}
+		
+			\item $p,q\in X$,
+			
+			\item if $\phi\in X,$ then $\neg \phi\in X$,
+			
+			\item if $\phi,\psi\in X$, then $(\phi\land\psi)\in X$.
+		
+		\end{itemize}
+		
+	\item[4.8.3] 
+	
+	\begin{enumerate}[(a)]
+		
+			\item $(q\leftrightarrow (p\land (q\lor (r\land \neg s)))$ 
+			
+			\begin{center}
+
+\Tree [.{$(q\leftrightarrow (p\land (q\lor (r\land \neg s)))$} [.{$q$\checkmark} ]  [.$(p\land (q\lor (r\land \neg s))$ [.{$p$\checkmark} ] [.{$(q\lor (r\land \neg s)$} [.{$q$\checkmark} ] [.{$(r\land\neg s$\frownie} ]  ] ] ]\\[2ex]
+
+\emph{Answer}: Not a formula!
+
+\end{center}
+
+			
+			\item $((p\land q)\lor (p\land (q\to\neg q)))$
+			
+			\begin{center}
+
+\Tree[.{$((p\land q)\lor (p\land (q\to\neg q)))$} [.{$(p\land q)$} [.{$p$\checkmark} ] [.{$q$\checkmark} ] ] [.{$(p\land (q\to\neg q))$}  [.{$p$\checkmark} ] [.$(q\to\neg q)$ [.{$q$\checkmark} ] [.{$\neg q$} [.{$q$\checkmark} ] ] ] ] ]\\[2ex]
+
+\emph{Answer}: Formula!
+
+
+\end{center}
+			
+			\item $(p\to (p\to ((p\land p)\leftrightarrow p\lor p)))$
+			
+			\begin{center}
+
+
+		\Tree[.$(p\to (p\to ((p\land p)\leftrightarrow p\lor p)))$ 
+		[.{$p$\checkmark} ] 
+		[.$(p\to ((p\land p)\leftrightarrow p\lor p))$ 
+			[.{$p$\checkmark} ]
+			[.$((p\land p)\leftrightarrow p\lor p)$
+				[.$(p\land p)$ 
+					[.{$p$\checkmark} ] 
+					[.{$p$\checkmark} ] 
+					]
+				[.{$p\lor p$\frownie} ]]]] \\[2ex]
+				\emph{Answer}: Not a formula!
+
+	
+\end{center}
+			
+			\item $\neg\neg (\neg\neg p\land (q\lor q) )$
+			
+			\begin{center}
+			\Tree[.$\neg\neg (\neg\neg p\land (q\lor q))$
+		[.$\neg (\neg\neg p\land (q\lor q))$ 
+			[.$(\neg\neg p\land (q\lor q))$ 
+				[.$\neg\neg p$ 
+					[.$\neg p$ 
+						[.{$p$\checkmark} ]
+						]
+					]
+				[.$(q\lor q)$ 
+					[.{$q$\checkmark} ]
+					[.{$q$\checkmark} ]
+					]
+				]
+			] 
+	] \\[2ex]
+	\emph{Answer}: Formula!
+
+			\end{center}
+			
+		\end{enumerate}
+		
+	\item[1.8.5] \
+	
+	\begin{enumerate}[(a)]
+	
+		\item $\#_{conn}:\mathcal{L}\to\mathbb{N}$ can be defined by:
+		
+			\begin{enumerate}[(i)]
+	
+				\item $\#_{conn}(p)=0$ for $p\in\mathcal{P}$
+		
+				\item \begin{enumerate}[(a)]
+		
+					\item $\#_{conn}(\neg\phi)=\#_{conn}(\phi)+1$
+			
+					\item $\#_{conn}((\phi\circ\psi))=\#_{conn}(\phi)+\#_{conn}(\psi)+1$, for $\circ=\land,\lor,\to,\leftrightarrow$.
+		
+					\end{enumerate}
+		
+			\end{enumerate}
+		
+		\item $\#_(:\mathcal{L}\to\mathbb{N}$ can be defined by:
+	
+			\begin{enumerate}[(i)]
+		
+				\item $\#_{(}(p)=0$ for $p\in\mathcal{P}$
+		
+				\item \begin{enumerate}[(a)]
+		
+						\item $\#_{(}(\neg\phi)=\#_{(}(\phi)$
+			
+						\item $\#_{(}((\phi\circ\psi))=\#_{(}(\phi)+\#_{(}(\psi)+1$, for $\circ=\land,\lor,\to,\leftrightarrow$.
+		
+					\end{enumerate}
+				
+			\end{enumerate}
+		
+	\item  $\#_{\mathcal{P}}:\mathcal{L}\to\mathbb{N}$ can be defined by:
+		
+		\begin{enumerate}[(i)]
+	
+		\item $\#_{\mathcal{P}}(p)=1$ for $p\in\mathcal{P}$
+		
+		\item \begin{enumerate}[(a)]
+		
+			\item $\#_{\mathcal{P}}(\neg\phi)=\#_{\mathcal{P}}(\phi)$
+			
+			\item $\#_{\mathcal{P}}((\phi\circ\psi))=\#_{\mathcal{P}}(\phi)+\#_{\mathcal{P}}(\psi)$, for $\circ=\land,\lor,\to,\leftrightarrow$.
+		
+		\end{enumerate}
+		
+		\end{enumerate}
+		
+		\item $\mathbf{1}_p:\mathcal{L}\to\{0,1\}$ can be defined by 
+	
+	\begin{enumerate}[(i)]
+	
+		\item $\mathbf{1}_{p}(p)=1$ and $\mathbf{1}_{p}(q)=0$ for all $q\neq p\in\mathcal{P}$
+		
+		\item \begin{enumerate}[(a)]
+		
+			\item $\mathbf{1}_{p}(\neg\phi)=\mathbf{1}_{p}(\phi)$
+			
+			\item $\mathbf{1}_{p}((\phi\circ\psi))=max(\mathbf{1}_{p}(\phi),\mathbf{1}_{p}(\psi))$, for $\circ=\land,\lor,\to,\leftrightarrow$.
+		
+		\end{enumerate}
+		
+		\end{enumerate}
+	
+	\end{enumerate}
+	
+	\item[1.8.6] 
+	
+	\begin{enumerate}[(a)]
+	
+		\item This function counts the number of symbols in a formula.
+		
+		\item This function counts the number of negations in a formula.
+		
+		\item This function assigns one as a value iff the number of negations in the formula is even.
+	
+	\end{enumerate}
+	
+	\item[1.8.7] (to be filled in)
+	
+	\item[1.8.8] We give an informal outline of the argument. This can be made precise using function $\#_($ from 1.8.5 and an analogously defined function $\#_)$.
+	
+	\emph{Claim}. The number of $($ and $)$ in a formula $\phi$ is always the same. 
+	
+	\begin{proof}
+	We prove this by induction.
+	
+	\begin{enumerate}[(i)]
+	
+		\item For the base case, note that the number of both $($'s and $)$' in any sentence letter $p$ is both zero.
+		
+		\item \begin{enumerate}[(a)]
+		
+			\item Assume the induction hypothesis, that numbers of $($ and $)$ in $\phi$ are the same. Consider $\neg\phi$. Note that the number of $($'s $\neg\phi$ is the same as in $\phi$ and the number of $)$'s in $\neg\phi$ is the same as in $\phi$ (no new parentheses have been added). Hence, the numbers of $($ and $)$ in $\neg\phi$ are also the same.
+			
+			\item Assume the induction hypotheses, that numbers of $($ and $)$ in $\phi$ are the same and the numbers of $($ and $)$ in $\psi$ are the same. Denote the number of $($'s in $\phi$ by $n$, the number of $)$'s in $\phi$ by $m$, the number of $($'s in $\psi$ by $k$, and the number of $)$'s in $\psi$ by $l$. We have $n=k$ and $m=l$. Consider $(\phi\circ\psi)$. The number of $($'s in $(\phi\circ\psi)$ is $n+k+1$. The number of $)$'s in $(\phi\circ\psi)$ is $m+l+1$. Since  $n=k$ and $m=l$,  $n+k+1=m+l+1$, as desired.
+	
+		\end{enumerate}
+		We conclude our claim by induction on formulas.
+	
+	\end{enumerate}
+	
+	\end{proof}
+		
+	\item[1.8.9]	
+	
+		\begin{enumerate}[(a)]
+		
+		
+
+\item $(\neg p\land q)$
+
+\item $\neg((p\land q)\to (\neg p\lor\neg q))$
+
+\item $((p\lor p)\leftrightarrow \neg p)$
+
+\item $((p\lor q)\land r)$
+
+\item $((p\to p)\leftrightarrow (p\to p))$
+
+\item $(\neg p \land (((q\lor r)\to p)\leftrightarrow q))$
+
+
+
+\item $(p\land (p\lor q))$
+
+
+
+\item $((p\to (q\lor q))\leftrightarrow r)$
+
+
+
+\item $((p\to q)\leftrightarrow (\neg q\to \neg p))$
+
+
+
+\item $\neg\neg\neg p$
+
+
+
+\item $(({p} \to {p}) \leftrightarrow ({p}\lor \neg {p}))$
+
+
+\item $(((p\lor q)\to (\neg r\land s))\leftrightarrow {p})$
+
+		
+		\end{enumerate}
+		
+		\item[1.8.10] \
+		
+		\begin{enumerate}
+		
+			\item $p\land q$
+		
+			\item $\neg\neg q$
+			
+			\item $p\land (r\lor q)$
+			
+			\item $p\to (r\lor (p\land (q\leftrightarrow r)))$
+			
+			\item $p\lor \neg (p\lor q)$
+			
+			\item $p\land q\to r$
+			
+			\item $p\lor q\to \neg q\leftrightarrow r$
+			
+			\item $p\land q\land r$
+			
+			\item $p\land q\land r$
+			
+			\item $p\lor q\lor r$
+			
+			\item $p\land (q\lor r)$
+			
+			\item $p\land (q\to r)$
+				
+		\end{enumerate}
+		
+\end{enumerate}
+	
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

@@ -1,0 +1,360 @@
+\chapter{Chapter 6. Tableaux Propositional Logic}
+
+%\section*{4.7 Self-Study Questions}
+%
+%	\begin{enumerate}
+%	
+%		\item[4.7.1]  
+%		
+%	\end{enumerate}
+%
+\section*{6.6 Exercises}
+
+\begin{enumerate}
+
+	\item[6.6.1] One way of putting it is as saying that an inference is valid iff the premises together with the negation of the conclusion are unsatisfiable or inconsistent.
+
+	\item[6.6.2]
+	
+	\begin{enumerate}[(a)]
+	
+		\item Suppose for contradiction that there is a valuation $v$ such that $\llbracket \neg (p\rightarrow q)\rrbracket_v =1$ and $\llbracket \neg (q \rightarrow p)\rrbracket_v =1$. $\llbracket \neg (p\rightarrow q)\rrbracket_v =1$ would mean that $\llbracket p\rightarrow q\rrbracket_v =0$, from which would follow that $\llbracket p\rrbracket_v =1$ and $\llbracket q\rrbracket_v =0$. (An implication is not true iff the first argument is true and the second argument is false). For $\llbracket \neg (q \rightarrow p)\rrbracket_v =1$ to hold, $\llbracket (q \rightarrow p)\rrbracket_v =0$ must be true, from which follows that $\llbracket q\rrbracket_v =1$ and $\llbracket p\rrbracket_v =0$. As we'd already established that $\llbracket p\rrbracket_v =1$ and $\llbracket q\rrbracket_v =0$, this is a contradiction. Hence such a $v$ cannot exist, so the set is unsatisfiable.
+		
+		\item This follows immediately from our observation 5.2.11.(i) that $\vDash p\lor\neg p$. This means that for all $v$, $\llbracket p\lor\neg p\rrbracket_v=1$. Now suppose that there is a valuation $v$ such that $\llbracket \neg (p\lor\neg p)\rrbracket_v=1$. Since $\llbracket \neg (p\lor\neg p)\rrbracket_v=1-\llbracket p\lor\neg p\rrbracket_v$, it would follow that $\llbracket p\lor\neg p\rrbracket_v=0$ in contradiction to 5.2.11.(i). Hence, there is no such valuation $v$ and $\{\neg(p\lor\neg p)\}$ is unsatisfiable.
+		
+	\item Suppose for contradiction that there is a valuation $v$ such that $\llbracket \neg p\rrbracket_v = 1$ and $\llbracket \neg p\rightarrow p\rrbracket_v = 1$. From $\llbracket\neg p\rrbracket_v =1$ follows that $\llbracket p\rrbracket_v=0\ (*)$. From $\llbracket \neg p\rightarrow p\rrbracket_v = 1$ follows that $max (1- \llbracket\neg p\rrbracket_v, \llbracket p\rrbracket_v) = 1$. So either $1 - \llbracket \neg p\rrbracket_v $ must be $1$ or $\llbracket p\rrbracket_v$ must be $1$. By $(*)$ follows that the latter is not the case, so $1 - \llbracket \neg p\rrbracket_v =1$ must hold. This would mean that  $\llbracket \neg p\rrbracket_v = 0 $. But we've already assumed that $\llbracket \neg p\rrbracket_v = 1$. Contradiction! Hence such a $v$ cannot exist, so the set is unsatisfiable.
+	
+	\item Suppose for contradiction that there is a $v$ such that $\llbracket\neg p\rrbracket_v=1$ and $\llbracket(p\to q)\to p\rrbracket_v=1$. Since $\llbracket\neg p\rrbracket_v=1$ and $\llbracket\neg p\rrbracket_v=1-\llbracket p\rrbracket_v$, it follows that $\llbracket p\rrbracket_v=0$. Now consider $\llbracket(p\to q)\to p\rrbracket_v$. We know that $\llbracket(p\to q)\to p\rrbracket_v=max(1-\llbracket p\to q\rrbracket_v, \llbracket p\rrbracket)=max(1-max(1-\llbracket p\rrbracket_v,\llbracket q\rrbracket_v), \llbracket p\rrbracket)$. Since $\llbracket p\rrbracket_v=0$, we can infer that $max(1-max(1-\llbracket p\rrbracket_v,\llbracket q\rrbracket_v), \llbracket p\rrbracket)=max(1-max(1-0,\llbracket q\rrbracket_v),0)=max(1-max(1,\llbracket q\rrbracket_v),0)=max(1-1,0)-max(0,0)=0$, in contradiction to $\llbracket(p\to q)\to p\rrbracket_v=1$. Hence there can be no such $v$ and our set is unsatisfiable.
+	
+	
+\end{enumerate}
+
+	\item[6.6.3] We need to show two things: (a) if $\vDash \neg (\phi_1\land\mathellipsis\land\phi_n)$, then $\{\phi_1, \mathellipsis,\phi_n\}$ is unsatisfiable, and (b) if $\{\phi_1, \mathellipsis,\phi_n\}$ is unsatisfiable, then $\vDash \neg (\phi_1\land\mathellipsis\land\phi_n)$. We do so in turn:
+	
+	\begin{enumerate}[(a)]
+	
+		\item Suppose that $\vDash \neg (\phi_1\land\mathellipsis\land\phi_n)$. This means that for each $v$, $\llbracket \neg (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v=1$. Since $\llbracket \neg (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v=1-\llbracket (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v$, we can infer that $\llbracket (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v=0$. Now consider $\llbracket (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v$. We can easily show that $\llbracket (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v=min(\llbracket \phi_1\rrbracket_v, \mathellipsis, \llbracket\phi_n\rrbracket_v)$ (exercise, proof this by induction on natural numbers). Since $min(\llbracket \phi_1\rrbracket_v, \mathellipsis, \llbracket\phi_n\rrbracket_v)=0$, it follows that some $\phi_i$ for $1\leq i\leq n$ must be such that $\llbracket\phi_i\rrbracket_v=0$. But that just means that for each valuation $v$, some $\phi_i$ must be false. Hence there can be no valuation that makes all the members of $\{\phi_1, \mathellipsis,\phi_n\}$ true, which is what we needed to show.
+		
+		\item Suppose that $\{\phi_1, \mathellipsis,\phi_n\}$ is unsatisfiable, i.e. there is no valuation that that makes all the members of $\{\phi_1, \mathellipsis,\phi_n\}$ true. We wish to derive that $\vDash \neg (\phi_1\land\mathellipsis\land\phi_n)$, i.e. for all valuations $v$, $\neg (\phi_1\land\mathellipsis\land\phi_n)$ is true. So let $v$ be arbitrary. Since $\{\phi_1, \mathellipsis,\phi_n\}$ is unsatisfiable, it follows that  that some $\phi_i$ for $1\leq i\leq n$ must be such that $\llbracket\phi_i\rrbracket_v=0$. Now consider $\llbracket (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v$. We've already observed that $\llbracket (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v=min(\llbracket \phi_1\rrbracket_v, \mathellipsis, \llbracket\phi_n\rrbracket_v)$. Since there is a $\phi_i$ such that $\llbracket\phi_i\rrbracket_v=0$, it follows that $min(\llbracket \phi_1\rrbracket_v, \mathellipsis, \llbracket\phi_n\rrbracket_v)=0$. Since Since $\llbracket \neg (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v=1-\llbracket (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v$, it immediately follows that $\llbracket \neg (\phi_1\land\mathellipsis\land\phi_n)\rrbracket_v=1$, as desired.
+	
+	\end{enumerate}
+	
+	\item[6.6.4] 
+	
+	\begin{enumerate}[(a)]
+
+\item $p\to q, r\to q\vdash (p\lor r)\to q$
+
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[p\to q, grouped [r\to q, grouped [\neg ((p\lor r)\to q), grouped [p\lor r [\neg q [\neg p [p, close] [r [\neg r, close] [q, close]]] [q, close]]]]]]
+\end{prooftree}
+\end{center}
+
+\item $p\to (q\land r), \neg r\vdash \neg p$
+
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[p\to (q\land r), grouped [\neg r, grouped [\neg\neg p, grouped  [p [\neg p, close] [q\land r [q[r,close]]]]]]]
+\end{prooftree}
+\end{center}
+
+\item $((p\to q)\to q)\to q$
+
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\neg (((p\to q)\to q)\to q) [((p\to q)\to q) [\neg q [\neg (p\to q) [p [\neg q]]] [q, close]]]]
+\end{prooftree}
+\end{center}
+
+Counter-model: $v(p)=1, v(q)=0$. 
+
+\newpage
+
+\item $\vdash ((p\to q)\land (\neg p\to q))\to \neg p$
+{\footnotesize
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\neg (((p\to q)\land (\neg p\to q))\to \neg p) 
+	[((p\to q)\land (\neg p\to q)) 
+		[\neg \neg p 
+			[p 
+				[p\to q
+					[\neg p\to q
+						[\neg p, close]
+						[q
+							[\neg\neg p [p]]
+							[q]
+							]
+						]
+					]
+				]
+			]
+		]	
+]				
+\end{prooftree}
+\end{center}
+
+Counter-model: $v(p)=1, v(q)=1$
+}
+
+\item $p\leftrightarrow (q\leftrightarrow r)\vdash (p\leftrightarrow q)\leftrightarrow r$
+
+{\footnotesize\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\leftrightarrow (q\leftrightarrow r), grouped [\neg((p\leftrightarrow q)\leftrightarrow r),grouped 
+[p [(q\leftrightarrow r)
+	[(p\leftrightarrow q) [\neg r
+		[q [r,close] ]
+		[\neg q [\neg r
+			[p [q, close]]
+			[\neg p [\neg q, close]]
+			]]
+		]]
+	[\neg (p\leftrightarrow q) [r
+		[q [r
+			[p [\neg q, close]]
+			[\neg p [q, close]]
+			]]
+		[\neg q [\neg r,close] ]
+		]] 
+	]
+	]
+[\neg p [\neg(q\leftrightarrow r)
+	[(p\leftrightarrow q) [\neg r
+		[q [\neg r
+			[p [q, close]]
+			[\neg p [\neg q, close]]
+			]]
+		[\neg q [r,close] ]
+		]]
+	[\neg (p\leftrightarrow q) [r
+		[q [\neg r,close] ]
+		[\neg q [r
+			[p [\neg q, close]]
+			[\neg p [q,close]]
+			]]
+		]] 
+	]
+	]
+]
+]
+]
+\end{prooftree}
+\end{center}}
+
+\newpage
+
+\item $\neg(p\to q)\land \neg(p\to r)\vdash \neg q\lor \neg r$
+
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg(p\to q)\land \neg(p\to r), grouped [\neg(\neg q\lor \neg r), grouped
+	[\neg(p\to q) [\neg(p\to r)
+		[\neg\neg q [\neg \neg r
+			[p [\neg q, close]]
+			]]
+		]
+	]
+]
+]
+\end{prooftree}
+\end{center}
+
+\item $p\land (\neg r\lor s), \neg (q\to s)\vdash r$
+
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\land (\neg r\lor s), grouped  [\neg (q\to s), grouped [\neg r, grouped
+	[p [(\neg r\lor s) [q [\neg s
+	[\neg r]
+	[s, close]
+	]]]] 
+]
+]
+]
+\end{prooftree}
+\end{center}
+
+Counter-model: $v(p)=1, v(q)=1, v(r)=0, v(s)=0$.
+
+\newpage
+
+\item $\vdash (p\to (q\to r))\to (q\to (p\to r))$
+
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg((p\to (q\to r))\to (q\to (p\to r)))
+	[(p\to (q\to r)) [\neg(q\to (p\to r))
+	[q [\neg (p\to r)
+	[p [\neg r
+		[\neg p, close]
+		[(q\to r)
+			[\neg q, close]
+			[r, close]
+			]
+		]
+	]
+	]
+	]
+	]
+	]
+]
+\end{prooftree}
+\end{center}
+
+\item $\neg(p\land \neg q)\lor r, p\to (r\leftrightarrow s)\vdash p\leftrightarrow q$
+
+(See last page. This was a tough one \smiley)
+
+\begin{sidewaysfigure}[h!]
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\neg(p\land \neg q)\lor r, grouped [p\to (r\leftrightarrow s), grouped [\neg(p\leftrightarrow q), grouped
+	[\neg(p\land \neg q)
+		[\neg p
+			[p [\neg q, close]]
+			[\neg p [q
+				[\neg p]
+				[\neg\neg q [q]]
+				]]
+			]
+		[(r\leftrightarrow s)
+			[p [\neg q
+				[\neg p, close]
+				[\neg\neg q, close]
+				]]
+			[\neg p [q
+				[\neg p
+					[r [s]]
+					[\neg r [\neg s]]
+					]
+				[\neg\neg q [q
+					[r [s]]
+					[\neg r [\neg s]]
+					]]
+				]]
+			]
+		]
+	[r
+		[\neg p
+			[p [\neg q, close]]
+			[\neg p [q]]
+			]
+		[(r\leftrightarrow s)
+			[p [\neg q
+				[r [s]]
+				[\neg r [\neg s, close]]
+				]]
+			[\neg p [q
+				[r [s]]
+				[\neg r [\neg s, close]]
+				]]
+			]
+		]
+	]
+]
+]
+\end{prooftree}\\[2ex]
+
+Counter-model $v(p)=0, v(q)=1, v(r)=0$.
+
+\end{sidewaysfigure}
+
+\newpage
+
+\item $p\leftrightarrow \neg\neg q, \neg q\to (r\land \neg s), s\to (p\lor q)\vdash (s\land q)\to p$
+
+(Note: Here I made a short tableaux by strategically applying the rules in a certain order. You might get another tableaux if you use the rules in different order.)
+
+\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\leftrightarrow \neg\neg q, grouped [\neg q\to (r\land \neg s), grouped [s\to (p\lor q), grouped [\neg((s\land q)\to p), grouped
+	[s\land q [\neg p [s [q
+		[\neg s, close]
+		[p\lor q
+			[p, close]
+			[q
+				[p [\neg\neg q, close]]
+				[\neg p [\neg\neg\neg q [\neg q, close]]]
+				]
+			]
+		]
+		] 
+	]
+	]
+]
+]
+]
+]
+\end{prooftree}
+\end{center}
+
+\end{enumerate} 
+
+\end{enumerate}
+
+	
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

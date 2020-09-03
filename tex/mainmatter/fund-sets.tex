@@ -1,0 +1,1248 @@
+\chapter{Elementary Set Theory}
+\label{sets}
+
+
+\section{Sets and Set Notation}
+\label{sets:notation}
+
+\begin{enumerate}[{\thesection}.1]
+
+	\item A \emph{set} is a collection of objects, called its \emph{elements} or \emph{members}. The elements of a set are also said to \emph{belong to} the set or to \emph{be contained in} the set. A set may contain any kind of objects whatsoever: numbers, symbols, people, or even other sets. For $X$ a set and $x$ an object, we write $x\in X$ to say that $x$ is an element of $X$ and we write $x
+\not\in X$ to say that $x$ is \emph{not} an element of $X$. If we have many objects $x_1, \mathellipsis, x_n$, then we also write $x_1, \mathellipsis, x_n\in X$ to say that $x_1\in X$, and \dots, and $x_n\in X$.
+
+		\item If the elements of a set are precisely $a_1, \mathellipsis, a_n$, then we can denote the set by $\{a_1, \mathellipsis, a_n\}$. This is called an \emph{extensional definition} of the set. So, the set $\{1,a, \{\text{Robbie},0\}\}$, for example, contains precisely the number 1, the symbol $a$, and the set $ \{\text{Robbie},0\}$, which in turn contains Robbie and the number 0 as elements.
+
+	\item A set may contain any number of elements. The set $\{0\}$, for example, has just one member---the number 0. A set with exactly one member is also called a \emph{singleton set}.\footnote{It's important to distinguish the \emph{set} $\{0\}$ from the \emph{number} $0$.} The set $\{2, 14\}$ has two members. And so on. Sets can also have infinitely many members. An important infinite set we'll encounter frequently is $\mathbb{N}$, the set of all natural numbers. You might be tempted to write $\mathbb{N}=\{0,1,2,\mathellipsis\}$ but it's important to resist this temptation. In order to define a set, for each object it needs to be clear whether it's an element of the set or not. And who's to say that the list $0,1,2,\mathellipsis$ continues $0,1,2,3,4,\mathellipsis$ and not $0,1,2,4,6\mathellipsis$. This means that if we write $\mathbb{N}=\{0,1,2,\mathellipsis\}$ this leaves open whether $3\in \mathbb{N}$ or $3\notin\mathbb{N}$.
+	
+	\item Other infinite sets we'll encounter are: $\mathbb{Z}$, the set of the integers (positive and negative whole numbers); $\mathbb{Q}$, the set of rational numbers (fractions of integers); and $\mathbb{R}$, the set of real numbers (you know, the one with $\sqrt 2,\pi,e, \dots$ in it). 
+	
+	\item There also exists a set with no elements at all, the so-called \emph{empty set}. This set is of fundamental importance in logic and mathematics. We denote this set by $\{\}$ or $\emptyset$. Note especially that for each object $x$, we have that $x\notin \emptyset$. 
+		
+	\item If the elements of a set are precisely the objects satisfying condition $\Phi$, then we can denote the set by $\{x:\Phi(x)\}$. This is called a definition by \emph{set abstraction}. For example, $\{x:x\text{ is a prime number}\}$ is the set that contains all and only the prime numbers. So we have that $3\in \{x:x\text{ is a prime number}\}$ but $4\notin \{x:x\text{ is a prime number}\}$. Note that by Euclid's theorem, the set $\{x:x\text{ is a prime number}\}$ has infinitely many elements. So, using set abstraction, we can denote infinite sets by a finitary expression.
+	
+	 \emph{To be perfectly clear}: an object $a$ is a member of the set $\{x:\Phi(x)\}$ iff $a$ satisfies the condition $\Phi$, i.e. $\Phi(a)$!
+	 
+	 %\item Note that we don't have that for every condition $\Phi$, there is a set $\{x:\Phi(x)\}$. This is a consequence of \emph{Russel's paradox}. For let $\Phi(x)$ be the condition $x\notin x$ and consider the set $r=\{x: x\notin x\}$. We can then ask whether $r\in r$. Well, since the condition $\Phi(x)$ is $x\notin x$, we have $r\in r$ iff $r\notin r$. This already sounds bad, but it gets worse. Clearly, either $r\in r$ or $r\notin r$. But if $r\in r$, then $r\notin r$, and if $r\notin r$, then $r\in r$. So, either way, $r\in r$ and $r\notin r$. We have a contradiction!
+	
+	\item Set abstraction is typically carried out over the elements of an already known set $X$, i.e. we consider the set of all members of $X$ that satisfy condition $\Phi$. This set is denoted $\{x\in X: \Phi(x)\}$, which is just shorthand for $\{x: x\in X\text{ and }\Phi(x)\}$. The background set of a set abstraction can make a sigificant difference to the sets denoted. E.g. $\{x\in \mathbb{N}: x\times x=2\}=\emptyset$ but $\{x\in\mathbb{R}:x\times x=2\}=\{\sqrt 2, -\sqrt 2\}$.
+	
+	\item When we're doing set abstraction, we also often implicitly assume that the members of the new set have a specific form. E.g. we would write $\mathbb{Q}=\{\frac{n}{m}:n,m\in \mathbb{Z}, m\neq 0\}$ to say that $\mathbb{Q}$ is the set of fractions of integers. In this case, $\{\frac{n}{m}:n,m\in \mathbb{Z}\}$ is shorthand for: \[\{x: \text{ there exist }n,m\in \mathbb{Z}\text{ such that }x=\frac{n}{m}\text{, where }m\neq 0 \}.\] We extend this notation later to the more general case.
+		
+\end{enumerate}
+
+\section{The Subset Relation}
+
+
+\begin{enumerate}[{\thesection}.1]
+
+	
+	\item One set is called a \emph{subset} of another iff every element of the one set is also an element of the other. A bit more precisely, for all sets $X$ and $Y$, $X$ is a subset of $Y$ iff for each object $x$, if $x\in X$, then $x\in Y$. We write $X\subseteq Y$ to say that $X$ is a subset of $Y$ and we write $X\nsubseteq Y$ to say that $X$ is \emph{not} a subset of $Y$. Note that $X\nsubseteq Y$ iff there is at least one $x$ such that $x\in X$ but $x\notin Y$. So, for example, $\{0,1\}\subseteq \{1,a,0,\{b,1\}\}$ but $\{b,1\}\nsubseteq \{1,a,0,\{b,1\}\}$. Note that $b\in \{b,1\}$ but $b\notin \{1,a,0,\{b,1\}\}$. The moral here is that it's important to distinguish between subsets and elements: even though $\{b,1\}\nsubseteq\{1,a,0,\{b,1\}\}$, we have that $\{b,1\}\in \{1,a,0,\{b,1\}\}$.
+	
+	\item 
+	
+	It's easily checked that every set is a subset of itself. This will be the first proposition that we prove:
+\begin{proposition}
+For all sets $X$, we have that $X\subseteq X$.
+\end{proposition}
+\begin{proof}
+This might seem ``obvious,'' but it's important to prove even obviously seeming facts. After all, you might think that something's obvious but it turns out to be false! So, consider any arbitrary set $X$ and arbitrary object $x$. Suppose that $x\in X$. It follows, trivially, that $x\in X$. Since $x$ was arbitrary, this means that for \emph{each} $x$, if $x\in X$, then $x\in X$, which is another way of saying that $X\subseteq X$. Since $X$ was also arbitrary, it follows that for each set $X$, we have that $X\subseteq X$.
+\end{proof}
+
+	\item A set $X$ is called a \emph{proper} subset of another set $Y$ iff $X\subseteq Y$ but $Y\nsubseteq X$. We write $X\subset Y$ to say that $X$ is a proper subset of $Y$ and $X\not\subset Y$ to say that $X$ is \emph{not} a proper subset of $Y$. 	
+	
+\begin{proposition}
+For all sets $X$, we have that $X\not\subset X$.
+\end{proposition}
+\begin{proof}
+We prove this fact ``indirectly,'' that is we show that the assumption that some set is a proper subset of itself leads to a contradiction. Hence it cannot be that any set is a proper subset of itself. Suppose that some set $X$ is such that $X\subset X$. Call this set $A$. By the definition of $\subset$ we have that $A\subseteq A$ and $A\not\subseteq A$, which is a contradiction. So there exists no set $X$ such that $X\subset X$.
+\end{proof}
+
+\item It's also instructive to show that the empty set, $\emptyset$, is a subset of every set whatsoever:
+\begin{proposition}\label{proposition:1.empty}
+For each set $X$, we have that $\emptyset\subseteq X$.
+\end{proposition}
+\begin{proof}
+We show this fact again indirectly. Suppose that there exists a set $X$ such that $\emptyset\nsubseteq X$. Call this set $A$. We get that $\emptyset\nsubseteq A$, which means that there exists at least one object $x$ such that $x\in \emptyset$ but $x\notin A$. Call this object $a$. We get that $a\in \emptyset$. But we know that for each $x$, $x\notin \emptyset$, and hence $a\notin \emptyset$. We've arrived at a contradiction, $a\in \emptyset$ and $a\notin\emptyset$. Hence the assumption that there exists a set $X$ such that $\emptyset\nsubseteq X$ is false, which means that for each set $X$, we have that $\emptyset\subseteq X$.
+\end{proof}
+
+\item For $X$ a set, we define the \emph{power set} to be \[\wp(X)=\{Y: Y\subseteq X\}.\] That is, the power set of $X$ is the set of all the subsets of $X$. So, for example, we have that $\wp(\{1,2\})=\{\emptyset, \{1\}, \{2\}, \{1,2\}\}$. Note that by the propositions proved in 2.2.2 and 2.2.4, for every set $X$, we have that $\emptyset, X\in \wp(X)$.
+
+\end{enumerate}
+
+\section{The Axiom of Extensionality}
+
+\begin{enumerate}[{\thesection}.1]
+
+
+\item Sets are individuated by their members. This is captured in the so-called \emph{axiom of extensionality}, which states that two sets are identical iff they have exactly the same elements. More formally:
+\begin{description}
+	\item[Axiom of Extensionality.] For all sets $X$ and $Y$, $X=Y$ iff $X\subseteq Y$ and $Y\subseteq X$. 
+\end{description}
+	For example, it follows from the axiom of extensionality that the sets $\{1,2\},\{2,1\}, \{1,1,2\},\{2,1,1,2\},\mathellipsis$ are all one and the same sets---for they have precisely the same members. In other words, in set-theory the order and multiplicity of the elements of a set doesn't matter. 
+	
+	\item Note that in order to show that two sets $X$ and $Y$ are identical, we have to show two things: (i) we have to show that $X\subseteq Y$ and (ii) we have to show that $Y\subseteq X$. No proof of a purported set-identity is complete without having established both of these facts. To show that two sets $X$ and $Y$ are \emph{distinct}, in contrast, it's enough to establish one of $X\nsubseteq Y$ or $Y\nsubseteq X$. In other words, it suffices to show either that there exists an $x$ with $x\in X$ and $x\notin Y$ or that there exists an $x$ with $x\in Y$ and $x\notin X$.
+
+\item It is an interesting consequence of the axiom of extensionality that there exists precisely one empty set:
+\begin{proposition}
+Let's say that a set $X$ is \emph{empty} iff for all objects $x$, we have that $x\notin X$. Then we have that for all sets $X$, if $X$ is empty, then $X=\emptyset$.
+\end{proposition}
+\begin{proof}
+We prove this indirectly. So, suppose that there exists a set $X$ such that $X$ is empty but $X\neq\emptyset$. Call this set $A$. It follows that $A\neq \emptyset$, which means that either $A\nsubseteq \emptyset$ or $\emptyset\nsubseteq A$. We've already established that $\emptyset\subseteq X$ for every set $X$ (cf. 2.2.4), so we can focus on the case that $A\nsubseteq \emptyset$. If $A\nsubseteq \emptyset$, this means that there exists an object $x$ such that $x\in A$ but $x\notin \emptyset$. Call this object $a$. We get that $a\in A$. But we've assumed that $A$ is an empty set, meaning that for all $x$, $x\notin A$. So, certainly, $a\notin A$. We've arrived at a contradiction, $a\in A$ and $a\notin A$, meaning that the assumption that  there exists an empty set $X$ with $X\neq\emptyset$ is false. Hence, for all sets $X$, if $X$ is empty, then $X=\emptyset$.
+\end{proof}
+
+\end{enumerate}
+
+\section{Operations on Sets: Union, Intersection, Difference}
+
+\begin{enumerate}[\thesection.1]
+
+\item The \emph{union} of two sets contains all the objects that are in at least one of the two sets. We denote the union of $X$ and $Y$ by $X\cup Y$. More formally, for two sets $X$ and $Y$, we define \[X\cup Y=\{x: x\in X\text{ or }x\in Y\}.\] Note that  if an element is in both sets, then it is also an element of their union. So, for example, $\{1,2\}\cup \{2,3\}=\{1,2,3\}$. This is because, in logic and mathematics, we typically read ``or'' \emph{inclusively}: to say that one thing or another is the case is to say that the one thing is the case, the other is the case, or both are the case.
+
+\item The \emph{intersection} of two sets contains all things that are in both sets. We denote the intersection of $X$ and $Y$ by $X\cap Y$. More formally, \[X\cap Y=\{x:x\in X\text{ and }x\in Y\}.\] In words, $X\cap Y$ contains all the things that are both elements of $X$ and of $Y$. So, for example, $\{1,2\}\cap \{2,3\}=\{2\}$. Note that if $X$ and $Y$ don't have any members in common, then $X\cap Y=\emptyset$. So, for example, $\{1,2\}\cap \{3,4\}=\emptyset$.
+
+\item We can prove a characterization of the subset-relation in terms of intersection:
+\begin{proposition}
+For all sets $X$ and $Y$, if $X\cap Y=X$, then $X\subseteq Y$.
+\end{proposition}
+\begin{proof}
+Let $A$ and $B$ be two arbitrary sets and suppose that $A\cap B=A$. We need to show that for each $x$, if $x\in A$, then $x\in B$. So take an arbitrary object $a$ and suppose that $a\in A$. Suppose for indirect proof that $a\notin B$. Since $A\cap B=A$, it follows that $a\in A\cap B$. But $A\cap B$ is defined as $\{x:x\in A\text{ and }x\in B\}$, so it follows that $a\in B$. We have arrived at a contradiction, $a\in B$ and $a\notin B$, which means that our assumption $a\notin B$ is false. Hence $a\in B$. So, if $a\in A$, then $a\in B$. Since $a$ was arbitrary, this means that for each  $x$, if $x\in A$, then $x\in B$. This just means that $A\subseteq B$. So, if $A\cap B=A$, then $A\subseteq B$. And since $A$ and $B$ were both arbitrary, we have that for all  $X$ and $Y$, if $X\cap Y=X$, then $X\subseteq Y$.
+\end{proof}
+
+There is an analogous characterization of the subset-relation in terms of union, which you show as an exercise (see the end of the chapter).
+
+\item The operations of union and intersection can also be applied to more than two sets. A technically convenient way of doing is is to define union (intersection) for \emph{sets of sets}. Suppose that $\mathcal{X}$ is a set of sets. Then we define:
+\[\bigcup\mathcal{X}=\{x: \text{there exists a }X\in\mathcal{X}\text{ such that }x\in X\}\]
+\[\bigcap\mathcal{X}=\{x: \text{for all }X\in\mathcal{X}\text{, we have that }x\in X\}\]
+For example, the sets $\{1,a,b\}$, $\{1,a,c\}$, $\{1,b,d\}$. We get:
+\[\bigcup\{\{1,a,b\}, \{1,a,c\},\{1,b,d\}\}=\{1,a,b,c,d\}\]
+\[\bigcap\{\{1,a,b\}, \{1,a,c\},\{1,b,d\}\}=\{1\}\]
+It's easily checked that for any two sets $X,Y$, we have that $X\cup Y=\bigcup \{X,Y\}$ and $X\cap Y=\bigcap \{X,Y\}$ (exercise). The real advantage of the new operations $\bigcup$ and $\bigcap$ is that they can also be applied to \emph{infinite} sets of sets, but for now, we don't need to worry about that.
+
+\item The \emph{difference} between one set and another are all the elements that are in the one but not the other. The difference between $X$ and $Y$ is denoted $X\setminus Y$ and defined by \[X\setminus Y=\{x\in X:x\notin Y\}.\] If $X$ and $Y$ overlap, i.e. if $X\cap Y\neq \emptyset$, then $X\setminus Y$ is just the result of taking the elements of $Y$ out of $X$. So, for example, $\{1,2,3,4\}\setminus \{2,4,6\}=\{1,3\}$. If $X$ and $Y$ don't overlap, set-difference doesn't do anything:
+\begin{proposition}
+For all sets $X$ and $Y$, if $X\cap Y=\emptyset$, then $X\setminus Y=X$.
+\end{proposition}
+\begin{proof}
+Let $A$ and $B$ two arbitrary sets such that $A\cap B=\emptyset$. We need to establish that $A\setminus B=A$. Since this is a set-identity, we need to make use of the axiom of extensionality, i.e. we need to show that (i) $A\setminus B\subseteq A$ and that (ii) $A\subseteq A\setminus B$.
+
+Claim (i) is almost immediate from the definition of $A\setminus B$ as $\{x\in A: x\notin B\}$. For take an arbitrary object $a$ and suppose that  $a \in A\setminus B$. Since $A\setminus B=\{x\in A: x\notin B\}$, this means that $a\in A$ and $a\notin B$. So, surely, $a\in A$. But since $a$ was arbitrary, this means that for every object $x$, if $x\in A\setminus B$, then $x\in A$, which just means that $A\setminus B\subseteq A$.
+
+To establish claim (ii), we make use of our assumption that $A\cap B=\emptyset$. Take an arbitrary object $a\in A$. We need to show that $a\in A\setminus B=\{x\in A: x\notin B\}$. We already have one part of the required condition, i.e. $a\in A$, so let's check the other, i.e. $a\notin B$. Suppose, for indirect proof, that $a\in B$. This would mean that $a\in A$ and $a\in B$. But then $a\in A\cap B$ (since $A\cap B=\{x:x\in A\text{ and }x\in B\}$), and we've assumed that $A\cap B=\emptyset$. So, we have a contradiction, which means that $a\notin B$. So, $a\in A$ and $a\notin B$, so $a\in A\setminus B$. Since $a$ was arbitrary, we conclude that for all $x$, if $x\in A$, then $x\in A\setminus B$, i.e. $A\subseteq A\setminus B$.
+
+Since we've established that $A\setminus B\subseteq A$ and $A\subseteq A\setminus B$, we can conclude that $A\setminus B=A$, as desired, using the axiom of extensionality.
+\end{proof}
+
+
+
+
+\end{enumerate}
+
+
+\section{Ordered-Pairs and Cartesian Products}
+
+\begin{enumerate}[\thesection.1]
+
+
+\item An \emph{ordered pair} is a set-like collection of two objects, except that \emph{order matters}. The ordered pair with $a$ as its first component and $b$ as its second component is denoted $(a,b)$. Note that $(a,b)\neq (b,a)$. In fact, two ordered pairs are identical iff they have exactly the same components in the same place, that is: $(a_1,a_2)=(b_1, b_2)$ iff $a_1=b_1$ and $a_2=b_2$. Note also that the \emph{number} $1$ is distinct from the \emph{ordered pair} $(1,1)$, which has the number 1 both as its first \emph{and} second component.
+
+\item The notion of an ordered pair can be generalized. For $n\geq 2$ a natural number, an \emph{(ordered) $n$-tuple} is a set-like collection of $n$-objects in that order. We write $(a_1, \mathellipsis, a_n)$ for the ordered $n$-tuple which has of $a_1$ as its first component, $a_2$ as its second component, \dots, up until $a_n$ as its $n$-th component. So, for example, the 3-tuple $(1,a,\emptyset)$ has the number 1 as its first component, the symbol $a$ as its second component, and the empty set as its third component. Note that in contrast to sets, order and multiplicity are very important with $n$-tuples. For example, $(2,1,1)$ is distinct from $(2,1)$ and $(2,1)$ is distinct from $(1,2)$.
+
+\item The \emph{Cartesian product} of one set with another contains all the ordered pairs that can be formed from taking an element of the first set as the first component and an element of the second set as the second component. For two sets $X$ and $Y$, we write $X\times Y$ for their Cartesian product. Formally, we can define this by saying that \[X\times Y=\{(x,y):x\in X\text{ and }y\in Y\}.\]
+
+\item If we have $n$ sets $X_1, \mathellipsis, X_n$, then their \emph{Cartesian product} is the set of all $n$-tuples with the first component from $X_1$, the second component from $X_2$, and so on up to the $n$-th component from $X_n$. We denote the Cartesian product of $X_1, \mathellipsis, X_n$ by $X_1\times \mathellipsis\times X_n$. More formally, \[X_1\times \mathellipsis\times X_n=\{(x_1, \mathellipsis, x_n):x_1\in X_1, \mathellipsis, x_n\in X_n\}.\] To illustrate, consider the sets $\{1,2\}$ and $\{a,b\}$. We get that $\{1,2\}\times\{a,b\}=\{(1,a), (1,b), (2,a), (2,b)\}$. Note that $\{a,b\}\times \{1,2\}\neq \{1,2\}\times \{a,b\}$, since $\{a,b\}\times \{1,2\}=\{(a,1), (a,2), (b,1), (b,2)\}$. The special case where $X_1=\mathellipsis=X_n=X$ will be important, where we also denote \[\underbrace{X\times\mathellipsis\times X}_{n\text{ times}}\] by $X^n$. We have, for example, that \[\{1,2\}^2=\{1,2\}\times\{1,2\}=\{(1,1), (1,2), (2,1), (2,2)\}.\]
+
+\end{enumerate}
+
+
+\section{Properties, Relations, and Functions}
+
+\begin{enumerate}[\thesection.1]
+
+	\item A \emph{property}, $P$, over a set of objects, $X$ is a set of elements of $X$, i.e. $P$ is a property over $X$ iff $P\subseteq X$. The idea is that $a\in P$ iff $a$ has the property $P$. For example, the property of being even over the natural numbers is the set \[\{n\in\mathbb{N}:\text{there exists a }k\in\mathbb{N}\text{, such that }k\leq n\text{ and }n=2k\}.\]
+
+
+	\item A \emph{binary relation}, $R$, over a set of objects, $X$, is a set of ordered pairs of elements from $X$, i.e. $R$ is a binary relation over $X$ iff $R\subseteq X^2$. The idea is that $(a,b)\in R$ iff the object $a$ stands in the relation $R$ to $b$. For example, consider the set $A=\{1,2,3,4\}$. The set $R=\{(1,2), (2,3), (3,4)\}$ is a relation over $A$. Intuitively, it's the relation \emph{being strictly smaller than}. In fact, we can check that for all $n,m\in A$, $(n,m)\in R$ iff $n<m$, i.e. $R=\{(n,m)\in A^2: n<m\}$. In the case of binary relations, we sometimes also use the notation $aRb$ instead of $(a,b)\in R$ to say that $a$ stands in the relation $R$ to $b$. E.g. if $\leq$ is the relation $\{(a,b)\in \mathbb{N}^2: a\leq b\}$ of being smaller than over the natural numbers $\mathbb{N}$, then instead of $(a,b)\in {\leq}$, we also just write $a\leq b$.
+
+\item More generally, an \emph{$n$-ary relation} over $X$, $R$, is simply a set of $n$-tuples of elements from $X$, i.e. $R\subseteq X^n$. We say that $a_1, \mathellipsis, a_n$ stand in relation $R$ iff $(a_1, \mathellipsis, a_n)\in R$. 
+
+
+\item A \emph{function}, $f$, from one set, $X$, to another, $Y$, assigns to each element $a\in X$ a \emph{unique} element $f(a)\in Y$. That is, for all $a,b\in X$, if $f(a)\neq f(b)$, then $a\neq b$. In this case, the set $X$ is called the \emph{domain} of $f$. The members of the domain are the possible inputs for $f$, for which $f$ is defined. We denote the domain of a function $f$ by $dom(f)$. The set $Y$, instead, is called the \emph{range} of $f$. The range contains the possible values of $f$. We denote the range of $f$ by $rg(f)$. We also write $f:X\to Y$ to say that $f$ is a function from $X$ to $Y$, i.e. $dom(f)=X$ and $rg(f)=Y$. To say that function $f:X\to Y$ assigns $b\in Y$ as the value to $a\in X$, we write $f(a)=b$ or $a\overset{f}{\mapsto}b$.
+
+\item Here are some assignments from $\{a,b,c,d\}$ to $\{1,2,3,4\}$ that aren't functions:
+
+\begin{center}
+	
+\begin{tabular}{c c c}
+  \begin{tikzpicture}[scale=.75,
+     >=stealth,
+     bullet/.style={
+       fill=black,
+       circle,
+       minimum width=1pt,
+       inner sep=1pt
+     },
+     projection/.style={
+       ->,
+       thick,
+       shorten <=2pt,
+       shorten >=2pt
+     },
+     every fit/.style={
+       ellipse,
+       draw,
+       inner sep=0pt
+     }
+   ]
+     \foreach \y/\l in {1/d,2/c/,3/b,4/a}
+       \node[bullet,label=left:$\l$] (a\y) at (0,\y) {};
+ 
+     \foreach \y/\l in {1/4,2/3,3/2,4/1}
+       \node[bullet,label=right:$\l$] (b\y) at (4,\y) {};
+ 
+     \node[draw,fit=(a1) (a2) (a3) (a4),minimum width=1.5cm] {} ;
+     \node[draw,fit=(b1) (b2) (b3) (b4),minimum width=1.5cm] {} ;
+ 
+     \draw[projection] (a4) -- (b4);
+     \draw[projection] (a4) -- (b3);
+     \draw[projection] (a2) -- (b3);
+     \draw[projection] (a3) -- (b1);
+     \draw[projection] (a4) -- (b3);
+     \draw[projection] (a1) -- (b2);
+   \end{tikzpicture}
+   &
+   \quad
+   &
+    \begin{tikzpicture}[scale=.75,
+     >=stealth,
+     bullet/.style={
+       fill=black,
+       circle,
+       minimum width=1pt,
+       inner sep=1pt
+     },
+     projection/.style={
+       ->,
+       thick,
+       shorten <=2pt,
+       shorten >=2pt
+     },
+     every fit/.style={
+       ellipse,
+       draw,
+       inner sep=0pt
+     }
+   ]
+     \foreach \y/\l in {1/d,2/c/,3/b,4/a}
+       \node[bullet,label=left:$\l$] (a\y) at (0,\y) {};
+ 
+     \foreach \y/\l in {1/4,2/3,3/2,4/1}
+       \node[bullet,label=right:$\l$] (b\y) at (4,\y) {};
+ 
+     \node[draw,fit=(a1) (a2) (a3) (a4),minimum width=1.5cm] {} ;
+     \node[draw,fit=(b1) (b2) (b3) (b4),minimum width=1.5cm] {} ;
+ 
+     \draw[projection] (a4) -- (b4);
+     \draw[projection] (a2) -- (b1);
+     \draw[projection] (a3) -- (b1);
+   \end{tikzpicture}
+   
+   \\
+   
+   More than one value for $a$ & & No value for $d$
+   
+   \end{tabular}
+  \end{center}
+  
+  The point is \emph{every} element of the domain needs to be assigned \emph{exactly} one value from the range. As long as these requirements are met, we have a function. So, the following two assignments \emph{are} functions:
+  
+  \begin{center}
+	
+\begin{tabular}{c c c}
+  \begin{tikzpicture}[scale=.75,
+     >=stealth,
+     bullet/.style={
+       fill=black,
+       circle,
+       minimum width=1pt,
+       inner sep=1pt
+     },
+     projection/.style={
+       ->,
+       thick,
+       shorten <=2pt,
+       shorten >=2pt
+     },
+     every fit/.style={
+       ellipse,
+       draw,
+       inner sep=0pt
+     }
+   ]
+     \foreach \y/\l in {1/d,2/c/,3/b,4/a}
+       \node[bullet,label=left:$\l$] (a\y) at (0,\y) {};
+ 
+     \foreach \y/\l in {1/4,2/3,3/2,4/1}
+       \node[bullet,label=right:$\l$] (b\y) at (4,\y) {};
+ 
+     \node[draw,fit=(a1) (a2) (a3) (a4),minimum width=1.5cm] {} ;
+     \node[draw,fit=(b1) (b2) (b3) (b4),minimum width=1.5cm] {} ;
+ 
+     \draw[projection] (a4) -- (b3);
+     \draw[projection] (a2) -- (b3);
+     \draw[projection] (a3) -- (b1);
+     \draw[projection] (a1) -- (b2);
+   \end{tikzpicture}
+   &
+   \quad
+   &
+    \begin{tikzpicture}[scale=.75,
+     >=stealth,
+     bullet/.style={
+       fill=black,
+       circle,
+       minimum width=1pt,
+       inner sep=1pt
+     },
+     projection/.style={
+       ->,
+       thick,
+       shorten <=2pt,
+       shorten >=2pt
+     },
+     every fit/.style={
+       ellipse,
+       draw,
+       inner sep=0pt
+     }
+   ]
+     \foreach \y/\l in {1/d,2/c/,3/b,4/a}
+       \node[bullet,label=left:$\l$] (a\y) at (0,\y) {};
+ 
+     \foreach \y/\l in {1/4,2/3,3/2,4/1}
+       \node[bullet,label=right:$\l$] (b\y) at (4,\y) {};
+ 
+     \node[draw,fit=(a1) (a2) (a3) (a4),minimum width=1.5cm] {} ;
+     \node[draw,fit=(b1) (b2) (b3) (b4),minimum width=1.5cm] {} ;
+ 
+     \draw[projection] (a4) -- (b4);
+     \draw[projection] (a2) -- (b1);
+     \draw[projection] (a3) -- (b1);
+     \draw[projection] (a1) -- (b3);
+   \end{tikzpicture}
+      \\
+      $f_1$ & & $f_2$
+   \end{tabular}
+  \end{center}
+  
+\item Functions are everywhere in mathematics. Take, for example, the successor function $\mathsf{S}:\mathbb{N}\to \mathbb{N}$, which is defined by $\mathsf{S}(n)=n+1$ for all numbers $n\in\mathbb{N}$. Note that the domain and the range of this function are the same, which is allowed. But functions can also operate on other kinds of objects. Take the two sets $\{a,b,c,d\}$ and $\{1,2,3,4\}$ from above. We can specify the two function $f_1$ and $f_2$ from the diagram in 2.6.4 as follows:
+	\begin{center}
+		\begin{tabular}{c | c}
+		$f_1$ &  \\
+		\hline
+		a & 2\\
+		b & 4\\
+		c & 2\\
+		d & 3
+		\end{tabular}
+		\hspace{8ex}
+			\begin{tabular}{c | c}
+		$f_2$ &  \\
+		\hline
+		a & 1\\
+		b & 4\\
+		c & 4\\
+		d & 2
+		\end{tabular}
+	\end{center}
+This is called a \emph{function table}. It tells us for every possible input from $\{a,b,c,d\}$ what the output in $\{1,2,3,4\}$ is. We have $f(a)=1$, $f(b)=\pi$, and $f(c)=1$. Note that not every element in the range is assigned as a value to some input. This is allowed, since the range only contains the \emph{possible} values for $f$. The \emph{actual} values of $f:X\to Y$ are the members of the set $\{f(x): x\in X\}$. This set is called the \emph{image} of $f$, and it's denoted $im(f)$. We have, for example, $im(f_1)=\{2,3,4\}$ and $im(f_2)=\{1,2,4\}$.
+
+\item What's important when specifying a function $f:X\to Y$ is to say for each $x\in X$ what the value $f(x)\in Y$ is. This can be done in many different ways. Above, we've already seen a function table, which will be a useful method of specifying a function. But this, of course, only works when the domain of $f$ is finite. In cases where the domain is infinite, we can specify a function like we did in the case of the successor function, by means of a \emph{function rule}. The function rule of $\mathsf{S}:\mathbb{N}\to \mathbb{N}$ was given by $\mathsf{S}(n)=n+1$. This can also be written as $n\overset{\mathsf{S}}{\mapsto}n+1$. It's important to note that we can't always figure out the function rule in such a clear way. There are functions where we don't know the function rule, but that doesn't stop them from being functions. We can, and in fact will, often talk about functions abstractly, without knowing what their function rule is (or, in fact, if there even is an intelligible one). All we know in such a case is that every member of the domain gets precisely one value from the range. That's it.
+
+\item A common way of specifying the values a function gives is by distinguishing the possible inputs, the domain, into a finite list of exclusive and exhaustive cases and say which output the function gives for each of these cases.\footnote{The list needs to be exclusive in order to avoid that an input gets more than one value, and it needs to be exhaustive to ensure that every input gets a value.} The idea is best illustrated by means of an example. Consider the function $f:\mathbb{N}\to\{0,1\}$, which gives the result $1$ when applied to an even number and the result $0$ when applied to an odd number. A concise way of writing this is as follows: \[f(n)=\begin{cases} 1 & \text{if }n\text{ is even}\\0 &\text{if }n\text{ is odd}\end{cases}\] There can, of course, be more than two cases. Consider the function $g:\mathbb{N}\to\{1, 2, 3\}$, which assigns $1$ to every even number, $2$ to every prime bigger than $2$, and $3$ to every other number. This function can be determined as follows:
+\[g(n)=\begin{cases} 1 & \text{if }n\text{ is even}\\2 &\text{if }n\text{ is prime and }n>2\\3&\text{ otherwise}\end{cases}\] Note that the ``otherwise'' here is a good catch-all to make an otherwise non-exhaustive list exhaustive.
+
+\item An \emph{$n$-ary function} from $X$ to $Y$ is a function $f:X^n\to Y$. That is, $f$ assigns a value from $Y$ to every $n$-tuple of members from $X$. For $(a_1, \mathellipsis, a_n)\in X^n$, we also write $f(a_1, \mathellipsis, a_n)$ for the more correct $f((a_1, \mathellipsis, a_n))$. The case of a binary function $f:X^2\to Y$ will be particularly important in the following. In case where $X$ is finite, we can also give a function table for $f:X^2\to Y$. Consider, for example, the function $f\{a,b,c\}^2\to \{0,1\}$ given by the following assignment:
+\begin{center}
+	\begin{tabular}{c c c c c c c c c c c}
+	$(a,a)$ & $\overset{f}{\mapsto}$ & 0 & \quad & (b,a) & $\overset{f}{\mapsto}$ & 0  \quad & (c,a) & $\overset{f}{\mapsto}$ & 1\\
+
+	$(a,b)$ & $\overset{f}{\mapsto}$ & 1 & \quad & (b,b) & $\overset{f}{\mapsto}$ & 0  \quad & (c,b) & $\overset{f}{\mapsto}$ & 1\\
+
+
+	$(a,c)$ & $\overset{f}{\mapsto}$ & 1 & \quad & (b,c) & $\overset{f}{\mapsto}$ & 1  \quad & (c,c) & $\overset{f}{\mapsto}$ & 0\\
+
+
+	\end{tabular}
+\end{center}
+
+This assignment can be given in table form as follows:
+
+\begin{center}
+	\begin{tabular}{ c | c c c}
+	$f$ & $a$ & $b$ & $c$ \\ \hline
+	
+	$a$ & 0 & 1 & 1\\
+	
+	$b$ & 0 & 0 & 1\\
+	
+	$c$ & 1 & 1 & 0
+	
+	\end{tabular} 
+	
+\end{center}
+
+The convention hereby is that the first input is in the first column and the second input in the first row. Notice that $f(x,y)\neq f(y,x)$ is possible, e.g. in our case $f(a,b)=1\neq 0=f(b,a)$.
+
+So, generally, if $X=\{a_1, \mathellipsis, a_n\}$ is a finite set, the function table for a function $f:X^2\to Y$ is given as follows:
+
+\begin{center}
+	\begin{tabular}{ c | c c c}
+	$f$ & $a_1$ & $\cdots$ & $a_n$ \\ \hline
+	
+	$a_1$ &  $f(a_1, a_1)$ & $\cdots$ & $f(a_1, a_n)$\\
+	
+	$\vdots$ & $\vdots$ & & $\vdots$\\
+	
+	$a_n$ &  $f(a_n, a_1)$ & $\cdots$ & $f(a_n, a_n)$\\
+	
+	\end{tabular} 
+	
+\end{center}
+
+	\item So far, we spoke about functions using the informal notion of an \emph{assignment}. Formally speaking, however, a function is typically understood as a special kind of set. A function $f$ is understood as a triple $(dom(f), rg(f), R_f)$. Here, $dom(f)$ and $rg(f)$ are arbitrary sets, which constitute the domain and range of the function respectively. The special component is $R_f$, which, intuitively, is the \emph{assignment relation} of the function. More formally, $R_f\subseteq dom(f)\times rg(f)$ is a set of pairs $(x,y)$ where $x\in dom(f)$ and $y\in rg(f)$ subject to the two conditions:
+	\begin{description}
+	
+		\item[Left-totality.] For each $x\in dom(f)$, there exists a $y\in rg(f)$ such that $(x,y)\in R_f$.
+	
+		\item[Right-uniqueness.] If $(x,y)\in R_f$ and $(x,z)\in R_f$, then $y=z$.
+	
+	\end{description}
+	
+	We will not rely on the formal definition of a function much in this course, but we will need it for the semantics of first-order logic. We conclude our discussion of functions with the fully formal definition of function $f_1$ from 3.6.4, as an example:
+	
+	\[f_1=(\{a,b,c,d\}, \{1,2,3,4\}, \{(a,2), (b,4), (c,2), (d,3)\})\]
+	
+	\item Finally, we can generalize our notation $\{\frac{n}{m}:n,m\in \mathbb{Z}, m\neq 0\}$ from 3.1.8 to the general case. For $f:X\to Y$ and $X'\subseteq X$, we define: \[\{f(x):x\in X'\}=\{y:\text{there exists a }x\in X'\text{, such that }y=f(x)\}\] This is really just a useful abbreviation, which we'll use here and there.
+	 
+\end{enumerate}
+
+\section{Inductive Definitions and Proof by Induction}
+
+\emph{The ideas of this section are among the hardest of the course. But these ideas lie at the heart of logical theory, that's why it's important that we discuss them from different angles. Here we begin with some examples and a description of the general idea. In the following chapter, we will apply these ideas to define a logical language. If not everything is perfectly clear after this chapter, don't despair---keep working on it and (hopefully) it will all make sense soon.}
+
+\begin{enumerate}[{\thesection}.1]
+
+	\item In 2.1.3, we mentioned that $\mathbb{N}$ shouldn't be written $\{0,1,2,\mathellipsis\}$. We'll now discuss a powerful method for defining infinite sets like $\mathbb{N}$, so-called \emph{inductive definitions}. Let's begin with the natural numbers as an example. Note that the natural numbers are essentially just zero and all its successors, where a number $m$ is said to be the successor of a number $n$ iff $m=n+1$. So, clearly, zero is a natural number and if we take a natural  number, then its successor (the result of adding one) is also a natural number. More precisely:	
+	\begin{enumerate}[(i)]
+	
+		\item $0\in \mathbb{N}$
+		
+		\item For all $n$, if $n\in\mathbb{N}$, then $n+1\in \mathbb{N}$
+	
+	\end{enumerate}
+	
+	Using these two facts, we easily can show that $1,2,3, \mathellipsis$ are all natural numbers. Take the number three. Here's how we show that $3\in \mathbb{N}$: We know that $0\in\mathbb{N}$ by (i). By (ii), it follows that $0+1=1\in\mathbb{N}$. Again by (ii) it follows that $1+1=2\in\mathbb{N}$. Finally, again by (ii), it follows that $2+1=3\in \mathbb{N}$. This clearly generalizes to every natural number $n$. By $n$ applications of (ii), we can show that $n\in\mathbb{N}$. The bottom-line is that (i) and (ii) together allow us to derive for every natural number that it is a member of the set $\mathbb{N}$. But we want more. We also want to be able to show that \emph{only} natural numbers are members of $\mathbb{N}$, i.e. there is no number which is not a natural number but a member of $\mathbb{N}$.	 To do that, we use a simple trick: we simply stipulate that the objects which can be shown to be members of $\mathbb{N}$ by (i) and (ii) are \emph{all} the natural numbers. This is typically written as follows:
+	\begin{enumerate}[(i)]
+	
+		\setcounter{enumii}{2}
+	
+		\item Nothing else is a member of $\mathbb{N}$.
+	
+	\end{enumerate}
+Together (i), (ii), and (iii) constitute an inductive definition of the natural numbers. Many sets can be defined inductively (and some cannot). The reason why we're discussing inductive definitions now is that the set of formulas of a formal language is usually given an inductive definition. What's particularly appealing about inductive definitions is that they allow us to define an infinite set, like $\mathbb{N}$, in a finitary way---using just three conditions viz. (i), (ii), and (iii). This is very important for the computer implementability of arithmetic (the theory of the natural numbers): without a finitary way of encoding the numbers, how should a computer be able to handle them?
+
+	\item How do you show that a number $n$ is \emph{not} a member of $\mathbb{N}$? Well, essentially, what you have to show is that there is no way of reaching $n$ by repeatedly adding one to zero. It seems clear, for example, that we can't reach $\frac{1}{2}$ in this way. But to actually \emph{prove} it, we will need a more precise version of inductive definitions, which we'll discuss below. However, most of the time, it will be enough to ``see'' that a number can't be constructed by repeatedly adding one to zero to justify the claim that it's not in $\mathbb{N}$.
+	
+	\item If a set is defined inductively, then there's a powerful way of defining functions on the set, where the function is defined ``following the inductive definition.'' This method is known as \emph{function recursion}. To illustrate the idea, let's use function recursion to define a function $f:\mathbb{N}^2\to\mathbb{N}$. In order to define $f$, we need to say for every pair of numbers $n,m\in\mathbb{N}$ what the result of $f(n,m)$ is. This is done by recursion as follows:
+	\begin{enumerate}[(i)]
+	
+		\item For every number $n\in\mathbb{N}$, $f(n, 0)=0$.
+		
+		\item For all numbers $n,m\in\mathbb{N}$, $f(n,m+1)=f(n,m)+n$.
+	
+	\end{enumerate}
+Note the pattern here: we first say what the result of $f(n,0)$ is, and then we say what the result of $f(n,m+1)$ is, but in terms of what the result of $f(n,m)$ is. In this way, since zero and it's successors are \emph{all} the natural numbers, we've said for \emph{every} number what the result of $f(n,m)$ is. To see that that's the case, let's calculate $f(3,2)$ using the recursive definition (i) and (ii):
+
+	\begin{itemize}
+	
+		\item $f(3, 0)=0$, by clause (i)
+		
+		\item So, $f(3,1)=f(3,0+1)=f(3,0)+3=3$ by clause (ii).
+		
+		\item So, $f(3,2)=f(3, 1+1)=f(3,1)+3=3+3=6$ by clause (ii).
+			
+	\end{itemize}
+Here, we calculated ``bottom up:'' we started from $f(3,0)$ and figured out what $f(3,2)$ needed to be. We might as well have gone ``backwards,'' as follows: 
+\begin{itemize}
+	
+		\item We want to know the result of $f(3,2)$. But $f(3,2)=f(3,1+1)$ and, by (ii), $f(3,1+1)=f(3, 1)+3$.
+		
+		\item So, in order to calculate $f(3,2)$, we need to calculate $f(3,1)$. Now, $f(3,1)=f(3,0+1)$ and by (ii) $f(3,0+1)=f(3,0)+3$.
+		
+		\item So, we need to calculate $f(3,0)$, but we know what that is by (i), viz. $f(3, 0)=0$.
+		
+		\item Putting it all together, we get that $f(3,2)=f(3,1+1)=f(3,1)+3=f(3,0+1)+3=(f(3, 0)+3)+3=3+3=6$.
+	
+	\end{itemize}
+In this way of calculating the result, in each step, we need to figure out the result for a lower number, until eventually, we need to figure out the result for zero is. This ``calling upon'' results for lower numbers is where ``function recursion'' gets its name from. Note that because every number is the result of adding one to zero a bunch of times, this procedure works.
+
+	Do you recognize the function $f$? What does it do? Think about it before you move on, we'll answer the question in a moment.
+	
+	A side-remark: function recursion is of fundamental importance in computer implementations of calculation. You can easily see why: it allows us to specify a function with an infinite domain in a finitary way. Otherwise, how should a computer, with finite memory, be able to deal with functions on the natural numbers?
+
+	\item And if a set is defined inductively, then there's a powerful \emph{proof method} for proving things about (all) its members: \emph{proof by induction}. The idea is, once more, to follow the inductive definition of the set when proving things about it. To make this idea clear, let's use $\mathbb{N}$ again as an example.  Suppose that $\Phi(n)$ is a condition on natural numbers, something like ``if $n$ is even, then $n$ is not odd'' or the like.  Suppose further that we can show the following two facts:
+	\begin{enumerate}[(i)]
+	
+		\item Zero satisfies the condition, i.e. $\Phi(0)$.
+		
+		\item If a number satisfies the condition, then also its successor does, i.e. for all $n\in\mathbb{N}$, if $\Phi(n)$, then $\Phi(n+1)$. 
+	
+	\end{enumerate}
+In such a situation, we can conclude that \emph{every} number satisfies the condition. Why? Well, pick a number, any number. We know that this number can be reached by successively adding one to zero---after all, ``nothing else is a natural number.'' We know that zero satisfies the condition by (i). And we know that if zero satisfies the condition, then one satisfies the condition by (ii). So we know that one satisfies the condition. And we know that if one satisfies the condition, then two satisfies the condition by (ii). So, two satisfies the condition. And we know that if two satisfies the condition, then \dots. And so on. We will eventually reach every number like this---again, ``nothing else is a natural number.'' So, if we can establish (i) and (ii), we can conclude that every natural number has the property. 
+
+	\item In an inductive proof, the condition (i) is called the \emph{base case} and (ii) is called the \emph{induction step}. So, to be precise, the form of an inductive proof over the natural numbers is always that we establish that all natural numbers have a property by showing that (i) zero has the property and (ii) if a number has the property, then also its successor does. Note that for step (ii), we need to establish the truth of a conditional: \emph{if} a number has the property, \emph{then} the successor of the number has the property. We do this by conditional proof, i.e. we \emph{assume} that a number has the property, and we derive that its successor does, too. In this very special case, the assumption is known as the \emph{induction hypothesis} and it is referred to as such in inductive proofs. Here is an example of a proof by induction for over the natural numbers:
+	
+	\begin{proposition}
+	Let $f:\mathbb{N}^2\to\mathbb{N}$ be defined as in 3.7.3. Then, for all $n,m\in\mathbb{N}$, we have that $f(n,m)=n\cdot m$.
+	\end{proposition}
+	\begin{proof}
+	We prove this using mathematical induction. In order to be able to conclude our result, we have to prove two things:
+	\begin{enumerate}[(i)]
+	
+		\item $f(n,0)=n\cdot 0$ (`base case')
+		
+		\item For all $n,m\in\mathbb{N}$, if $f(n,m)=n\cdot m$, then $f(n,m+1)=n\cdot (m+1)$. (`induction step')
+	
+	\end{enumerate}
+	We prove these in turn.
+	
+	For the base case, (i), note that by (i) of 3.7.3, $f(n,0)=0$ for every $n\in\mathbb{N}$. Since $n\cdot 0=0$ for all $n\in\mathbb{N}$, the claim holds.
+	
+	For the induction step, (ii), let $n,m\in\mathbb{N}$ be arbitrary numbers and assume that $f(n,m)=n\cdot m$ as the induction hypothesis. Consider $f(n,m+1)$. By clause (ii) of 3.7.3, we know that $f(n,m+1)=f(n,m)+n$. But by the induction hypothesis, we know that $f(n,m)=n\cdot m$, so we get $f(n,m+1)=f(n,m)+n=(n\cdot m)+n=n\cdot (m+1)$, which is what we needed to show.
+	
+	Hence, by mathematical induction, we conclude that for all $n,m\in\mathbb{N}$, we have that $f(n,m)=n\cdot m$.
+	\end{proof}
+
+Proof  by induction over the natural numbers is also called \emph{mathematical induction}. Essentially, each inductively defined set has its own principle for proof by induction. In the following chapter, we will discuss how to prove things about all formulas of a formal language using proof by induction.
+
+	\item You will exercise some more simple cases of mathematical induction to get the idea of how inductive proofs work. You will \emph{not} have to master the technique during the course, however---this is not a course in number theory. In the next chapter, we'll discuss another version of inductive proof that you \emph{will} have to master, a version of inductive proof for formal languages.
+	
+	\item Before we describe how inductive definitions work in general, let's give recursive definitions a slightly more precise shape. The problem we're tackling is to make the claim that ``nothing else is a member of $\mathbb{N}$'' mathematically precise. The standard idea for doing this is to define $\mathbb{N}$ as the \emph{smallest} set that contains zero and all its successors.  Here we think of a set $X$ as \emph{smaller} than another set $Y$ iff $X\subseteq Y$. The sense in which $\mathbb{N}$ is the smallest set containing zero and all its successors is that for any set $X$ such that $X$ contains zero and all its successors, we have that $\mathbb{N}\subseteq X$. In other words, $\mathbb{N}$ is smaller than any other set containing zero and all its successors.  Just think of any other set that also contains zero and all its successors, say $\mathbb{Z}, \mathbb{Q},$ and $\mathbb{R}$. Clearly, we have that $\mathbb{N}\subseteq \mathbb{Z}$, $\mathbb{N}\subseteq \mathbb{Q}$, and $\mathbb{N}\subseteq \mathbb{R}$. Can we find a set that contains zero and all it's successors but not all the members of $\mathbb{N}$? If ``nothing else is a member of $\mathbb{N}$'' is correct, the answer would need to be: no! So, the idea would now be to define $\mathbb{N}$ as the smallest set $X$ such that the following two conditions hold: 
+	\begin{enumerate}[(i)]
+	
+		\item $0\in X$
+		
+		\item For all numbers $x$, if $x\in X$, then $x+1\in X$.
+	
+	\end{enumerate}
+How do we know that such a set exists (and that it's unique)? Well, that needs to be postulated as an axiom of mathematics: in axiomatic set theory, the claim that $\mathbb{N}$, so defined, exists is known as the \emph{axiom of infinity}.
+
+	\item Having given a precise definition of $\mathbb{N}$, we can now \emph{prove} that certain numbers aren't natural, i.e. we can prove claims of the form $x\notin\mathbb{N}$. To see how this works, let's prove that $\frac{1}{2}$ is not a natural number:
+	
+		\begin{proposition}
+		We have that $\frac{1}{2}\notin \mathbb{N}$.
+		\end{proposition} 
+		\begin{proof}
+		Let $X$ be some set that satisfies the conditions (i) and (ii) of the definition of $\mathbb{N}$. Suppose further that $\frac{1}{2}\in X$. We claim that under this assumption, also the set \[Y=X\setminus \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}\] satisfies conditions (i) and (ii).\footnote{Note that the definitions of even and odd can easily be generalized to $\mathbb{Z}$: a number $n\in\mathbb{Z}$ is \emph{even} iff there exists a $k\in\mathbb{Z}$ such that $2k=2n$. And a number $n\in\mathbb{Z}$ is \emph{odd} iff $n$ is not even.}	We prove these in turn:
+		\begin{enumerate}[(i)]
+	
+		\item To see that $0\in Y$, first note that $0\in X$. So, to show that $0\in Y$ all we need to show is that $0\notin \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$. Why? Because $Y=X\setminus  \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}=\{x\in X: x\notin  \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}\}$. We prove that $0\notin \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$ by contradiction. So suppose that $0\in \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$, which would mean that there exists a $k\in\mathbb{Z}$, which is odd and $\frac{k}{2}=0$. But then, it follows easily, that $k=0$. And $0$ is even (to see this note that $2\cdot 0=0$). Hence $k$ would need to be both even and odd, which is impossible. Hence $0\notin \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$.
+		
+		\item We need to show that for all numbers $x$, if $x\in Y$, then $x+1\in Y$. So, let $n$ be an arbitrary number and suppose that $n\in Y$. By definition of $Y$, this means that $n\in X$. And since $X$ satisfies condition (ii), we get that $n+1\in X$. Now to show that $n+1\in Y$, we need to show that $n+1\notin   \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$. (Why? The answer's essentially the same as the one to the why-question in (i)!) So, for proof by contradiction, suppose that $n+1\in \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$. We get that there exists a $k\in \mathbb{Z},$ such that $k$ is odd and $n+1=\frac{k}{2}$.  It follows that $n=\frac{k}{2}-1=\frac{k-2}{2}$. But now note that if $k$ is odd, then $k-2$ is odd, too.  Hence, $n\in   \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$.  But since $n\in Y$, we have that $n\notin   \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$. Contradiction. So, $n+1\notin  \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$. But now we have that $n+1\in X$ and $n+1\notin  \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$, which just means that $n+1\in Y$, as desired.
+		
+	\end{enumerate}
+		
+		So, if $X$ satisfies conditions (i) and (ii) and $\frac{1}{2}\in X$, then there is a smaller set, viz. $X\setminus  \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$, which satisfies conditions (i) and (ii), too. But then $X$ cannot be the smallest set satisfying conditions (i) and (ii), i.e. $X$ cannot be $\mathbb{N}$. Now suppose, for a final proof by contradiction, that $\frac{1}{2}\in\mathbb{N}$. Since $\mathbb{N}$ satisfies conditions (i) and (ii) from its definition,  we've just seen that this would entail that $\mathbb{N}\neq \mathbb{N}$, which is impossible. Hence, by indirect proof, $\frac{1}{2}\notin\mathbb{N}$, as desired.
+
+		\end{proof}
+
+It's not terribly important that you get all the details of this argument, but I want you to see the general form of how you might go about proving that something's not a member of an inductively defined set (and that that's surprisingly difficult). If you really want to understand the proof (and, again, you don't have to), try to prove the same result using mathematical induction.
+
+\item What's particularly pleasing about our precise definition of $\mathbb{N}$ is that it allows us \emph{prove} the principle of mathematical induction:
+	
+	\begin{theorem}[Mathematical Induction]
+	Suppose that $\Phi$ is a condition on numbers such that:
+		\begin{enumerate}[(i)]
+		
+			\item $\Phi(0)$
+			
+			\item for all natural numbers $n\in\mathbb{N}$, if $\Phi(n)$, then $\Phi(n+1)$.
+		
+		\end{enumerate}	
+		Then it follows that all natural numbers satisfy the condition $\Phi$, i.e. we have that $\Phi(n)$, for all $n\in \mathbb{N}$.
+	\end{theorem}
+	\begin{proof}
+	Let $\Phi$ be an arbitrary condition on numbers satisfying conditions (i) and (ii), Consider the set $\{x:\Phi(x)\}$. By the conditions (i) and (ii) of our theorem, $\{x:\Phi(x)\}$ satisfies conditions (i) and (ii) from the definition of $\mathbb{N}$. Since $\mathbb{N}$ is the smallest set satisfying those conditions, we have that $\mathbb{N}\subseteq\{x:\Phi(x)\}$. But now, it easily follows that for all $n\in\mathbb{N}$, we have that $\Phi(n)$. For let $n\in\mathbb{N}$ be an arbitrary number. Since $\mathbb{N}\subseteq\{x:\Phi(x)\}$, it follows that $n\in\{x:\Phi(x)\}$. But that just means that $\Phi(n)$, as desired.
+	\end{proof}
+
+\item Now that you've seen how to recursively define the natural numbers and how we can derive the proof principle of mathematical induction from the definition, let's focus on the idea of recursive definitions in general. In order to inductively define a set, we \emph{always} use the following pattern:
+	\begin{enumerate}[1.]
+	
+		\item We give a set of initial elements.
+		
+		\item We provide a list of \emph{constructions} that allow us to form new elements from old elements.
+		
+		\item We define our set as the smallest set that contains all the initial elements and that is \emph{closed under} the constructions, meaning that if we apply the constructions to elements, we get new elements.
+	
+	\end{enumerate} 
+	
+In the recursive definition of $\mathbb{N}$, the only initial element is the number zero and the only construction is the simple operation of adding one. But more generally, we can have any number of initial elements and any number of constructions that allow us to construct new elements..
+
+	\item \emph{Running Example (Gargles)}. We give an inductive definition of the set $Gargle$ of gargles. Here we go: 
+	
+		\begin{enumerate}[1.]
+		
+			\item The set of initial elements is $\{\clubsuit,\spadesuit\}$.
+			
+			\item Our constructions are all constructions of writing symbols next to each other. We consider the following constructions:
+			\begin{enumerate}
+						
+				\item Take any gargle $x$ and write $\diamondsuit$ before and after it, giving $\diamondsuit x\diamondsuit$ as the result.
+			
+				\item Take any two gargles $x,y$ and write $\heartsuit$ in between, giving $x\heartsuit y$ as the result.
+							
+			\end{enumerate}
+			
+			\item Our set $Gargle$ is now defined as the smallest set $X$ such that:
+			
+			\begin{enumerate}[(i)]
+			
+				\item $\{\clubsuit,\spadesuit\}\subseteq X$.
+			
+				\item \begin{enumerate}[(a)]
+				
+					\item For all $x$, if $x\in X$, then $\diamondsuit x\diamondsuit\in X$.
+			
+					\item For all $x$ en $y$, if $x,y\in X$, then $ x\heartsuit y\in X$.
+				
+				\end{enumerate}
+			
+				\end{enumerate}
+
+			
+			\end{enumerate}
+		
+				The set $Gargle$ has infinitely many elements:
+				
+				\begin{itemize}
+				
+					\item $\clubsuit,\spadesuit\in Gargle$
+					
+					\item $\diamondsuit\clubsuit\diamondsuit,\diamondsuit\spadesuit\diamondsuit\in Gargle$
+					
+					\item $\clubsuit\heartsuit\clubsuit, \clubsuit\heartsuit\spadesuit, \spadesuit\heartsuit\spadesuit\in Gargle$
+				
+					\item $\clubsuit\heartsuit\diamondsuit\clubsuit\diamondsuit, \diamondsuit\spadesuit\diamondsuit\heartsuit\spadesuit,\mathellipsis\in Gargle$
+
+				
+				\end{itemize}			 
+				
+		\item Next, let's discuss how function recursion works generally. As we hinted at above, whenever we have an inductively defined set, we can use function recursion to define a function on that set. The way this works is as follows:
+		
+		\begin{enumerate}[1.]
+		
+			\item We say what the value of our function is on the initial elements.
+			
+			\item We say how to calculate the value of the function for an element built by a construction, where we can reference to the values of the function for the elements the element is constructed from.
+		
+		\end{enumerate}
+
+		When we give these two pieces of information, we've defined a function on the inductively defined set: since the set is the smallest set which contains the initial elements and is closed under the constructions, for each element in the set we can determine the value of our function.
+
+		\item So, how do we recursively define a function $f$ with $dom(f)=Gargle$? Well, we have to answer the following questions:
+		\begin{enumerate}[(i)]
+		
+			\item What are the values of $ f(\clubsuit)$ and $f(\spadesuit)$?
+			
+			\item \begin{enumerate}[(a)]
+					
+					\item  What is the value of $f(\diamondsuit x\diamondsuit)$ in terms of the value of $f(x)$?
+
+					\item What is the value of $f(x\heartsuit y)$ in terms of the values of $f(x)$ and $f(y)$?
+					
+		\end{enumerate}
+		
+		\end{enumerate}
+		
+	Consider, for example, the function $\#_\spadesuit:Gargle\to\mathbb{N}$, which is defined by the following recursion:
+		
+	\begin{enumerate}[(i)]
+		
+			\item $\#_\spadesuit(x)=\begin{cases} 1 & \text{if }x=\spadesuit
+			\\0 &\text{if }x=\clubsuit\end{cases}$
+			
+			\item \begin{enumerate}[(a)]
+					
+					\item  $\#_\spadesuit( \diamondsuit x\diamondsuit)=\#_\spadesuit(x)$
+
+					\item $\#_\spadesuit(x\heartsuit y)=\#_\spadesuit(x)+\#_\spadesuit(y)$		
+		\end{enumerate}
+		
+		\end{enumerate}
+		This function calculates the number of $\spadesuit$'s in a given gargle. We have, for example, $\#_\spadesuit(\diamondsuit\clubsuit\diamondsuit)=0$, $\#_\spadesuit(\spadesuit)=1$, $\#_\spadesuit(\spadesuit\heartsuit\diamondsuit\spadesuit\diamondsuit)=2$, and so on. Let's check this, for example, in the case of $\spadesuit\heartsuit\diamondsuit\spadesuit\diamondsuit$:
+		
+		\begin{itemize}
+		
+			\item We know by clause (ii.b), $\#_\spadesuit(\spadesuit\heartsuit\diamondsuit\spadesuit\diamondsuit)=\#_\spadesuit(\spadesuit)+\#_\spadesuit(\diamondsuit\spadesuit\diamondsuit)$.
+			
+			\item By clause (ii.a), we know that $\#_\spadesuit(\diamondsuit\spadesuit\diamondsuit)=\#_\spadesuit(\spadesuit)$.
+			
+			\item So, $\#_\spadesuit(\spadesuit\heartsuit\diamondsuit\spadesuit\diamondsuit)=\#_\spadesuit(\spadesuit)+\#_\spadesuit(\diamondsuit\spadesuit\diamondsuit)=\#_\spadesuit(\spadesuit)+\#_\spadesuit(\spadesuit)$.
+			
+			\item But $\#_\spadesuit(\spadesuit)=1$, so $\#_\spadesuit(\spadesuit\heartsuit\diamondsuit\spadesuit\diamondsuit)=\#_\spadesuit(\spadesuit)+\#_\spadesuit(\diamondsuit\spadesuit\diamondsuit)=1+1=2$.
+		
+		\end{itemize}
+		
+		\item But wait, there's a problem. By what we said so-far about general recursion, it's only guaranteed that every element gets \emph{a} value. But remember from the definition of a function, that every element needs to get a \emph{unique} value. In the case of the natural numbers, this is guaranteed since for each natural number, there is exactly one way of ``constructing it'' from zero via the successor function: \[n=0\underbrace{+\mathellipsis+1}_{n\text{ times}}\] Thus, there is only one way to calculate the value of recursive function following the construction of the number.
+		
+		
+		But note that this is \emph{not} the case for the gargles. Take the gargle $\spadesuit\heartsuit\clubsuit\heartsuit\spadesuit$, for example. This gargle can constructed in two ways: 
+		\begin{itemize}
+		
+			\item Since $\spadesuit,\clubsuit\in Gargle$, we know that $\clubsuit\heartsuit\spadesuit\in Gargle$ by (ii.b). And since $\spadesuit\in Gargle$ and $\clubsuit\heartsuit\spadesuit\in Gargle$, we know that $\spadesuit\heartsuit\clubsuit\heartsuit\spadesuit\in Gargle$
+		
+			\item Since $\clubsuit,\spadesuit\in Gargle$, we know that $\spadesuit\heartsuit\clubsuit\in Gargle$. And since $\spadesuit\in Gargle$ and $\spadesuit\heartsuit\clubsuit\in Gargle$, we know that $\spadesuit\heartsuit\clubsuit\heartsuit\spadesuit\in Gargle$
+		
+		\end{itemize}
+		
+		
+		What does this mean? Well, every number can be ``read'' in exactly one way: the number $n$ is the $n$-th successor of zero. For gargles, that's not the case: $\spadesuit\heartsuit\clubsuit\heartsuit\spadesuit$ can be constructed via $\clubsuit\heartsuit\spadesuit$ and it can be constructed via $\spadesuit\heartsuit\clubsuit$. Why does this matter? Well, if we want to use function recursion to define a function on the gargles, if we're not careful, it might give different results depending on how we ``read'' a gargle. Take, for example, the ``function'' $f:Gargle\to\{0,1\}$ which is defined by recursion over the gargles as follows:
+		\begin{enumerate}[(i)]
+		
+			\item $f(\spadesuit)=1$ and $f(\clubsuit)=0$
+			
+			\item \begin{enumerate}[(a)]
+			
+				\item $f(\diamondsuit x\diamondsuit)=f(x)$
+				
+				\item $f(x\heartsuit y)=\begin{cases}
+			1 & \text{if }f(x)=1\text{ and }f(y)=0\\
+			0 &\text{ otherwise}
+			\end{cases}$
+			
+			\end{enumerate}
+		
+		\end{enumerate}
+You might think that this recursion defines a proper function on the gargles, but it does not! Why? Because it gives different values for  $\spadesuit\heartsuit\clubsuit\heartsuit\spadesuit$, depending on how we ``read'' the expression:
+
+		\begin{itemize}
+		
+			\item \emph{Calculation 1}. We know that $f(\spadesuit)=1$ and $f(\clubsuit)=0$. So we know that $f(\spadesuit\heartsuit\clubsuit)=1$ by (ii.b). And since $f(\spadesuit)=1$, this means that $f(\spadesuit\heartsuit\clubsuit\heartsuit\spadesuit)=0$, again by (ii.b).
+						
+			\item  \emph{Calculation 2}. Since $f(\spadesuit)=1$ and $f(\clubsuit)=0$, we know that $f(\clubsuit\heartsuit\spadesuit)=0$ by (ii.b). Since $f(\spadesuit)=1$, this gives $f(\spadesuit\heartsuit\clubsuit\heartsuit\spadesuit)=1$ by (ii.b).
+
+		
+		\end{itemize}
+		Looking at it the other way around, if we try to calculate ``backwards,'' already in the first step, we have to make a decision how to ``parse'' the gargle---and different ways of parsing it give different values for the function. So, strictly speaking, not every function recursion over the gargles is guaranteed to yield an actual function. Sure, some of them do: for example, it can be shown that the definition of $\#_\spadesuit$ works, it assigns a unique value to every gargle. But some of them don't: for example, our ``function'' $f$ defined above.
+		
+		All of this points to an important fact: when we're dealing with an inductively defined set, we want it's members to have a unique construction for recursion to work properly. In the case of the gargles, we don't have this ``unique readability'' and therefore we have to be careful when we're trying our hand at function recursion over them. It will be an important fact about formal languages that their formulas are uniquely readable---we'll make sure that they are \emph{by design}. 
+		
+		\item Finally, we mentioned that for every inductively defined set, we have its own form of proof by induction. The idea that we described for the natural numbers generalizes to a general procedure as follows. In order to show that every element of an inductively defined satisfies a condition, we show:
+		\begin{enumerate}[1.]
+			
+			\item All the initial elements satisfy the condition. (`base case')
+			
+			\item A newly constructed element satisfies the condition, whenever the elements that it's constructed from do. (`induction steps')
+		
+		\end{enumerate}
+		
+		The reasoning behind this is essentially the same as in the case of mathematical induction. Since the elements of an inductively defined set are precisely the ones that can be constructed from the initial elements using the constructions if 1. and 2. are established, then for each element, we can infer that it satisfies the condition \emph{step-by-step} tracing the construction steps. 
+		
+		Note that, in contrast to mathematical induction over $\mathbb{N}$, there can be more than one base case and several induction steps (with their own induction hypotheses) to show.
+				
+		\item So, how do we prove things about gargles using induction? Well, suppose we want to show that all gargles satisfy the condition $\Phi$. What we need establish are the following things:
+		
+		\begin{enumerate}[(i)]
+		
+				\item We need to show that $\clubsuit,\spadesuit$ all satisfy the condition, i.e. $\Phi(\clubsuit)$ and $\Phi(\spadesuit)$. This is the base case.
+				
+				\item And we need to show that:
+				
+						\begin{enumerate}[(a)]
+							
+							\item For all $x$, if $x$ satisfies the condition, then $\diamondsuit x\diamondsuit$ satisfies the condition, i.e. for all $x$, if $\Phi(x)$, then $\Phi(\diamondsuit x\diamondsuit)$. 
+							
+							\item For all $x,y$, if $x$ and $y$ satisfy the condition, then $ x\heartsuit y$ satisfies the condition, i.e. for all $x,y$, if $\Phi(x)$ and $\Phi(y),$ then $\Phi( x\heartsuit y)$.
+
+						\end{enumerate}
+		
+		\end{enumerate}
+		
+	As an example, we're going to prove that The number of $\heartsuit$'s in a gargle is equal to the number of $\spadesuit$'s and $\clubsuit$'s added together minus 1. To make this claim more precise, let's define two more functions on the gargles. First, define the function $\#_\heartsuit:Gargle\to\mathbb{N}$ by recursion as follows:
+	\begin{enumerate}[(i)]
+	
+		\item $\#_\heartsuit(\spadesuit)=\#_\heartsuit(\clubsuit)=0$
+		
+		\item \begin{enumerate}[(a)]
+
+			\item $\#_\heartsuit(\diamondsuit x\diamondsuit)=\#_\heartsuit(x)$
+			
+			\item $\#_\heartsuit(x\heartsuit y)=\#_\heartsuit(x)+\#_\heartsuit(y)+1$
+
+		\end{enumerate}
+	
+	\end{enumerate}
+	This function counts the number of $\heartsuit$'s in a given gargle. Second, define the function $\#_\clubsuit:Gargle\to\mathbb{N}$ by recursion as follows:
+	\begin{enumerate}[(i)]
+	
+		\item $\#_\clubsuit(\spadesuit)=0$ and $\#_\clubsuit(\clubsuit)=1$
+		
+		\item \begin{enumerate}[(a)]
+
+			\item $\#_\clubsuit(\diamondsuit x\diamondsuit)=\#_\clubsuit(x)$
+			
+			\item $\#_\clubsuit(x\heartsuit y)=\#_\clubsuit(x)+\#_\clubsuit(y)$
+
+		\end{enumerate}
+	
+	\end{enumerate}
+	This function counts the number of $\clubsuit$'s in a gargle. (Both of these recursions actually work, don't worry about the details too much).
+	
+		\begin{theorem}
+		For all $x\in Gargle$, $\#_\heartsuit(x)=\#_\spadesuit(x)+\#_\clubsuit(x)-1$.
+		\end{theorem}
+			\begin{proof}
+			We use induction over the gargles to prove the claim.
+			
+			For the base case, we need to show two things: \[\#_\heartsuit(\spadesuit)=\#_\spadesuit(\spadesuit)+\#_\clubsuit(\spadesuit)-1\] and \[\#_\heartsuit(\clubsuit)=\#_\spadesuit(\clubsuit)+\#_\clubsuit(\clubsuit)-1.\] We only show the latter, since the former is completely analogous. Simply note that $\#_\heartsuit(\clubsuit)=0,\#_\spadesuit(\clubsuit)=0,$ and $\#_\clubsuit(\clubsuit)=1$. So we get \[\underbrace{\#_\spadesuit(\clubsuit)}_{=0}+\underbrace{\#_\clubsuit(\clubsuit)}_{=1}-1=\underbrace{\#_\heartsuit(\clubsuit)}_{=0}\]
+			
+			For the induction step, we need to show two things:
+			
+			\begin{enumerate}[1.]
+			
+				\item For all $x\in Gargle$, if \[\#_\heartsuit(x)=\#_\spadesuit(x)+\#_\clubsuit(x)-1,\] then \[\#_\heartsuit(\diamondsuit x\diamondsuit )=\#_\spadesuit(\diamondsuit x\diamondsuit )+\#_\clubsuit(\diamondsuit x\diamondsuit )-1.\]
+				
+				\item For all $x,y\in Gargle$, if \[\#_\heartsuit(x)=\#_\spadesuit(x)+\#_\clubsuit(x)-1,\] and 
+				 \[\#_\heartsuit(y)=\#_\spadesuit(y)+\#_\clubsuit(y)-1,\] then \[\#_\heartsuit(x\heartsuit y )=\#_\spadesuit(x\heartsuit y )+\#_\clubsuit(x\heartsuit y )-1\]
+			
+			\end{enumerate}
+			We prove these in turn. First 1. Let $x$ be an arbitrary gargle and suppose the induction hypothesis that $\#_\heartsuit(x)=\#_\spadesuit(x)+\#_\clubsuit(x)-1$. Now consider $\#_\heartsuit(\diamondsuit x\diamondsuit)$. By definition, $\#_\heartsuit(\diamondsuit x\diamondsuit)=\#_\heartsuit(x)$ and so we get the claim immediately.
+			
+			Now for 2. Let $x$ and $y$ be arbitrary gargles and suppose the induction hypotheses that $\#_\heartsuit(x)=\#_\spadesuit(x)+\#_\clubsuit(x)-1$ and $\#_\heartsuit(y)=\#_\spadesuit(y)+\#_\clubsuit(y)-1$. Now consider $\#_\heartsuit(x\heartsuit y)$. By definition, \[\#_\heartsuit(x\heartsuit y)=\#_\heartsuit(x)+\#_\heartsuit(y)+1.\] By substituting the equations from our induction hypotheses, we get:
+			\begin{align*}\#_\heartsuit(x\heartsuit y)&=(\#_\spadesuit(x)+\#_\clubsuit(x)-1)+(\#_\spadesuit(y)+\#_\clubsuit(y)-1)+1\\
+			&=\#_\spadesuit(x)+\#_\clubsuit(x)+\#_\spadesuit(y)+\#_\clubsuit(y)-1\\
+			&=\underbrace{\#_\spadesuit(x)+\#_\spadesuit(y)}_{=\#_\spadesuit(x\heartsuit y)}+\underbrace{\#_\clubsuit(x)+\#_\clubsuit(y)}_{=\#_\clubsuit(x\heartsuit y)}-1\\
+			&=\#_\spadesuit(x\heartsuit y )+\#_\clubsuit(x\heartsuit y )-1
+			\end{align*}
+			This is what we needed to show.
+			
+			So, we conclude our theorem by induction over the gargles.
+			
+			\end{proof}
+
+	\item We conclude the section with a guideline for writing a proof by induction:
+	
+		\begin{enumerate}[1.]
+		
+			\item State clearly that you're using induction to prove the claim.
+			
+			\item Prove the base case. 
+			
+			\item State clearly that you're now considering the induction steps. In each sub-case, begin by stating your induction hypothesis and then use it to derive the claim about the constructed element.
+			
+			\item State clearly that you're using induction to infer that the claim in question holds for all elements of the set.
+		
+		\end{enumerate}
+		
+\end{enumerate}
+
+\section{Core Ideas}
+
+	\begin{itemize}
+	
+		\item A set is a collection of objects, its elements.
+		
+		\item One set is a subset of another just in case all the elements of the one set are elements of the other. A set is a proper subset of another just in case the one set is a subset of the other but not vice versa. 
+				
+		\item Two sets are identical iff they have precisely the same elements. 
+		
+		\item The union of two sets contains any element of either set, their intersection contains only the objects that are in both sets. The difference of one set and another contains all the elements of the one but not the other.
+		
+		\item An ordered tuple is a set-like collection of objects with a specific order. In tuples, order and multiplicity count.
+		
+		\item The Cartesian product of two sets is the set of all ordered pairs formed by taking an element of the first set as the first component and an element of the second set as the second component. 
+			
+		\item A property is a set of objects---the set of objects that have the property. More generally, an $n$-ary relation is a set of $n$-tuples---the set of objects having standing in the relation \emph{in that order}.
+		
+		\item A function from one set to another is an assignment of elements in the one set to elements in the other such that each element in the one set is assigned a \emph{unique} element in the other.
+		
+		\item In order to inductively define a set, we give a set of initial elements and a set of constructions for new elements. We define the set inductively as the smallest set that contains the initial elements and is closed under the constructions.
+		
+		\item In order to recursively define a function over an inductively defined set, we give the value of the function for the initial elements and say how to calculate the value of a newly constructed element based on the values of the elements it's constructed from.
+		
+		\item To prove a claim by induction over an inductively defined set, we show that all initial element satisfy the claim and that every newly constructed element satisfies the claim whenever the elements that its constructed from do.
+			
+	\end{itemize}
+
+\section{Self Study Questions}
+
+	\begin{enumerate}[\thesection.1]
+	
+		\item Let $X$ and $Y$ be sets. Which of the following entails that $X\subseteq Y$?
+		
+		\begin{enumerate}[(a)]
+		
+			\item For every $x\in X$, we also have $x\in Y$.
+			
+			\item For every $x\in Y$, we also have $x\in X$.
+			
+			\item There exists no $x\in Y$ such that $x\notin X$.
+			
+			\item There exists no $x\in X$ such that $x\notin Y$.
+			
+			\item Some $x\in X$ is such that $x\notin Y$.
+			
+			\item Some $x\in Y$ is such that $x\notin X$.
+			
+			\item Every $x\notin X$ is also such that $x\notin Y$.
+			
+			\item Every $x\notin Y$ is also such that $x\notin X$.		
+					
+		\end{enumerate}
+
+		\item Let $X$ and $Y$ be sets. Which of the following entails that $X\nsubseteq Y$?
+		
+		\begin{enumerate}[(a)]
+		
+			\item For every $x\in X$, we also have $x\notin Y$.
+			
+			\item For every $x\notin Y$, we also have $x\notin X$.
+			
+			\item There exists no $x\in X$ such that $x\notin Y$.
+			
+			\item There exists no $x\in Y$ such that $x\notin X$.
+			
+			\item Some $x\in X$ is such that $x\notin Y$.
+			
+			\item Some $x\in Y$ is such that $x\notin X$.
+			
+			\item Every $x\notin X$ is also such that $x\notin Y$.
+			
+			\item Every $x\notin Y$ is also such that $x\notin X$.		
+					
+		\end{enumerate}
+		
+		\item Let $X$ and $Y$ be sets. Which of the following entails that $X= Y$?
+		
+		\begin{enumerate}[(a)]
+					
+			\item $X\subseteq Y$ and $Y\subseteq X$.
+					
+			\item For some object $x$, we have that $x\in X$ iff $x\in Y$.
+
+			\item $X\subseteq Y$ and $Y\nsubseteq X$.
+						
+			\item There is no element $x\in X$ such that $x\notin Y$ and there is no element $y\in Y$ such that $y\notin X$.
+			
+			\item When we pick any element $x\in X$, we can find a corresponding element $y\in Y$ and vice versa.
+			
+			\item If we find an element $x\in X$ such that $x\in Y$, then we can find an $y\in Y$ such that $y\in X$.
+					
+		\end{enumerate}
+
+\item Let $X$ and $Y$ be sets. Which of the following entails that $X\neq Y$?
+		
+		\begin{enumerate}[(a)]
+		
+			\item There is an object $x\in X$ such that $x\notin Y$
+				
+			\item For all objects $x$, we have that $x\notin X$ iff $x\notin Y$
+		
+			\item $X\nsubseteq Y$ or $Y\nsubseteq X$.
+			
+			\item There is an object $y\in Y$ such that $y\notin X$.
+			
+			\item There exists and object $x\in X$ such that $x\in Y$
+			
+			\item There exists an object $x\in X$ such that $x\notin Y$	
+					
+		\end{enumerate}
+
+		\item Let $X$ and $Y$ be sets. Which of the following entails that $x\in X\cup Y$ for an object $x$?
+		
+		\begin{minipage}{.5\linewidth}
+			\begin{enumerate}[(a)]
+		
+			\item $x\in X$
+			
+			\item $x\in Y$			
+			
+			\item $x\notin X$
+			
+			\item $x\notin Y$
+		\end{enumerate}
+		\end{minipage}
+		\begin{minipage}{.5\linewidth}
+		\begin{enumerate}[(a)]
+		\setcounter{enumii}{4}
+			
+			\item $x\in X$ and $x\in Y$
+		
+			\item $x\in X$ and $x\notin Y$
+			
+			\item $x\notin X$ and $x\in Y$
+			
+			\item $x\notin X$ and $x\notin Y$			
+					
+		\end{enumerate}
+		\end{minipage}
+		
+
+		
+		\item Let $X$ and $Y$ be sets. Which of the following entails that $x\notin X\cup Y$ for an object $x$?
+		
+		\begin{minipage}{.5\linewidth}
+			\begin{enumerate}[(a)]
+		
+			\item $x\in X$
+			
+			\item $x\in Y$			
+			
+			\item $x\notin X$
+			
+			\item $x\notin Y$
+		\end{enumerate}
+		\end{minipage}
+		\begin{minipage}{.5\linewidth}
+		\begin{enumerate}[(a)]
+		\setcounter{enumii}{4}
+			
+			\item $x\in X$ and $x\in Y$
+		
+			\item $x\in X$ and $x\notin Y$
+			
+			\item $x\notin X$ and $x\in Y$
+			
+			\item $x\notin X$ and $x\notin Y$			
+					
+		\end{enumerate}
+		\end{minipage}
+		
+		\item Let $X$ and $Y$ be sets. Which of the following entails that $x\in X\cap Y$ for an object $x$?
+		
+		\begin{minipage}{.5\linewidth}
+			\begin{enumerate}[(a)]
+		
+			\item $x\in X$
+			
+			\item $x\in Y$			
+			
+			\item $x\notin X$
+			
+			\item $x\notin Y$
+		\end{enumerate}
+		\end{minipage}
+		\begin{minipage}{.5\linewidth}
+		\begin{enumerate}[(a)]
+		\setcounter{enumii}{4}
+			
+			\item $x\in X$ and $x\in Y$
+		
+			\item $x\in X$ and $x\notin Y$
+			
+			\item $x\notin X$ and $x\in Y$
+			
+			\item $x\notin X$ and $x\notin Y$			
+					
+		\end{enumerate}
+		\end{minipage}
+		
+		\item Let $X$ and $Y$ be sets. Which of the following entails that $x\notin X\cap Y$ for an object $x$?
+		
+		\begin{minipage}{.5\linewidth}
+			\begin{enumerate}[(a)]
+		
+			\item $x\in X$
+			
+			\item $x\in Y$			
+			
+			\item $x\notin X$
+			
+			\item $x\notin Y$
+		\end{enumerate}
+		\end{minipage}
+		\begin{minipage}{.5\linewidth}
+		\begin{enumerate}[(a)]
+		\setcounter{enumii}{4}
+			
+			\item $x\in X$ and $x\in Y$
+		
+			\item $x\in X$ and $x\notin Y$
+			
+			\item $x\notin X$ and $x\in Y$
+			
+			\item $x\notin X$ and $x\notin Y$			
+					
+		\end{enumerate}
+		\end{minipage}
+		
+	%Improve wording!
+	\item Which of the following \emph{excludes} that an assignment $f$ of elements from $Y$ to elements from $X$ is a function?
+	
+	\begin{enumerate}[(a)]
+		
+		\item For some element $y\in Y$, there is no element $x\in X$ which $f$ assigns $y$ to.
+		
+		\item For some element $x\in X$, there is no element $y\in Y$ which is assigned to $x$ by $f$.
+		
+		\item There is some element $x\in X$, such that there are two elements $y,y'\in Y$ such that $f$ assigns both $y$ and $y'$ to $x$.
+		
+		\item There is some element $y\in Y$, such that there are two elements $x,x'\in X$ to which $f$ assigns $y$.
+	
+	\end{enumerate}
+	
+	\item Consider the set $\{n^2:n\in\mathbb{N}\text{ and }0\leq n\leq 10\}$ of all the squares of natural numbers between zero and ten . Which of the following entails that a natural number $m\notin\{n^2:n\in\mathbb{N}\text{ and }0\leq n\leq 10\}$?
+	
+	\begin{enumerate}[(a)]
+	
+		\item There exists an $n\in\mathbb{N}$ with $0\leq n\leq 10$ such that $m\neq n^2$.
+		
+		\item For all $n\in\mathbb{N}$ with $0\leq n\leq 10$ such that $m\neq n^2$.
+		
+		\item Either $0\nleq m^2$ or $m^2\nleq 10$.
+		
+		\item Either $0\nleq m$ or $m\nleq 10$. 
+		
+
+	
+	\end{enumerate}
+
+	\end{enumerate}
+
+
+\section{Exercises}
+	
+	\begin{enumerate}[\thesection.1]
+	
+		\item $[h]$ Let $X=\{1,2,3\}$ and $Y=\{1,3,5\}$. Calculate:
+		
+		\begin{enumerate}[(a)]
+							
+				\item $X\cap Y$
+				
+				\item $X\cup Y$
+				
+				\item $X\setminus Y$ and $Y\setminus X$
+				
+				\item $\wp(X)$ and $\wp(Y)$
+				
+				\item $X\times Y$ and $Y\times X$
+							
+			\end{enumerate}
+	
+		\item Let $X$ and $Y$ be sets. Prove the following facts!
+		
+			\begin{enumerate}[(a)]
+							
+				\item $[h]$ $X\subseteq Y$ iff $X\cup Y=Y$.
+				
+				\item $X\subseteq Y$ iff $X\cap Y=X$.
+				
+				\item $X=Y$ iff $\wp(X)=\wp(Y)$
+				
+				\item $X=Y$ iff $X\setminus Y=\emptyset$ and $Y\setminus X=\emptyset$
+			
+			\end{enumerate}
+					
+		\item $[h]$ Consider the function $f:\{1,2,3\}^2\to \{1,2,3\}$ which assigns to a pair of numbers, the smaller of the two. Write the function using all our different function notations.
+		
+		\item Let $f:X\to Y$ and $g:Y\to Z$ be two functions. Prove that $g\circ f$ is a function from $X$ to $Z$, where $(g\circ f)(x)=g(f(x))$ for all $x\in X$.\footnote{Remember that a function from one set to another must do the following two things: every element in the one set gets assigned an element in the other and no element in the one set gets assigned more than one element in the other. By proving those two things you've proven that we've got a function.}
+		
+		\item Consider the function $f:\mathbb{N}^2\to \mathbb{N}$, which is defined by recursion over the natural numbers as follows:
+		\begin{enumerate}[(i)]
+		
+			\item for all $n\in\mathbb{N}$, $f(n,0)=n$
+			
+			\item for all $n,m\in\mathbb{N}$, $f(n,m+1)=f(n,m)+1$
+		
+		\end{enumerate}
+		Prove, using mathematical induction, that $f(n,m)=n+ m$ for all $n,m\in\mathbb{N}$. 
+							
+		\item Use the formal definition of a function (3.6.10) to prove that if two functions assign the same output to the same input, then they are identical.
+
+		\item $[h]$ Remember the gargles (3.7.11).  Give recursive definitions of the following functions:
+				
+					\begin{enumerate}[(a)]
+								
+						\item a function $l:Gargle\to\mathbb{N}$ that measures the \emph{length} of a gargle (counted in number of symbols)
+				 
+						\item a function $\mathbf{1}_\heartsuit:Gargle\to\{0,1\}$ which assigns one to a gargle iff the gargle contains the symbol $\heartsuit$
+						
+				
+					\end{enumerate}
+				
+			\item $[h]$ Use induction over the gargles to prove that every gargle contains an even number of $\diamondsuit$'s (note that $0$ is even).
+			
+			\item $[h]$ Prove that $\spadesuit\diamondsuit\heartsuit\spadesuit\notin Gargle$. (\emph{Hint}: Use the previous result.)
+					
+			\item Prove the induction principle over the gargles:
+			
+			\begin{theorem}
+			Suppose that $\Phi$ is a condition on gargles. If we can show:
+			\begin{enumerate}
+			
+				\item $\Phi(\clubsuit)$ and $\Phi(\spadesuit)$
+				
+				\item \begin{enumerate}\item For all gargles $x\in Gargle$, if $\Phi(x)$, then $\Phi(\diamondsuit x\diamondsuit)$.
+			
+					\item  For all gargles $x,y\in Gargle$, if $\Phi(x)$ and $\Phi(y)$, then $\Phi(x\heartsuit y)$
+					
+					\end{enumerate}
+			\end{enumerate}
+			Then for all gargles $x\in Gargle,$ $\Phi(x)$.
+			\end{theorem}
+	
+	\end{enumerate}
+
+\section{Further Readings}
+
+There is a host of accessible literature on elementary set theory (it's, after all, the basis for modern math). 
+
+If you're already looking into Houston's book \emph{How to Think Like a Mathematician} (see \S2.8), I can recommend having a look at chapter 1 of that book, too.
+
+A more comprehensive introduction to set theory can be found in Timothy Buttons \emph{Set Theory: An Open Introduction}, which is freely available under:
+
+	\url{http://builds.openlogicproject.org/courses/set-theory/}
+In this book, especially part 2 is what you want to have a look at.
+
+\vfill
+
+\hfill \rotatebox[origin=c]{180}{
+\fbox{
+\begin{minipage}{0.5\linewidth}
+
+\subsection*{Self Study Solutions}
+
+\emph{Some explanations in the appendix.}
+
+\begin{enumerate}
+
+	\item[3.9.1]  (a), (d), (h) 
+
+	\item[3.9.2] (e)
+	
+	\item[3.9.3] (a), (d)
+	
+	\item[3.9.4] (a), (c), (d), (f)
+	
+	\item[3.9.5] (a), (b), (e), (f), (g)
+	
+	\item[3.9.6] (h)
+	
+	\item[3.9.7] (e)
+	
+	\item[3.9.8] (c), (d), (f), (g), (h)
+	
+	\item[3.9.9] (b), (c)
+	
+	\item[3.9.10] (b)
+		
+\end{enumerate}
+
+
+\end{minipage}}}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

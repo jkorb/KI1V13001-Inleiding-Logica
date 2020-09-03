@@ -1,0 +1,856 @@
+\chapter{A Mathematics Primer for Aspiring Logicians}
+
+\emph{In block 2 of this year, you will take ``Wiskunde voor KI,'' which is a proper mathematics course. That course covers the material of the following two chapters (and much more) in way more detail. The purpose of the present chapters (and corresponding section of the course) is to bring you up to speed so that we can study logic.}
+
+\section{Logic and Mathematics}
+
+\begin{enumerate}[{\thesection}.1]
+
+	\item As we said in the introduction, modern logic is a highly mathematical discipline. So, in order to develop modern logical theory, we require a certain amount of mathematics. This chapter covers the basics of mathematical language and methodology. The next chapter covers the mathematical theory we need.
+	
+	\item As you've probably noticed already, university-level mathematics looks and feels very different from what you did in high-school and before. Academic mathematics has its very own language and methodology. We call the former ``mathemateze'' and the latter ``mathodology.'' 
+		
+	\item A word on the relationship between logic and mathematics. As you'll see in this chapter, there's a lot of logic in mathodology. In fact, the foundations of modern mathematics is typically taken to be first-order logic, more specifically set-theory formulated in first-order logic. Yet, we make use of mathematics to study first-order logic. There is an obvious kind of circularity to this: we use logic to study logic. But  we typically think this circularity is harmless. To see why, it's important to appreciate the distinction between object and meta-language. What we're doing is to \emph{use} mathematics as our meta-language to talk \emph{about} logic as our object language. This is not much weirder than studying English grammar in English, Dutch grammar in Dutch, and so on. Surely, we can do that. Just think of your elementary school grammar lessons. 
+		
+	\end{enumerate}
+
+\section{Mathemateze}
+
+\begin{enumerate}[{\thesection}.1]
+
+		\item As you know from from high-school, mathematical language is full of special symbols, which you will have to be able to read in order to understand what's being said in the first place. For this reason, we'll first cover some notation.
+		
+		\item Mathematicians frequently use Greek letters, and you should be familiar with their names/pronunciations. Here are the most commonly used letters and their names, capitals are included some cases but not in others:
+	
+		\begin{longtable}{c | c}
+			Letter & Name\\\hline
+			$\alpha$ & alpha \\
+			$\beta$ & beta\\
+			$\Gamma,\gamma$ & gamma\\
+			$\Delta,\delta$ & delta\\
+			$\epsilon$ & epsilon\\
+			$\zeta$ & zeta\\
+			$\eta$ & eta\\
+			$\Theta,\theta$ & theta\\
+			$\iota$ & iota\\
+			$\kappa$ & kappa\\
+			$\Lambda,\lambda$ & lambda\\
+			$\mu$ & mu\\
+			$\nu$ & nu\\
+			$\Xi,\xi$ & xi\\
+			$\Pi,\pi$ & pi\\
+			$\rho$ & rho\\
+			$\Sigma,\sigma$&sigma\\
+			$\tau$ & tau\\
+			$\Phi,\phi,\varphi$ & phi\\
+			$\chi$ & chi\\
+			$\Psi,\psi$ & psi\\
+			$\Omega,\omega$ & omega
+			\end{longtable}
+			
+		\item Think of a typical mathematical claim like $(a+b)^2=a^2+2ab+b^2$. The symbols $a$ and $b$ here stand for arbitrary numbers, they are \emph{variables} for numbers. Generally speaking, we use variables to refer to arbitrary but fixed objects of some mathematical category, like numbers. The variables are said to \emph{range} over the objects of the category. In our example, $a$ and $b$ range over numbers. A variable can assume any value from among the objects it ranges over. For example, we can have that $a=0, a=1, a=\pi$, and so on. Absent further information, we don't know what the value of a given variable is. So, all we know, for example, if $n$ ranges over the natural numbers is what follows from $n$ being a natural number: that $0\leq n$, that $n\leq n+1$, and so on.\footnote{There is quite some dispute about whether zero counts as a natural number or not. In the context of this course, unless stated otherwise, we will always assume that it is.} But we don't know, for example, whether $n$ is even, odd, prime, or the like. That $n$ has such properties would need to be \emph{inferred} from extra information. For example, if it's given that $n$ is a prime number bigger than two, then we can infer that $n$ is odd.
+		
+		\item Strictly speaking, you always need to \emph{declare} your variables: you need to say which kind of object they range over. This is typically done using the word ``let.'' You would, for example, say: let $n$ be a natural number, let $f$ be a function, or the like. But there are many different phrases that can be used to the same effect, for example:
+			\begin{itemize} 
+			
+				\item Let $n$ be a natural number. 
+							
+				\item For $n$ a natural number, \dots.
+				
+				\item Consider a natural number $n$.
+				
+				\item Suppose that $n$ is a natural number. 
+			
+			\end{itemize}
+			There is not much more than a notational difference between these.
+		
+		
+		\item Always having to declare one's variables quickly gets tedious. This is why we have conventions concerning standard variables for important categories of objects. Some standard variables used in mathematics and their associated categories are:
+		
+		\begin{longtable}{l | l}
+			Object & Variable\\\hline
+			
+			unspecified & $x,y,z,\mathellipsis$\\
+			
+					& sometimes: $a,b,c, \mathellipsis$\\
+			
+			natural numbers & $n,m,l,\mathellipsis$\\
+			
+			indices & $i,j,\mathellipsis$ \\
+			
+			sets of indices & $I,J,\mathellipsis$\\
+			
+			functions & $f,g,h,\mathellipsis$\\
+			
+					& also: $\lambda, \sigma,\tau,\mathellipsis$\\
+			
+			sets & $X,Y,Z,\mathellipsis$ \\
+			
+			conditions & $\Phi,\Psi,\mathellipsis$\\
+			
+			formulas	 & $\phi,\psi,\theta,\mathellipsis$\\
+			
+					& also: $A,B,C, \mathellipsis$\\
+					
+			propositions & $p,q,r, \mathellipsis$\\
+					& also: $P,Q,R,\mathellipsis$
+			
+			\end{longtable}
+			
+	Note the pattern here. The first variable for a category is typically chosen  mnemonically---$n$umber, $f$unction, $i$ndex, $\phi$ormula, \dots---and the following continue in alphabetical (or inverse alphabetical) order. Also, ``higher-order'' objects, like sets or conditions, typically get capital variables. 
+	
+		\item Variables allow us to make general claims about objects of a category, while still making concrete statements.\footnote{It's important not to confuse variables with collections, sets, or the like. A variable always stands for one, and only one object.}  For example, if we let $n$ and $m$ be natural numbers, the statement $n+m=m+n$ says that for every possible value of $n$ and $m$, i.e. all natural numbers, adding the one to the other is the same as adding the other to the one. We can make this perfectly explicit by saying: for all natural numbers $n$ and $m$, we have that $n+m=m+n$. Without variables, it's impossible to make such a claim in a finite expression, we'd need to repeat our claim for each pair of numbers $n$ and $m$:
+		
+		\begin{itemize}
+		
+			\item $0+0=0+0$
+			
+			\item $0+1=1+0$
+			
+			\item $1+0=0+1$
+			
+			\item \dots
+			
+		\end{itemize}
+Clearly, this is not feasible.
+
+	\item Variables also allow us to talk about numbers where we don't know precisely know what they are. Take the first prime number bigger than $436\cdot 10^{99}$. By Euclid's theorem, we know that this number exists: there are infinitely many prime numbers and there are only finitely many numbers smaller than $436\cdot 10^{99}$, so there needs to be a first prime number after $436\cdot 10^{99}$. We can refer to this number using a variable by saying: let $n$ be the first prime number bigger than $436\cdot 10^{99}$. It's difficult to refer to this number explicitly, or to even determine which number it is: the number is very, \emph{very} large. All we know is that the number exists. Another way of saying this is: there exists a natural number $n$ such that $n$ is the first prime number after $436\cdot 10^{99}$.
+	
+	\item Speaking of natural numbers. One important role of natural numbers is in \emph{counting}. Say you have three apples. Then you can count them: my first apple, my second apple, my third apple. This way of counting is indicated mathematically by using the numbers as \emph{subscripts} or \emph{indices}: $a_1$ is the first apple, $a_2$ the second apple, and $a_3$ the third apple. What a mathematician would typically say in such a situation is something like this: suppose we have three apples, $a_1, a_2,$ and $a_3$. 
+		
+		\item Sometimes, we only know that we have finitely many objects, but not how many precisely. The standard way of expressing this mathematically is to say something of the sort: consider $n$-apples, $a_1, \mathellipsis, a_n$. Here $n$ is used as a variable for a some arbitrary but fixed natural number, just like we discussed above. When we use numbers as indexes for objects in this way, we typically use $i,j,\mathellipsis$ as variables ranging over these numbers. For example, we would say something like: consider $n$-apples, $a_1, \mathellipsis, a_n$ and let $a_i$ be one of these apples, for $1\leq i\leq n$. Here $i$ ranges over the numbers from $1$ to $n$ used as indices, it is an \emph{index variable}. Note that for each $i$ between 1 and $n$, $a_i$ is a variable that ranges over apples.
+		
+		\item As we said, a variable always stands for an arbitrary but fixed object of some category. But note that the information which kind of object a variable stands for is only valid in a given context with a preceding variable declaration. For example, if we let $n$ stand for the first prime after  $436\cdot 10^{99}$, then $n$ refers to this number \emph{until} we make a new variable declaration for $n$. We might, in the same piece of mathematical writing, later write: take finitely many apples $a_1, \mathellipsis, a_n$. Of course, in this second piece of writing, $n$ is no longer (necessarily) the first prime after after $436\cdot 10^{99}$, it could be any natural number. Watch out that you're always clear on your variable declarations so as not to illegitimately carry over information from previous contexts.
+		
+		\item When we want talk about a \emph{distinguished} mathematical object, we typically use a \emph{constant} to refer to it. The numerals $0$, $1$, $2$, \dots, for example, stand for the first, second, and third natural number (and so forth). Note that there are also constants for functions, such as $+$ for addition, $\cdot$ for multiplication, etc.. There are also constants for properties and relations, like $\leq$ for the smaller-than (or equal to) relation. What distinguishes constants from variables is that they always denote the same object in every context. The numeral $0$ always denotes the first natural number, $+$ is always addition, and so on. In contrast, $n$ can assume any value from the natural numbers, $f$ can be any functions, etc. 
+		
+		\item Sometimes, we introduce \emph{temporary} constants for notational convenience. Suppose that we've just established that there exists a natural number $n$ such that $n$ is the first prime number after $436\cdot 10^{99}$. This number is not important enough to justify introducing a new constant for it, but it might be useful to free up the variable $n$ again for later use---$n$ is such a convenient variable for natural numbers. So we might call the number $n$, whose existence we've just established, $a$ and continue to use $n$ as we please. Conceptually, what's happening here is nothing but a new variable declaration, but it's fruitful to think about it as introducing a ``temporary name'' for an object. 
+		
+		\item Mathematical writing is often very concise, especially hand-written mathematics. One standard logico-mathematical abbreviation you've already encountered is the phrase ``iff,'' which stands for \emph{if and only if}. Think, for example, of our definition of validity as truth preservation in the introduction. There we said that an inference is valid iff in every possible situation where the premises are true, the conclusion is true as well. To say that one thing is the case if and only if another thing is the case is to say that the two are equivalent: if the one thing is the case, so is the other and vice versa. 
+
+	\item If two things are equivalent---the one is the case iff the other is---then the two things can be exchanged for each other in practically all mathematical contexts. For example, according to our account of validity given above, we can freely go back and forth between saying that an inference is valid and saying that in every possible situation where the premises are true, the conclusion is true as well. The two phrases (practically) mean the same thing. This is why ``iff'' is often used in definitions (see below). 
+	
+	\item Here are some other abbreviations often found in mathematical writing together with their associated meaning:
+	
+		\begin{longtable}{c | l}
+			Abbreviation & Meaning\\\hline
+			
+			i.e. & id est, that is\\
+			e.g. & exempli gratia, for example\\
+			viz. & videlicet, namely\\
+			s.t. & such that\\
+			w.r.t. & with respect to\\
+			w.t.s & want to show\\
+			q.e.d. & quod erat demonstrandum\\
+			%w.l.o.g. & without loss of generality$^\ast$\\
+			fr & for (especially hand-written)\\
+			df. or dfn. & definition (especially hand-written)\\
+			thm. & theorem (especially hand-written)\\
+			
+			\end{longtable}
+				
+		\item We now turn from notation to meaning. You might have noticed that mathematical language is \emph{very} precise, to the extend that it can seem pedantic. When mathematicians use a word, especially a technical concept, they usually mean something \emph{very} specific by it---one and only one thing. Mathematical language is not as vague and flexible as ordinary language is. In order to properly understand mathemateze, you have to be perfectly clear on the meanings of the terms involved. These meanings are typically given by \emph{definitions}. The most basic forms of mathematical definitions are definitions of objects and definitions of properties and relations.
+		
+		\item A mathematical object is defined by giving a list of properties such that we can show that there is one and only one object that satisfies these properties. For example, we can define the principal square root of 2, typically denoted $\sqrt{2}$, as the positive real number $x$ such that $x\cdot x=2$. Note that in order for such a definition to give us a unique object, we need to show that: (i) there exists such an object that satisfies the property and (ii) that only one object satisfies the properties. For example, we can't define $\sqrt{2}$ as the natural number $n$ such that $n\cdot n=2$---such a natural number doesn't exist. And we can't define $\sqrt{2}$ as the real number $x$ such that $x\cdot x=2$---there is more than one such number, viz. $\sqrt{2}$ and $-\sqrt{2}$.
+		
+		\item Note that there can be more than one valid definition of a given mathematical object. For example, the number $\pi$ can be defined using the following integral definition: \[\pi=\int_{-1}^{1}\frac{1}{\sqrt{1-x^2}}dx\] But it can also be defined as the smallest positive real $x$ which satisfies the equation $\sin(x)=0$. It's a mathematical fact that these two definitions characterize the same object. In mathematical practice, it's often useful to know alternative definitions of an object.		
+		\item A mathematical property is defined by giving the precise conditions under which an object has the property. For example, a natural number $n$ is said to be \emph{prime} iff (i) $1<n$ and (ii) there are no natural numbers $k,l<n$ such that $n=k\cdot l$. Note that the property being defined is typically \emph{italicized}. This is considered good form in typed-out mathematics. In hand-written mathematics, you typically \underline{underline} the concept being defined.
+		
+		\item Related to definitions are the central concepts of \emph{necessary} and \emph{sufficient} conditions:
+		
+			\begin{enumerate}[\thesection.{20}.a]
+		
+			\item  A condition is said to be \emph{necessary} for something to obtain just in case if the condition wouldn't obtain, then the thing wouldn't be the case. For example, being non-negative\footnote{You might wonder: why didn't he say \emph{positive} natural number? The reason is that, in mathematics, it's standard to reserve positive for numbers (strictly) bigger than zero. So, zero isn't positive. But then being positive can't be a necessary condition for being a natural number: zero is not positive but a natural number. Zero is, however, not negative, for a negative number is one that is smaller than zero and zero isn't smaller than itself.} is a necessary condition for being a natural number---if a number is negative, it can't be a natural number. But being non-negative is not a necessary condition for being an integer: the whole negative numbers are all integers but, well, negative.
+						
+			\item A condition is said to be \emph{sufficient} for something iff the thing is the case, whenever the condition obtains. For example, being even is a sufficient condition for being an integer: if something's even, it's an integer. But being even is not a necessary condition for being an integer: of course, there are non-even integers---the odd ones.		
+			
+			\end{enumerate}
+		
+	To say that a condition is necessary, we use the locution `only if:' something's a natural number only if it is non-negative. And to say that a condition is sufficient, we use the locution `if:' if a number is even, then it's an integer. Whence the origin of the phrase `if and only if.'
+		
+	\item The definition of a property always gives us a list of necessary and jointly sufficient conditions for something to have the property. Think of the conditions (i) and (ii) from our definition of being prime. They are both \emph{necessary} in the sense that an object that lacks one of these two properties is not prime: $1$, for example, is not prime since it violates condition (i); $4$ isn't prime because it violates condition (ii)---clearly $2<4$ and $2\cdot 2=4$, so just set $k=l=2$. At the same time, (i) and (ii) together are \emph{sufficient} for a number to be prime. For example, to see that $3$ is prime, first note that $1<3$ so condition (i) is satisfied. Second, there are just three numbers smaller than 3, viz. $0,1,$ and $2$. And $0\cdot 1=0\cdot 2= 0, 1\cdot 1=1, 1\cdot 2=2, 2\cdot 2=4$. So there are no $k,l<3$ such that $k\cdot l=3$, meaning condition (ii) is satisfied. So, $3$ is prime.
+	
+		\item But note that not \emph{any} list of necessary and sufficient conditions constitute a proper definition. For a definition to be successful, we demand that the defined concept doesn't occur among the conditions being used to define it. Why? Well, a definition that violates this constraint wouldn't be very useful. Suppose we would define an even number as one that is the product of an even number with some other number. It's true that a number is even iff the number is the product of an even number with some other number. So the conditions are necessary and sufficient for a number to be even. But this is not a particularly useful definition. In order to establish that a number is even, we'd first have to establish that some other numbers are even. And in order to do that, we need to establish that some other numbers are even. And so on, \emph{ad infinitum}. A definition in which the condition in question is violated is called \emph{circular}.
+		
+		\item In contrast to the definition of an object, however, the definition of a property or relation can be \emph{empty}, i.e. no object has the property or stands in the relation to anything. For example, we can define the property of \emph{being the biggest natural number} as follows: we say that a number $n$ is the biggest natural number iff for all natural numbers $m$, $m\leq n$. It's clear that there is no biggest natural number, so no object has the property. But the \emph{property} exists---it can be defined like we just did.
+				
+		\item The way of defining a property generalizes to \emph{relations}, like the relation $\leq$ on the natural numbers. For two natural numbers $n,m,$ we say that $n\leq m$ iff there exists a natural number $k$ such that $n+k=m$. The relation $\leq$ is called \emph{binary} because it relates two objects. There are also \emph{ternary}, \emph{quaternary}, \emph{quinary} relations, and so on. More generally, we call a relation $n$-ary iff it relates $n$ objects, where $n$ is a natural number. So a binary relation is a 2-ary relation, a ternary relation is a 3-ary relation, and so on. Here's an example of a definition of a ternary relation: a point (on the plane) $x$ lies \emph{in between} two points $y$ and $z$ if and only if there is a straight line that connects $y$ and $z$ which goes through $x$.
+		
+		\item Just like with definitions of objects, there is sometimes more than one definition of a given property or relation. For example, $n\leq m$ for natural numbers $n$ and $m$ can equivalently be defined by the condition that $\frac{n}{m}\leq 1$. It's good to know alternative definitions of important properties and relations.
+		
+		\item Understanding mathematical definitions is often not easy, it requires patience and effort. Learning mathemateze is like learning a foreign language. Here are two important steps that you can (in fact, should) take in order to properly understand a definition:
+
+		\begin{description}
+		
+			\item[Examples.] Check some examples, like we did above (this applies to definitions of properties and relations). Is $1$ a prime? (No, condition (i) is violated.) Is $2$ prime? (Yes.) Is $3$ prime? (Yes.) Is $4$ prime? (No, condition (ii) is violated) \dots Is $\sqrt{2}$ a prime? (No, the definition only applies to natural numbers). If you know how to program, try to write a script that checks examples. Try to come up with your own examples and counter-examples. For each definition you learn, you should know a list of standard examples and counter-examples.
+
+			\item[Understand the Conditions.] Try to understand why the conditions are formulated the way they are. For example, why did we demand that $\sqrt{2}$ is the \emph{positive} real $x$ such that $x\cdot x=2$? Because there is more than one real with this property. Or, why did we demand that for $n$ to be prime that there are no numbers $k,l<n$ such that $k\cdot l=n$, rather than the weaker condition that there are no $k,l\overset{!}{\leq} n$ such that $k\cdot l=n$? Well, this definition wouldn't work: no number would be prime! To see this note that for each number $n>1$, $1\cdot n=n$ and hence there are $m,k\leq n$ with $n=m\cdot k$, viz. $m=1$ and $k=n$. Another thing you can do in order to understand the conditions better is to try to give an equivalent formulation, like in the case of $\pi$ and $\leq$. 
+		
+		\end{description}
+		
+		But this is just the beginning. To properly appreciate a definition, you will have to work with it, you will have to prove things with it. This is just like to properly acquire command of a new word, you have to use it in a sentence. 
+		
+		\item There's also a way in which learning mathemateze is \emph{not} like learning a language, at least not like learning a language in (high)school. When you learn definitions in mathematics, you should not just memorize them, like your vocabs in school-English. It is much, \emph{much} more important that you \emph{understand} a mathematical definition rather than that you memorize it. This is what the previous steps are supposed to help you with. And once you've properly understood a definition, it will actually be easy to remember it, or at least to be able to reconstruct it from memory.
+		
+		\item As you will see once we get more advanced, certain kinds of mathematical objects have a special way of being defined: a set, for example, is defined by specifying its members, a function is defined by saying which output it gives for which input, and so on. These special kinds of definitions can always be traced back to the general kind of definition we characterized above in 2.2.2, but they tell us something about the \emph{(mathematical) nature} of the objects under consideration. For example, the fact that a set can be defined by specifying its members tells us that there is nothing more to being a set than being a collection of objects (more on sets in the next chapter). Keep an eye out for the way in which an individual object of a certain kind---a set, a function, a language, a model, \dots---is defined, you will better understand what these objects \emph{are} (mathematically speaking).
+		
+		\item Having covered all of this notation, it's important to get clear on its benefits and drawbacks. The primary purpose of most of the features of mathemateze that we've just discussed is \emph{precision}, they allow us to phrase our claims in such a precise way that we can establish them beyond a reasonable doubt---that we can \emph{prove} them. We'll cover proving things in the next section, the section on mathodology. But the precision I just mentioned comes at a price: as you can probably agree, a properly formulated mathematical claim can be (very) difficult to properly understand. And so there is also a role for natural language in mathematics: it can make the very precise claims of mathemateze intuitively perspicuous. Just compare the two claims:
+		
+		\begin{itemize}
+		
+			\item Let $n$ be a natural number. Then, if $n>2$ and there are no natural numbers $k,l<n$ such that $n=k\cdot l$, then there is no natural number $m$, such that $n=2m$.
+			
+			\item Every prime bigger than two is odd.
+		
+		\end{itemize}
+		
+The two claims say \emph{exactly} the same thing. While the first is very precise and, once understood, easily seen to be true, the second is \emph{far} more intelligible. 
+
+	\item The previous observation motivates my last recommendation about learning mathemateze: once you've properly understood the formal side of things, try to phrase what you're thinking about in natural language \emph{without using mathematical symbols}. Once you can do this well, you have truly understood a mathematical concept. In fact, I think this is so important, that I will ask you to do this in exercises. When an exercise is marked $[\nosym]$, this means that you may not use \emph{any} mathematical symbols in the answer to this question.
+		
+	\end{enumerate}
+		
+	\section{Mathodology}
+
+
+\begin{enumerate}[{\thesection}.1]
+	
+	\item One of the most important mathematical activities is proving things. A mathematical proof is a rigorous, step-by-step argument which establishes the truth of a mathematical statement. Importantly, in a mathematical proof, every step needs to be justified, nothing should remain vague or unclear. 
+	
+		\item Mathematicians typically classify true mathematical statements into  different categories, roughly according their role in mathematical inquiry: 
+		
+		\begin{description}
+							
+			\item[Lemma.] An auxilliary claim, established in order to prove a more important proposition or theorem. Whether something counts as a lemma is thus context-dependent: one mathematician's important result may be another mathematician's lemma.
+						
+			\item[Proposition.] A run-of-the-mill, ordinary mathematical fact.
+			
+			\item[Theorem.] An important mathematical fact, e.g. because it provides significant insight, has been an open question for long, or the like. Sometimes, the term ``theorem'' is also used generically to refer to any kind of mathematical fact.
+			
+			\item[Corollary.] A simple consequence of a previously established lemma, proposition, or theorem. Sometimes a theorem is a mere corollary of a central lemma that has been proven along the way. 
+			
+			\item[Conjecture.] This one stands out a bit, since it's a claim that has not (yet) been shown to be true but there is strong evidence that it is. 
+		
+		\end{description}
+		
+	\item The ideal of a mathematical proof is that of a purely \emph{axiomatic} proof. An \emph{axiom} is a basic principle of mathematics, which is assumed to be true. Each category of mathematical objects has its own axioms governing it. Examples of axioms for the natural numbers are: 
+	\begin{itemize}
+	
+		\item $0$ is a natural number
+	
+		\item for no natural number $n$, $n+1=0$
+		
+		\item for all natural numbers $n,m$, if $n+1=m+1$, then $n=m$
+		
+		\item for all natural numbers $n$, $n+0=n$
+		
+		\item for all natural numbers $n$, $n+(m+1)=(n+m)+1$
+		
+		\item \dots.
+	
+	\end{itemize}
+	An axiomatic proof is one whose only assumptions are axioms and definitions and where each step corresponds to a valid inference. Axiomatic proofs are therefore very detailed and proceed in very, very small steps. This makes axiomatic proofs often difficult to read. Just imagine proving from the above axioms that if $n$ is a prime number with $n>2$, then $n+1$ is even. This can be done, but it takes many, \emph{many} steps and definitions.
+	
+	 \item Axiomatic proofs are an epistemic \emph{ideal}, you almost never find a full axiomatic proof in the literature. The point of most mathematical writing is to convince the reader that a purely axiomatic proof \emph{exists}. It's left to the interested reader to figure out the details. Of course, whether a given piece of writing convinces you, depends on your background. Mathematical writing for beginners is much more detailed than writing on an advanced level. In this course, you'll get more and more advanced and we'll get, correspondingly, less and less detailed. Our aim in mathematical writing is to achieve what's called \emph{informal rigor}, that is to ensure that there is an axiomatic argument corresponding to what we say, while retaining readability. For this purpose, mathematicians have developed conventional ways of writing proofs that are supposed to ensure that an underlying axiomatic proof exists if we obey by the conventions.
+	 
+	 \item An interesting side-remark. The origin of the proof systems mentioned in \S1 is, in fact, the mathematical study of axiomatic arguments: a derivation in a proof system is a model for a correct axiomatic argument. Here, it's once more important that we heed the distinction between object and meta-language. When we're reasoning mathematically \emph{about} logic (in the meta language), it's enough to convince the reader that an axiomatic proof of the fact in question exists. But when we're working \emph{in} the object language, and we're trying to derive a conclusion from some premises, we need to be perfectly detailed and axiomatic. Watch out for which level of detail is required in a given context and err on the side of caution!
+	 
+	 \item Note that there is a difference between a finished, mathematical proof according to the standards of informal rigor and the notes you make along the way, which help you to discover the proof. This is especially important to keep in mind when you're writing for exams, term papers, or a thesis. You might have encountered this already in high-school in situations when a simple calculation was not deemed an entirely satisfying answer to a problem, but some explanation was required. This is precisely the point here: your calculation are your notes, the actual proof is an argumentative piece of writing. 
+	 
+	 \item Having to rigorously prove a mathematical fact may seem like a daunting task at first. To make things easier for you, I recommend following these steps:  \emph{figure out what you want to prove}, \emph{state your claim as clearly as possible}, \emph{unfold the relevant definitions}, \emph{remind yourself of relevant facts}, \emph{devise a proof strategy}, \emph{write up your proof}, \emph{proof-read}. Let's go through these steps in turn:
+
+	 
+	 	\begin{enumerate}[\thesection.{7}.1]
+		
+			\item \emph{Figure out what you want to prove}.
+							
+				In a course like this, you will often be told explicitly what to prove (with the assumption that the claim in question is true). But sometimes, especially in more advanced contexts, you might need to determine \emph{whether} a claim is true. In such a case, you will try to formulate a \emph{conjecture}.
+				
+				\vspace{2ex}
+				
+				\emph{Running Example}. Think of some standard prime numbers. You you might think of three, five, seven, maybe 11. So you might form the initial conjecture that every prime number is odd. But wait a moment, we forgot two: two is a prime number and two is odd! So we modify our conjecture to say that every prime number bigger than two is odd. And, in fact, now there's no obvious counterexample anymore. But not being able to find a counterexample doesn't constitute a proof, there might be an even prime number somewhere which is so big, we can't find it by a search. So, we set out to prove the following conjecture: 
+				
+				\begin{conjecture}
+				Every prime number bigger than two is odd.
+				\end{conjecture}
+				
+			\item \emph{State your claim as clearly as possible.}
+									
+			As we've mentioned above, stating a mathematical claim in proper mathemateze is what makes it precise enough to prove. So, let's write our conjecture in proper mathemateze. Basically, what we want to say that for any natural number, if that number is a prime and bigger than two, then the number odd. So, we declare $n$ as a variable for natural numbers and write our conjecture as:
+			
+			\begin{itemize}
+			
+				\item Let $n$ be a natural number. If $n>2$ and $n$ is prime, then $n$ is odd.
+			
+			\end{itemize} 
+Note that if we had declared $n$ as a variable for \emph{prime} numbers, we could have written:
+			\begin{itemize}
+			
+				\item Let $n$ be a prime number. If $n>2$, then $n$ is odd.
+			
+			\end{itemize}
+By declaring $n$ to range over the primes bigger than two, we could even write.
+			\begin{itemize}
+			
+				\item Let $n$ be a prime number with $n>2$. Then, $n$ is odd.
+			
+			\end{itemize}
+Each of these claims would be proven in a slightly different way, but they say essentially the same thing, they are, in fact, equivalent.
+
+The underlying phenomenon here is that there's a trade-off between assumptions about our variables and the if-part of our theorem (if there's one). The last rephrasing of our conjecture has no if-part but instead three assumption: $n$ is a natural number, $n$ is prime, and $n>2$. The first phrasing instead, only assumes that $n$ is a natural number and, in turn, has two claims in the if-part. 
+
+Strictly speaking, to prove the first claim, we have to prove the if-then claim ``if $n>2$ and $n$ is prime, then $n$ is odd'' using only the assumption that $n$ ranges over the naturals and to prove the third claim, we have to prove that $n$ is odd using the assumption that $n$ is natural, prime, and bigger than two. As we'll see in a few moments, however, the two things are essentially the same, so there is little but notational difference between the phrasings in question.
+														
+			\item \emph{Unfold the relevant definitions.}
+						
+				Look for all the central concepts in your conjecture and assumptions and remind yourself of their definitions. In the case of our conjecture, the central concepts are those of a number being even/odd and those of a number being prime.
+				
+				Here are the relevant definitions:
+				
+				\begin{definition}
+				A natural number $n$ is \emph{even} iff there exists a natural number $k$ such that $n=2k$. A natural number $n$ is \emph{odd} iff $n$ is not even.
+				\end{definition}
+				
+				\begin{definition}
+				A natural number $n$ is said to be \emph{prime} iff $1<n$ and  there are no natural numbers $k,l<n$ such that $n=k\cdot l$
+				\end{definition}
+							
+			\item \emph{Remind yourself of relevant facts (lemmas, propositions, theorems,\dots) you already know}
+			
+				In mathematical practice, you almost never start ``from scratch.'' You typically make use of lemmas, propositions, and theorems that either you or somebody else proved before. In mathematics, we truly ``stand on the shoulder of giants'' like Euclid, Bernoulli, Euler, and many, many others. At this stage of your proof search, try to figure out if you already know some fact that might help you in proving your conjecture.
+				
+				It turns out that for our present conjecture, we don't really need any additional lemmas to prove it, we can directly prove it from the definitions. But we don't know that yet and we remember the following facts,  which we record just in case:
+				
+				\begin{proposition}
+				If $n$ is a natural number, then $n$ is even or $n$ is odd (but never both).
+				\end{proposition}
+				\begin{proposition}
+				Let $n$ be a natural number. If $n$ is an even number, then $n+1$ is odd. And if $n$ is odd, then $n+1$ is even.
+				\end{proposition}
+				
+								
+				We assume that this you've proven elsewhere (slides, book, homework, etc.) and we write it down here just to be sure, maybe we need it later. It can always happen that while we're searching for a proof strategy, it becomes clear that we can use some other relevant facts, but it's always a good idea to look at the clearly relevant facts first, since they might help you devise a proof strategy in the first place.
+				
+				 
+				 \emph{Nota bene}: When we ask you to prove a result as homework, in an exam, or elsewhere for credit, of course, you can't just refer to somebody else's proof of the result somewhere in the literature. However, you can make use of results that are clearly established in the lecture, the notes, or the like. Please make sure that you reference where to find the proof clearly, using the slide number or chapter.section.number. 
+				 
+				 			
+			\item \emph{Devise a proof strategy.}
+			
+				Now things get serious, you actually need to start reasoning. What we will do at this point is to try to see \emph{why} the result holds and to derive a proof strategy from that. In our example conjecture, finding a proof strategy is relatively easy. We simply note that if $n>2$ is a prime number, then $n$ can't be even. Because if $n$ were even, by definition, there would be a $k$ such that $2k=n$, which contradicts the assumption that $n$ is prime. And if $n$ isn't even, then, by definition, $n$ is odd. This isn't our final proof yet, we still have some cleaning up to do. But we have a pretty good idea how to proceed.
+				
+				\vspace{1ex}
+				
+				Note that often it will not be so easy to find a proof strategy. What you will typically do, then, is to look through all the proof strategies/argument forms you know and see if they are useful. Below, we list some standard proof strategies/argument forms together with the kind of situations in which they are typically useful. While doing more and more mathematics, you will slowly build a mental library of proof strategies that worked in certain situations. This will be an invaluable resource in trying to prove things: most often, what you'll do is to adapt a proof strategy you already know to the case at hand. Bottom-line: even if this looks hard now, you \emph{will} get better at this with experience.
+				
+			
+			\item \emph{Write up your proof.}
+			
+				Now it's time to record the results of your work, now you write up the finished proof. If you indeed succeeded in proving your result, it is now a result (a lemma, proposition, theorem), so you can write:
+				
+				\begin{proposition}
+				Let $n$ be natural number such that $n$ is prime. If $n>2$, then $n$ is odd.
+				\end{proposition}
+				
+				When you claim a result, you will have to follow up with a proof. 		The proof typically comes afterwards in a separate proof environment. You begin the proof by declaring your variables and listing your assumptions (possible naming them for ease of reference). Then you reason carefully, step-by-step to the desired result:
+
+				\begin{proof}
+		Let $n$ be a natural number and assume $n$ is prime. By definition, this means that (i) $1<n$ and (ii) there are no natural numbers $k,l<n$ such that $n=k\cdot l$. We want to show that if $n>2$, then $n$ is odd. So, suppose that $n>2$. By definition, for $n$ to be odd would mean that $n$ is not even. We claim that given our assumptions, $n$ cannot be even and hence must be odd. For suppose that $n$ is even. By definition, this would mean that there exists an $m$ such that $n=2m$. But this would contradict condition (ii) for $n$ being prime: just let $k=2$ and $l=m$. Note that $1<n$ and $n=2m$, it follows that $m<n$ and we have $2<n$ by assumption . So, $n$ cannot be even, which means that $n$ must be odd.
+		\end{proof}
+				
+				Note the $\square$ at the end of the proof. It marks the end of the proof and is read Q.E.D., i.e. \emph{quod erat demonstrandum} (what was to be shown).
+
+		We've completed our proof. 
+		
+		\item \emph{Proof-read}.
+		
+		As with any piece of writing, it's important to double check what you've written. At this stage of proving things, go through what you've written once more. Ask yourself: Are my definitions correct(ly phrased)? Is every reasoning step explained? Are all my variables declared? Is my wording understandable? ---Keep in mind that your proof will be read by somebody else, you're not writing it for yourself but to convince somebody else. Write for a reader, not for yourself. We grade your mathematical writing not only in terms of correctness but also in terms of intelligibility. 
+				
+		Now you're (finally) done. Typically, at this part, we'll discard our notes and rest content with our finished, polished proof. Especially when handing in homework, what you will report is your proof and not your notes (unless asked specifically). 
+		
+		\end{enumerate}
+		
+	\item \emph{Nota bene}: A good mathematical proof is written in a clear language, using complete, grammatical sentences. We won't cover mathematical writing in more detail, but I will try to lead by example. The examples of proofs given below are written in the style that we expect you to adopt. 
+	 	 
+	 \item We conclude our tutorial on mathematical proofs with a beginner's library of standard argument forms to be used in mathematical proofs/proof strategies. Note that the list is \emph{not} exhaustive, already in the next chapter, you will learn a new argument form that will be of central importance throughout the course.
+		
+		\begin{description}
+				
+			\item[Conditional Proof.] Also known as \emph{direct proof}.
+						
+			\begin{itemize}
+			
+				\item \emph{Form}: We prove an if-then claim by assuming the if-part and deriving the then-part.
+			
+				\item \emph{Justification}: Intuitively, an if-then claim is true just in case the then-part is true, whenever the if-part is. For example, ``if $n$ is even, then $n+1$ is odd'' is true iff $n+1$ is odd for every even number $n$. If we can derive from the assumption that the if-part is true that the then-part must be true, too, we've shown just that.
+				
+				\item \emph{Use}: Whenever you have an if-then claim, you should first try to prove it using conditional proof.
+			
+			\item \emph{Example}:
+				
+				\vspace{1ex}
+				
+					\begin{proposition}
+			Let $n,m$ be natural numbers. If $n$ is even, $n\cdot m$ is even.
+			\end{proposition}
+			
+			\begin{proof}
+			Let $n$ and $m$ be natural numbers. We want to prove that if $n$ is even, $n\cdot m$ is even. So assume for conditional proof that $n$ is even. Then, by definition, we have that there exists a natural number $k$ such that $n=2k$. Now consider the number $n\cdot m$. Since $n=2k$, we have that $n \cdot m=(2\cdot k)\cdot m=2\cdot (k\cdot m)$. By definition, this means that $n\cdot m$ is even, which is what we wanted to show. 
+			\end{proof}
+			
+			Note how we write a conditional proof:
+			
+				\begin{enumerate}[1.]
+				
+					\item State the conditional you wish to prove.					
+					\item Assume the if-part. 
+					
+					\item Use mathematical reasoning to get to the then-part.
+					
+					\item Conclude the proof by saying that you've shown what needed to be shown.
+				
+				
+				\item \emph{Common mistakes}: assuming what needs to be proved (either the whole if-then statement or the then-part).
+				
+				\end{enumerate}
+			
+			\end{itemize}
+			
+			\item[Distinction by Cases.] Also known as proof by cases, proof by exhaustion, the brute force method, 
+			
+			\begin{itemize}
+			
+				\item \emph{Form}. We prove a claim by showing that it holds in each of a list of exhaustive cases, which is a list of cases such that at least one of the cases must obtain.
+			
+				\item \emph{Justification}: If a list of cases is exhaustive, this means that at least one of the cases will obtain (even though we don't necessarily know which one). But if we can show that in \emph{each} of the cases, our claim would be true, we don't need to know which case will actually occur, we can conclude that our claim will be true regardless.
+				
+				\item \emph{Use}: When your assumptions (e.g. from a conditional proof) allow for a natural distinctions into several cases. We typically try to avoid distinction by cases with long list of cases (think more than 3) for reasons of mathematical elegance, though a proof with 1936 cases exists (the computer assisted proof of the four-color theorem). 
+				
+				\item \emph{Example}:
+				
+				\begin{proposition}
+			For $n$ a natural number, $n^2+n$ is even. 
+			\end{proposition}
+			\begin{proof}
+			Let $n$ be a natural number. First, note that $n^2+n=n(n+1)$. So it suffices to show that $n(n+1)$ is even. Since every number is either even or odd, we can distinguish two exhaustive cases: (i) $n$ is even or (ii) $n$ is odd. 
+			
+			\begin{itemize}
+			
+				\item \emph{Case i}. If $n$ is even, then $n(n+1)$ is the product of an even number, $n$, and an odd number, $n+1$. By the above proposition (the example proposition for conditional proof), this means that $n(n+1)$ is even, too.
+				
+				\item \emph{Case ii}. If $n$ is odd, then, by one of our previously established proposition, we know that $n+1$ is even. But then, again, $n(n+1)$ is the product of an even number, $n+1$, and an odd number, $n$, which we already observed means that $n(n+1)$ is even.
+			
+			\end{itemize}
+			
+			So, either way, $n(n+1)$ is even, which is what we wanted to show.
+			
+			\end{proof}
+			
+			Note how we write a proof by cases:
+			
+				\begin{enumerate}[1.]
+				
+					\item Give a justification for your case distinction (How many cases are there? Why are they exhaustive?).
+					
+					\item Go through each case one by one and show, by mathematical reasoning, that the result holds in the case.
+					
+					\item Conclude that, since the list was exhaustive, the result holds in general.
+				
+				\end{enumerate}
+				
+			\item \emph{Common mistakes}: List of cases is not exhaustive/cases are missing.
+							
+			\end{itemize}
+			
+			\item[Proof by Contradiction.] Also known as \emph{indirect proof}. 
+						
+			\begin{itemize}
+			
+				\item \emph{Form}. We prove a claim by showing that it's negation leads to a contradiction.
+
+			
+				\item \emph{Justification}. In classical mathematics, we assume that for every claim, either the claim or its negation is true (remember bivalence, this is a way in which classical mathematics relies on classical logic). But if the negation of a claim leads to a contradiction, it can't be true (again, classical logic). Hence, the original claim must be true.
+				
+				\item \emph{Use}. This is really an all-rounder, it's used in many diverse situations. You will get a ``feel'' for when proof by contradiction works well. You should always try indirect proof if all direct methods (like conditional proof or proof by cases) have failed you. The method is especially powerful when you're trying to establish that one of two conditions must obtain (like $n$ is either even or $n$ is odd).  
+				
+				\item \emph{Example}.
+				
+				\begin{proposition}
+				Let $n$ be a prime number. If $n>2$, then $n$ is odd. 
+				\end{proposition}
+				\begin{proof}
+				See above.
+				\end{proof}
+				
+				\begin{proposition}
+				There is no smallest positive real number, i.e. there exists no real number $x>0$ such that for all $y>0$ we have $x\leq y$.  
+				\end{proposition}
+				
+				\begin{proof}
+				Suppose (for proof by contradiction) that our claim is false, i.e. there exists a natural number $x$ such that (i) $x>0$ and (ii) for all $y>0$ we have $x\leq y$. Call that number $\epsilon$ (as a temporary constant, cf. 2.2.8). Now consider the number $\frac{\epsilon}{2}$. Since by assumption (i) $0<\epsilon$, we have that (a) $0<\frac{\epsilon}{2}$ and that (b) $\frac{\epsilon}{2}<\epsilon$. From (a) together with (ii), it follows that $\epsilon\leq \frac{\epsilon}{2}$. But from this and (b), we get that $\epsilon<\epsilon$, which is impossible. Hence, $\epsilon$ cannot exist and our claim is proven. 
+				\end{proof}
+				
+				Note how we write an indirect proof:
+			
+				\begin{enumerate}[1.]
+				
+					\item State that you're assuming that the claim is false (you can note that you do this for proof by contradiction, but typically that's clear).
+					
+					\item Spell out what it means for the claim to be false.
+					
+					\item Derive a contradiction from the assumption that the claim is false.
+					
+					\item Conclude that the claim must be true because its negation leads to a contradiction.
+									
+				\end{enumerate}
+			
+			\end{itemize}
+			
+			\item[Contrapositive Proof.] \
+			
+			\begin{itemize}
+			
+				\item \emph{Form}. We prove an if-then statement by deriving that the if-part is false from the assumption that the then-part is false. 
+			
+				\item \emph{Justification}. This is closely related to indirect proof. In order for an if-then claim to be \emph{false}, we would need that the if part is true but the then-part is false. But if we can derive that the if-part is false whenever the then-part is, we cannot have that the if-then claim is false for we'd get a contradiction: the if-part would need to be both true and false. So, given that we can derive the negation of the if-part from the negation of the then-part, the if-then claim cannot be false, so it must be true.
+				
+				\item \emph{Use}. Contraposition is very useful if the then-part contains a disjunctive claim (as in the example below).
+				
+				\item \emph{Examples}.
+				
+				\begin{proposition}
+				Let $n,m$ be natural numbers. If $n\cdot m$ is even, then either $n$ is even or $m$ is even.
+				\end{proposition}
+				
+				\begin{proof}
+				Suppose that $n$ and $m$ are natural numbers. We want to show that $n\cdot m$ is even, then either $n$ is even or $m$ is even. We prove the contrapositive, i.e. if neither $n$ nor $m$ is even, then $n\cdot m$ is odd. Note that if neither $n$ nor $m$ is even, then both $n$ and $m$ are both odd. This means that $n=2k+1$ and $m=2l+1$ for natural numbers $k,l$. Now consider the number $n\cdot m$. Since  $n=2k+1$ and $m=2l+1$, we have that $n\cdot m=(2k+1)(2l+1)=4kl+2k+2l+1=2(2kl+k+l)+1$. But now note that $2(2kl+k+l)+1$ is of the form $2x+1$ for $x$ a natural number, just let $x=2kl+k+l$. But this just means that $2(2kl+k+l)+1=n\cdot m$ is odd, which is what we needed to show.
+				\end{proof}
+			
+			\end{itemize}
+			
+			\item[Biconditional Proof.] \
+			
+				\begin{itemize}
+			
+					\item \emph{Form}. We prove that two statements are equivalent (the one is true iff the other is) by showing that (i) if the one is true, so is the other (the \emph{left-to-right} or $\Rightarrow$ direction) and that (ii) if the other is true, so is the one (the \emph{right-to-left} or $\Leftarrow$ direction). Note that we can prove (i) and (ii) using any kind of proof principle we like, but often conditional proof is useful.  
+						
+	
+					\item \emph{Justification}. Essentially, an equivalence claim (iff-statement) is just a combination of two if-then statements. To say that $n$ is odd iff $n$ is not even is to say that (i) if $n$ is odd, then $n$ is not even, and (ii) if $n$ is not even, then $n$ is odd. So, essentially, we need to prove two if-then claims, which is what biconditional proof amounts to. 
+					
+					\item \emph{Use}. I cannot stress this enough: you \emph{always} need to prove both the left-to-right \emph{and} the right-to-left direction if you try to establish an equivalence claim.
+					
+					\item \emph{Example}.
+					
+					\begin{proposition}
+					Let $n$ be a natural number. Then $n^2$ is even iff $n$ is even.
+					\end{proposition}
+	
+					\begin{proof}
+					Let $n$ be a natural number.
+					
+					\begin{itemize}
+					
+						\item (Left-to-right direction): We need to show that if $n^2$ is even, then $n$ is even. We prove the contrapositive. Suppose that $n$ is not even, i.e. odd. Then, by previous observation, there exists a natural number $k$ such that $n=2k+1$. Now consider $n^2$. By our observation, we have $n^2=(2k+1)^2$. So, we get: \[n^2=(2k+1)^2=4k^2+4k+1\] But note that $4k^2+4k=2(2k^2+2k)$, and hence $4k^2+4k$ is even by definition. So $n^2=l+1$ where $l$ is an even number (just let $l=4k^2+4k$), which means that $n^2$ is odd by a previous observation. 
+						
+						\item (Right-to-left direction): We want to prove that if $n$ is even, then $n^2$ is even. So suppose that $n$ is even (for conditional proof). We've previously observed that the product of an even number with any other number is even. But $n^2=n\cdot n$, so it follows as a simple corollary that $n^2$ is even.
+											
+					\end{itemize}
+					We conclude that $n^2$ is even iff $n$ is even.
+					\end{proof}
+					
+					Note how we write a biconditional proof:
+			
+				\begin{enumerate}[1.]
+				
+					\item State that you want to prove an iff-claim.
+					
+					\item Prove the left-to-right direction.
+					
+					\item Prove the right-to-left direction.
+					
+					\item Conclude that the equivalence holds.
+									
+				\end{enumerate}
+				
+			\item \emph{Common mistakes}: One of the directions is missing.
+				
+				\end{itemize}
+														
+			\item[Universal Generalizations.] \
+			
+			
+			\begin{itemize}
+			
+					\item \emph{Form}. 	We prove a that all objects (of a category) have a property by showing that any \emph{arbitrary} object (of the category) has the desired property.
+				
+					\item \emph{Justification}. An arbitrary object is one about which we've not assumed anything. But that means that if we can show that an arbitrary object has the property, then any object we might pick will be just like the arbitrary object. So, if we have a proof that an arbitrary object has the property, we can just repeat the proof for any object we might pick. So, any object will have to have the property.
+										
+					\item \emph{Use}. Basically whenever we want prove a universal claim.
+					
+					\item \emph{Example}.
+					
+					Note that basically every proof we've discussed so far is just one application of universal generalization away from proving a universal, for-all claim.
+					Take the following proposition we've proven above:
+					\begin{proposition}
+					For $n$ a natural number, $n^2+n$ is even. 
+					\end{proposition}
+			
+					We could easily transform the proof of this proposition in a proof of the following proposition:
+					\begin{proposition}
+					For all natural numbers $n$, $n^2+n$ is even.
+					\end{proposition}
+					Or, informally put, the result of squaring a natural number and then adding the number itself to this will always result in an even number. The proof of this will be \emph{almost} like the proof of the previous proposition:
+					\begin{proof}
+					For universal generalization, let $n$ be an arbitrary natural number. [insert proof of previous proposition here]. Since $n$ was arbitrary, we can conclude that \emph{all} numbers have the desired property.
+					\end{proof}		
+					It's a simple exercise to do the same with the other claims made in the chapter.
+						
+					So, you can see that there is not much of a difference between using universal statements and using declared variables. Strictly speaking, however, to prove a universal claim you need to reason by universal generalization (or something to the effect). 
+					
+				\end{itemize}
+			
+		
+		\end{description}
+		
+		\item This concludes our tutorial on mathemateze and mathodology. We've barely scratched the surface, you still have much to learn. But it's a start. Over the coming years, you will become more and more proficient in the ways of mathematics. For now, let me just note that there is \emph{way} more to mathematics than what we've just discussed above, this was just a starting point. In mathematical practice, we come up with new definitions, concepts, theories all the time. There is a creative side of mathematics which is sometimes hidden from view when you're learning the basics of a field as a finished product: its definitions and theorems. In this course, I will try to also give you a feel for how we came up with the definitions that we're going to cover.
+				
+\end{enumerate}
+
+\section{Friendly Advice}
+
+I'd like to conclude this chapter with somebody else's advice. Kevin Houston, in the preface to his fantastic tutorial \emph{How to Think Like a Mathematician} (see \S\ref{mathodology:literature}) gives some ``friendly advice'' for learning mathematics, which I'm going to repeat here since all of this applies to this course (this is a direct quote from p. x of that book):
+		
+		\begin{itemize}
+		
+			\item \emph{It’s up to you} --- Your actions are likely to be the greatest determiner of the outcome of your studies. Consider the ancient proverb: The teacher can open the door, but you must enter by yourself.
+			
+			\item  \emph{Be active} --- Read the book. Do the exercises set.
+
+			\item  \emph{Think for yourself} --- Always good advice.
+
+			\item  \emph{Question everything} --- Be sceptical of all results presented to you. Don’t accept them until you are sure you believe them.
+
+			\item  \emph{Observe} --- The power of Sherlock Holmes came not from his deductions but his
+observations.
+
+			\item  \emph{Prepare to be wrong} --- You will often be told you are wrong when doing mathematics. Don’t despair; mathematics is hard, but the rewards are great. Use it to spur yourself on.
+
+			\item  \emph{Don't memorize} --- seek to understand --- It is easy to remember what you truly understand.
+			
+			\item  \emph{Develop your intuition} --- But don’t trust it completely.
+
+			\item  \emph{Collaborate} --- Work with others, if you can, to understand the mathematics. This isn't a competition. Don’t merely copy from them though!
+			
+			\item  \emph{Reflect} --- Look back and see what you have learned. Ask yourself how you could have
+done better.
+
+		\end{itemize}
+			
+	
+\section{Core Ideas}
+
+	\begin{itemize}
+			
+		\item Variables stand for arbitrary but fixed objects, constants stand for known objects. 
+	
+		\item Mathemateze is a very precise language, you have to learn it like a foreign language. You will not only have to remember definitions, but to \emph{understand} them. Keep in mind: \emph{understanding facilitates remembering}.
+		
+		\item An object is defined by giving a list of properties that one and only one object---the object to be defined---satisfies. Keep in mind that for a definition of an object to be successful we need to show that there exists an object that satisfies the properties and that there is at most one object that satisfies the properties.
+		
+		\item A property or relation is defined by giving the precise conditions under which an object has the property or some objects stand in the relation. Keep in mind that in order for a definition of a property or relation to be successful, the property or relation cannot be used to formulate the conditions that define it.
+	
+		\item A mathematical proof is a rigorous, step-by-step argument which establishes the truth of a mathematical statement. 
+		
+		\item An axiomatic proof has only axioms and definitions as premises and uses only valid inferences. The point of mathematical writing is to convince the reader that an axiomatic proof exists using informal rigor. 
+		
+		\item Follow these steps to construct a proof: \emph{figure out what you want to prove}, \emph{state your claim as clearly as possible}, \emph{unfold the relevant definitions}, \emph{remind yourself of relevant facts}, \emph{devise a proof strategy}, \emph{write up your proof}, \emph{proof-read}.
+		
+	%I think this could be improved by referencing Plonka!	
+		
+		\item Over time, you will slowly build a mental library of proof strategies that worked in certain situations. Study existing proofs and try to understand them, why they work, how they approach the problem. This is the best way to build that mental library.
+					
+	\end{itemize}
+	
+\section{Self-Study Questions}
+
+\begin{enumerate}[{\thesection}.1]
+
+
+	\item Which of the following is \emph{not} a successful definition?
+
+		\begin{enumerate}[(a)]
+		
+			\item A number $n$ is an \emph{even square} iff $n$ is the square of an even number, i.e. iff there exists a natural number $m$ such that $m$ is even and $m^2=n$.
+
+			\item Let's say that a natural number $n$ is \emph{independent} iff there are no two dependent numbers $k,l<n$ such that $n=k+l$. Further, we say that a number is \emph{dependent} iff it is not independent.
+			
+			\item We define $\epsilon$ to be the smallest positive real, i.e. $\epsilon$ is the number $x$ such that $0<x$ and for all reals $y$, if $0<y$, then $\epsilon\leq y$.
+		
+			\item We say that a real number $x$ is a \emph{positive infinitesimal} iff $x$ is a smallest positive real, i.e. iff (i) $0<x$, and (ii) for all reals $y$, if $0<y$, then $x\leq y$.
+		
+			\item We define $11$ to be the first natural number bigger than $10$.
+			
+			\item We define the imaginary number $i$ as the complex number $x$ such that $x^2=-1$. 
+			
+					
+		\end{enumerate}
+		
+		\item Suppose you're asked to prove the following conjecture:
+			\begin{itemize}
+			
+				\item For all natural numbers $n$ and $m$, if $n+m$ is odd, then either $n$ is odd or $m$ is odd.
+			
+			\end{itemize}
+				
+			What do you think is a good proof strategy to tackle this? (This is, of course, somewhat subjective, but think about it!)
+	
+			\begin{enumerate}[(a)]
+
+				\item Prove it directly using conditional proof followed by universal generalization.
+				
+				\item Try indirect proof to the whole statement.
+				
+				\item Use biconditional proof followed by indirect proof and universal generalization.
+				
+				\item Try contrapositive proof followed by a universal generalization.
+				
+				\item Prove the conditional by conditional proof combined with indirect proof, followed by universal generalization.
+				
+				
+				\item Make a distinction by cases followed by universal generalization.
+
+			\end{enumerate}
+		
+			
+
+\end{enumerate}
+
+
+	
+\section{Exercises}
+
+\begin{enumerate}[{\thesection}.1]
+
+	\item For each of the arguments you gave in exercise 1.7.1, determine which argument forms you've used.
+		
+	\item Prove the following simple, number-theoretic facts. Make use of the step-by-step procedure laid out in 2.3.7.
+	
+		\begin{enumerate}[(a)]
+
+			\item $[h]$ The sum of two even numbers is even.
+			
+			\item $[h]$ If the product of two numbers is odd, then at least one of the two numbers is odd. 
+			
+			\item $[h]$ Every number is either even or odd.
+			
+			\item If you add one to an even number, you get an odd number.
+
+			\item The product of two prime numbers is not a prime number.
+			
+			\item No prime number \emph{bigger than two} is the product of an even and an odd number.
+
+		\end{enumerate}
+		
+	\item Let $n$ be a natural number. 
+	
+			\begin{enumerate}[(a)]
+
+				\item Formulate a necessary but not sufficient condition for $n$ being even.
+
+				\item Formulate a sufficient but not necessary condition for $n$ being even.
+				
+				\item Formulate a necessary and sufficient condition for $n$ being even.
+
+			\end{enumerate}
+	
+	\item $[h,\nosym]$ For each of the following mathematical statements, express the statement in ordinary language, without the use of mathematical symbols.
+	
+	\begin{enumerate}[(a)]
+	
+		\item Let $n$ and $m$ be two natural numbers. Then, if there is a number $k$ such that $2k=n$ and there is a natural number $l$ such that $2l=m$, then there exists a natural number $j$ such that $2j=n+m$.
+		
+		\item For every natural number, $n$, either there exists a natural number $k$ such that $2k=n$ or there exists a natural number $k$ such that $2k+1=n$.
+		
+		\item If $n$ is natural number, then there exists a natural number $k$ such that $2k=n^2+n$.
+		
+		\item There is no real number $x$ such that $x<0$ and whenever $y<0$ for some real number $y$, then $y\leq x$. 
+					
+	\end{enumerate}
+	
+	\item $[\nosym]$ Consider our running example from 2.3.7 and its final proof:
+	
+	\begin{proposition}
+				Let $n$ be natural number such that $n$ is prime. If $n>2$, then $n$ is odd.
+				\end{proposition}
+				
+				\begin{proof}
+		Let $n$ be a natural number and assume $n$ is prime. By definition, this means that (i) $1<n$ and (ii) there are no natural numbers $k,l<n$ such that $n=k\cdot l$. We want to show that if $n>2$, then $n$ is odd. So, suppose that $n>2$. By definition, for $n$ to be odd would mean that $n$ is not even. We claim that given our assumptions, $n$ cannot be even and hence must be odd. For suppose that $n$ is even. By definition, this would mean that there exists an $m$ such that $n=2m$. But this would contradict condition (ii) for $n$ being prime: just let $k=2$ and $l=m$. Note that $1<n$ and $n=2m$, it follows that $m<n$ and we have $2<n$ by assumption . So, $n$ cannot be even, which means that $n$ must be odd.
+		\end{proof}
+	
+		Describe the theorem and its proof in natural language without the use of mathematical symbols.
+
+\end{enumerate}
+
+\section{Further Readings}
+\label{mathodology:literature}
+
+It will take a while for you to become perfectly comfortable with mathematical writing and reasoning. Here are some references to books which you can use to learn more about how mathematicians write and think:
+
+	\begin{itemize}
+	
+		\item Houston, Kevin. 2009. \emph{How to Think Like a Mathematician. A Companion to Undergraduate Mathematics}. Oxford, UK: Oxford University Press.
+		
+		The book has a homepage \url{http://www.kevinhouston.net/httlam.html}, which includes sample chapters, corrections, etc.
+		
+		I particularly recommend reading chapters 5, 14--25, and 32--35 (don't worry they're short).
+		
+		\item Vivaldi, Franco. 2014. \emph{Mathematical Writing}. London, UK: Springer. 
+	
+	\end{itemize}
+	
+\noindent I can warmly recommend both of these books, they will make your life much easier when it comes to studying any field that uses modern mathematics, such as logic, (parts of) philosophy, linguistics, (theoretical) computer science, \dots.
+
+%There are also several webpages, which cover
+%
+%\begin{itemize}
+%
+%	\item On reading mathematics: \url{https://web.stonehill.edu/compsci/History_Math/math-read.htm}
+%
+%\end{itemize}
+
+Most of the things we covered above are covered in those books at greater length and in more detail. It might be that, here and there, the books contradict what I said above by way of advice---but those are primarily questions of style and not of substance. 
+
+
+\vfill
+
+\hfill \rotatebox[origin=c]{180}{
+\fbox{
+\begin{minipage}{0.5\linewidth}
+
+\subsection*{Self Study Solutions}
+
+\begin{enumerate}
+
+	\item[2.6.1]  \begin{itemize}
+			\item[(b):] the definition is circular
+			\item[(c):] there is no such number
+			\item[(f):] there's more than one: $i,-i$ 
+			\end{itemize}
+
+	\item[2.6.2]
+	\begin{itemize}
+			\item[(a):] might work
+			\item[(b,c,f):] not very promising
+			\item[(d,e):] most promising
+	\end{itemize}
+	
+\end{enumerate}
+
+
+\end{minipage}}}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

@@ -1,0 +1,349 @@
+%by Maarten Burger, Alexander Apers, and Jos Zuiderwijk
+\chapter{Chapter 10. Tableaux for First-Order Logic}
+
+\section*{10.8 Exercises}
+
+\begin{itemize}
+\item[10.8.1]
+  \begin{enumerate}[(a)]
+  \item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\forall xP(x), grouped
+	[\neg \forall yP(y), grouped
+		[\exists y\neg P(y)
+			[\neg P(p)
+				[P(p), close]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+\item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x\exists yS(x,y)}, grouped
+	[{\neg \exists y\exists xS(x,y)}, grouped
+		[{\exists yS(p_1, y)}
+			[{S(p_1,p_2)}
+				[{\forall y\neg \exists xS(x,y)}
+					[{\neg\exists xS(x,p_2)}
+						[{\forall \neg S(x,p_2)}
+							[{\neg S(p_1, p_2)}, close
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+\item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg \exists xP(x)}, grouped
+	[{\neg \forall x(P(x)\to Q(x))}, grouped
+		[{\exists x\neg (P(x)\to Q(x))}
+			[{\neg (P(p)\to Q(p))}
+				[P(p)
+					[\neg Q(p)
+						[\forall x\neg P(x)
+							[\neg P(p), close
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+\item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall xP(x)}, grouped
+	[{\neg \forall x(Q(x)\to P(x)\lor R(x))}, grouped
+		[{\exists x\neg (Q(x)\to P(x)\lor R(x))}
+			[{\neg (Q(p)\to P(p)\lor R(p))}
+				[Q(p)
+					[\neg (P(p)\lor R(p))
+						[\neg P(p)
+							[\neg R(p)
+								[P(p), close
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+
+\end{enumerate}
+
+\item[10.8.2]
+  \begin{enumerate}[(a)]
+  \item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall x(P(x)\to Q(x))}, grouped
+	[{\exists x\neg P(x)}, grouped
+		[{\neg \forall x\neg Q(x)}, grouped
+			[{\neg P(p_1)}
+				[P(p_1)\to Q(p_1)
+					[\exists x\neg\neg Q(x)
+						[\neg\neg Q(p_2)
+							[Q(p_2)
+								[P(p_2)\to Q(p_2)
+									[\neg P(p_1)
+										[\neg P(p_2)]
+										[Q(p_2)]
+									]
+									[Q(p_1)
+										[\neg P(p_2)]
+										[Q(p_2)]
+									]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+Call the leftmost branch $B$. Then we get $\mathcal{M}_B$ with 
+$D^{\mathcal{M}_B}=\{p_1, p_2\}$ as well as $P^{\mathcal{M}_B}=\emptyset$ and $Q^{\mathcal{M}_B}=\{p_2\}$.
+
+\item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall xP(x)\to \forall yQ(y)}, grouped
+	[{\neg\forall x(P(x)\to \forall yQ(y))}, grouped
+		[\exists x\neg (P(x)\to \forall yQ(y))
+			[\neg (P(p)\to \forall yQ(y))
+				[P(p)
+					[\neg \forall yQ(y)
+						[\exists y\neg Q(y)
+							[\neg Q(q)
+								[\neg \forall xP(x)
+									[\exists x\neg P(x)
+										[\neg P(r)
+										]
+									]
+								]
+								[\forall yQ(y)
+									[Q(q), close]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+Let $B$ be the open branch. We get $\mathcal{M}_B$ with 
+$D^{\mathcal{M}_B}=\{p, q, r\}$ as well as $P^{\mathcal{M}_B}=\{p\}$ and $Q^{\mathcal{M}_B}=\emptyset$.
+\end{enumerate}
+
+\item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg (\forall x\exists yS(x,y)\to \exists xS(x,x))}, grouped
+	[{\forall x\exists yS(x,y)}
+		[{\neg\exists xS(x,x)}
+			[{\forall x\neg S(x,x)}
+				[{\exists yS(p_1, y)}
+					[{\neg S(p_1, p_1)}
+						[{S(p_1, p_2)}
+							[{\exists yS(p_2, y)}
+								[{\neg S(p_2, p_2)}
+									[{S(p_2, p_3)}
+										[\vdots]
+									]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+We get $\mathcal{M}_B$ with 
+$D^{\mathcal{M}_B}=\{p_1, p_2, \mathellipsis\}$ and $S^{\mathcal{M}_B}=\{\langle p_1, p_2\rangle, \langle p_2, p_3\rangle, \mathellipsis\}$.  
+
+%As an exercise, check that $V^{\mathcal{M}_B}_\alpha(\forall x\exists yS(x,y))=1$ and $V^{\mathcal{M}_B}_\alpha(\exists xS(x,x))=0$ for all $\alpha$. To see the latter, note that $\neg S(p_i, p_i)\in B$ for all $p_i$. Hence, $\langle p_i, p_i\rangle\notin S^{\mathcal{M}_B}$ for all $i$.
+
+\item \begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x\neg\exists yS(x,y)}, grouped
+	[{\neg \exists x\forall yS(x,y)}, grouped
+		[{\forall x\neg \forall yS(x,y)}
+			[{\neg\exists yS(p_1, y)}
+				[{\neg\forall yS(p_1, y)}
+					[{\forall y\neg S(p_1, y)}
+						[{\neg S(p_1, p_1)}
+							[{\exists y\neg S(p_1, y)}
+								[{\neg S(p_1, p_2)}
+									[{\neg \forall yS(p_2, y)}
+										[\vdots]
+									]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+\item[10.8.5] (d)
+
+  \begin{center}
+    \begin{prooftree}
+      {
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x(P(x)\land \forall y(P(y)\to x=y))}, grouped
+[{\neg\forall x\forall y(P(x)\land P(y)\to x=y}, grouped
+[{P(p)\land \forall y(P(y)\to p=y)}
+[{P(p)}
+[{\forall y(P(y)\to p=y)}
+[{\exists x\neg\forall y(P(x)\land P(y)\to x=y)}
+[{\neg\forall y(P(q)\land P(y)\to q=y)}
+[{\exists y\neg (P(q)\land P(y)\to q=y)}
+[{\neg (P(q)\land P(r)\to q=r)}
+[{P(q)\land P(r)}
+[{q\neq r}
+[{P(q)}
+[{P(r)}
+[{P(q)\to p=q}
+[{\neg P(q)}, close
+]
+[{p=q}
+[{P(r)\to p=r}
+[{\neg P(r)}, close
+]
+[{p=r}
+[{q=r}, close]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+]
+  \end{prooftree}
+  \end{center}
+
+  \item[10.8.6] The reason why it's not possible to write such an
+    algorithm is that it would lead to a decision procedure for
+    first-order logic, which we know can't exist. Suppose you could in
+    finitely many steps determine whether a formula is invalid, that
+    is: false in some model. Now suppose you're wondering if a given
+    formula is valid. You run the algorithm. If the algorithm tells
+    you the formula is invalid, you know the answer to your question:
+    no. If the algorithm tells you the formula is not invalid, well,
+    then it must be valid; so you know the answer to your question:
+    yes. So, an algorithm that determines invalidity gives an
+    algorithm for validity. We know the later doesn't exist, so the
+    former can't exist either.
+
+    \emph{Hardcore version}. Also such an algorithm would lead to a
+    decision procedure, though in a slightly more complicated
+    fashion. Suppose you're interested in whether a formula is valid
+    but you can only determine whether it's contingent. First, find
+    out whether the formula is contingent. If it is, you know it can't
+    be valid, because a contingent formula is false in some model. If
+    you find out the formula is not contingent, then there are
+    two options: either the formula is true in every model
+    or it is false in every model. We need to figure out in which of
+    the two cases we are. But we can do this using the algorithm
+    again. The way this works is that you pick any contingent formula,
+    say a non-trivial identity claim of the form $a=b$. Then you
+    consider the \emph{disjunction} of your initial form and that
+    contingent formula. Run the algorithm on that statement. If it
+    turns out to be contingent, then the initial formula must be false
+    in every model. If the disjunction turns out to be non-contingent,
+    then the initial formula must be valid. Why so? Well, a disjunction
+    is true iff at least one of the disjuncts is true. Now let's go
+    through the two possible situations. If the initial formula is
+    false in every model, then the disjunction will be true precisely
+    in the models where the contingent formula is true---which means
+    the disjunction will be itself contingent. But if the initial
+    formula was valid, it is true in every model, and so it's
+    disjunction with any other statement will also be true in every
+    model. So, the disjunction of our non-contingent formula and a
+    contingent formula will be non-contingent iff the non-contingent
+    formula is valid.
+  
+\end{itemize}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

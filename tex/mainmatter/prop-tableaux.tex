@@ -1,0 +1,896 @@
+\chapter{Tableaux for Propositional Logic}
+
+\section{Proof Systems}
+
+\begin{enumerate}[\thesection.1]
+
+		\item Remember from the introduction (1.1.9) that the point of a proof system is to formulate syntactic \emph{inference rules} that allow us to derive the conclusion from the premises in all (and only) the valid inferences. There are, in fact, several different \emph{kinds} of proof systems in the literature and we begin this chapter with an overview of the most important ones. What all of these proof systems have in common is that they avoid reference to semantic concepts, like valuations or consequence.
+		
+		\emph{I don't expect you to become fluent in all of the different proof systems covered below. The point is that you should see what they look like and (roughly) how they work.}
+		
+		\item \emph{Hilbert systems} are, essentially, a model of step-by-step axiomatic reasoning in mathematics. A Hilbert system is defined by giving a set of \emph{axioms} (i.e. valid formulas) and a set of \emph{inference rules} (i.e. rules that allow you to infer valid formulas from valid formulas). As an example, here are axioms and rules for a Hilbert system for classical propositional logic:		
+		 \begin{description}
+
+						\item[Hilbert$_1$] $\phi\to (\psi\to \phi)$
+
+						\item[Hilbert$_2$] $(\phi\to (\psi\to \chi))\to((\phi\to \psi)\to (\phi\to \chi))$
+
+						\item[Hilbert$_3$] $(\neg \phi\to \neg \psi)\to (\psi\to\phi)$				
+						
+						\item[Modus Ponens.] From $\phi$ and $(\phi\to\psi)$ infer $\psi$.
+						
+						\item[Definitions.] From $(\phi\land\psi)$ infer $\neg(\phi\to\neg\psi)$ and vice versa; from $(\phi\lor\psi)$ infer  $(\neg\phi\to\psi)$ and vice versa; and from $(\phi\leftrightarrow\psi)$ infer $((\phi\to\psi)\land(\psi\to\phi))$ and vice versa.
+
+		\end{description}
+	A \emph{proof} in the Hilbert system is a sequence of formulas such that each formulas is either an axiom (in our case, an instance of \textbf{Hilbert}$_\text{1--3}$) or inferred from some formulas earlier in the proof via an inference rule (in our case, \textbf{Modus Ponens}  or \textbf{Definitions}). We write $\vdash_H\phi$ to say that there is a proof in the Hilbert system that ends with $\phi$. It can be shown (though we won't do that here) that the Hilbert calculus is sound and complete:
+	 \[\vdash_H\phi\text{ iff }\vDash\phi.\]
+	 That is, a formula is derivable in our Hilbert system iff it is valid. Using the idea of Theorem 5.2.16, we can use the Hilbert system to show that an inference is valid: we know that $\phi_1, \mathellipsis,\phi_n\vDash \psi$ iff $\vDash \phi_1\land \mathellipsis\land \phi_n\to\psi$, which by soundness and completeness of our Hilbert system is equivalent to $\vdash_H \phi_1\land \mathellipsis\land \phi_n\to\psi$
+	 
+	 \item But proving things in Hilbert systems is \emph{hard}. Hilbert systems are very economical, they only have a few axioms and rules---that's it. Our system, for example, has just 3 axioms and 2 rules. This makes reasoning \emph{about} our system very efficient. But it makes reasoning \emph{with} the system had. To see how hard, here I give a derivation of $p\to p$ in our Hilbert system:
+	\begin{enumerate}[1.] 
+
+	\item $((p \to ((p \to p) \to p)) \to ((p \to (p \to p)) \to (p \to p)))$ 
+
+	\item[] \ \hfill (Axiom 2. with $\phi=p, \psi=(p\to p),$ and $\chi=p$)
+
+	\item $(p \to ((p \to p) \to p))$ \hfill (Axiom 1. with $\phi=p$ and $\psi=(p\to p)$)
+
+	\item $((p \to (p \to p)) \to (p \to p))$ \hfill (From 1. and 2. by MP.)
+
+	\item $(p \to (p \to p))$ \hfill (Axiom 1. with $\phi=p$ and $\psi=p$.)
+
+	\item $(p \to p)$\hfill (From 3. and 4. by MP.)
+
+\end{enumerate}
+This is how you would show that $p\vDash p$ using a Hilbert system. Would you have managed to find the proof yourself?
+	
+	
+	\item The next kind of proof system, we'll discuss are \emph{sequent calculi} or \emph{Gentzen systems}. A \emph{sequent} is an expression of the form $\Gamma\Rightarrow\Delta$, where $\Gamma$ and $\Delta$ are sets of formulas. Intuitively, we read a sequent $\phi_1,\mathellipsis,\phi_n\Rightarrow\psi_1,\mathellipsis, \psi_m$ as the claim that $\phi_1\land\mathellipsis\land\phi_n\vDash\psi_1\lor\mathellipsis\lor\psi_m$; that is, sequents are claims about consequence. The point is that we can derive consequence claims from other consequence claims (as we did in the previous chapter). In the Gentzen calculus for propositional logic, there is only one axiom (i.e. consequence claims held to be true no matter what): \[\phi\Rightarrow\phi\tag{Identity}\] The remaining ingredients are several \emph{rules}, which allow us to infer consequence claims from each other. These rules fall into two classes \emph{structural rules}, which don't involve the connectives, and \emph{logical rules}, a pair of two for each connective. 
+
+Here are the structural rules:
+	\begin{center}
+		\begin{tabular}{c c c}
+			\infer[Weak L]{\Gamma\cup\{\phi\}\Rightarrow \Delta}{\Gamma\Rightarrow\Delta} & \infer[Weak R]{\Gamma\Rightarrow \Delta\cup\{\phi\}}{\Gamma\Rightarrow\Delta}\\[2ex]
+			
+			\infer[Cut]{\Gamma\cup\Gamma'\Rightarrow\Delta,\Delta'}{\Gamma\Rightarrow \{\phi\}\cup \Delta & \{\phi\}\cup\Gamma'\Rightarrow\Delta'}
+		\end{tabular}
+	\end{center}
+
+And here are the rules for the connectives:
+
+\begin{center}
+			\begin{tabular}{c c c }
+			
+				\infer[\neg L]{\Gamma\cup\{\neg\phi\}\Rightarrow\Delta}{\Gamma\Rightarrow\Delta\cup\{\phi\}} & \infer[\neg R]{\Gamma\Rightarrow\Delta\cup\{\neg\phi\}}{\Gamma\cup\{\phi\}\Rightarrow\Delta} \\[2ex]
+			
+				\infer[\land L]{\Gamma\cup\{\phi\land \psi\}\Rightarrow \Delta}{\Gamma\cup\{\phi,\psi\}\Rightarrow \Delta} & \infer[\land R]{\Gamma\cup\Gamma'\Rightarrow \{\phi\land \psi\}\cup\Delta\cup\Delta'}{\Gamma\Rightarrow \{\phi\}\cup\Delta & \Gamma'\Rightarrow \{\psi\}\cup\Delta'}\\[2ex]
+				
+				 \infer[\lor L]{\Gamma\cup\Gamma'\cup \{\phi\lor \psi\}\Rightarrow\Delta\cup\Delta'}{\Gamma\cup \{\phi\}\Rightarrow\Delta & \Gamma'\cup\{\psi\}\Rightarrow \Delta'} & \infer[\lor R]{\Gamma\Rightarrow \Delta\cup\{\phi\lor \psi\}}{\Gamma\Rightarrow \Delta\cup\{\phi,\psi\}}\\[2ex]
+				 
+				 \infer[\to L]{\Gamma\cup\Gamma'\cup\{\phi\to\psi\}\Rightarrow\Delta\cup\Delta'}{\Gamma\Rightarrow \{\phi\}\cup\Delta' & \Gamma'\cup\{\psi\}\Rightarrow \Delta'} & \infer[\to R]{\Gamma\Rightarrow \{\phi\to\psi\}\cup\Delta}{\Gamma\cup\{\phi\}\Rightarrow\{\psi\}\cup\Delta}
+				
+			\end{tabular}
+			\end{center}
+It is possible to give rules $\leftrightarrow L$ and $\leftrightarrow R$ as well, but they are complicated. Typically, in sequent calculus, $\phi\leftrightarrow\psi$ is considered \emph{defined} as $(\phi\to\psi)\land(\psi\to\phi)$. A proof in a Gentzen system is an upwards down tree whose leaves are all axioms and whose branches are constructed according to the rules. We write $\Gamma\vdash_G\Delta$ to say that there is a proof with $\Gamma\Rightarrow\Delta$ as its root. It is possible to show (in fact, it's not that difficult) that \[\Gamma\vdash_G\phi\text{ iff }\Gamma\vDash\phi\]
+
+	\item Gentzen calculi have some very nice properties from a theoretical perspective. This is why you will likely encounter them in courses that focus on proof theory. But they are a bit hard to wrap your head around since they are very ``meta:'' you infer claims about consequence from claims about consequence. Here is an example of a Gentzen proof that $\neg(p\lor q)\vDash \neg p\land \neg q$:
+
+	\begin{center}
+		\begin{tabular}{c}
+		\infer[\land R]{\neg(p\lor q)\Rightarrow \neg p\land \neg q}{\infer[\neg R]{\neg(p\lor q)\Rightarrow \neg p}{\infer[\neg L]{\neg (p\lor q),p\Rightarrow \emptyset}{\infer[\lor R]{p\Rightarrow p\lor q}{\infer[Weak R]{p\Rightarrow p,q}{p\Rightarrow p}}}} & \infer[\neg R]{\neg(p\lor q)\Rightarrow \neg q}{\infer[\neg L]{\neg (p\lor q),q\Rightarrow \emptyset}{\infer[\lor R]{q\Rightarrow p\lor q}{\infer[Weak R]{q\Rightarrow p,q}{q\Rightarrow q}}}}}
+		\end{tabular}
+	\end{center}
+	It is actually quite easy to find sequent proofs, even though they are difficult to understand properly. Here, however, we shall not go more into the depth of sequent calculi.
+	
+	\item The third kind of proof system you should have seen is what's called a \emph{natural deduction} system. Natural deduction systems are characterized by having \emph{no} axioms, only rules that allow you to infer formulas from each other. The idea of natural deduction is to model the kind of informal reasoning we naturally do in mathematical proofs. The main aspect is the idea of \emph{assumptions}. In a natural deduction proof, you may assume any formula at any point during the proof. But you may only proceed via the inference rules. Some of these rules \emph{cancel} previous assumptions, which is done by writing $[\phantom{\phi}]$ around the assumption. Here are the natural deduction rules for propositional logic:
+		\begin{center}
+
+			\begin{tabular}{c c c}
+				
+				\infer[EFQ]{\psi}{\phi & \neg \phi} & & \infer[Biv]{\psi}{\infer*{\psi}{[\phi]} & \infer*{\psi}{[\neg\phi]}}\\[2ex]\\[2ex]
+				
+				\infer[\land I]{\phi\land \psi}{\phi & \psi} & \infer[\land E_1]{\phi}{\phi\land \psi} & \infer[\land E_2]{\psi}{\phi\land \psi}\\[2ex]
+				
+				\infer[\lor I_1]{\phi\lor\psi}{\phi} & \infer[\lor I_2]{\phi\lor\psi}{\psi} & \infer[\lor E]{\theta}{\phi\lor\psi & \infer*{\theta}{[\phi]} & \infer*{\theta}{[\psi]}}\\[2ex]
+
+				\infer[\to I]{\phi\to \psi}{\infer*{\psi}{[\phi]}} & & \infer[\to E]{\psi}{\phi\to\psi & \phi}
+
+			\end{tabular}
+			
+			\end{center}
+	Similar to sequent calculi, there are two kinds of rules: \emph{introduction} and \emph{elimination rules}, i.e. rules that allow you to infer a statement with a connective and rules that allow you to infer something from a statement with a connective. 
+	
+	A natural deduction proof is an upside down tree (like a sequent calculus proof) of formulas whose branches are constructed according to the rules. We write $\Gamma\vdash_N\phi$ to say that there exists a natural deduction proof whose root is $\phi$ and the formulas at the leaves that don't have $[\phantom{\phi}]$ written around them are all in $\Gamma$. It's a bit more tricky, but possible to show that \[\Gamma\vdash_N\phi\text{ iff }\Gamma\vDash\psi\]
+	
+	\item Here's an example of a natural deduction proof:
+	\begin{center}
+			\begin{tabular}{c}
+				\infer[\lor E, 1]{q}{p\lor q & [q] &\infer[EFQ]{q}{[p] & \neg q}}
+			\end{tabular}
+		\end{center}	
+	This proof shows that $p\lor q,\neg q\vdash_N p$.
+
+	\item In this course, we will not cover Hilbert calculi, Gentzen calculi, or natural deduction in detail. If you take a liking to one of these systems, you can check out the references at the end of this chapter. In this course, we'll make use of \emph{analytic tableaux}, which double as a proof system and decision procedure for propositional logic. In the following sections, we will motivate and develop this proof system in some more detail.
+
+	\end{enumerate}
+	
+
+\section{Satisfiability and Consequence}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item Just like the method of truth-tables we discussed in the previous chapter, the method of analytic tableaux has a theoretical foundation in an important theorem. In this section, we shall state and prove this theorem.
+		
+		\item  But first, we need to introduce a new theoretical concept, the concept of \emph{satisfiability}. A set of formulas $\Gamma\subseteq\mathcal{L}$ is said to be satisfiable iff there exists a valuation $v$ such that $\llbracket\phi\rrbracket_v=1$ for all $\phi\in\Gamma$. In words, a set of formulas is satisfiable iff there exists a valuation that makes all the members of the set true. 
+		
+		\item Let's consider some examples of satisfiable sets (where we assume, again, that $\mathcal{P}=\{p,q,r,\}$):
+		
+			\begin{enumerate}[(a)]
+			
+				\item The whole set $\mathcal{P}=\{p,q,r\}$ is satisfiable since $v(p)=1, v(q)=1, v(r)=1$ is a valuation that makes all the members of $\mathcal{P}$ true.
+				
+				\item Any subset $X\subseteq \mathcal{P}$ is satisfiable since $v(p)=1$ iff $p\in X$ defines a valuation $v$ that makes all the members of $X$ true.
+				
+				\item The empty set $\emptyset$ is satisfiable since \emph{every} valuation makes all the members of $\emptyset$ true (again, ask yourself: can there be a valuation that doesn't make some member of $\emptyset$ true?). 
+				
+				\item We can even more generally note that any subset of a satisfiable set is satisfiable:
+				
+				\begin{proposition}. Let $\Gamma,\Delta\subseteq\mathcal{L}$ be sets of formulas. If $\Gamma$ is satisfiable and $\Delta\subseteq \Gamma$, then $\Delta$ is satisfiable.
+				\end{proposition}
+				
+				\begin{proof}
+				Let $\Gamma,\Delta\subseteq\mathcal{L}$ be sets of formulas such that $\Gamma$ is satisfiable and $\Delta\subseteq \Gamma$. That $\Gamma$ is satisfiable means, by definition, that there exists a valuation $v$ such that $\llbracket\phi\rrbracket_v=1$ for all $\phi\in\Gamma$. We need to show that  that there exists a valuation $v'$ such that $\llbracket\psi\rrbracket_{v'}=1$ for all $\psi\in\Delta$. But we can simply let $v'$ be $v$. For let $\psi$ be an arbitrary element of $\Delta$. Since $\Delta\subseteq\Gamma$, we have that $\psi\in\Gamma$. And we have that $\llbracket\phi\rrbracket_v=1$ for all $\phi\in\Gamma$, and so $\llbracket\psi\rrbracket_v=1$. Hence $\llbracket\psi\rrbracket_{v}=1$ for all $\psi\in\Delta$, as desired.
+				\end{proof} 
+				
+				\item The set $\{p\lor\neg p\}$ is satisfiable since (as we proved in 5.2.11) $p\lor\neg p$ is true under \emph{every} valuation.
+				
+				\item The set $\{p\to q, \neg q\}$ is satisfiable since $v(p)=0,v(q)=0,$ and $v(r)$ arbitrary defines a valuation that makes both $p\to q$ and $\neg q$ true.				
+			
+			\end{enumerate}
+			
+		\item So, what does it mean for a set of formulas to be \emph{un}satisfiable? Well, it follows immediately from the definition that a set $\Gamma$ of formulas is unsatisfiable iff there exists no valuation $v$ such that $\llbracket\phi\rrbracket_v=1$ for all $\phi\in\Gamma$; in words, a set of formulas is unsatisfiable iff there is no valuation that makes all the members of the set true or, equivalently, iff every valuation makes some member false. So, intuitively, unsatisfiability is a kind of inconsistency: a set of formulas is unsatisfiable iff its members can't all be made true by a valuation.
+		
+		\item Let's consider some examples of \emph{un}satisfiable sets (assuming, again, that $\mathcal{P}=\{p,q,r,\}$):
+		
+		\begin{enumerate}[(a)]
+		
+			\item Any set $\{\phi, \neg \phi\}$ for $\phi\in\mathcal{L}$ is unsatisfiable. This immediately follows from the fact noted in 5.1.10 that for each valuation $v$ and formula $\phi\in\mathcal{L}$, we have that either $\llbracket\phi\rrbracket_v=1$ or $\llbracket\phi\rrbracket_v=0$ (and never both); that is $\llbracket\cdot\rrbracket_v$ is a \emph{function} from $\mathcal{L}$ to $\{0,1\}$. But if both $\llbracket\phi\rrbracket_v=1$ and $\llbracket\neg \phi\rrbracket_v=1$, it would follow that $\llbracket\phi\rrbracket_v=1$ and $\llbracket\phi\rrbracket_v=0$, since $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket_v$. It follows, for example, more concretely that $\{p,\neg p\}$ is unsatisfiable. 
+	
+			\item A more general consequence of the previous observation is that the set $\mathcal{L}$ of \emph{all} formulas is unsatisfiable. To see this, simply observe that $\phi,\neg\phi\in\mathcal{L}$ and so if $\mathcal{L}$ would be satisfiable (i.e. all its members would be made true by some valuation), then $\llbracket\phi\rrbracket_v=1$ and $\llbracket\neg \phi\rrbracket_v=1$, which we've just seen is impossible.
+			
+			\item The point generalizes even more:
+			
+			\begin{proposition}
+			Let $\Gamma,\Delta\subseteq\mathcal{L}$ be sets of formulas. If $\Gamma$ is unsatisfiable and $\Gamma\subseteq \Delta$, then $\Delta$ is unsatisfiable.
+			\end{proposition}
+			\begin{proof}
+			We prove this by contradiction. So, let $\Gamma,\Delta\subseteq\mathcal{L}$ be sets of formulas, $\Gamma$ unsatisfiable, $\Gamma\subseteq \Delta$, and suppose, for contradiction, that $\Delta$ is satisfiable. This would mean that there exists a valuation $v$ such that $\llbracket\phi\rrbracket_v=1$ for all $\phi\in\Delta$. But then, since $\Gamma\subseteq\Delta$, it would follow that for all $\psi\in\Gamma$, $\llbracket\psi\rrbracket_v=1$, which means that $\Gamma$ would be satisfiable. Contradiction! Hence $\Delta$ is unsatisfiable, as desired.
+		\end{proof}
+		
+		
+			\item Finally, let's consider a less abstract/more concrete example: the set $\{p\lor q, \neg p, \neg q\}$ is unsatisfiable. To see this, suppose that $v$ is a valuation with $\llbracket p\lor q\rrbracket_v=1$, $\llbracket\neg p\rrbracket_v=1$, and $\llbracket\neg q\rrbracket_v=1$. Since $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket_v$, we get immediately that  $\llbracket p\rrbracket_v=0$ and $\llbracket q\rrbracket_v=0$. But since $\llbracket p\lor q\rrbracket_v=max(\llbracket p\rrbracket_v, \llbracket p\rrbracket_v)$ and  $\llbracket p\lor q\rrbracket_v=1$, that either $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$ (otherwise, how could $max(\llbracket p\rrbracket_v, \llbracket p\rrbracket_v)=1$?)---but either case leads to a contradiction. Hence, we cant have that  $\llbracket p\lor q\rrbracket_v=1$, $\llbracket\neg p\rrbracket_v=1$, and $\llbracket\neg q\rrbracket_v=1$ for any $v$; that is, $\{p\lor q, \neg p, \neg q\}$ is unsatisfiable.
+		
+		\end{enumerate}
+		
+	\item The reason why we talk about satisfiability is that the method of analytic tableaux is a method for satisfiability checking: it's an algorithm that allows us to determine, purely syntactically, whether a set of formulas in propositional logic is satisfiable. ``But what does this have to do with proof theory?'' you may ask. And rightly so---we haven't connected the questions of satisfiability and validity yet. This is what we're doing in the following theorem:
+			
+			\begin{theorem}[I Can't Get No Satisfaction]
+			Let $\Gamma\subseteq\mathcal{L}$ be a set of formulas and $\phi\in\mathcal{L}$ a formula. Then, the following are equivalent:
+			\begin{enumerate}[1.]
+			
+				\item $\Gamma\vDash\phi$
+				
+				\item $\Gamma\cup\{\neg\phi\}$ is unsatisfiable
+			
+			\end{enumerate}
+			\end{theorem} 
+			\begin{proof}
+			We need to show two things: $1.\Rightarrow 2.$ and $2. \Rightarrow 1.$ We do so in turn:
+			
+			\begin{itemize}
+			
+				\item ($1.\Rightarrow 2.$) We proceed by conditional proof. So suppose that ($\ast$) $\Gamma\vDash \phi$, i.e. for all $v$, if $\llbracket \psi\rrbracket_v=1$, for all $\psi\in\Gamma$, then $\llbracket\phi\rrbracket_v=1$. We proceed by indirect proof to show that $\Gamma\cup\{\neg \phi\}$ is unsatisfiable. So suppose that $\Gamma\cup\{\neg \phi\}$ \emph{is} satisfiable, i.e. there is a valuation $v$ such that $\llbracket\psi\rrbracket_v=1$ for all $\psi\in\Gamma\cup\{\neg \phi\}$. Then $\llbracket\psi\rrbracket_v=1$, for all $\psi\in\Gamma$, since $\Gamma\subseteq \Gamma\cup\{\neg \phi\}$. And so by ($\ast$), we know that $\llbracket\phi\rrbracket_v=1$. But also $\{\neg\phi\}\subseteq \Gamma\cup\{\neg \phi\}$, so $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket=1$, which means that $\llbracket\phi\rrbracket_v=0$. Contradiction. So we can conclude that $\Gamma\cup\{\neg \phi\}$ is unsatisfiable, given our assumption that $\Gamma\vDash \phi$. So by conditional proof, we get that if $\Gamma\vDash\phi$, then $\Gamma\cup\{\neg\phi\}$ is unsatisfiable.
+				
+				\item ($2.\Rightarrow 1.$) Suppose (for conditional proof) that $\Gamma\cup\{\neg\phi\}$ is unsatisfiable, i.e. there exists no valuation $v$ such that $\llbracket \psi\rrbracket_v=1$ for all $\psi\in \Gamma\cup\{\neg\phi\}$. We want to show that $\Gamma\vDash\phi$ and do so indirectly. So, suppose that $\Gamma\nvDash\phi$; that is, suppose that there exists a valuation $v$ such that $\llbracket \psi\rrbracket_v=1$ for all $\psi\in \Gamma$ and $\llbracket \phi\rrbracket_v=0$. But then, since $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket$, it follows that $\llbracket\neg\phi\rrbracket_v=1$. And this just means that $\llbracket \psi\rrbracket_v=1$ for all $\psi\in \Gamma\cup\{\neg\phi\}$---in contradiction to  $\Gamma\cup\{\neg\phi\}$ being unsatisfiable. Hence $\Gamma\vDash\phi$, as desired.
+			
+			\end{itemize}
+			\end{proof}
+		
+	\item A good way of understanding this theorem is by looking at an example. Remember from 6.2.5.d that $\{p\lor q, \neg p, \neg q\}$ is unsatisfiable. Note that the proof of this can equally be read as a proof of $p\lor q,\neg p\vDash\neg q$. Just compare it to 5.2.3.iv!
+		
+	\item The point of the previous theorem is that we can reduce the question of the validity of arguments to the satisfiability of a set of formulas: by the previous theorem, an inference is valid iff the set of premises together with the negation of the conclusion is unsatisfiable. In the following section, we will make use of this idea to develop the method of analytic tableaux as a proof theory for propositional logic.
+		
+	\end{enumerate}
+
+\section{Analytic Tableaux}
+			
+	\begin{enumerate}[\thesection.1]
+
+		\item The method of analytic tableaux is an algorithm for determining whether a (finite) set of formulas is satisfiable. In this way, via Theorem 6.2.6, analytic tableaux allow us to determine whether a given inference is valid---we get another decision procedure for propositional logic. What makes the method of tableaux proof theoretic is that it proceeds step-by-step and purely syntactically: no mention of semantic concepts (like truth) is made in the formulation of the procedure. This is in stark contrast to the method of truth-tables, which makes \emph{explicit} reference to truth. We will now describe \emph{how} the method works and in the next chapter prove \emph{that} it does.
+		
+		\item The aim of our algorithm is to determine whether a given, finite set of formulas is satisfiable. So, as input, we get a set $\Gamma$ of formulas. We will check the satisfiability of $\Gamma$ by constructing a \emph{tree} (yet another use of trees) according to the following recipe:
+		
+		\begin{enumerate}[1.]
+		
+			\item We begin by writing down the members of $\Gamma$ as the \emph{initial list}. This list forms the root of our tableau.
+			
+			\item[] \emph{Examples}.
+			
+			\begin{itemize}
+
+				\item $\Gamma=\{p\lor q, \neg p, \neg q\}$
+
+				\item[] Initial List: 
+
+					\begin{prooftree}
+						{
+						line numbering=false,
+						line no sep= 2cm,
+						for tree={s sep'=5mm},
+						single branches=true,
+						close with=\xmark
+						}
+						[p\lor q, grouped [\neg p, grouped [\neg q, grouped] ] ]
+					\end{prooftree}
+					
+				\item $\Gamma=\{p\land q, \neg p\lor q, \neg (q\land \neg \neg r)\}$
+
+					\item[] Initial List:
+
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[p\land q, grouped [ \neg p\lor q, grouped [\neg (q\land \neg \neg r), grouped ] ] ]
+					\end{prooftree}
+					
+
+			\end{itemize}
+			
+		\item Next, we repeatedly apply the following rules: 
+					
+					\vspace{2ex}
+				
+					\begin{center}
+					
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg\neg \phi [\phi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\land\psi [\phi [\psi ] ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg (\phi\land\psi) [\neg \phi ] [\neg \psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\lor\psi [\phi ] [\psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\lor\psi) [\neg\phi [\neg\psi ] ] ]
+					\end{prooftree}
+
+					\vspace{2ex}
+
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg (\phi\to\psi) [\phi [\neg \psi ] ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\to\psi [\neg \phi ] [\psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\leftrightarrow \psi [\phi [\psi] ] [\neg \phi [\neg \psi] ] ]]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\leftrightarrow \psi) [\phi [\neg \psi] ] [\neg \phi [ \psi] ] ]]
+					\end{prooftree}
+
+				\end{center}
+			We read these rules as follows:
+			
+				\begin{itemize}
+		
+			\item If there's a node with a formula to which no rule has been applied yet, then we apply the rule by extending every branch that goes through the node as shown by the rule.\footnote{Order doesn't matter.}
+			
+			\end{itemize}
+			
+			 If all the rules that can be applied have been applied, then we say that the tableau is \emph{complete}.
+		
+		
+			\item[] \emph{Examples (Cont'd)}. The initial lists that we gave as examples above can be extended to complete tableaux as follows:
+			
+				\begin{center}
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[p\lor q, grouped [\neg p, grouped [\neg q, 					grouped [p] [q] ] ] ]
+					\end{prooftree}
+					
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 1cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[p\land q, grouped [ \neg p\lor q, grouped [\neg (q\land \neg\neg r), grouped [p [q [\neg p [\neg q] [\neg\neg\neg r [\neg r] ] ] [q [\neg q] [\neg\neg\neg r [\neg r] ] ] ] ] ] ] ]
+					\end{prooftree}
+				\end{center}
+				
+			\item Once we've completed our tableau, we check on every branch $B$ whether there is a $p\in\mathcal{P}$ such that $p\in B$ and $\neg p\in B$.
+			
+			\begin{itemize}
+		
+			\item if yes, then we say that $B$ is \emph{closed}, and mark it by writing an {\xmark} under it;
+			
+			\item if no, then we say that $B$ is \emph{open}. 
+		
+		\end{itemize}
+		
+			\item[] \emph{Examples (Cont'd).} In our examples, we get the following results:
+			
+			\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\lor q, grouped [\neg p, grouped [\neg q, grouped [p, close] [q, close] ] ] ]
+\end{prooftree}
+
+{\begin{prooftree}
+{
+line numbering=false,
+line no sep= 1cm,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\land q, grouped [ \neg p\lor q, grouped [\neg (q\land \neg\neg r), grouped [p [q [\neg p [\neg q, close] [\neg\neg\neg r [\neg r, close] ] ] [q [\neg q, close] [\neg\neg\neg r [\neg r ] ] ] ] ] ] ] ]
+\end{prooftree}}
+\end{center}
+
+		
+			\item We now check our tableau whether there an open branch in the tree (i.e. a branch without an {\xmark} underneath):			
+			\begin{itemize}
+			
+				\item If yes, the tableau is called \emph{open} and the set is satisfiable.
+				
+				\item If no, the tableau is called \emph{closed} and the set is unsatisfiable.
+			
+			\end{itemize}
+		
+		\end{enumerate}
+		
+		\item Lets talk about the idea behind the algorithm for a moment. The idea is that the rules allow us to test, step-by-step, what would need to be the case for the formulas in the tree to be true. A rule creates new branches if there's more than one possibility for the formula to be true. The idea can be given in the following two principles:
+		
+		\begin{description}
+			
+				\item[Down Preservation.] If the formula $\phi$ at the parent node of a rule is true under a valuation $v$, i.e. $\llbracket \phi\rrbracket_v=1$, then at least one formula $\psi$ on a newly generated child node is true under $v$, i.e. $\llbracket \psi\rrbracket_v=1$.
+				
+				\item[Up Preservation.] If a formula $\psi$ at a newly generated child node is true under $v$, $\llbracket \psi\rrbracket_v=1$, then the formula $\phi$ at the parent node is true, i.e. $\llbracket \phi\rrbracket_v=1$.
+			
+			\end{description}
+		Following this idea, we ultimately create a tree in which each branch corresponds (intuitively) to a possible valuation making all its members true. More formally, the idea is that each complete branch $B$ corresponds to a valuation $v_B$, such that $\llbracket\phi\rrbracket_{v_B}=1$ whenever $\phi\in B$. Note, however, that in contrast to the method of truth-tables, we don't use the recursive definition of truth in the formulation of our method. The method is purely syntactic.
+		
+		%Insert examples
+		
+		\item And what's the deal with the {\xmark}'s? Well, a branch $B$ can only correspond to a \emph{real} valuation if there is no $p\in\mathcal{P}$ such that $p,\neg p\in B$. This is so, because $v$ needs to be a \emph{function} and if it would make both $p$ and $\neg p$ true, i.e. if $\llbracket p\rrbracket_v=1$ and $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v=1$, we'd need to have $v(p)=1$ and $v(p)=0$, which is impossible. Hence a branch $B$ with some $p,\neg p\in B$ doesn't correspond to a real possibility and can thus be eliminated. 
+		
+		If in this way, we eliminate all the possible evaluations, we have shown that there is no valuation that makes all the members of the formulas in the initial list true. Note that the initial list is the only node that is on every branch of the tree---it is the root. Well, strictly speaking we will need to prove this; and we will, in the next chapter.
+		
+		\item But for now, let's focus on the pragmatics. We will now first discuss how to get a valuation from an open branch that makes the formulas on the branch---and thus the initial list---true. If $B$ is an open branch of a complete tableau, then we define its associated interpretation $v_B:\mathcal{P}\to\{0,1\}$ by setting:\[v_B(p):=\begin{cases} 1 &\text{if }p\in B\\0&\text{if }p\notin B\end{cases}\]	
+		Note that since we assume that $B$ is open, $v_B$ is indeed a function! (Why?) In fact, if $B$ is open and $\neg p\in B$, then $p\notin B$, and hence $v_B(p)=0$---and so $\llbracket \neg p\rrbracket_{v_B}=1-\llbracket p\rrbracket_{v_B}=1$. In fact, as we will show in the next chapter, we will get as a theorem that every formula of an open branch is true under the associated interpretation:
+		
+		\begin{theorem}[To be proven later]
+		Let $B$ be an open branch of a complete tableau and $v_B$ it's associated valuation. Then for all $\phi\in B$, we have that $\llbracket\phi\rrbracket_{v_B}=1$.
+		\end{theorem}
+		
+		\item \emph{Example}. Let's consider our example of an open tableau from the description of the tableau method:
+		
+		\begin{center}
+{\small\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\land q, grouped [ \neg p\lor q, grouped [\neg (q\land \neg\neg r), grouped [p [q [\neg p [\neg q, close] [\neg\neg\neg r [\neg r, close] ] ] [q [\neg q, close] [\neg\neg\neg r [\neg r ] ] ] ] ] ] ] ]
+\end{prooftree}}
+\end{center}
+
+	In this case, the associated interpretation of the only open branch $B$ (the right-most one) is given by $v_B(p)=1, v_B(q)=1, v_B(r)=0$.
+		
+		\item Note that since the initial list, the members of our set $\Gamma$, are on every branch of tableau (they're on the root, after all), it follows that if there's an open branch, then the initial list is on it. So, by the Theorem stated (but not proven!) in 6.3.5, we have that $v_B$ makes all the members of $\Gamma$ true. We will use this now to define a proof method using analytic tableaux.
+		
+		\item Using the idea that $\Gamma\vDash \phi$ iff $\Gamma\cup\{\neg\phi\}$ is unsatisfiable (by Theorem 6.2.6), we define $\Gamma\vdash_T \varphi$ as meaning that the complete tableau for $\Gamma\cup\{\neg\varphi\}$ is closed (i.e. not open). As a notational convention, we usually leave out the $_T$ and just write $\Gamma\vdash\varphi$. So, to be perfectly explicit, the idea is that if the tableau for $\Gamma\cup\{\neg\phi\}$ is closed, then there is no valuation that makes all its members true, the set is unsatisfiable; but that just means that $\Gamma\vDash\phi$. If, instead, the tableau for $\Gamma\cup\{\neg\varphi\}$ is open, then there is such a valuation, which shows that $\Gamma\nvDash\phi$. So, in the tableau method, our step-by-step syntactic procedure, our proof, is the construction of the tableau. And, as it turns out, we cannot only use this method to derive the conclusion from the premises in all (and only) the valid inferences; in fact, we can also show that all invalid inferences in fact are invalid---and we get a countermodel to show this for free, on top. 
+		
+		\item Note that in order to prove that a formula is a logical truth, we need to show that it follows from the empty set. Remember: $\vDash\phi$ means that $\emptyset\vDash\phi$. Using the method of tableaux, this means that we need to check if the set $\{\neg\phi\}$ is satisfiable. If it is, then there is a valuation in which $\neg\phi$ is true, so $\phi$ false, and so $\phi$ is not a logical truth; if $\{\neg\phi\}$ is not satisfiable, then $\neg\phi$ is always false, so $\phi$ always true, and so $\phi$ a logical truth.
+		
+		\item Let's consider a bunch of examples:
+		
+			\begin{enumerate}[(a)]
+			
+				\item \emph{De Morgan 1}
+				
+				\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\neg p\lor \neg q\vdash \neg (p\land q)},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg p\lor \neg q, grouped [\neg \neg (p\land q), grouped [p\land q [\neg p [p [q, close] ]] [\neg q [p [q, close] ]]] ] ]
+\end{prooftree}\qquad \begin{prooftree}
+{
+proof statement format={centered},
+to prove={\neg (p\land q)\vdash \neg p\lor \neg q},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg (p\land q), grouped [\neg(\neg p\lor \neg q), grouped [\neg\neg p [\neg\neg q [\neg p [p [q, close ] ] ] [\neg q [p [q, close]] ]] ]]]
+\end{prooftree}
+\end{center}
+
+			\item \emph{De Morgan 2}
+
+			\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\neg p\land \neg q\vdash \neg (p\lor q)},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg p\land \neg q, grouped [\neg \neg (p\lor q), grouped [p\lor q [ p [\neg p [\neg q, close]]] [q [\neg p [\neg q, close] ]]] ] ]
+\end{prooftree}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\neg (p\lor q)\vdash \neg p\land \neg q},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg (p\lor q), grouped [\neg(\neg p\land \neg q), grouped [\neg p [\neg q [\neg \neg p [p, close]] [\neg \neg q [q, close]] ]] ]]
+\end{prooftree}
+\end{center}
+
+			
+			\item \emph{Law of Excluded Middle}
+			
+			\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\vdash p\lor \neg p},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg(p\lor \neg p) [\neg p [\neg\neg p [p, close]] ] ]
+\end{prooftree}
+\end{center}
+			
+
+			\item \emph{Definition of the Conditional}
+			
+			\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\vdash (\neg p\lor q)\leftrightarrow (p\to q)},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[\neg((\neg p\lor q)\leftrightarrow (p\to q)) [(\neg p\lor q) [\neg  (p\to q) [p [\neg q [\neg p, close] [q, close]] ]  ]] [\neg(\neg p\lor q) [(p\to q) [\neg\neg p [\neg q [\neg p [p, close ] ] [q [p, close ] ] ]] ] ] ]
+\end{prooftree}
+\end{center}
+
+	\item \emph{Transitivitiy}
+	
+	\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={(p\to q), (q\to r)\vdash (p\to r)},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\to q, grouped [q\to r, grouped [\neg (p\to r), grouped [p [\neg r [\neg p [\neg q, close] [r, close] ] [q [\neg q, close] [r, close]] ] ]] ] ]
+\end{prooftree}
+\end{center}
+
+	\item \emph{Distributivity}
+	
+	\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={(p\lor q)\land r\vdash (p\land r)\lor (q\land r)},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[(p\lor q)\land r, grouped [\neg((p\land r)\lor (q\land r)), grouped [p\lor q [r [\neg (p\land r) [\neg (q\land r) [p [\neg p [\neg q,close] [\neg r, close]] [\neg r [\neg q,close] [\neg r, close]]] [q [\neg p [\neg q,close] [\neg r, close]] [\neg r [\neg q,close] [\neg r, close]]]]]]]]]
+\end{prooftree}
+\end{center}		
+		
+	\end{enumerate}	
+		
+	\item Note that by Definition 6.3.8, we have that $\Gamma\nvdash\phi$ iff the tableau for $\Gamma\cup\{\neg\phi\}$ is open. In that case, we get a countermodel showing that $\Gamma\nvDash \phi$ for free. Here are a couple of examples:
+	
+	\begin{enumerate}[(a)]
+	
+		\item \emph{Fallacy Affirming the Consequent}
+		
+		
+		\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={p\to q, q\nvdash p},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\to q, grouped [q, grouped [\neg p, grouped [\neg p] [q]]]]
+\end{prooftree}
+
+\vspace{2ex}
+\emph{Countermodel}: $v_B(q)=1, v_B(p)=0$.
+\end{center}
+
+	\item \emph{Fallacy of Affirming the Disjunct}
+	
+	\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={p\lor q, p\nvdash \neg q},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\lor q, grouped [p, grouped [\neg\neg q, grouped [q [p] [q]] ]]]
+\end{prooftree}
+
+\vspace{2ex}
+\emph{Countermodel}: $v_B(p)=1, v_B(q)=1$.
+\end{center}
+
+	\item \emph{Messed Up Distributivity}
+	
+	\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={(p\lor r)\land (q\lor r)\nvdash (p\lor q)\land r},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[(p\lor r)\land (q\lor r), grouped [\neg((p\lor q)\land r), grouped  [p\lor r [q\lor r [\neg(p\lor q) [\neg p [\neg q [p [q,close] [r, close]] [r[q,close] [r]]]]] [\neg r [p [q] [r, close ]] [r [q,close] [r, close]]]] ] ]] ]
+\end{prooftree}
+
+\vspace{2ex}
+\emph{Countermodel} (left most branch): $v_B(p)=0, v_B(q)=0, v_B(r)=1$
+\end{center}
+		
+	
+	\end{enumerate}
+	
+	\item Let's conclude with one remark. Note that, officially, we're only allowed to close branches once we've completed the entire tree. In practice, however, it's often possible to stop early---as soon as we find a formula $\phi$ and its negation $\neg\phi$ on a branch, we know that we'll also eventually find a $p$ and $\neg p$ on the branch. So we can ``close early.'' In practice, this will be fine but for now, I'd like you to stick to the official rules. It's a bit like with official notation and conventional notation. The official rules (don't close early) are there to ensure that no mistakes are made. Once we're more comfortable doing tableau---when we do them for first-order logic---you'll be allowed to ``close early.''
+	
+	\end{enumerate}		
+					
+\section{Core Ideas}
+
+\begin{itemize}
+
+	\item There are several different \emph{kinds} of proof systems: Hilbert calculi, sequent calculi, natural deduction, and analytic tableaux. In this course, we use analytic tableaux. 
+	
+	\item A set of formulas is satisfiable iff there is a valuation that makes all of its members true.
+	
+	\item An inference is valid iff the set of the premises and the negation of the conclusion is unsatisfiable.
+	
+	\item The method of analytic tableaux is an algorithm for checking whether a set of formulas is satisfiable: if the tableau for a set is open, then the set is satisfiable.
+	
+	\item We define a proof system using analytic tableaux by defining derivability as the tableau for the set of premises plus negation of conclusion being closed.
+	
+	\item We can read-off a countermodel from an open branch of an open tableau.
+
+\end{itemize}
+
+\section{Self Study Questions}
+
+	\begin{enumerate}[\thesection.1]
+	
+			\item Consider a set $\Gamma$. Which of the following implies that $\Gamma$ is satisfiable?
+		
+		\begin{enumerate}[(a)]
+
+			\item For all valuations $v$, there is a formula $\phi\in\Gamma$, such that $\llbracket\phi\rrbracket_v=1$.
+			
+			\item For all valuations $v$ and all formulas $\phi\in\Gamma$, we have $\llbracket\phi\rrbracket_v=1$.
+			
+			\item For some valuation $v$ there is a formula $\phi\in\Gamma$ such that $\llbracket\phi\rrbracket_v=1$.
+			
+			\item For some valuation $v$ and all formulas $\phi\in\Gamma$, we have $\llbracket\phi\rrbracket_v=1$.
+			
+			\item For all $\phi\in\Gamma$ there exists a valuation $v$ with $\llbracket\phi\rrbracket_v=1$.
+			
+			\item For all $\phi\in\Gamma$ and valuations $v$, we have $\llbracket\phi\rrbracket_v=1$.
+			
+			\item For some $\phi\in\Gamma$ there exists a valuation $v$ with $\llbracket\phi\rrbracket_v=1$.
+
+			\item For some $\phi\in\Gamma$ we have for all valuations $v$ that $\llbracket\phi\rrbracket_v=1$.
+
+		\end{enumerate}
+	
+		\item Consider a set $\Gamma$. Which of the following implies that $\Gamma$ is unsatisfiable?
+		
+		\begin{enumerate}[(a)]
+		
+			\item For each formula $\phi\in\Gamma$, there is a valuation $v$ with $\llbracket\phi\rrbracket_v=0$.
+			
+			\item For each formula $\phi\in\Gamma$ and valuation $v$, we have $\llbracket\phi\rrbracket_v=0$.
+			
+			\item There is a formula $\phi\in\Gamma$ such that for all valuations $v$, we have $\llbracket\phi\rrbracket_v=0$.
+			
+			\item There is a formula $\phi\in\Gamma$ and valuation $v$, such that $\llbracket\phi\rrbracket_v=0$.
+						
+			\item For each valuation $v$, there is a formula $\phi\in\Gamma$ with $\llbracket\phi\rrbracket_v=0$.
+			
+			\item For all valuations $v$ and formulas $\phi\in\Gamma$, we have $\llbracket\phi\rrbracket_v=1$.
+			
+			\item There is a valuation $v$ such that for all formulas $\phi\in\Gamma$, we have $\llbracket\phi\rrbracket_v=0$.
+			
+			\item There is no valuation $v$ such that for all formulas $\phi\in\Gamma$, we have $\llbracket\phi\rrbracket_v=1$.
+			
+					
+		\end{enumerate}
+		
+		\item Consider a complete tableau. Which of the following entails that the tableau is open.
+		
+		\begin{enumerate}[(a)]
+		
+			\item For no sentence letter $p\in\mathcal{P}$ is it the case that for all branches $B$ we have $p,\neg p\in B$.
+			
+			\item For no sentence letter $p\in\mathcal{P}$ do we have a branch $B$ with $p,\neg p\in B$.
+			
+			\item For some sentence letter $p\in\mathcal{P}$ do we have a branch $B$ with either $p\notin B$ or $\neg p\notin B$.
+			
+			\item For some sentence letter $p\in\mathcal{P}$ we have that for all branches $B$, either $p\notin B$ or $\neg p\notin B$.
+			
+			\item For all branches $B$ there is a sentence letter $p\in \mathcal{P}$ such that either $p\notin B$ or $\neg p\notin B$.
+			
+			\item For all branches $B$ and all sentence letters $p\in \mathcal{P}$ we have that either $p\notin B$ or $\neg p\notin B$.	
+								
+		\end{enumerate}
+
+		\item Consider a complete tableau. Which of the following entails that the tableau is closed.
+		
+		\begin{enumerate}[(a)]
+		
+			\item There is a sentence letter $p\in\mathcal{P}$ and branch $B$, such that $p,\neg p\in B$.
+			
+			\item There is a sentence letter $p\in\mathcal{P}$, such that for all branches $B$, we have $p,\neg p\in B$.
+			
+			\item There is a sentence letter $p\in\mathcal{P}$, such that for all branches $B$, either $p\in B$ or $\neg p\in B$.
+			
+			\item For each branch $B$ there is a $p\in\mathcal{P}$ such that either $p\in B$ or $\neg p\in B$.
+			
+			\item For each branch $B$ there is a $p\in\mathcal{P}$ such that $p\in B$ and $\neg p\in B$.
+			
+			\item For each branch $B$ and all $p\in\mathcal{P}$ we have that $p\in B$ and $\neg p\in B$.
+								
+		\end{enumerate}
+
+
+	\end{enumerate}
+
+\section{Exercises}
+
+
+	\begin{enumerate}[\thesection.1]
+	
+		\item {$[\nosym]$} Describe the content of Theorem 6.2.6 in your  words (without symbols).
+		
+		\item Prove that the following sets are unsatisfiable \emph{without using analytic tableau}!
+		
+		\begin{enumerate}[(a)]
+		
+		
+			\item $[h]$ $\{\neg (p\to q), \neg (q\to p)\}$
+			
+			\item $\{\neg (p\lor \neg p)\}$
+			
+			\item $[h]$ $\{\neg p, \neg p\to p\}$
+			
+			\item $\{\neg p, (p\to q)\to p\}$
+		
+		
+		\end{enumerate}
+		
+		\item Let $\Gamma=\{\phi_1, \mathellipsis,\phi_n\}$ be a finite set of formulas. Prove that $\Gamma$ is unsatisfiable iff $\vDash \neg (\phi_1\land\mathellipsis\land\phi_n)$ is a logical truth.
+	
+		\item Check the following claims using analytic tableau:
+		
+		\begin{enumerate}[(a)]
+
+			\item $[h]$ $p\to q, r\to q\vdash (p\lor r)\to q$
+
+			\item $[h]$ $p\to (q\land r), \neg r\vdash \neg p$
+
+			\item $[h]$ $((p\to q)\to q)\to q$
+
+			\item $[h]$ $((p\to q)\land (\neg p\to q))\to \neg p$
+
+\item $p\leftrightarrow (q\leftrightarrow r)\vdash (p\leftrightarrow q)\leftrightarrow r$
+
+\item $\neg(p\to q)\land \neg(p\to r)\vdash \neg q\lor \neg r$
+
+\item $p\land (\neg r\lor s), \neg (q\to s)\vdash r$
+
+\item $\vdash (p\to (q\to r))\to (q\to (p\to r))$
+
+\item $\neg(p\land \neg q)\lor r, p\to (r\leftrightarrow s)\vdash p\leftrightarrow q$
+
+\item $p\leftrightarrow \neg\neg q, \neg q\to (r\land \neg s), s\to (p\lor q)\vdash (s\land q)\to p$
+
+\end{enumerate} 
+
+		\item Let $\phi$ be a formula. Determine how long the tableau for $\{\neg\phi\}$ can \emph{at most} (measured in terms of longest branch) based on $\phi$'s complexity $c(\phi)$.
+
+		\item \emph{Highly optional}: Prove in the Hilbert calculus that:
+		
+		\begin{enumerate}
+		
+			\item $\vdash (\neg p\to p)\to p$
+			
+			\item $\vdash (((p\to q)\to p)\to p)$
+		
+		\end{enumerate}
+
+	\end{enumerate}
+
+\section{Further Readings}
+
+The system of natural deduction finds many applications in logic. You can read more about it in:
+
+\begin{itemize}
+	
+		\item \emph{Natural Deduction}: Section 2.4 of Dalen, Dirk van. 2013. \emph{Logic and Structure}. 5$^\text{th}$ edition. London, UK: Springer.
+			
+	\end{itemize}
+
+
+\vfill
+
+\hfill \rotatebox[origin=c]{180}{
+\fbox{
+\begin{minipage}{0.5\linewidth}
+
+\subsection*{Self Study Solutions}
+
+\begin{enumerate}
+
+	\item[6.5.1] (b), (d), (f)
+
+	\item[6.5.2] (c), (h)
+	
+	\item[6.5.3] (b), (f)
+		
+	\item[6.5.4] (b), (e), (f)
+
+\end{enumerate}
+
+
+\end{minipage}}}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

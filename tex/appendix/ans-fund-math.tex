@@ -1,0 +1,137 @@
+\chapter{Chapter 2. A Math Primer for Aspiring Logicians}
+
+\section*{2.7 Exercises}
+
+	\begin{enumerate}
+
+		\item[2.7.1] This depends on the answers you've given. The following correspond to my answers:
+		
+			\begin{enumerate}[(a)]
+			
+				\item We did not need to use any of the proof principles we discussed, we simply produced a counterexample. 
+				
+				\item We used indirect proof. The argument form was as follows:
+				\begin{itemize}
+				
+					\item Suppose that there is a possible situation in which the premises are true and the conclusion is false. 
+					
+					\item We get a contradiction. 
+					
+					\item Therefore there is no situation in which the premises are true and the conclusion false. 
+				
+					\item So, in every situation where the premises are true, so must be the conclusion, meaning the inference is valid.
+				
+				\end{itemize}
+				
+				\item Same as (b)
+
+				\item Same as (a)
+				
+				\item Same as (a)
+				
+				\item Same as (a)
+			
+			\end{enumerate}
+		
+		\item[2.7.2] Here are proofs for the facts. Note that this are not the only possible proofs, but they can function as examples. It's a bit tricky to illustrate the procedure that leads to these proofs, so I will present you with the finished end-product. For advice on how to find the proofs, see the slides.
+
+			\begin{enumerate}[(a)]
+
+			\item  The sum of two even numbers is even.
+			
+				\emph{Precise statement}. For all integers $n$ and $m$, if $n$ and $m$ are both even, then $n+m$ is even.
+			
+				\begin{proof}
+				Let $n,m$ be two arbitrary integers (for universal generalization). Assume (for conditional proof) that $n$ and $m$ are both even. This means, by definition, that there exists an integer $k$ such that $n=2k$ and there exists an integer $l$ such that $m=2l$. Now consider $n+m$. Since $n=2k$ and $m=2l$, we have that $n+m=2k+2l$. But $2k+2l=2(k+l)$. So, there exists a natural number, namely $k+l$, such that twice that number is $n+m$. But by definition this just means that $n+m$ is even, which is what we needed to show. By conditional proof and universal generalization, the claim is proven.
+				\end{proof}
+			
+			\item If the product of two numbers is odd, then at least one of the two numbers is odd. 
+			
+			\emph{Precise statement}. Let $n$ and $m$ be integers. If $n\cdot m$ is odd, then either $n$ is odd or $m$ is odd.
+			
+				\begin{proof}
+				We prove this claim by contrapositive proof. So, suppose that neither $n$ nor $m$ is odd. Note that since a number is odd iff it's not even, this just means that both $n$ and $m$ are even. For our contrapositive proof, we need to derive that $n\cdot m$ is also not odd. Since a number is odd iff it's not even, this means we have to show that $n\cdot m$ is even.  But we've already proven that if a number is even, then its product with any other number is even (2.3.9, example for conditional proof). So surely, if \emph{both} $n$ and $m$ are even, then $n\cdot m$ is even, which is what we needed to show.
+				\end{proof}
+			
+			How could you have seen that contrapositive proof is a good strategy here? Well, whenever you have a conditional with a disjunction in the then-part, it's a good idea to try contrapositive proof. 
+			
+			\item Every number is either even or odd.
+			
+				\emph{Precise statement}. Let $n$ be a natural number. Then $n$ is even or $n$ is odd (and, in fact, not both).
+				
+				\begin{proof}
+				We prove this fact indirectly. So, let $n$ be an arbitrary number and suppose that $n$ is neither even nor odd, meaning $n$ is both not even and not odd. Since a number is odd iff it's not even, this means that $n$ is both even and not even. But that's a contradiction. So, by indirect proof, it's not the case that $n$ is neither even nor odd, meaning that $n$ is either even or odd, as desired.
+				\end{proof}
+				
+			How could you see that you should use indirect proof to show this? Well, whenever you try to prove that one of two cases must obtain and you can't prove them from something you already know, indirect proof is a good idea.
+			
+			\item If you add one to an even number, you get an odd number.
+			
+				\emph{Precise statement}. Let $n$ be an integer. If $n$ is even, then $n+1$ is odd.
+				
+				\begin{proof}
+				Let $n$ be an arbitrary integer and suppose that $n$ is even (for conditional proof). By definition, this means that there exists an integer $k$ such that $n=2k$. We now need to derive that $n+1$ must be odd. We do this via indirect proof. So, suppose that $n+1$ is also even, meaning that there exists an integer $l$ such that $n+1=2l$. Since $n=2k$ and $n+1=2l$, we can infer that $2k+1=2l$. From this we can infer that $1=2l-2k$. So, $1=2(l-k)$. But since $l-k$ is an integer, this would mean that 1 is an even number. And we know that $1$ isn't even, so we arrived at a contradiction. We can therefore conclude that $n+1$ is not even, i.e. odd, which is what we needed to show.
+				\end{proof}
+				
+			Why can we assume that $1$ isn't even? Well, that's something that can itself be proven using the methods of the next chapter. But for the present purpose it's fine to assume it. Remember that our aim is to convince the reader that a purely axiomatic proof exists and not to provide one ourselves.
+
+			\item The product of two prime numbers is not a prime number.
+			
+			\emph{Precise statement}: Let $n$ and $m$ be natural numbers. Then, if $n$ and $m$ are prime, then $n\cdot m$ is not prime. 
+			
+			\begin{proof}
+			Let $n$ and $m$ be two natural numbers and assume that both $n$ and $m$ are prime (for conditional proof). This means, by definition, that $n>1$ and $m>1$ and there exists no number $k,l<n$ such that $n=k\cdot l$ and there exist no numbers $i,j$ such that $m=i\cdot j$. We need to show that $n\cdot m$ is not a prime number. We do this indirectly. For suppose that $n\cdot m$ would be prime. This would mean $1<n\cdot m$ and there exist no numbers $a,b<n\cdot m$ such that $n\cdot m=a\cdot b$. But since $n>1$ and $m>1$, $n\cdot m>n$ and $n\cdot m>m$. So, there would be two numbers $a$ and $b$ with $a,b<n\cdot m$ and $n\cdot m=a\cdot b$, after all---just let $a=n$ and $b=m$. Contradiction. Hence $n\cdot m$ is not prime, as desired.  
+			\end{proof}
+			
+			\item No prime number \emph{bigger than two} is the product of an even and an odd number.
+			
+			\emph{Precise statement}. Let $n$ be a natural number. Then if $n>2$ and $n$ is prime, there do not exist numbers $k$ and $l$ such that $k$ is even, $l$ is odd and $n=k\cdot l$.
+			
+			\begin{proof}
+			Suppose that $n$ is a natural number, that $n>2$ and that $n$ is prime. We need to derive that there are no numbers $k$ and $l$ such that $k$ is even, $l$ is odd and $n=k\cdot l$. We again, do this indirectly. So suppose that $k$ is even, $l$ is odd, and $n=k\cdot l$. Now, since $k$ is even, we know by our earlier observation that $n=k\cdot l$ is even, too. But we've also proved that if $n$ is prime and $n>2$, then $n$ is odd. And since $n$ is prime and $n>2$ by assumption, we get that $n$ is odd. So $n$ has to be both even and odd, which is a contradiction. Hence there are not numbers $k$ and $l$ such that $k$ is even, $l$ is odd and $n=k\cdot l$, which is what we needed to show. 			
+			\end{proof}
+
+		\end{enumerate}
+		
+		\item[2.7.3]
+		
+			\begin{enumerate}[(a)]
+			
+				\item A necessary but not sufficient condition for $n$ to be even is that $n$ is divisible by at least two numbers $k,l$ (not necessarily differen). If $n$ is even, then there are two such numbers, in fact one of them is two. But there are numbers which are divisible by two distinct numbers and not even. E.g. $15=3\cdot 5$. Hence the condition is not sufficient.  
+				
+				\item A sufficient condition but not necessary for $n$ to be even is that it's divisible by four. If $n$ is divisible by four, then it's divisible by two and thus even. But there are even numbers which are not divisible by four, for example, 14.
+				
+				\item A necessary and sufficient condition for $n$ to be even is that $n$ is divisible by two---that's the definition of being even. A perhaps more interesting example is the condition that $n$ be divisible by an even number. If $n$ is divisible by an even number, then it's even since an even number is divisible by two and a divisor of a divisor is a divisor. And if $n$ is even, then by definition $n$'s divisible by two, which is an even number. Hence the condition is both necessary and sufficient for $n$ to be even.
+							
+			\end{enumerate}
+			
+		\item[2.7.4]
+		
+			\begin{enumerate}
+			
+				\item The sum of two even natural numbers is even.
+				
+				\item Every natural number is either even or odd.
+				
+				\item The sum of the square of a number and that number itself is always even.
+				
+				\item There is no biggest negative real number.
+			
+			\end{enumerate}
+			
+			
+		\item[2.7.5] 
+		
+		\begin{proposition}
+		Every prime number bigger than two is odd.
+		\end{proposition}
+		\begin{proof}[Proof (Informal sketch)]
+		We prove this fact indirectly. Suppose that there exists a prime number which is bigger than two and even. Since the number is is even, it must be divisible by two. But by definition, a prime number cannot be divisible by any number smaller than it. Since our prime was supposed to be bigger than two but at the same time needs to be divisible by two, we arrive at a contradiction: our prime is both divisible by a number smaller than it and not. Hence a prime like this, which is bigger than two and even, cannot exist. So, we can conclude that every prime bigger than two is even.
+				\end{proof}
+
+	\end{enumerate}
+	
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 

@@ -1,0 +1,1444 @@
+\chapter{Tableaux for First-Order Logic}
+
+\section{Overview}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item We shall now, once more, turn to proof theory; this time for first-order logic. As in the case of propositional logic, there are many different kinds of proof theories for first-order logic: Hilbert calculi, Gentzen calculi, natural deduction calculi, \dots. In this chapter, we'll develop a tableau calculus for first-order logic and in the next chapter we're going to prove soundness and completeness. As we observed at the end of the previous chapter, the one on semantics, the \emph{I Can't Get No Satisfaction} Theorem, which served as the theoretical foundations for propositional tableaux, also holds also for first-order logic: we have for all formulas $\phi$ and sets of formulas $\Gamma$ that:
+		\[\Gamma\vDash\phi\text{ iff }\Gamma\cup\{\neg\phi\}\text{ is unsatisfiable}\]
+		The idea that we're going to once more exploit is that we can develop a syntactic method for determining whether a set of formulas is satisfiable (viz. tableaux). By determining in a purely syntactic way whether $\Gamma\cup\{\neg\phi\}$ is satisfiable, we get a proof theory for first-order logic. 
+		
+		\item There is, however, an important limitation that we'll have to take into account. In propositional logic, the tableau method was purely algorithmic: we could blindly apply the rules and would always, after a finite amount of time, get an answer about the he validity of an inference. This gave us a route to the decidability of propositional logic. In first-order logic, very unfortunately, things aren't as neat: while we can construct tableaux \emph{sort of} algorithmically, it will no longer be the case that we can blindly apply the rules and after finitely many steps get an answer: valid or invalid. The ``local'' reason for this, the reason why this happens with tableaux, is that (as you'll see) first-order tableaux can turn out to be \emph{infinite}. An infinite tableau is one with infinitely many nodes. But, as we'll see, an infinite tableau can nevertheless be \emph{complete}, in the sense that every rule that can be applied has been applied. This might seem surprising coming from propositional logic, where you really could construct every tableau by hand. This will no longer be the case in first-order logic: there are tableaux that no human could ever write down. 
+		
+		\item A more general and ``deeper'' reason why we can't construct tableaux as in propositional logic is that first-order logic is provably \emph{undecidable}:
+		
+		\begin{theorem}[Church and Turing 1935/36] There exists no effective algorithm that for every inference after finitely many steps correctly determines whether the premises entail the conclusion in first-order logic.
+		\end{theorem}
+Proving this theorem is out of reach for the methods of this course. In order to prove it we need to think about what an ``effective algorithm'' is in the first place. You can study the methods in ``Logische Complexiteit'' (KI3V12013). Here we will content ourselves with some observations about why \emph{our} tableau algorithm doesn't lead to decidability, which will let us glimpse at why first-order logic really is undecidable.
+
+	\item Throughout this chapter, we will restrict ourselves to finite inferences, i.e. inferences with only finitely many premises.\footnote{This is not where the infinitary issues mentioned above come from.} And furthermore, we shall limit ourselves (as in the previous chapter) to inferences involving \emph{sentences} only. In order to avoid an irreparable overdose of new techniques, we'll introduce first-order tableaux step-by-step: in \S\ref{fo_tableaux_simple}, we'll discuss tableaux for inferences involving only the quantifiers but no identity predicate and no function symbols; in \S\ref{fo_tableaux_identity}, we'll add identity; and in \S\ref{fo_tableau_functions}, we'll add function symbols. Without further ado: here we go!
+				
+	\end{enumerate}
+
+\section{Simple Tableaux}
+\label{fo_tableaux_simple}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item In essence, the tableau method for first-order logic works just like the tableau method for propositional logic: we write down the initial list, expand it via the rules to a complete tableau, check whether it's closed or open, and if it's open, we declare the inference invalid, if the tableau is closed, we declare the inference valid. If you don't remember exactly how this works, refresh your memory using \S6. For reference, here are the rules of propositional logic again:
+		
+		\begin{center}
+					
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg\neg \phi [\phi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\land\psi [\phi [\psi ] ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg (\phi\land\psi) [\neg \phi ] [\neg \psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\lor\psi [\phi ] [\psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\lor\psi) [\neg\phi [\neg\psi ] ] ]
+					\end{prooftree}
+
+					\vspace{2ex}
+
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg (\phi\to\psi) [\phi [\neg \psi ] ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\to\psi [\neg \phi ] [\psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\leftrightarrow \psi [\phi [\psi] ] [\neg \phi [\neg \psi] ] ]]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\leftrightarrow \psi) [\phi [\neg \psi] ] [\neg \phi [ \psi] ] ]]
+					\end{prooftree}
+
+				\end{center}
+		To obtain a calculus for first-order logic (without identity and functions), we add to these rules for the quantifiers. But first, we need to introduce an auxilliary concept.
+		
+		\item As we said above, we restrict ourselves to inferences with only sentences, i.e. formulas without free variables. It's possible to develop tableaux for formulas with free variables but for the purposes of this course it's more trouble than it's worth. We will, however, be required to think about ``arbitrary'' objects, which we'd typically do using free variables. For this purpose, we extend our language with an infinite number of special constants known as \emph{parameters}. The set of parameters is denoted $\mathsf{Par}$. We'll use $p,q,r,\mathellipsis$ as parameters or, if we run out of (or are likely to run out of) letters, $p_1, p_2,\mathellipsis$. Don't confuse the parameters with the propositional letters, however! Parameters work really just like constants, they can take the place of constants in formulas and they get interpreted like constants in models. So, for example, \[\forall x(P(x)\to \exists y(R(x,y)\land R(y,p)),\] will be a ``formula'' for the purpose of our proof-theory. Similarly, if $\mathcal{M}$ is a model for our language, then for each $p\in \mathsf{Par}$, we assign an interpretation $p^\mathcal{M}\in D^\mathcal{M}$. The definitions of truth in a model are then extended in the obvious way to treat parameters just like constants. So, for example, $P(p)$ will be true in a model $\mathcal{M}$ under assignment $\alpha$ iff $p^\mathcal{M}\in P^\mathcal{M}$. 
+		
+		\item A small technical digression. Note that officially, the parameters are \emph{not} part of our language, even though we treat them as such. So $P(p)$ is not a formula of $\mathcal{L}$, rather it's a formula of the extended language $\mathcal{L}^+$ which is defined just like $\mathcal{L}$ except that $\mathcal{C}^+=\mathcal{C}\cup \mathsf{Par}$. Clearly, every formula of $\mathcal{L}$ is then also a formula of $\mathcal{L}^+$, i.e. $\mathcal{L}\subseteq\mathcal{L}^+$, but not vice versa. As a result, every model $\mathcal{M}$ for $\mathcal{L}^+$ is also a model for $\mathcal{L}$: if for all formulas $\phi\in\mathcal{L}^+$, we can calculate a truth-value $\llbracket\phi\rrbracket^\mathcal{M}_\alpha$, then we thereby also calculate a truth-value $\llbracket\phi\rrbracket^\mathcal{M}_\alpha$  for all formulas $\phi\in\mathcal{L}$. More pedantically, we can simply treat any model for $\mathcal{M}$ for $\mathcal{L}^+$ as a model for $\mathcal{L}$ by ``forgetting'' the interpretations of the parameters. This was basically just a sketch of the more technical background behind the idea of parameters, which you'll not need to worry too much about here. You'll see in a moment how this will all work.
+		
+		\item The new rules for the quantifiers are as follows:
+		
+		\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\neg \forall x\varphi
+	[\exists x\neg\varphi ]
+]
+\end{prooftree}\hspace{4ex}
+\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\neg \exists x\varphi
+	[\forall x\neg \varphi ]
+]
+\end{prooftree}
+\\[4ex]
+
+\begin{prooftree}
+{
+centered,
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\exists x\varphi
+	[{(\varphi)[x:=p]^\dagger} ]
+]\end{prooftree}\hspace{4ex}
+\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\forall x\varphi
+	[{(\varphi)[x:=a]^\ddagger} ]
+]
+\end{prooftree}
+\end{center}
+
+\vspace{2ex}
+
+$\dagger$: where $p\in\mathsf{Par}$ is any parameter not on the branch already.
+
+$\ddagger$: where $a\in\mathcal{C}\cup\mathsf{Par}$ is any \emph{constant or parameter} already on the branch, or an arbitrary ``fresh'' parameter if there are none.
+
+	The rules are read like this:
+	\begin{itemize}
+		
+			\item If there's a node with a formula to which a rule can be applied but hasn't been applied yet, then we apply the rule by extending every branch that goes through the node as shown by the rule.
+			
+	\end{itemize}
+	Everything else about the tableau constrution just works like in propositional logic. In particular, a tableau is called complete iff every rule that can be applied has been applied.
+	
+	
+	\item We will need to make a few remarks about the new rules. First, look at the rule for $\exists x\phi$. What this rule says is that you have $\exists x\phi$ on a node, then you extend every branch with $(\phi)[x:=p],$ \emph{where $p$ is a new parameter}, i.e. a parameter that hasn't been used yet on the branch. How can it happen that a parameter has already been used on a branch? Easy: if there's \emph{another} existential quantifier around, as in the following example:
+	
+\begin{center}
+\begin{prooftree}
+{
+centered,
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x\exists yR(x,y)}
+	[{\exists yR(p,y)}
+		[{R(p,q)}
+		]
+	]
+]\end{prooftree}
+\end{center}
+In the first application of the rule, the application to $\exists x\exists yR(x,y)$. we were free to chose any parameter whatsoever, since no parameter was on the branch yet. We chose $p,$ because obviously. But then, in the second application of the rule, this time to $\exists y R(p,y)$, we were limited in our choice; we could chose anything but $p$. So we chose $q$. Note that though there are two existential quantifiers in $\exists x\exists yR(x,y)$, we have to apply the rules step-by-step, as in the example: first, we use the rule to get from $\exists x\exists yR(x,y)$ to $\exists y R(p,y)$, and then we use the rule again to get from $\exists y R(p,y)$ to $R(p,q)$. In the first application of the rule, we've discharged our duties with respect to $\exists x\exists yR(x,y)$, and in the second rule, we've discharged our duties for $\exists y R(p,y)$. So, the tableau in our example is, indeed, complete. To be perfectly clear, this: 
+\begin{center}
+\begin{prooftree}
+{
+centered,
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x\exists yR(x,y)}
+	[{R(p,q)}
+	]
+]\end{prooftree}
+\end{center}
+is \emph{not} allowed. Much less are the following moves allowed:
+\begin{center}
+
+\begin{prooftree}
+										{
+										centered,
+										line numbering=false,
+										line no sep= 2cm,
+										for tree={s sep'=10mm},
+										single branches=true,
+										close with=\xmark
+										}
+											[{\exists x\exists yR(x,y)}
+												[{R(p,p)}
+												]
+											]
+										\end{prooftree}\hspace{4ex}	
+										\begin{prooftree}
+										{
+										centered,
+										line numbering=false,
+										line no sep= 2cm,
+										for tree={s sep'=10mm},
+										single branches=true,
+										close with=\xmark
+										}
+											[{\exists x\exists yR(x,y)}
+												[{\exists yR(p,y)}
+													[{$R(p,p)$}
+													]
+												]
+											]
+										\end{prooftree}
+\end{center}
+
+Intuitively, the parameter introduced by the $\exists x\phi$ rule is an arbitrary object that satisfies $\phi$, the idea being that if $\exists x\phi$ is true, then there has to be \emph{some} object that satisfies $\phi$; but we don't know anything about that object other than that it satisfies $\phi$, so we pick a fresh parameter for it to guarantee that we don't make any illicit assumptions.
+
+	\item Next, let's talk about the rule for the universal quantifier. What's important about this rule is that it has to be applied for \emph{every} constant or parameter on the branch. So, if we have, for example, $\forall xP(x)$, $Q(a)$, and $R(q,b)$ all together on one branch, we have to apply the rule for $a$, $q$, and $b$, as illustrated below:
+	\begin{center}
+\begin{prooftree}
+{
+centered,
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall xP(x)}, grouped
+	[Q(a), grouped
+		[{R(q,b)}, grouped
+			[P(a)
+				[{P(q)}
+					[P(b)]
+				]
+			]
+		]
+	]
+]\end{prooftree}
+\end{center}
+This tableau is complete because every rule that can be applied has been applied. But, it might happen, that you first apply rules for the universal quantifier and then continue applying rules which then introduce \emph{new} parameters. In such a case, \emph{also for those} parameters you have to apply the rule. Here's an example:
+	\begin{center}
+\begin{prooftree}
+{
+centered,
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall xP(x)}, grouped
+	[{\exists yR(a,y)}, grouped
+		[{P(a)}
+			[{R(a,p)}
+				[P(p)]
+			]
+		]
+	]
+]\end{prooftree}
+\end{center}
+The point is that first, we applied the rule to $\forall xP(x)$ for the constant $a$ which was the only constant or parameter at this point (when we only had the initial list). But then, we applied the rule for $\exists y R(a,y)$, which introduced a new parameter, $p$, to the branch. At this point, it became possible to apply the rule for $\forall xP(x)$ again, and so we did. So, even though the \emph{looks} like a good tree, it's not:
+	\begin{center}
+\begin{prooftree}
+{
+centered,
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall xP(x)}, grouped
+	[{\exists yR(a,y)}, grouped
+		[{P(a)}
+			[{R(a,p)}
+			]
+		]
+	]
+]\end{prooftree}
+\end{center}
+So, my advice for doing tableaux with $\forall$ in them is as follows:  \emph{every time} you introduce a new parameter, check if there's a universal quantifier rule that needs to be (re-)applied to that new parameter. Just an ominous remark at this point: it's this feature of the rule for the universal quantifier that ultimately leads to infinite tableau. But before we discuss this (much later), let's briefly talk about the idea behind the rule. As in propositional logic, every branch in the complete tableau intuitively corresponds to an interpretation that makes all the formulas on it true. In that interpretation, there will be an interpretation for each constant or parameter on that branch living happily in the domain. But if $\forall x\phi$ is on the branch, then for each of these $\phi$ needs to be true if the value of $x$ is set to that thing. That's just what the rule says: for everything we talk about on a branch with $\forall x\phi$ on it, ensure that that thing satisfies $\phi$.
+
+	\item There's one more feature of the universal quantifier rule that we haven't talked about: it says under $\ddagger$ that we should pick an arbitrary ``fresh'' parameter if there are no constants or parameters on the branch. What's meant here is that if there are no constants or parameters on the branch but a universally quantified claim, then do the same as in the case of the existential rule: instantiate formula in question with a fresh parameter that's not yet on the branch. So, for example, the following is such a situation:
+
+\begin{center}	
+\begin{prooftree}
+{
+centered,
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall xP(x)}, grouped
+	[{\forall x(P(x)\to Q(x))}, grouped
+		[{P(p)}
+			[{P(p)\to Q(p)}
+				[\neg P(p)]
+				[Q(p)]
+			]
+		]
+	]
+]\end{prooftree}
+\end{center}
+What's the idea here? Well, for one. In a situation like in our example, we need to get the tableau method started: if there are just a bunch of universal quantifiers around, otherwise nothing would happen. But that's just the superficial reason. The ``deeper'' reason is our assumption that the domain of every model is non-empty (cf. 9.2.3 and 9.4.4): in any model there needs to be at least \emph{one} object in the domain, and we introduce a fresh parameter to talk about this object. In 9.4.3--4, we showed and discussed that the law $\forall x\phi\vDash\exists x\phi$ depended on exactly the assumption of non-empty domains. Below, we will see that we can derive $\forall x\phi\vdash\exists x\phi$ precisely because of the requirement to pick an arbitrary ``fresh'' parameter if there are no constants or parameters on the branch.
+
+	\item It's already been implicit, but explicit is better than implicit, so let me just mention that the motivation behind the new rules is the same as in propositional logic, which we can re-formulate for first-order logic as follows:
+	\begin{description}
+	
+	\item[Down Preservation.] If the formula at the parent node of a rule is true in a model $\mathcal{M}$ under an assignment $\alpha$, then for at least one newly generated branch, all the formulas written according to the rule on that branch are also true in $\mathcal{M}$ under $\alpha$.
+				
+	\item[Up Preservation.] If all the formulas on a branch that's been generated by a rule are true in a model $\mathcal{M}$ under an assignment $\alpha$, then also the formula at the parent node of the rule is true.
+	
+
+	\end{description}
+These two principles will again together guarantee soundness and completeness. We will verify them in the next chapter.
+
+	\item Provability is now defined as expected: A branch $B$ in a complete tableau is called \emph{closed} iff there is some atomic formula $R(t_1, \mathellipsis, t_n)$, such that  both $R(t_1, \mathellipsis, t_n),\neg R(t_1, \mathellipsis, t_n)\in B$ (note that we're not yet dealing with identity); otherwise the branch is called \emph{open}. A complete tableau is closed iff every branch is closed, and otherwise it's called open. Now just like in propositional logic, we define $\Gamma\vdash\phi$ to mean that the tableau for $\Gamma\cup\{\neg\phi\}$ is closed. But enough talk, let's look at some examples.
+	
+	\item \emph{Examples}:
+	
+		\begin{enumerate}[(i)]
+		
+		\item 			\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\forall xP(x)\vdash \exists xP(x)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\forall xP(x), grouped 
+	[\neg\exists xP(x), grouped
+		[\forall x\neg P(x)
+			[\neg P(p)
+				[P(p), close
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+Note how in this example the requirement to introduce a fresh parameter for a universal quantifier if there's no constant or parameter on the branch yet played a crucial role.
+		
+			\item 
+			
+			\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\exists x(P(x)\land Q(x))\vdash \exists xP(x)\land \exists xQ(x)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\exists x(P(x)\land Q(x)), grouped 
+	[\neg(\exists xP(x)\land \exists xQ(x)), grouped
+		[P(p)\land Q(p)
+			[P(p)
+				[Q(p)
+					[\neg\exists xP(x)
+						[\forall x \neg P(x)
+							[\neg P(p), close]	
+						]
+					]
+					[\neg\exists xQ(x)
+						[\forall x \neg Q(x)
+							[\neg Q(p), close]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+	\item \begin{prooftree}
+{
+proof statement format={centered},
+to prove={\forall x\forall y(R(x,y)\lor R(y,x))\vdash \forall xR(x,x)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall x\forall y(R(x,y)\lor R(y,x))}, grouped
+	[{\neg \forall xR(x,x)}, grouped
+		[{\exists x\neg R(x,x)} 
+			[{\neg R(p,p)}
+				[{\forall y(R(p,y)\lor R(y,p))}
+					[{R(p,p)\lor R(p,p)}
+						[{R(p,p)}, close ]
+						[{R(p,p)}, close ]					
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+\item 
+			
+			\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\forall xP(x)\lor\forall xQ(x)\vdash \forall x(P(x)\lor Q(x))},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\forall xP(x)\lor\forall xQ(x), grouped 
+	[\neg\forall x(P(x)\lor Q(x)), grouped
+		[\exists x\neg (P(x)\lor Q(x))
+			[\neg (P(p)\lor Q(p))
+				[\neg P(p)
+					[\neg Q(p)
+						[\forall xP(x)
+							[P(p), close
+							]
+						]
+						[\forall xQ(x)
+							[Q(p), close
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+\item \begin{prooftree}
+{
+proof statement format={centered},
+to prove={\exists x\forall yR(x,y)\vdash \forall y\exists xR(x,y)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x\forall yR(x,y)}, grouped 
+	[{\neg\forall y\exists xR(x,y)}, grouped
+		[{\forall yR(p_1,y)}
+			[{\exists y\neg\exists xR(x,y)}
+				[{\neg\exists xR(x,p_2)}
+					[{\forall x\neg R(x,p_2)}
+						[{R(p_1,p_2)}
+							[{\neg R(p_1,p_2)}, close
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+\item \begin{prooftree}
+{
+line numbering=false,
+to prove={\forall x(P(x)\to \exists yS(x,y))\vdash \forall x\exists y(P(x)\to S(x,y))},
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall x(P(x)\to \exists yS(x,y))}, grouped
+	[{\neg \forall x\exists y(P(x)\to S(x,y))}, grouped
+		[{\exists x\neg\exists y(P(x)\to S(x,y))}
+			[{\neg \exists y(P(p)\to S(p, y))}
+				[{\forall y\neg (P(p)\to S(p,y))}
+					[{\neg (P(p)\to S(p,p))}
+						[P(p)
+							[{\neg S(p,p)}
+								[{P(p)\to \exists yS(p,y)}
+									[\neg P(p), close]
+									[{\exists yS(p,y)}
+										[{S(p, q)}
+											[{\neg (P(p)\to S(p, q))}
+												[P(p)
+													[{\neg S(p,q)}, close]
+												]
+											]
+										]
+									]
+								]
+							]
+						]
+					]
+				] 
+			]
+		]
+	]
+]
+\end{prooftree}
+
+
+\item \begin{prooftree}
+{
+proof statement format={centered},
+to prove={\vdash\neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+	[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+		[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+					[{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
+						[{K(p)}
+							[{\forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
+								[{\neg S(p,p)\leftrightarrow S(p,p)}
+									[{\neg S(p,p)}
+										[{S(p,p)}, close ]
+									]
+									[{S(p,p)}
+										[{\neg S(p,p)}, close ]
+									]
+								]
+							]
+						]				
+					]
+		]
+	]
+]
+\end{prooftree}
+
+
+		
+		\end{enumerate}
+		
+		\item Ok, so what about \emph{un}derivability, i.e. $\Gamma\nvdash\phi$? The definition of $\vdash$ automatically gives us $\Gamma\nvdash\phi$ iff the tableau for $\Gamma\cup\{\neg\phi\}$ is open, i.e. there is at least one branch. Here's an example:
+		\begin{center}
+\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\forall x(P(x)\lor Q(x)), grouped 
+	[\neg(\forall xP(x)\lor \forall xQ(x)), grouped
+		[\neg \forall xP(x)
+			[\neg\forall xQ(x)
+				[\exists x\neg P(x)
+					[\exists x\neg Q(x)
+						[\neg P(p)
+							[\neg Q(q)
+								[P(p)\lor Q(p)
+									[P(q)\lor Q(q)
+										[P(p), close
+										]
+										[Q(p)
+											[P(q)]
+											[Q(q), close]
+										]
+									]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+The tableau gives us that $\forall x(P(x)\lor Q(x))\nvdash \forall xP(x)\lor \forall xQ(x)$. Now, remember that for open branches in complete tableau we want to have a model that makes all their members true, the \emph{associated model}. We also get associated models in first-order logic, but it's a bit more complicated to define them.
+
+	\item So let $B$ be an open branch in a complete tableau. We then define the associated model $\mathcal{M}_B$ as follows:
+		\begin{enumerate}[(i)]
+		
+			\item $D^{\mathcal{M}_B}=\{a\in \mathcal{C}\cup Par: a\text{ occurs on }B\}$
+			
+			\item $a^{\mathcal{M}_B}=a$ for all $a\in \mathcal{C}\cup Par$
+			
+			\item $R^{\mathcal{M}_B}=\{(a_1, \mathellipsis, a_n): R(a_1, \mathellipsis, a_n)\in B\}$
+		
+		\end{enumerate}
+	There's something to talk about here. There's no typo here: the objects in the domain of $\mathcal{M}_B$ are really the constants and parameters on $B$ themselves. The model is what's known in the literature as a \emph{term-model}: it's a model build from the expressions of our language. In this weird model, every constant and parameter is just a name for itself. And, given that, predicates are interpreted just like the branch says they should be. Now, if you think back of the associated valuation of a branch in propositional logic (6.3.5), you will note that also there, we basically let the branch tell us what to do. In first-order logic, this is not much different. The only somewhat weird thing is that we let constants (and parameters denote themselves). But what's \emph{really} so weird about this: constants and parameters are themselves objects (they are things you can write down, etc.), so why shouldn't they be allowed to ``live'' in a model?
+	
+	\item \emph{Examples}:
+	
+		\begin{enumerate}[(i)]
+		
+			\item Let's first look at the example $\forall x(P(x)\lor Q(x))\nvdash \forall xP(x)\lor \forall xQ(x)$ from before:
+			
+
+\begin{center}
+\begin{prooftree}
+{
+%proof statement format={centered},
+%to prove={\forall x(P(x)\lor Q(x))\nvdash \forall xP(x)\lor \forall xQ(x)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\forall x(P(x)\lor Q(x)), grouped 
+	[\neg(\forall xP(x)\lor \forall xQ(x)), grouped
+		[\neg \forall xP(x)
+			[\neg\forall xQ(x)
+				[\exists x\neg P(x)
+					[\exists x\neg Q(x)
+						[\neg P(p)
+							[\neg Q(q)
+								[P(p)\lor Q(p)
+									[P(q)\lor Q(q)
+										[P(p), close
+										]
+										[Q(p)
+											[P(q)]
+											[Q(q), close]
+										]
+									]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+
+The constants and parameters occurring in the open branch are $p$ and $q$. So, we have $D^{\mathcal{M}_B}=\{p,q\}$. The parameters $p$ and $q$ denote themselves, that is we have $p^{\mathcal{M}_B}=p$ and $q^{\mathcal{M}_B}=q$. The only atomic formulas occurring on the branch are $P(q)$ and $Q(p)$. Correspondingly, we get $P^{\mathcal{M}_B}=\{q\}$ and $Q^{\mathcal{M}_B}=\{p\}$. So, to sum up, our model looks like this:
+\begin{itemize}
+	\item $D^{\mathcal{M}_B}=\{p,q\}$
+	\item $p^{\mathcal{M}_B}=p$
+	\item $q^{\mathcal{M}_B}=q$
+	\item $P^{\mathcal{M}_B}=\{q\}$
+ 	\item $Q^{\mathcal{M}_B}=\{p\}$
+\end{itemize}
+Now it's easily checked that in this model, $\forall x(P(x)\lor Q(x))$ is true: there are two things ($p$ and $q$) and each of them is either $P$ or $Q$ ($p$ is $Q$ and $q$ is $P$). But $\forall xP(x)\lor \forall xQ(x)$ is certainly false: neither is everything $P$ ($p$ is not) nor is everything $Q$ ($q$ is not). 
+
+	\item The next cases I'll handle a bit more quickly:
+	
+	\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\forall x\forall y(R(x,y)\to R(y,x))\nvdash \forall xR(x,x)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall x\forall y(R(x,y)\to R(y,x))}, grouped
+	[{\neg \forall xR(x,x)}, grouped
+		[{\exists x\neg R(x,x)}
+			[{\neg R(p,p)}
+				[{\forall y(R(p,y)\to R(y,p))}
+					[{R(p,p)\to R(p,p)}
+						[{\neg R(p,p)} ]
+						[{R(p,p)}, close ]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+Associated model $\mathcal{M}_B$:
+
+\begin{itemize}
+	\item $D^{\mathcal{M}_B}=\{p\}$
+	\item $p^{\mathcal{M}_B}=p$
+	\item $R^{\mathcal{M}_B}=\emptyset$
+\end{itemize}
+
+Note that this is perfectly fine: in a model, $R^\mathcal{M}$ can be empty (i.e. nothing stands in the relation $R$ to anything).
+
+		\item
+		
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\exists x (P(c)\to P(x))\nvdash \neg (P(c)\to \forall xP(x))},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\exists x (P(c)\to P(x))}, grouped
+	[{\neg\neg (P(c)\to \forall xP(x))}, grouped
+		[{P(c)\to \forall xP(x)}
+			[{P(c)\to P(p)}
+				[{\neg P(c)} 
+					[{\neg P(c)}]
+					[{\neg P(p)}]
+				]
+				[{\forall x P(x)}
+					[{\neg P(c)}
+						[{P(c)}, close]
+					]
+					[{P(p)}
+						[{P(c)}]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+Associated model of the right-most branch $\mathcal{M}_B$:
+
+\begin{itemize}
+	\item $D^{\mathcal{M}_B}=\{p,c\}$
+	\item $p^{\mathcal{M}_B}=p$
+	\item $c^{\mathcal{M}_B}=c$
+	\item $P^{\mathcal{M}_B}=\{p,c\}$
+\end{itemize}
+
+		\item 
+		
+		\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\nvdash \forall x\forall y(R(x,y)\to R(y,x))},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg\forall x\forall y(R(x,y)\to R(y,x))}
+	[{\exists x\neg\forall y(R(x,y)\to R(y,x))}
+		[{\neg\forall y(R(p,y)\to R(y,p))}
+			[{\exists y\neg(R(p,y)\to R(y,p))}
+				[{\neg(R(p,q)\to R(q,p))}
+					[{\neg R(p,q)}
+						[{R(q,p)}]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+
+Associated model of the branch $\mathcal{M}_B$:
+\begin{itemize}
+	\item $D^{\mathcal{M}_B}=\{p,q\}$
+	\item $p^{\mathcal{M}_B}=p$
+	\item $q^{\mathcal{M}_B}=q$
+	\item $R^{\mathcal{M}_B}=\{(q,p)\}$
+\end{itemize}
+
+		\end{enumerate}
+		
+	\item Just like in propositional logic, we'll be able to show that the associated model makes all the formulas on the branch true. This will be the completeness lemma for first-order logic: if $B$ is an open branch of a complete tableau, then all formulas in $B$ are true in $\mathcal{M}_B$ under all assignments. For now, it's a good idea to convince yourself that in the above examples, this is indeed the case. 
+
+\end{enumerate}
+
+\section{Tableaux With Identity}
+\label{fo_tableaux_identity}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item In the following two sections, we will just refine the tableau calculus from the previous section to make it work for our full language, with identity and function symbols. First, we add rules for identity. They are as follows:	
+	\begin{center}
+	\begin{prooftree}
+			{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\vdots 
+	[ {a=a^\dagger}
+	]
+]
+\end{prooftree}\hspace{8ex}
+\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+} 
+[{a=b}, grouped
+	[{\sigma^\ddagger[x:=a]}, grouped
+		[{\sigma[x:=b]}
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+$\dagger$: $a$ any parameter or constant already on the branch, or an arbitrary fresh one.\\
+$\ddagger$: $\sigma$ here is any atomic formula, i.e. a formula of the form $R(t_1, \mathellipsis, t_n)$ or $t_1=t_2$.
+
+These rules, though deceptively simple, require some commentary.
+	
+	\item First, the $a=a$ rule. What this rule says is that for each constant or parameter $a$ on the branch, you need to add a node with $a=a$. The purpose of this rule is to allow us to get $\vdash\forall x(x=x)$, since clearly $\vDash\forall x(x=x)$---the denotation of any term is identical to itself in every model. The proof goes as follows:
+	
+	\begin{center}
+	\begin{prooftree}
+{
+%proof statement format={centered},
+%to prove={\vdash \forall x(x=x)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg\forall x(x=x)}, grouped
+	[{\exists x\neg x=x}
+		[{\neg p=p}
+			[{p=p},close]
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+
+Note that we've closed the branch here because there was an atomic formula, $p=p$, such that both $p=p\in B$ and $\neg p=p\in B$. Now, in principle, the rule works quite like the universal quantifier rule in that you need to make sure you do this for \emph{every} constant or parameter on the branch, also ones that have been created later, when you thought you were already done with this rule. But that's clearly nuts: this would make our proof trees quickly explode in size. This is why we make the following convention: we only apply the rule for $a=a$ if (a) thereby we can close a branch (i.e. if also $\neg a=a$ is on the branch) or (b) we're dealing with an open branch of an otherwise complete tableau. The reason behind convention (a) is clear (I hope), the reason behind (b) will become clear when we discuss associated models.
+
+	\item Turning to the second rule, things get a bit more complicated. It might be useful to talk about the idea first. What the rule relies on is the fact that if two objects $a$ and $b$ are identical and one of them satisfies $\phi$, then also the other object needs to satisfy $\phi$---the two objects are, after all, identical. Here is a simple application of the rule, used to show that $\vdash \forall x\forall y(P(x)\land x=y\to P(y))$:
+		\begin{center}
+	\begin{prooftree}
+{
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg \forall x\forall y(P(x)\land x=y\to P(y))}, grouped
+	[{\exists x\neg \forall y(P(x)\land x=y\to P(y))}
+		[{\neg \forall y(P(p)\land p=y\to P(y))}
+			[{\exists y\neg(P(p)\land p=y\to P(y))}
+				[{\neg(P(p)\land p=q\to P(q))}
+					[{P(p)\land p=q}
+						[\neg P(q)
+							[P(p)
+								[{p=q}
+									[P(q), close]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+The crucial application of the rule is in the last step here. For this step, it was simply noted that \[P(p)=(P(x))[x:=p]\]\[P(q)=(P(x))[x:=q]\]
+Since $p=q$ was on the branch at that point, this allowed us to get from $P(p)$ to $P(q)$, and thus to close the branch. Now, you may think that this is a bit confusing. After all $(P(x))[x:=p]$ and $(P(x))[x:=q]$ is not what's written on the branch, $P(p)$ and $P(q)$ are. How could you have seen that the rule should have been applied like this? Well, the answer is quite simple: what the rule really tells you is that if you have $a=b$ on a branch and some atomic formula with either $a$ in it, say, $R(t_1, \mathellipsis, a,\mathellipsis, t_n)$, then you need to replace that $a$ with $b$, you'll get $R(t_1, \mathellipsis, b,\mathellipsis, t_n)$. This, of course, holds equally well the other way around (replace $b$ with $a$) and with identity claims as in the following example, which shows that $a=b,b=c\vdash a=c$
+\begin{center}
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={a=b, b=c\vdash a=c},
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+} 
+[{a=b}, grouped
+	[{b=c}, grouped
+		[a\neq c, grouped
+			[{a=c}, close]
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+Note that you really only need to replace terms for each other in \emph{atomic} formulas, not in more complex formulas and, in particular, not in \emph{negated} atomic formulas.
+
+	\item \emph{Examples}: (see next page)
+	
+	\begin{enumerate}[(i)]
+	{\small
+		\item \begin{prooftree}
+{
+proof statement format={centered},
+to prove={a=b\vdash \exists xS(x,a)\to (a=a\land \exists xS(x,b))},
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+} 
+[{a=b}, grouped
+	[{\neg (\exists xS(x,a)\to (a=a\land \exists xS(x,b)))}, grouped
+		[{\exists xS(x,a)}
+			[{\neg(a=a\land \exists xS(x,b))}
+				[{S(p,a)}
+					[{\neg (a=a)}
+						[{a=a}, close]
+					]
+					[{\neg\exists xS(x,b)}
+						[{\forall x\neg S(x,b)}
+							[{\neg S(p,b)}, close 
+								%[{\neg S(p,a)}, close ]
+							]
+						]
+					]
+				]
+				]
+		]
+	]
+]
+\end{prooftree}
+
+	\item \begin{prooftree}
+{
+proof statement format={centered},
+to prove={a=b\nvdash \forall x\exists y(P(y)\land x=y)},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[{a=b}, grouped,
+	[{\neg \forall x\exists y(P(y)\land x=y)}, grouped
+		[{\exists x\neg\exists y (P(y)\land x=y)}
+			[{\neg\exists y(P(y)\land p=y)}
+				[{\forall y\neg (P(y)\land p=y)}
+					[{\neg (P(p)\land p=p)}
+						[{\neg (P(a)\land p=a)}
+							[{\neg (P(b)\land p=b)}
+								[\neg P(p)
+									[\neg P(a)
+										[\neg P(b)]
+										[{p\neq b}
+										]
+									]
+									[{p\neq a}
+										[\neg P(b)
+										]
+										[{p\neq b}]
+									]
+								]
+								[{p\neq p}
+									[{p=p}, close]	
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}
+}
+\end{enumerate}
+
+	\item What remains to be discussed is how we can define an associated model when identity claims are involved. There is an obvious complication here. In the associated term model we defined above, every term denotes itself. So, in that model, there are only trivial identities. Clearly, $a$ is the same symbols as $a$, so $a^{\mathcal{M}_B}=a^{\mathcal{M}_B}$, meaning that $\mathcal{M}_B\vDash a=a$ (the trivial identity). But if $a$ and $b$ are different constants, then they are different, meaning $a^{\mathcal{M}_B}\neq b^{\mathcal{M}_B}$, giving us $\mathcal{M}_B\nvDash a=b$ for \emph{all} distinct $a$ and $b$. But it can, of course, happen that $a=b$ is on a branch, as in our example (ii) above. What to do? 
+	
+	\item The solution is that we move slightly away from the notion of a term model and consider models where the elements are \emph{sets} of terms. A term will now denote a \emph{set} of terms, the set of terms that are, according to the branch, identical to the initial term. Here's how this goes. Let $B$ be a branch of a complete open tableau. We first define the relation $\sim_B$ on terms by saying that:
+	
+	\begin{itemize}
+
+		\item $a\sim_B b$ iff $a=b\in B$.
+	
+	\end{itemize}
+In words, $a\sim_B b$ means that $a$ is identical to $b$ according to $B$. For each term (constant or parameter) $a$, we can now consider the set: \[[a]_{\sim_B}=\{b:a\sim_Bb\},\] which contains all the terms $b$ that are identical to $a$ according to $B$. \emph{This} set, called the \emph{equivalence class of $a$},  will be the denotation of $a$ in $\mathcal{M}_B$. 
+
+	\item So, here's the definition associated model for an open branch $B$ in a complete tableau with identity:
+
+		\begin{itemize}
+		
+			\item $D^{\mathcal{M}_B}=\{[a]_{\sim_B}:a\text{ occurs in }B\}$
+			
+			\item $a^{\mathcal{M}_B}=[a]_{\sim_B}$, for all $a\in \mathcal{C}\cup Par$
+			
+			\item $R^{\mathcal{M}_B}=\{([a_1]_{\sim_B}, \mathellipsis, [a_n]_{\sim_B}): R(a_1, \mathellipsis, a_n)\in B\}$
+
+		\end{itemize}
+		This will do the job. 
+		
+	\item Let's consider an example. Take the left-most branch in example (10.3.4.ii). There are three constants or parameters that occur in the branch: $a,b,$ and $p$. We have $a=b\in B$ as the only identity claim written on the branch, but we should assume that also $a=a, b=b,$ and $p=p$ are there on the branch as per convention (b) of 10.3.2. So, we can calculate the sets $[\cdot ]_{\sim_B}$ as follows:
+	\begin{itemize}
+	
+		\item $[a]_{\sim_B}=\{a, b\}$
+		\item $[b]_{\sim_B}=\{a, b\}$
+		\item $[p]_{\sim_B}=\{p\}$
+	
+	\end{itemize}
+We now set these identity classes as the interpretations of the terms:
+	\begin{itemize}
+	
+		\item $a^{\mathcal{M}_B}=[a]_{\sim_B}=\{a, b\}$
+		\item $b^{\mathcal{M}_B}=[b]_{\sim_B}=\{a, b\}$
+		\item $p^{\mathcal{M}_B}=[p]_{\sim_B}=\{p\}$
+	
+	\end{itemize}
+Note that $[a]_{\sim_B}=[b]_{\sim_B}$ and so $a^{\mathcal{M}_B}=b^{\mathcal{M}_B}$, which is precisely what we want since this means that $\mathcal{M}_B\vDash a=b$ and $a=b\in B$. The only thing that remains to be determined is the interpretation of $P$. But in this case, that's easy since there is no formula of the form $P(t)\in B$. So, we get $P^{\mathcal{M}_B}=\emptyset$. So, all in all, we get:
+\begin{itemize}
+	\item $\mathcal{D}^{\mathcal{M}_B}=\{[a]_{\sim_B}, [b]_{\sim_B}, [p]_{\sim_B}\}=\{\{a,b\},\{p\}\}$
+	\item $a^{\mathcal{M}_B}=[a]_{\sim_B}=\{a,b\}$
+	\item $b^{\mathcal{M}_B}=[b]_{\sim_B}=\{a,b\}$
+	\item $p^{\mathcal{M}_B}=[p]_{\sim_B}=\{p\}$
+	\item $P^{\mathcal{M}_B}=\emptyset$
+\end{itemize}
+
+	\item We're going to conclude our discussion of tableaux with identity by observing a lemma in preparation for our completeness proof in the next chapter. We're proving that lemma here, since it will help us understand how the associated model of a branch with identity claims works:
+	
+		\begin{lemma}
+		Let $B$ be an open branch of a complete tableau and $\mathcal{M}_B$ the associated model. Then, if $a=b\in B$, then $\mathcal{M}\vDash a=b$.
+		\end{lemma}
+		\begin{proof}
+		Suppose that $a=b\in B$. What we need to show is that the sets $[a]_{\sim_B}$ and $[b]_{\sim_B}$ are identical. This is because $a^{\mathcal{M}_B}=[a]_{\sim_B}$ and $b^{\mathcal{M}_B}=[b]_{\sim_B}$ and $\mathcal{M}\vDash a=b$ iff $a^{\mathcal{M}_B}=a^{\mathcal{M}_B}$. So, let's briefly remind ourselves of the definitions of the two sets:
+		\[[a]_{\sim_B}=\{c:a\sim_Bc\}\]
+		\[[b]_{\sim_B}=\{c:b\sim_Bc\}\]
+		Now, by extensionality, what we need to show is that every element of $[a]_{\sim_B}$ is an element of $[b]_{\sim_B}$ and vice versa. We're only going to prove one of the directions, since the other is completely analogous. So assume that $c\in [a]_{\sim_B}$, i.e. $a=c\in B$. We need to derive that $c\in [b]_{\sim_B}$, i.e. $c=b\in B$. We already know that $a=b\in B$ and we've assumed that $a=c\in B$. But the tableau we're looking at is complete, so every rule that can be applied has been applied, in particular every instance of the second, substitution identity rule. Now note that $a=b$ is the same as $(x=b)[x:=a]$ and we have $a=c\in B$. So by an application of the rule we get $(x=b)[x:=c]\in B$. But now note that $(x=b)[x:=c]$ is nothing else than $c=b$, which is precisely what we needed to show being on the branch.
+		\end{proof}
+
+	\end{enumerate}
+
+\section{Tableaux With Functions}
+\label{fo_tableaux_functions}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item Finally, we'll discuss how to allow for function symbols in tableaux. Luckily, we don't need to add any new rules. All we need to do is to replace the talk of ``constants or parameters'' with the more general talk of ``ground terms.'' Remember that a ground term is a term that does not contain any variables, i.e. any constant (or parameter) $a$ is a ground term and so are functional combination of those, such as $f(a,g(c,p))$ and the like. The only rules affected by this are the rule for the universal quantifier and the identity rules, so let's just restate them in the new, official form:
+		
+\begin{center}
+		\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\forall x\varphi
+	[{(\varphi)[x:=t]^\ddagger} ]
+]
+\end{prooftree}\hspace{8ex}
+\begin{prooftree}
+			{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[\vdots 
+	[ {t=t^\dagger}
+	]
+]
+\end{prooftree}\hspace{8ex}
+\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+} 
+[{s=t}, grouped
+	[{\sigma^\ddagger[x:=s]}, grouped
+		[{\sigma[x:=t]}
+		]
+	]
+]
+\end{prooftree}
+\end{center}
+$\dagger$: where $t$ is any \emph{ground term} already on the branch, or an arbitrary ``fresh'' \emph{ground term} if there are none.\\
+$\ddagger$: $\sigma$ here is any atomic formula, i.e. a formula of the form $R(t_1, \mathellipsis, t_n)$ or $t_1=t_2$.
+
+	\item So, there is nothing really different about the proof theory itself, i.e. the rules for constructing tableaux. The only topic on which we really have to say anything is how to interpret function symbols in the associated model of a branch. Remember that in a model $\mathcal{M}$, the interpretation of an $n$-ary function symbol $f^n\in\mathcal{F}$ is an $n$-ary function $f^\mathcal{M}:(D^\mathcal{M})^n\to D^\mathcal{M}$. But what on earth could this function be in our model? The solution is as simple as it is revealing about the whole game of associated models. First, let's adjust the definition of the associated model for an open branch $B$ in complete tableau to a setting with function terms. We define $[t]_{\sim_B}$ to be the set $\{u:t=u\in B\}$ when $t$ occurs in $B$ and $\{t\}$ otherwise:\footnote{Why this complicated definition, you ask? Well, you'll see in a moment.} \[[t]_{\sim_B}=\begin{cases} \{u:t=u\in B\} &\text{if }t\text{ occurs in }B\\
+	\{t\} &\text{ otherwise}\end{cases}\]
+	Then, we say:
+		\begin{itemize}
+		
+			\item $D^{\mathcal{M}_B}=\{[t]_{\sim_B}:t\in\mathcal{T}\}$
+			
+			\item $a^{\mathcal{M}_B}=[a]_{\sim_B}$, for $a\in \mathcal{C}\cup Par$
+			
+			\item $R^{\mathcal{M}_B}=\{([t_1]_{\sim_B}, \mathellipsis, [t_n]_{\sim_B}): R(t_1, \mathellipsis, t_n)\in B\}$
+
+		\end{itemize}
+Now, for $f^n\in\mathcal{F}$ an $n$-ary function symbol, we need to find a function $f^{\mathcal{M}_B}$ that maps $n$-tuples of equivalence classes of terms $([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})$ to a single such equivalence class. But which one should it be: \[f^{\mathcal{M}_B}([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})=[?]_{\sim_B}\] The ``obvious'' answer is that $f^{\mathcal{M}_B}([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})=[f(t_1, \mathellipsis, t_n)]_{\sim_B}$. Why is this obvious? First, note that this really defines a function on the terms. In particular, for every input we assign one and only one out. This crucially hinges on the fact that we've ``enlarged'' $D^{\mathcal{M}_B}$ to include also the equivalence classes of all the terms not in $B$: we know that the value for $f([t]_{\sim_B})=[f(t)]_{\sim_B}]$, namely $[f(t)]_{\sim_B}\in D^{\mathcal{M}_B}$ , but we're now also guaranteed that we get a value for $f^{\mathcal{M}_B}([f(t)]_{\sim_B})$, viz. $[f(f(t))]_{\sim_B}\in D^{\mathcal{M}_B}$, and so on. The definition guarantees exactly that the formulas on the branch involving the term $f(t_1, \mathellipsis, t_n)$ will be true. How so, is best illustrated by means of an example.
+
+	\item \emph{Example}. Let's consider the following derivation for $\nvdash \forall x\forall y(f(x)= f(y)\to x= y)$
+	
+	\begin{center}
+	\begin{prooftree}
+{
+line numbering=false,
+line no sep= 2cm,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+} 
+[{\neg \forall x\forall y(f(x)= f(y)\to x= y)}, grouped
+		[{\exists x \neg\forall y(f(x)= f(y)\to x= y)}
+			[{\neg\forall y(f(p)= f(y)\to p= y)}
+				[{\exists y\neg(f(p)= f(y)\to p= y)}
+					[{\neg(f(p)= f(q)\to p= q)}
+						[{f(p)=f(q)}
+							[{p\neq q}
+							]
+						]
+					]
+				]
+			]
+		]
+]
+\end{prooftree}
+\end{center}
+Now let's consider the model $\mathcal{M}_{B}$. We have:
+\begin{itemize}
+		
+			\item $D^{\mathcal{M}_B}=\{[t]_{\sim_B}:t\in\mathcal{T}\}$
+			
+			\item $p^{\mathcal{M}_B}=[p]_{\sim_B}=\{p\}$
+			
+			\item $q^{\mathcal{M}_B}=[p]_{\sim_B}=\{q\}$
+			
+			\item $f^{\mathcal{M}_B}(p^{\mathcal{M}_B})=[f(p)]^{\mathcal{M}_B}=\{f(p), f(q)\}$
+			
+			\item $f^{\mathcal{M}_B}(q^{\mathcal{M}_B})=[f(q)]^{\mathcal{M}_B}=\{f(p), f(q)\}$
+			
+	
+		\end{itemize}
+		Now this model does exactly what we want it to do. Since $f^{\mathcal{M}_B}(p^{\mathcal{M}_B})=f^{\mathcal{M}_B}(q^{\mathcal{M}_B})$, we have that $\mathcal{M}_B\vDash f(p)=f(q)$. And since $p^{\mathcal{M}_B}\neq q^{\mathcal{M}_B}$, we have $\mathcal{M}_B\vDash p\neq q$.
+		
+		\item It is now a nice exercise to show using induction on terms that, in the associated model, the denotation of any ground-term is its equivalence class. In fact, you will do this as an exercise \smiley
+		
+		\begin{lemma}
+		Let $B$ be an open branch in a complete tableau and $\mathcal{M}_B$ the associated model. Then we have for all ground terms $t\in\mathcal{T}$ that $\llbracket t\rrbracket^\mathcal{M}_\alpha=[t]_{\sim_B}$. 	
+		\end{lemma}
+		\begin{proof}
+		Exercise 10.8.7. \emph{Hint}: You can basically ignore variables in the base case and disregard the assignment by Corollary 9.2.9.
+		\end{proof}
+		
+	\end{enumerate}
+
+
+\section{Infinite Tableaux and Decidability}
+
+	\begin{enumerate}[\thesection.1]
+
+		\item So far, all the tableaux we've been discussing have been \emph{very} well behaved. In fact, the infinitary issues I've mentioned in \S10.1, at least so far, haven't surfaced. But now they will. In fact, we need not look very hard for them. Just try to do the tableau for the simple formula $\neg\exists x\forall yR(x,y)$. You get:
+		\begin{center}
+{\footnotesize\begin{prooftree}
+{
+%proof statement format={centered},
+%to prove={\nvdash \exists x\forall yR(x,y)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\neg\exists x\forall yR(x,y)}, grouped
+	[{\forall x\neg \forall yR(x,y)}
+		[{\neg \forall yR(p_1, y)}
+			[{\exists y\neg R(p_1,y)}
+				[{\neg R(p_1, p_2)}
+					[{\neg\forall yR(p_2, y)}
+						[{\exists y\neg R(p_2, y)}
+							[{\neg R(p_2, p_3)}
+								[\vdots]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}}
+\end{center}
+What's going on here? Well, what happened is that we get a universally quantifier formula $\forall x\neg\forall yR(x,y)$, which we instantiate with a fresh parameter $p_1$, which then lead to an \emph{existentially} quantified formula $\exists y\neg R(p_1, y)$, for which we introduced a fresh parameter, $p_2$, giving us $R(p_1, p_2)$, which then forces us to re-instantiate $\forall x\neg\forall yR(x,y)$, giving us $\exists y\neg R(p_2, y)$, forcing us to introduce $p_3$, and so on. We got caught in what we might call a \emph{quantifier feedback loop}. The possibilities of such loops has profound implications for the proof theory of first-order logic using tableaux.
+
+	\item But before we discuss these implications, let's talk about fact that we just wrote down an infinite tableau. Well, of course we didn't. What we did was to realize that if we were to continue applying the tableau rules trying to construct the tableau for $\neg\exists x\forall yR(x,y)$, we will never get to an end. So, we can't write down the tableau for that formula. But does that mean that this tableau doesn't \emph{exist}? To appreciate that the mathematical answer is \emph{No!}, we have to re-think what tableaux actually \emph{are}. So far, we've been talking about tableaux as a concrete tree that we write down. But, mathematically speaking, the actual ink-and-paper (or screen-and-pixel) tableau that you write down is not what the tableau \emph{is}. A tableau, for a mathematician, is a special kind of (graph-theoretic) tree, which in turn is a mathematical structure that consists of a set of nodes and a set of edges connecting them. Nothing in this requires the tree to be written down or even be finitely writable in the first-place---it's just a pair of sets. But what about the rules? Well, for a mathematician, the rules we use to construct our tableaux are just an inductive definition of the set of tableaux! And in first-order logic, that's how \emph{we} will need to think of tableau as well.
+	
+	\item Note that the tableau above, our example, shows that $\nvdash\exists x\forall yR(x,y)$, i.e. the formula $\exists x\forall yR(x,y)$ is not derivable. In fact, infinite tableaux can \emph{only} occur in cases where something \emph{isn't} derivable. Why? Well, because if something \emph{is} derivable, then the tableau needs to close (by definition). But if a tableau closes, it does so after finitely many steps: there will be two nodes, one containing an atomic formula the other its negation, which are at some point in the tree---everything that comes after doesn't matter (in first-order logic, we can ``close early''). But how do we know that the tableau we sketched above doesn't close at some point? Well, that we need to prove. But the argument is actually not that hard:
+	
+	\begin{itemize}
+	
+		\item Note that all the formulas after the initial list are of the form: $\neg \forall yR(p_i, y)$, $\exists y\neg R(p_i, y)$, and $\neg R(p_i, p_{i+1})$. But these statements are either begin with an existential quantifier or a negation. So, there can't be an atom and it's negation on the branch.
+		
+	\end{itemize}
+Further, we need to prove that the tableau is \emph{complete}, i.e. if we were to continue indefinitely to apply rules according to the pattern described, then for each node to which a rule could be applied, at some point it will be applied. Here's the argument:
+\begin{itemize} 
+			
+		\item Note that whenever we introduce a new variable $p_i$, we apply the rule for $\forall x\neg\forall yR(x,y)$ to it,  and whenever we encounter $\neg \forall yR(p_i, y)$ we apply $\neg\forall$-rule to get to $\exists y\neg R(p_i, y)$  and then the $\exists$-rule to get to $\neg R(p_i, p_{i+1})$.  We've just observed that these are all the (kinds) of formulas on the tree, so we know that for each node to which a rule could be applied, at some point it will be applied.
+		
+\end{itemize}
+This is how we make sense of infinite tableaux. 
+
+	\item \emph{Example}. The tableau for the inference from $\forall x\exists yR(x,y)$ to $\exists y\forall xR(x,y)$:
+	
+	\begin{center}
+{\begin{prooftree}
+{
+proof statement format={centered},
+to prove={\forall x\exists yR(x,y)\nvdash \exists y\forall xR(x,y)},
+line numbering=false,
+for tree={s sep'=10mm},
+single branches=true,
+close with=\xmark
+}
+[{\forall x\exists yR(x,y)}, grouped 
+	[{\neg\exists y\forall xR(x,y)}, grouped
+		[{\forall y\neg \forall xR(x,y)}
+			[{\exists yR(p_1,y)}
+				[{\neg \forall xR(x,p_1)}
+					[{\exists x\neg R(x,p_1)}
+						[{R(p_1, p_2)}
+							[{\neg R(p_3, p_1)}
+								[{\exists yR(p_2, y)}
+									[{\neg \forall xR(x, p_3)}
+										[{\exists yR(p_3, y)}
+											[{\neg \forall xR(x, p_2)}
+												[{\vdots}
+												]
+											]
+										]
+									]
+								]
+							]
+						]
+					]
+				]
+			]
+		]
+	]
+]
+\end{prooftree}}
+\end{center}
+How do we see that the tableau is open? Well, we note that all the atomic formulas on the (one and only) branch are of the form $R(p_i, p_{2i})$ and $\neg R(p_{2i+1}, p_{i})$. Since there is no natural number $i$ such that $i=2i+1$, we can conclude that we'll never get to $R(s,t)$ and $\neg R(s,t)$---the tableau never closes.
+
+	\item Do we also have associated models for infinite open branches? Why, yes we do! Nothing in the definition of an associated model prevents us from applying the definition to an infinite branch. Here are the models we'd get for our two examples:
+	
+	\begin{itemize}
+	
+		\item $\nvdash\exists x\forall yR(x,y)$
+		
+			\begin{itemize}
+			
+				\item $D^{\mathcal{M}_B}=\{p_i:i\in\mathbb{N}\}$
+				
+				\item $p_i^{\mathcal{M}_B}=p_i$
+				
+				\item $R^{\mathcal{M}_B}=\emptyset$
+			
+			\end{itemize}
+			
+		\item $\forall x\exists yR(x,y)$ to $\exists y\forall xR(x,y)$
+				
+			\begin{itemize}
+			
+				\item $D^{\mathcal{M}_B}=\{p_i:i\in\mathbb{N}\}$
+				
+				\item $p_i^{\mathcal{M}_B}=p_i$
+				
+				\item $R^{\mathcal{M}_B}=\{(p_i, p_{2i}):i\in \mathbb{N}\}$
+			
+			\end{itemize}	
+	\end{itemize}
+				In fact, we will be able to prove soundness and completeness for first-order tableaux, which, of course, crucially depends on the existence of associated models. 
+
+	\item This brings me to the last point of this chapter, decidability. Soundness and completeness should \emph{not} be confused with decidability. What we will be able to show, the soundness and completeness theorem, is that $\Gamma\vDash\phi$ iff the tableau for $\Gamma\cup\{\neg\phi\}$ is closed. But that doesn't mean that there's an effective algorithm, which \emph{in a finite amount of time} determines whether $\Gamma\vDash\phi$. In fact, we've just seen that our algorithm can ``loop'' and never spit out an answer. In such cases, we can still reason to the right answer, but this isn't algorithmic anymore. A computer can't figure out that reasoning. Now, this shows that the tableau algorithm doesn't decide first-order logic. But the fact that one algorithm doesn't work, of course, doesn't mean that \emph{no} algorithm works. What we can see, however, is that a certain \emph{kind} of algorithm will not work: one that tries to construct countermodels for invalid inferences. The idea to construct countermodels is something that tableaux and truth-tables have in common: in truth-tables, we check whether there's a line in the table that gives us a countermodel and in tableaux we look for a branch to do the job. And in propositional logic, this method works: since we only need to consider the interpretations (read: truth-values) of the finitely many  sentence letters in the formula, we can do this checking in a finite amount of time. The problem in first-order logic is that countermodels sometimes \emph{need to be} be infinite. To see this, note that some sets of formulas have only infinite models: an example can be found in Exercise 9.7.11. If we want to show that something doesn't follow from such a set, we need an infinite countermodel. And we can't possibly search through all of those. 
+	
+	Now that's a whole class of algorithms that won't work. But in order to show that really absolutely no algorithm can possibly work ever, we need to dig deeper. The reasoning that establishes \emph{that} is closer related to the paradoxes, like Russel's paradox, but we won't be able to go into that in this course (that's more for ``Logische Complexiteit'').
+		
+	\end{enumerate}
+
+\section{Core Ideas}
+
+\begin{itemize}
+	
+		\item Tableaux for first-order logic work in similar way as propositional tableaux. Underlying is always the idea that an inference is valid iff the premises and negation of conclusion are jointly unsatisfiable.				
+		\item We have three tiers of tableau systems: simple tableaux, tableaux with identity, and tableaux with identity and functions. We successively add rules for those.
+		
+		\item There is also a concept of an associated model, which in first-order logic is a \emph{term model}, i.e. a model based on the syntactic strings as the objects in the domain.
+		
+		\item First-order tableaux can turn out to be infinite, in which case we need to \emph{prove} that they are open and complete.
+		
+		\item The existence of infinite tableaux destroys our hopes for an easy decidability proof.
+		
+		\item Alas, first-order logic is actually provably undecidable.
+	
+	\end{itemize}
+
+
+\section{Self Study Questions}
+
+[Will be provided soon]
+
+\section{Exercises}
+	
+	\begin{enumerate}[\thesection.1]
+	
+		\item By constructing appropriate tableaux, show the following:
+
+			\begin{enumerate}[(a)]
+
+				\item $\forall xP(x)\vdash \forall yP(y)$
+
+				\item $\exists x\exists yS(x,y)\vdash \exists y\exists xS(x,y)$
+
+				\item $\neg \exists xP(x)\vdash \forall x(P(x)\to Q(x))$
+
+				\item $[h]$ $\forall xP(x)\vdash \forall x(Q(x)\to P(x)\lor R(x))$
+
+			\end{enumerate}
+			
+			\item Construct tableaux to check the following. If the tableau does not close, construct a counter-model from the open branch and check that it works. If the tableau is infinite, see if you can find a simple finite counter-model by trial and error.
+
+				\begin{enumerate}[(a)]
+
+					\item $\forall x(P(x)\to Q(x)), \exists x\neg P(x)\vdash \forall x\neg Q(x)$
+
+					\item $\forall xP(x)\to \forall yQ(y)\vdash \forall x(P(x)\to \forall yQ(y))$
+
+					\item $[h]$ $\exists x(P(x)\to \forall yQ(y))\vdash \exists xP(x)\to \forall yQ(y)$
+
+					\item $[h]$ $\vdash \forall x\exists yS(x,y)\to \exists xS(x,x)$
+
+					\item $\exists x\neg\exists yS(x,y)\vdash \exists x\forall yS(x,y)$
+
+				\end{enumerate}
+				
+			\item The tableaux for the following set of formulas is infinite  \[\{\forall x\forall y(f(x)=f(y)\to x=y),  \forall xf(x)\neq x, \exists x\neg\exists yf(y)=x\}.\] Begin the tableaux construction, prove that the tableau is open, and determine the associated model. 			
+				
+			\item Use the tableau method to find models in which the following formulas are false:
+			
+			\begin{enumerate}[(a)]
+			
+				\item $\exists x\exists y(P(x)\land P(y)\land x\neq y)$
+				
+				\item $\forall x\forall y\forall z(P(x)\land P(y)\land P(z)\to x=y\lor x=z\lor y=z)$
+				
+				\item $\exists x\exists y(P(x)\land P(y)\land \forall z(P(z)\to x=z\lor y=z))$
+			
+			\end{enumerate}
+
+			\item Show the following facts using tableaux with identity:
+			
+			\begin{enumerate}[(a)]
+						
+				\item $\vdash \forall x\forall y(x=y\to y=x)$
+						
+				\item $\exists x(x=a\land P(x))\vdash P(a)$
+				
+				\item $P(a)\vdash \forall x(x=a\to P(x))$
+
+				\item $[h]$ $\exists x(P(x)\land \forall y(P(y)\to x=y)\vdash \forall x\forall y(P(x)\land P(y)\to x=y)$
+				
+				\item $\vdash \exists x(\exists yPy\to Px)$
+							
+			\end{enumerate}
+			
+			\item $[h, \nosym]$ It's not possible to write an algorithm that determines whether a formula is \emph{in}valid, that is false in some model, after a finite amount of time. Why? 
+			
+			\emph{Hardcore version} (Not homework): It's not even possible to find such an algorithm for \emph{contingency}, that is to determine whether a formula is true in some models and false in others. Why?
+			
+			\item Prove Lemma 10.4.4.
+	
+	\end{enumerate}
+
+	
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../../logic.tex"
+%%% End: 
