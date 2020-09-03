@@ -1,11 +1,14 @@
 #macOS
+
+.DS_Store
+
 #Local archive folder
 
 .archive/
 
 #auctex
 
-.auxtex-auto
+.auctex-auto/
 
 #LaTex aux-files
 
@@ -37,6 +40,9 @@
 *.mtc1
 *.out
 *.synctex.gz
+
+logic.fdb_latexmk
+logic.fls
 
 #the pdf
 
