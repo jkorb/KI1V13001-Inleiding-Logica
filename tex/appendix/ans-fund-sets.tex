@@ -110,15 +110,22 @@ We have now proved both directions, so $X \subseteq Y$ iff $X \cap Y = X$.
 	$
 \end{enumerate}{}
 
-\item[3.10.5]
-        \begin{proof}
-          We want to prove that $f(n,m) = n + m$ for all $n, m \in \mathbb{N}$.\\
-          Base case: $f(n,0) = n + 0$.\\
-          By the definition $f(n,0) = n$. It is trivial that $n = n + 0$.\\
-          Induction step: for all $n, m \in \mathbb{N}$, if $f(n,m) = n +m$ then $f(n,m+1) = n + (m + 1)$.\\
-          Let $n, m \in \mathbb{N}$. Assume that $f(n,m) = n + m$ (IH). Consider $f(n, m + 1)$. By the definition $f(n, m +1) = f(n,m) + 1$. We substitute the IH and get $f(n, m +1) = n + m + 1 = n + (m + 1)$, which is what we had to show.\\
-          By the principle of mathematical induction we conclude that for all $n, m \in \mathbb{N}$ it is true that $f(n,m) = n + m$.
-        \end{proof}
+      \item[3.10.5] We want to prove that $f(n,m) = n + m$ for all $n, m \in \mathbb{N}$.
+        We use the principal of mathematical induction.
+        \emph{Base case}:
+        We need to show that $f(n,0) = n + 0$.
+        By the definition $f(n,0) = n$.
+        It is trivial that $n = n + 0$.
+        \emph{Induction step}:
+        We need to show that for all $n, m \in \mathbb{N}$,
+        if $f(n,m)=n+m$, then $f(n,m+1)=(n+m)+1$.
+        So, let $n, m \in \mathbb{N}$.
+        Assume the induction hypothesis that $f(n,m) = n + m$ (IH).
+        Consider $f(n, m + 1)$.
+        By the definition $f(n,m+1) = f(n,m) + 1$.
+        By the IH and get $f(n,m+1) = n + m + 1$, which is what we had to show.
+        By the principle of mathematical induction,
+        we conclude that for all $n, m \in \mathbb{N}$ it is true that $f(n,m) = n + m$.
 
 \item[3.10.7]
 \begin{enumerate}[(a)]
