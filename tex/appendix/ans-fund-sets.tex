@@ -34,17 +34,47 @@
    		 \item $X \times Y = \{(1,1),(1,3),(1,5),(2,1),(2,3),(2,5),(3,1),(3,3),(3,5)\}$\\$Y \times X = \{(1,1),(1,2),(1,3),(3,1),(3,2),(3,3),(5,1),(5,2),(5,3)\}$
 		\end{enumerate}
 
-	\item[3.10.2]
+      \item[3.10.2]
 
-			\begin{enumerate}[(a)]
+        \begin{enumerate}[(a)]
 
-			    \item To prove $X\subseteq Y$ iff $X\cup Y = Y$, we need to prove both directions.\\$\Rightarrow\\ to\ prove:\\$If $ X\subseteq Y,\ $then $ X\cup Y = Y \\$ Suppose $X \subseteq Y$. We'll show that $X \cup Y = Y$. To show this, we must prove two things: \begin{enumerate}[(i)]
-    			    \item $Y \subseteq X \cup Y$: from the definition of union follows that $X\cup Y$ consists of all elements in $X$ and all elements in $Y$, hence all elements in $Y$ are in $X\cup Y$, which is what we needed to show.
- 			       \item $X\cup Y \subseteq Y$ Let $x$ be an arbitrary element of $X \cup Y$. By the definition of union, we know that $x \in Y$ or $X \in X$. When $x \in Y$, we are fine, as we want to show that $x \in Y$. When $x \in X$, we know by our assumption that $X\subseteq Y$, that $x \in Y$. Therefore all $x \in X\cup Y$ are in $Y$, therefore $X\cup Y \subseteq Y$. 
-    \end{enumerate}
-  			  Using the axiom of Extensionality, we can now conclude that $X \cup Y = Y$. \\\\
-   			 $\Leftarrow\\to\ prove:$\\If $X\cup Y=Y$, then $X\subseteq Y$. We'll prove the contrapositive. We assume that $X \not \subseteq Y$. Hence there must be some element $x\in X$ such that $x\not \in Y$. As $X \cup Y$ contains all elements of $X$, it must also contain $x$. As there's one element that is in $X\cup Y$ and not in $Y$, $X \cup Y \neq Y$, which is what we needed to prove.\\\\ As we've now proved both directions, we've proved $X\subseteq Y$ iff $X\cup Y = Y \square$
-    
+          \item To prove $X\subseteq Y$ iff $X\cup Y = Y$, we need to prove both directions.\\$\Rightarrow\\ to\ prove:\\$If $ X\subseteq Y,\ $then $ X\cup Y = Y \\$ Suppose $X \subseteq Y$. We'll show that $X \cup Y = Y$. To show this, we must prove two things: \begin{enumerate}[(i)]
+                                                                                                                                                                                                                                                                         \item $Y \subseteq X \cup Y$: from the definition of union follows that $X\cup Y$ consists of all elements in $X$ and all elements in $Y$, hence all elements in $Y$ are in $X\cup Y$, which is what we needed to show.
+                                                                                                                                                                                                                                                                         \item $X\cup Y \subseteq Y$ Let $x$ be an arbitrary element of $X \cup Y$. By the definition of union, we know that $x \in Y$ or $X \in X$. When $x \in Y$, we are fine, as we want to show that $x \in Y$. When $x \in X$, we know by our assumption that $X\subseteq Y$, that $x \in Y$. Therefore all $x \in X\cup Y$ are in $Y$, therefore $X\cup Y \subseteq Y$.
+                                                                                                                                                                                                                                                                       \end{enumerate}
+            Using the axiom of Extensionality, we can now conclude that $X \cup Y = Y$. \\\\
+            $\Leftarrow\\to\ prove:$\\If $X\cup Y=Y$, then $X\subseteq Y$. We'll prove the contrapositive. We assume that $X \not \subseteq Y$. Hence there must be some element $x\in X$ such that $x\not \in Y$. As $X \cup Y$ contains all elements of $X$, it must also contain $x$. As there's one element that is in $X\cup Y$ and not in $Y$, $X \cup Y \neq Y$, which is what we needed to prove.\\\\ As we've now proved both directions, we've proved $X\subseteq Y$ iff $X\cup Y = Y \square$
+
+          \item  We aim to show that $X \subseteq Y$ iff $X \cap Y = X$. To prove this we need to prove both sides of the biconditional:
+            \begin{itemize}
+              \item $\Rightarrow$. We need to show that if $X \subseteq Y$ then  $X \cap Y = X$. So, assume $X \subseteq Y$.
+                We want to show that $X \cap Y = X$.
+                By extionsionality, we must show two things:
+                \begin{itemize}
+                  \item First, we need to show that $X \cap Y \subseteq X$.
+                    So, let an element $x \in X \cap Y$.
+                    That means, by definition of $\cap$, that $x \in X$ and $x \in Y$.
+                    But then certainly, $x \in X$, as desired.
+                  \item Second, we need to show that $X \subseteq X \cap Y$.
+                    So, let an element $x \in X$.
+                    We have assumed that $X \subseteq Y$,
+                    from which it follows that $x \in Y$.
+                    As such we have $x \in X$ and $x \in Y$, which means, by definition of $\cap$, that $x \in X \cap Y$.
+                \end{itemize}
+
+                By the axiom of extensionality we can conclude $X \cap Y = X$.
+
+              \item $\Leftarrow$. We need to show that if $X \cap Y = X$, then $X \subseteq Y$.
+                We do a proof by contraposition.
+                So, assume $X \not \subseteq Y$.
+                That means there is an element $x \in X$ for which $x \not \in Y$.
+                If $x \not \in Y$, then $x \not \in X \cap Y$.
+                So $X \not \subseteq X \cap Y$ (because there is an $x \in X$ for which $x \not \in X \cap Y$) so $X \not = X \cap Y$.
+
+            \end{itemize}
+
+We have now proved both directions, so $X \subseteq Y$ iff $X \cap Y = X$.
+
 \end{enumerate}
 \item[3.10.3] \
 \begin{enumerate}
@@ -79,6 +109,16 @@
 	\end{cases}
 	$
 \end{enumerate}{}
+
+\item[3.10.5]
+        \begin{proof}
+          We want to prove that $f(n,m) = n + m$ for all $n, m \in \mathbb{N}$.\\
+          Base case: $f(n,0) = n + 0$.\\
+          By the definition $f(n,0) = n$. It is trivial that $n = n + 0$.\\
+          Induction step: for all $n, m \in \mathbb{N}$, if $f(n,m) = n +m$ then $f(n,m+1) = n + (m + 1)$.\\
+          Let $n, m \in \mathbb{N}$. Assume that $f(n,m) = n + m$ (IH). Consider $f(n, m + 1)$. By the definition $f(n, m +1) = f(n,m) + 1$. We substitute the IH and get $f(n, m +1) = n + m + 1 = n + (m + 1)$, which is what we had to show.\\
+          By the principle of mathematical induction we conclude that for all $n, m \in \mathbb{N}$ it is true that $f(n,m) = n + m$.
+        \end{proof}
 
 \item[3.10.7]
 \begin{enumerate}[(a)]
@@ -120,4 +160,4 @@ We will prove that $\spadesuit\Diamond\heartsuit\spadesuit \not \in Gargle$. We 
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
