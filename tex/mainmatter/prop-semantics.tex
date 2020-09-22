@@ -190,7 +190,7 @@ The last case, $(\phi\leftrightarrow\psi)$ is somewhat easier, given that $\left
 		\end{enumerate}
 By virtue of function recursion, we get truth-value for \emph{every} formula from (i--ii). In fact, we can calculate this value \emph{step-by-step}. Let's consider a couple of concrete examples. Let $v$ be the valuation given in 5.1.3.f, i.e. $v(p)=1,v(q)=0,$ and $v(r)=1$. For $\neg (p\land (r\lor q))$, we get:
 		\begin{align*}
-		\llbracket \neg (p\land (p\lor q))\rrbracket_v &=1-\llbracket (p\land (r\lor q))\rrbracket_v\tag{ii.a}\\
+		\llbracket \neg (p\land (r\lor q))\rrbracket_v &=1-\llbracket (p\land (r\lor q))\rrbracket_v\tag{ii.a}\\
 		&=1-min(\llbracket p\rrbracket_v, \llbracket (r\lor q)\rrbracket_v)\tag{ii.b}\\
 		&=1-min(\llbracket p\rrbracket_v, max(\llbracket r\rrbracket_v,\llbracket q\rrbracket_v))\tag{ii.b}\\
 		&=1-min(v(p), max(v(r), v(q)))\tag{i}\\
