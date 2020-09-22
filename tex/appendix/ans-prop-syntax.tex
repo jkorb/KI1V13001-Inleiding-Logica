@@ -236,8 +236,65 @@
 	
 	\end{enumerate}
 	
-	\item[4.8.7] (to be filled in)
-	
+  \item[4.8.7] We willen laten zien dat boor alle formules $\phi\in\mathcal{L}$,
+	het aantal subformules maximaal tweemaal het aantal connectieven plus 1,
+	i.e. $|sub(\phi)| \leq 2 \cdot \#_{conn}(\phi) + 1$.
+
+	  We bewijzen dit met inductie op formules.
+
+	  \begin{itemize}
+		\item[(i)] Het basisgeval $p$ heeft één subformule, $p$, en bevat geen connectieven.
+		  Het aantal subformules is dus niet groter dan $2 \cdot 0 + 1 = 1$.
+		\item[(ii)]
+		  \begin{itemize}
+			\item [a.] Neem een formule $\phi\in\mathcal{L}$.
+			  We nemen via de inductiehypothese aan dat het aantal subformules van $\phi$ niet groter is dan $2\cdot \#_{conn}(\phi) + 1$.
+			  We bekijken het geval $\neg\phi$.
+			  Met de definitie van de subformules (zie 4.4.2) weten we dat
+			  $sub(\neg\phi) = sub(\phi) \cup \{\neg\phi\}$ dus $|sub(\neg\phi)| = |sub(\phi)| + 1$.
+			  Aangezien we één negatie toevoegen volgt
+			  $\#_{conn}(\neg\phi) = \#_{conn}(\phi) + 1$.
+			  Neem nu de inductiehypothese:
+			  \begin{align*}
+				|sub(\phi)| &\leq 2\cdot \#_{conn}(\phi) + 1
+			  \end{align*}
+			  Substitutie geeft:
+			  \begin{align*}
+				|sub(\neg\phi)| - 1 &\leq 2\cdot \#_{conn}(\neg\phi) \\
+				|sub(\neg\phi)| &\leq 2\cdot \#_{conn}(\neg\phi) + 1
+			  \end{align*}
+			  Hiermee geldt de claim voor $\neg\phi$.
+
+			\item [b.] Bezie
+			  $\phi, \psi \in \mathcal{L}$.
+			  We nemen via de inductiehypothese aan dat
+			  $|sub(\phi)|\leq 2\cdot \#_{conn}(\phi)+1$
+			  en
+			  $|sub(\psi)|\leq 2\cdot \#_{conn}(\psi)+1$.
+			  We beschouwen het geval $(\phi\circ\psi)$ met
+			  $\circ\in\{\vee,\wedge,\to,\leftrightarrow\}$.
+			  Met de definitie van de subformules (zie 4.4.2) weten we dat
+			  $sub((\phi \circ \psi))=sub(\phi) \, \cup \, sub(\psi) \, \cup \, \{ (\phi\circ\phi)\}$.
+			  Omdat er overlap kan zijn tussen de subformules van $\phi$ en $\psi$, moet gelden dat
+			  $|sub((\phi \circ \psi))|\leq |sub(\phi)| + sub(\psi)$.
+			  Verder
+			  $\#_{conn}((\phi \circ \psi)) = \#_{conn}(\phi) + \#_{conn}(\psi) + 1$.
+			  Begin als volgt:
+			  \begin{align*}
+				|sub((\phi \circ \psi))| &\leq |sub(\phi)| + sub(\psi)
+			  \end{align*}
+			  Substitutie geeft:
+			  \begin{align*}
+				|sub((\phi \circ \psi))| &\leq 2\cdot \#_{conn}(\phi) + 2\cdot \#_{conn}(\psi) + 2 \\
+										 &\leq 2 \cdot (\#_{conn}(\phi) + \#_{conn}(\psi) + 1)\\
+										 &\leq 2 \cdot \#_{conn}((\phi \circ \psi)) \\
+										 &\leq 2 \cdot \#_{conn}((\phi \circ \psi)) + 1
+			  \end{align*}
+			  Hiermee geldt de eigenschap ook voor $(\phi \circ \psi)$.
+			  We hebben nu via inductie bewezen dat de eigenschap voor alle formules geldt.
+		  \end{itemize}
+	  \end{itemize}
+
 	\item[4.8.8] We give an informal outline of the argument. This can be made precise using function $\#_($ from 1.8.5 and an analogously defined function $\#_)$.
 	
 	\emph{Claim}. The number of $($ and $)$ in a formula $\phi$ is always the same. 
