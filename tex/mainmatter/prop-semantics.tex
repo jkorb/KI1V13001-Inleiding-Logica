@@ -373,7 +373,32 @@ When $\Gamma\vDash \phi$, we also say that the $\Gamma$'s \emph{entail} $\phi$ o
 			
 			\item \emph{Claim}. $\neg p, p\leftrightarrow q\vDash \neg q$. 
 			\begin{proof}
-			We need to prove that for each valuation $v$, if $\llbracket \neq p\rrbracket_v=1$ and $\llbracket p\leftrightarrow q\rrbracket_v=1$, then also $\llbracket \neg q\rrbracket_v=1$. So let $v$ be a valuation and suppose that $\llbracket \neg p\rrbracket_v=1$ and $\llbracket p\leftrightarrow q\rrbracket_v=1$. Since $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v$, it follows that $\llbracket p\rrbracket_v=0$. We furthermore know that \[\llbracket(p\leftrightarrow q)\rrbracket_v=\begin{cases} 1 & \text{if } \llbracket p\rrbracket_v=\llbracket q\rrbracket_v\\0&\text{otherwise}\end{cases}\] So, since $\llbracket p\leftrightarrow q\rrbracket_v=1$, it follows that $\llbracket q\rrbracket_v=\llbracket p\rrbracket_v=0$. But since $\llbracket \neg q\rrbracket_v=1-\llbracket q\rrbracket_v$, we get $\llbracket \neg q\rrbracket_v=1$, as desired.
+			  We need to prove that for each valuation $v$,
+			  if
+			  $\llbracket \neg p\rrbracket_v=1$
+			  and
+			  $\llbracket p\leftrightarrow q\rrbracket_v=1$,
+			  then also
+			  $\llbracket \neg q\rrbracket_v=1$.
+			  So let $v$ be a valuation and suppose that
+			  $\llbracket \neg p\rrbracket_v=1$
+			  and
+			  $\llbracket p\leftrightarrow q\rrbracket_v=1$.
+			  Since
+			  $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v$,
+			  it follows that
+			  $\llbracket p\rrbracket_v=0$.
+			  We furthermore know that \[\llbracket(p\leftrightarrow q)\rrbracket_v=\begin{cases} 1 & \text{if } \llbracket p\rrbracket_v=\llbracket q\rrbracket_v\\0&\text{otherwise}\end{cases}.\]
+			  So,
+			  since
+			  $\llbracket p\leftrightarrow q\rrbracket_v=1$,
+			  it follows that
+			  $\llbracket q\rrbracket_v=\llbracket p\rrbracket_v=0$.
+			  But since
+			  $\llbracket \neg q\rrbracket_v=1-\llbracket q\rrbracket_v$,
+			  we get
+			  $\llbracket \neg q\rrbracket_v=1$,
+			  as desired.
 			
 			\end{proof}		
 		
