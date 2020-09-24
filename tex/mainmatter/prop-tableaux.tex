@@ -168,7 +168,31 @@ It is possible to give rules $\leftrightarrow L$ and $\leftrightarrow R$ as well
 		\end{proof}
 		
 		
-			\item Finally, let's consider a less abstract/more concrete example: the set $\{p\lor q, \neg p, \neg q\}$ is unsatisfiable. To see this, suppose that $v$ is a valuation with $\llbracket p\lor q\rrbracket_v=1$, $\llbracket\neg p\rrbracket_v=1$, and $\llbracket\neg q\rrbracket_v=1$. Since $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket_v$, we get immediately that  $\llbracket p\rrbracket_v=0$ and $\llbracket q\rrbracket_v=0$. But since $\llbracket p\lor q\rrbracket_v=max(\llbracket p\rrbracket_v, \llbracket p\rrbracket_v)$ and  $\llbracket p\lor q\rrbracket_v=1$, that either $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$ (otherwise, how could $max(\llbracket p\rrbracket_v, \llbracket p\rrbracket_v)=1$?)---but either case leads to a contradiction. Hence, we cant have that  $\llbracket p\lor q\rrbracket_v=1$, $\llbracket\neg p\rrbracket_v=1$, and $\llbracket\neg q\rrbracket_v=1$ for any $v$; that is, $\{p\lor q, \neg p, \neg q\}$ is unsatisfiable.
+		  \item Finally, let's consider a less abstract/more concrete example:
+			the set
+			$\{p\lor q, \neg p, \neg q\}$
+			is unsatisfiable.
+			To see this,
+			suppose that $v$ is a valuation with
+			$\llbracket p\lor q\rrbracket_v=1$,
+			$\llbracket\neg p\rrbracket_v=1$,
+			and $\llbracket\neg q\rrbracket_v=1$.
+			Since $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket_v$,
+			we get immediately that  $\llbracket p\rrbracket_v=0$ and $\llbracket q\rrbracket_v=0$.
+			But since
+			$\llbracket p\lor q\rrbracket_v=max(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)$
+			and  $\llbracket p\lor q\rrbracket_v=1$,
+			that either
+			$\llbracket p\rrbracket_v=1$
+			and $\llbracket q\rrbracket_v=1$
+			(otherwise, how could $max(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)=1$?)
+			---but either case leads to a contradiction.
+			Hence, we cant have that
+			$\llbracket p\lor q\rrbracket_v=1$,
+			$\llbracket\neg p\rrbracket_v=1$,
+			and $\llbracket\neg q\rrbracket_v=1$ for any $v$; that is,
+			$\{p\lor q, \neg p, \neg q\}$
+			is unsatisfiable.
 		
 		\end{enumerate}
 		
@@ -893,4 +917,4 @@ The system of natural deduction finds many applications in logic. You can read m
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
