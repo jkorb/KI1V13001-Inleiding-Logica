@@ -201,7 +201,7 @@ By virtue of function recursion, we get truth-value for \emph{every} formula fro
 		\end{align*}
 Next, consider the formula $((p\to q)\lor (q\to r))$. We get:
 		\begin{align*}
-		\llbracket ((p\to q)\lor (q\to r))\rrbracket_v &=max(\llbracket (p\to q)\rrbracket_v, \llbracket q\to r\rrbracket_v)\\
+		\llbracket ((p\to q)\lor (q\to r))\rrbracket_v &=max(\llbracket (p\to q)\rrbracket_v, \llbracket (q\to r)\rrbracket_v)\\
 		&=max(max(1-\llbracket p\rrbracket_v, \llbracket q\rrbracket_v), max(1-\llbracket q\rrbracket_v, \llbracket r\rrbracket_v))\\
 		&=max(max(1-v(p), v(q)), max(1-v(q), v(r)))\\
 		&=max(max(1-1, 0), max(1-0, 1))\\
