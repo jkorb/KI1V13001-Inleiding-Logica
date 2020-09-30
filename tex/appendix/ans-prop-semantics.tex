@@ -18,9 +18,74 @@
 \section*{5.6 Exercises}
 
 	\begin{enumerate}
-	
+
+      \item[5.6.2]
+
+        \begin{enumerate}[(i)]
+            \setcounter{enumii}{14}
+          \item We want to show that for all $\phi, \psi,$ and $\theta$, we have
+            \[\phi \vee (\psi \wedge \theta) \equi (\phi \vee \psi) \wedge (\phi \vee \theta)\]
+
+            We'll prove this directly.
+            We know that
+            $\phi \equi \psi$
+            iff for all valuations $v$,
+            $\llbracket \phi \rrbracket_v = \llbracket\psi\rrbracket_v$
+            (see proposition 5.2.5).
+
+            Let's apply the truth functions to our formulas with an arbitrary valuation $v$:
+           \begin{align*}
+\llbracket \phi\vee (\psi\wedge\theta)\rrbracket_v &= max(\llbracket\phi\rrbracket_v \, , \, \llbracket \psi \wedge \theta \rrbracket_v ) \\
+& = max(\llbracket\phi\rrbracket_v \, , \, min(\llbracket \psi \rrbracket_v, \llbracket \theta \rrbracket_v ))\\\\
+\llbracket (\phi\vee\psi) \wedge (\phi \vee \theta)\rrbracket_v &= min(\llbracket\phi\vee\psi\rrbracket_v \, , \, \llbracket \phi \vee \theta \rrbracket_v ) \\
+& = min(max(\llbracket\phi\rrbracket_v \, , \, \llbracket\psi\rrbracket_v) \, , \, max(\llbracket \phi \rrbracket_v\, , \, \llbracket \theta \rrbracket_v ))
+           \end{align*}
+
+
+            We have to prove that for all $x,y,z\in \{0,1\}$, we have:
+            \[max(x, min(y,z)) = min(max(x,y),max(x,z))\]
+
+            We distinguish two cases:
+            (i) $x = 0$ and
+            (ii) $x = 1$.
+            \begin{itemize}
+              \item[(i)] Assume $x=0$.
+                Then we have
+                $max(x,y) = y$
+                and
+                $max(x,z) = z$.
+                Substituting this in the identity
+                $min(max(x,y),max(x,z)) =min(max(x,y),max(x,z))$
+                gives us
+                $min(max(x,y) \, , \, max(x,z)) = min (y,z)$.
+                And if $x=0$ we also know that
+                $max(x \, , min(y,z)) = min(y,z)$.
+                It follows that
+                $max(x, min(y,z)) = min(max(x,y), max(x,z))$.
+                So, in case (i) the claimed equation holds.
+
+              \item[(ii)]  Assume that $x=1$.
+                It follows that
+                $max(x, min(y,z)) = x=1$.
+                We also get that
+                $max(x,y) = max(x,z) = x=1$.
+                So,
+                $min(max(x,y), max(x,z)) = 1$.
+                It follows immediately that
+                $max(x, min(y,z)) = min(max(x,y), max(x,z))$,
+                which is what we wanted to show.
+            \end{itemize}
+            So, what we've shown is that for all values $x,y,z\in\{0,1\}$, our equation holds.
+            This gives us quickly that for all \emph{valuations}
+            $v:\mathcal{P}\to\{0,1\}$,
+            we have that
+            $\llbracket \phi \vee (\psi \wedge \theta) \rrbracket_v = \llbracket(\phi \vee \psi) \wedge (\phi \vee \theta)\rrbracket_v$,
+            which entails our claim.
+
+        \end{enumerate}
+
 		\item[5.6.3] 
-		
+
 		\begin{enumerate}[(i)]
 		
 			\setcounter{enumii}{2}
@@ -260,4 +325,4 @@ $p$&$q$&$r$& $\neg p$ & $\neg q$ & $\neg p\lor q$ & $r\to\neg q$ & $p\to r$ & $p
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
