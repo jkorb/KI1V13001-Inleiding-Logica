@@ -600,7 +600,12 @@ Essentially, we name a node by giving the ``directions'' for someone traveling a
 
 \end{enumerate}
 
-	\item The fact that an expression can occur more than once requires us to talk about \emph{occurrences} of expressions. For many purposes we want to be able to \emph{distinguish} different occurrences of expressions, we want, for example, to be able to distinguish the occurrence of $R(x,y)$ at $(r,1,2)$ from the occurrence at $(r,1,2,1,1,2,1)$. We do this by defining an \emph{occurrence} of an expression in a formula as the pair $(n,\sigma)$ where $n$ is a node in the parsing tree labelled with $\sigma$. 
+	  \item The fact that an expression can occur more than once requires us to talk about \emph{occurrences} of expressions.
+		For many purposes we want to be able to \emph{distinguish} different occurrences of expressions, we want, for example, to be able to distinguish the occurrence of
+		$R(x,y)$ at $(r,1,1)$
+		from the occurrence at
+		$(r,1,2,1,1,2,1)$.
+		We do this by defining an \emph{occurrence} of an expression in a formula as the pair $(n,\sigma)$ where $n$ is a node in the parsing tree labelled with $\sigma$.
 	
 	\item \emph{Examples}. Consider the formula $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$. We gave the ordinary parsing tree above. Here is the stripped one:
 	\begin{center}
