@@ -775,8 +775,28 @@ When a variable occurrence in a formula is not bound by some quantifier occurren
 			
 			\end{itemize}
 
-		\item In the following, we shall study only inferences involving closed formulas or \emph{sentences} as they are typically called. The reason for this is that open formulas are not straight-forwardly apt to be true or false in a possible situation: an open formula, like $P(x)$, contains an unbound variable, which intuitively is something like a pronoun who's reference you don't know. This spells trouble for our account of valid inference. Suppose that somebody comes into the room and declares ``She's coming! So, we should all be happy.'' How can you possibly determine any relation between the truth of ``she's coming'' and ``we should all be happy'' without knowing who ``she'' refers to? It \emph{is} possible to use free variables (and disambiguated) pronouns in a reasonable, logical way. For example, in mathematics, we often write an open formula $x+y=y+x$ to express a general claim about all numbers, rather than using the universally quantified sentence $\forall x\forall y(x+y=y+x)$ for the same purpose. Similarly, we reasonably reason from ``he's coming'' to ``he's not not coming;'' we don't need to know who ``he'' is for that purpose. But, it turns out that if we consider valid inferences between open formulas, all sort of technical difficulties pop up (they're not unsurmountable, but they'r there). To avoid these problems, we'll focus on inferences between sentences alone. This is actually not that much of an restriction since we'll have to think about the truth-conditions for open formulas anyways when we try to give truth-conditions for sentences. Why you can already see now from a purely syntactic standpoint: sentences, like $\forall xP(x)$, are constructed from open formulas, in this case $P(x)$; so, if we want to trace the construction of a formula in our recursive definition of truth, we need to give the truth-conditions for the open formula $P(x)$.
-		
+	  \item In the following, we shall study only inferences involving closed formulas or \emph{sentences} as they are typically called.
+		The reason for this is that open formulas are not straight-forwardly apt to be true or false in a possible situation: an open formula, like $P(x)$, contains an unbound variable, which intuitively is something like a pronoun who's reference you don't know.
+		This spells trouble for our account of valid inference.
+		Suppose that somebody comes into the room and declares ``She's coming! So, we should all be happy.''
+		How can you possibly determine any relation between the truth of ``she's coming'' and ``we should all be happy'' without knowing who ``she'' refers to?
+		It \emph{is} possible to use free variables (and disambiguated) pronouns in a reasonable, logical way.
+		For example, in mathematics, we often write an open formula
+		$x+y=y+x$
+		to express a general claim about all numbers, rather than using the universally quantified sentence
+		$\forall x\forall y(x+y=y+x)$
+		for the same purpose.
+		Similarly, we reasonably reason from ``he's coming'' to ``he's not not coming;'' we don't need to know who ``he'' is for that purpose.
+		But, it turns out that if we consider valid inferences between open formulas, all sort of technical difficulties pop up (they're not unsurmountable, but they're there).
+		To avoid these problems, we'll focus on inferences between sentences alone.
+		This is actually not that much of an restriction since we'll have to think about the truth-conditions for open formulas anyways when we try to give truth-conditions for sentences.
+		Why you can already see now from a purely syntactic standpoint:
+		sentences, like
+		$\forall xP(x)$,
+		are constructed from open formulas,
+		in this case $P(x)$;
+		so, if we want to trace the construction of a formula in our recursive definition of truth, we need to give the truth-conditions for the open formula
+$P(x)$.
 		\item It is worth, as an exercise, to prove some basic facts about free and bound variable. Here we report some propositions, leaving most of the proofs as exercises, however:
 		
 		\begin{proposition}
