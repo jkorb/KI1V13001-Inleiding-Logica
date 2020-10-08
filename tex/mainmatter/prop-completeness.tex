@@ -328,7 +328,25 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 
 \begin{enumerate}[\thesection.1]
 
-	\item We now move to completeness. There is a sense in which the completeness proof is easier than the soundness proof, namely that the proof \emph{idea} is easier: we simply prove that the associated valuation for an open branch in a complete tableau (cf. 6.3.5) is faithful to that branch. Fro this, we can quickly conclude completeness, again by contrapositive reasoning. For suppose that $\Gamma\nvdash\phi$. This means, by definition, that the tableau for $\Gamma\cup\{\neg\phi\}$ is open. Hence we get an open branch and associated interpretation, which would then make all the members of $\Gamma\cup\{\neg\phi\}$ true and thus show that $\Gamma\nvDash\phi$. So, this gives us that if $\Gamma\nvdash\phi$, then $\Gamma\nvDash\phi$, which is just the contrapositive of completeness. The devil, you rightly suspect, lies of course in the detail: proving that the associated interpretation is indeed faithful. That's what we will now do, giving us the completeness lemma. In preparation for the proof, remind yourself of the definition of the associated interpretation:
+  \item We now move to completeness.
+	There is a sense in which the completeness proof is easier than the soundness proof, namely that the proof \emph{idea} is easier:
+	we simply prove that the associated valuation for an open branch in a complete tableau (cf. 6.3.5) is faithful to that branch.
+	From this, we can quickly conclude completeness, again by contrapositive reasoning.
+	For suppose that
+	$\Gamma\nvdash\phi$.
+	This means, by definition, that the tableau for
+	$\Gamma\cup\{\neg\phi\}$ is open.
+	Hence we get an open branch and associated interpretation, which would then make all the members of
+	$\Gamma\cup\{\neg\phi\}$
+	true and thus show that
+	$\Gamma\nvDash\phi$.
+	So, this gives us that if
+	$\Gamma\nvdash\phi$,
+	then
+	$\Gamma\nvDash\phi$, which is just the contrapositive of completeness.
+	The devil, you rightly suspect, lies of course in the detail: proving that the associated interpretation is indeed faithful.
+	That's what we will now do, giving us the completeness lemma.
+	In preparation for the proof, remind yourself of the definition of the associated interpretation:
 	\[v_B(p)=\begin{cases} 1 &\text{if }p\in B\\0&\text{if }p\notin B\end{cases}\]
 	And make sure that you actually did check the examples in 6.3.11, as I asked you to in 7.2.2.
 	
