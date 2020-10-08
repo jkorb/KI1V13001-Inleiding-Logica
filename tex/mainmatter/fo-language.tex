@@ -308,7 +308,13 @@ We've already talked about how we abstract from predicates in first-order logic,
 		Just like induction over formulas.
 		\end{proof}
 		
-		\item Similarly, function recursion works standardly: the sets of terms and formulas are inductively defined, hence we can use function recursion on them. The pattern is the same as always: give the value for the initial elements and say how to calculate the value for more complex elements based on the values of their components. As an example, let's generalize the notion of complexity from propositional logic (4.4.4) to first-order logic. First, we define a complexity $c:\mathcal{T}\to\mathbb{N}$ for terms by saying:
+	  \item Similarly, function recursion works standardly:
+		the sets of terms and formulas are inductively defined, hence we can use function recursion on them.
+		The pattern is the same as always: give the value for the initial elements and say how to calculate the value for more complex elements based on the values of their components.
+		As an example, let's generalize the notion of complexity from propositional logic (4.4.4) to first-order logic.
+		First, we define a complexity
+		$c:\mathcal{T}\to\mathbb{N}$
+		for terms by saying:
 	\begin{enumerate}[(i)]
 	
 		\item \begin{enumerate}[(a)]
@@ -319,7 +325,7 @@ We've already talked about how we abstract from predicates in first-order logic,
 	
 			\end{enumerate}
 			
-		\item $c(f(t_1, \mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))+1$
+		\item $c(f(t_1, \mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))+1$ for all $f^{n}\in\mathcal{F}$ and $t_{1}, \mathellipsis, t_{n}\in\mathcal{T}$
 	
 	\end{enumerate}
 Using the function on terms, we define a complexity function $c:\mathcal{L}\to\mathbb{N}$ on formulas by saying:
@@ -327,9 +333,9 @@ Using the function on terms, we define a complexity function $c:\mathcal{L}\to\m
 		
 			\item  \begin{enumerate}[(a)]
 			
-				\item $c(R(t_1,\mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))$
+				\item $c(R(t_1,\mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))$ for all $R^{n}\in\mathcal{R}$ and $t_{1}, \mathellipsis, t_{n}\in\mathcal{T}$
 				
-				\item $c(t_1=t_2)=max(c(t_1), c(t_2))$ 			
+				\item $c(t_1=t_2)=max(c(t_1), c(t_2))$ for $t_{1},t_{2}\in \mathcal{T}$
 			\end{enumerate}
 
 			
