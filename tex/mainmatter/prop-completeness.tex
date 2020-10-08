@@ -147,7 +147,52 @@ It turns out that these two properties, when thought through carefully lead to t
 
 \begin{enumerate}[\thesection.1]
 		
-		\item In this section, we're aiming to prove the soundness theorem, i.e. the fact that if $\Gamma\vdash \phi$, then $\Gamma\vDash\phi$. Actually, what we're going to prove is the contrapositive (remember contrapositive proof from \S2): if $\Gamma\nvDash \phi$, then $\Gamma\nvdash\phi$. Let's set out our strategy: First, remember that $\Gamma\nvdash \phi$ means that the tableau for $\Gamma\cup\{\neg\phi\}$ is open, i.e. at least one branch in the tableau doesn't contain both some $p$ and $\neg p$ (6.3.8). So, in order to obtain our result---that if $\Gamma\nvDash\phi$, then $\Gamma\nvdash\phi$---we need to show that we can derive from $\Gamma\nvDash\phi$ that at least one branch in the tableau for $\Gamma\cup\{\neg\phi\}$ at least one branch in the tableau doesn't contain both some $p$ and $\neg p$. How can we achieve this? Well, remember that $\Gamma\nvDash \phi$ means that there's a valuation $v$ such that $\llbracket \psi\rrbracket_v=1$ for all $\psi\in\Gamma$ and $\llbracket\phi\rrbracket_v=0$ (cf. 5.2.8). So, we can use the information that this countermodel exists. Now this is where the down preservation property comes into play. Note that the initial list---in our case, $\Gamma\cup\{\neg\phi\}$---is at the root of our the tableau. Our countermodel showing $\Gamma\nvDash \phi$ makes all the members of $\Gamma\cup\{\neg\phi\}$ true. And by the down preservation property, whenever we apply a rule to our initial list, at least one branch contains a true formula in our countermodel. So, our final tableau must contain at least one branch such that all the formulas on that branch are true in our countermodel. But then that branch can't contain both $p$ and $\neg p$, since the two cannot both be true under any valuation. Hence the branch must be open. This is how we're going to prove soundness, so let's get to work.
+  \item In this section, we're aiming to prove the soundness theorem, i.e. the fact that if
+	$\Gamma\vdash \phi$,
+	then
+	$\Gamma\vDash\phi$.
+	Actually, what we're going to prove is the contrapositive (remember contrapositive proof from \S2): if
+	$\Gamma\nvDash \phi$,
+	then
+	$\Gamma\nvdash\phi$.
+	Let's set out our strategy: First, remember that
+	$\Gamma\nvdash \phi$
+	means that the tableau for
+	$\Gamma\cup\{\neg\phi\}$
+	is open, i.e. at least one branch in the tableau doesn't contain both some $p$ and $\neg p$ (6.3.8).
+	So, in order to obtain our result---that if
+	$\Gamma\nvDash\phi$,
+	then
+	$\Gamma\nvdash\phi$
+	---we need to show that we can derive from
+	$\Gamma\nvDash\phi$
+	that at least one branch in the tableau for
+	$\Gamma\cup\{\neg\phi\}$
+	doesn't contain both some $p$ and $\neg p$.
+	How can we achieve this?
+	Well, remember that
+	$\Gamma\nvDash \phi$
+	means that there's a valuation $v$ such that
+	$\llbracket \psi\rrbracket_v=1$
+	for all
+	$\psi\in\Gamma$
+	and
+	$\llbracket\phi\rrbracket_v=0$
+	(cf. 5.2.8).
+	So, we can use the information that this countermodel exists.
+	Now this is where the down preservation property comes into play.
+	Note that the initial list---in our case,
+	$\Gamma\cup\{\neg\phi\}$
+	---is at the root of our the tableau.
+	Our countermodel showing
+	$\Gamma\nvDash \phi$
+	makes all the members of
+	$\Gamma\cup\{\neg\phi\}$
+	true.
+	And by the down preservation property, whenever we apply a rule to our initial list, at least one branch contains a true formula in our countermodel.
+	So, our final tableau must contain at least one branch such that all the formulas on that branch are true in our countermodel.
+	But then that branch can't contain both $p$ and $\neg p$, since the two cannot both be true under any valuation.
+	Hence the branch must be open. This is how we're going to prove soundness, so let's get to work.
 		
 	\item In the following, we will talk about tableaux as the kinds of trees constructed according to the rules laid out in 6.3.2. Remember that a tableau is \emph{complete} if every rule that can be applied has been applied; otherwise we say that the tableau is \emph{in}complete. Now suppose that $v$ is a valuation and $B$ a branch of a (possibly incomplete) tableau. Then we say that $v$ is \emph{faithful} to $B$ iff $\llbracket\phi\rrbracket_v=1$, for all $\phi\in B$, i.e. $v$ is faithful to $B$ iff under $v$ all the formulas on $B$ are true. Note that the associated interpretation $v_b$ of an open branch $B$ in a complete tableau (6.3.5) is a paradigm example of a faithful valuation (though we haven't proven this yet in generality): $v_B$ is faithful to $B$. So every countermodel produced by the tableau method in 6.3.11 is a (paradigm) example of a faithful interpretation for the open branch it was derived from. It's worth convincing yourselves of this fact in order to understand what's about to happen next. So go ahead and check that in each case in 6.3.11, $v_B$ makes all the members of $B$ true. The concept of faithfulness will be the central concept in our soundness and completeness proof.
 			
@@ -599,4 +644,4 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
