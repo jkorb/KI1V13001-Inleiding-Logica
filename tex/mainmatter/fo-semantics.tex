@@ -597,7 +597,7 @@ This concludes our induction.
 			iff for all changes of $x$ there is a subsequent change of $y$ (which keeps $x$ the same) such that $\phi$ becomes false.
 		
 		  \item $\mathcal{M},\alpha\vDash \forall x\forall y\phi$
-			iff for all changes of $x$ and $y$ $\phi$ is true.
+			iff for all changes of $x$ and subsequent changes of $y$, $\phi$ is true.
 		
 		  \item $\mathcal{M},\alpha\nvDash \forall x\forall y\phi$
 			iff for some change of $x$'s value there is a change of $y$'s value which keeps $x$'s value fixed and makes $\phi$ false.
@@ -606,7 +606,7 @@ This concludes our induction.
 			iff for some change of $x$'s value there is a subsequent change of $y$'s value, which keeps the value of $x$ fixed and makes $\phi$ true
 		
 		  \item $\mathcal{M},\alpha\nvDash \exists x\exists y\phi$
-			iff for some change of $x$'s value there is a subsequent change of $y$'s value, which keeps the value of $x$ fixed and makes $\phi$ true
+			iff for all changes of the values of $x$ and subsequent changes of $y$, $\phi$ is false.
 		
 		\end{enumerate}	
 		
