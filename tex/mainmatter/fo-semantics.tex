@@ -651,7 +651,31 @@ This concludes our induction.
 			
 				\item From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=1$, it follows that for all $d\in D^\mathcal{M}$ we have $\mathcal{M},\alpha[y\mapsto d]\vDash\phi$. But for each $d$, consider $\beta[y\mapsto d]$. Since $\alpha(x)=\beta(x)$ for all $x\in V$, we have that $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V$. Moreover, $\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$. Hence $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V\cup\{y\}$. But by the induction hypothesis, this means that $\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=1$. So, $\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=1$, as desired.
 				
-				\item  From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=1$, it follows that for some $d\in D^\mathcal{M}$ we have $\mathcal{M},\alpha[y\mapsto d]\nvDash\phi$. For this $d$, consider $\beta[y\mapsto d]$. Since $\alpha(x)=\beta(x)$ for all $x\in V$, we have that $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V$. Moreover, $\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$. Hence $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V\cup\{y\}$. But by the induction hypothesis, this means that $\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=0$. So, $\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=0$, as desired.
+			  \item  From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=0$,
+				it follows that for some
+				$d\in D^\mathcal{M}$
+				we have
+				$\mathcal{M},\alpha[y\mapsto d]\nvDash\phi$.
+				For this $d$,
+				consider
+				$\beta[y\mapsto d]$.
+				Since
+				$\alpha(x)=\beta(x)$
+				for all $x\in V$,
+				we have that
+				$\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$
+				for all $x\in V$.
+				Moreover,
+				$\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$.
+				Hence
+				$\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$
+				for all
+				$x\in V\cup\{y\}$.
+				But by the induction hypothesis, this means that
+				$\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=0$.
+				So,
+				$\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=0$,
+				as desired.
 				
 			\end{itemize}
 			
