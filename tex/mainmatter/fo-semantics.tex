@@ -422,11 +422,24 @@ This concludes our induction.
 		Exercise 9.7.3.
 		\end{proof}
 	
-              \item \textbf{This passage has been added for clarificatory purposes.}
+              \item \textbf{This passage has been added for clarification purposes.}
 
-                There was some confusion about how to solve exercise 9.7.2, also among the TAs. So, I suppose I should have been clearer on the different variants of inductive proof, and so I'm trying to remedy the situation here. Remember that for \emph{every} inductively defined set, we have a corresponding principle for proof by induction. The idea is that if we can establish that all the basic or initial elements of the set have a property and the property is preserved under the constructions, then all elements of the set have the property. We're mainly relying on two versions of this proof principle, induction on terms and inductions of formulas. But sometimes, we want to prove things about inductively defined \emph{subsets} of the terms or formulas. This exercise is such a case.
+		There was some confusion about how to solve exercise 9.7.2, also among the TAs.
+		So, I suppose I should have been clearer on the different variants of inductive proof, and so I'm trying to remedy the situation here.
+		Remember that for \emph{every} inductively defined set, we have a corresponding principle for proof by induction.
+		The idea is that if we can establish that all the basic or initial elements of the set have a property and the property is preserved under the constructions, then all elements of the set have the property.
+		We're mainly relying on two versions of this proof principle, induction on terms and inductions of formulas.
+		But sometimes, we want to prove things about inductively defined \emph{subsets} of the terms or formulas.
+		This exercise is such a case.
 
-                In this exercise, we want to prove that all terms of a certain form, namely numerals of the form $S(\underbrace{\mathellipsis}_{n\text{ times}}S(0)\mathellipsis))=n$ have a certain semantic property: a given denotation. In order to use proof by induction for this purpose, we need to recognize that the terms in question have an inductive structure: their set can be defined by induction. The definition, in this case, is simple: the initial element is the term (!) 0 and the construction is writing the function symbol $S$ in front of a term. Let's call the terms constructed in this way \emph{natural numerals}. The corresponding induction principle for the construction of natural numerals states that if the natural numeral 0 has a property, and if a natural numeral $n$ has the property then the numeral $S(n)$ has the property, then all natural numerals have the property in question. Here is the solition for exercise i) of 9.7.2:
+		In this exercise, we want to prove that all terms of a certain form, namely numerals of the form
+		$S(\underbrace{\mathellipsis}_{n\text{ times}}S(0)\mathellipsis))=n$
+		have a certain semantic property: a given denotation.
+		In order to use proof by induction for this purpose, we need to recognize that the terms in question have an inductive structure: their set can be defined by induction.
+		The definition, in this case, is simple: the initial element is the term (!) 0 and the construction is writing the function symbol $S$ in front of a term.
+		Let's call the terms constructed in this way \emph{natural numerals}.
+		The corresponding induction principle for the construction of natural numerals states that if the natural numeral 0 has a property, and if a natural numeral $n$ has the property then the numeral $S(n)$ has the property, then all natural numerals have the property in question.
+		Here is the solution for exercise i) of 9.7.2:
 
 	\begin{lemma}[9.7.2.i]
           Let $\mathcal{M}$ be the standard model for the $PA$ (as defined in 9.2.2) and $\alpha$ an arbitrary assignment. Then for all terms of the form $n\in\mathcal{T}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$. 
