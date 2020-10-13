@@ -499,27 +499,50 @@ This concludes our induction.
 			
 			\end{itemize}
 			
-		\item Using this definition, we can provide the following lemma, which has the potential to make Definition 9.3.1 more transparent:
+	  \item Using this definition,
+		we can provide the following lemma,
+		which has the potential to make Definition 9.3.1 more transparent:
 			
 			\begin{lemma} For every model $\mathcal{M}$ and assignment $\alpha$, we have:
 			
 			\begin{enumerate}[(i)]
 			
-				\item $\mathcal{M},\alpha\vDash R(t_1,\mathellipsis, t_n)$ iff $(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$
+			  \item $\mathcal{M},\alpha\vDash R(t_1,\mathellipsis, t_n)$
+				iff
+				$(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_n\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$
 				
-				\item $\mathcal{M},\alpha\vDash t_1=t_2$ iff $\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha$								
-				\item $\mathcal{M},\alpha\vDash \neg\phi$ iff $\mathcal{M},\alpha\nvDash\phi$
+			  \item $\mathcal{M},\alpha\vDash t_1=t_2$
+				iff
+				$\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_2\rrbracket^\mathcal{M}_\alpha$
+
+			  \item $\mathcal{M},\alpha\vDash \neg\phi$
+				iff
+				$\mathcal{M},\alpha\nvDash\phi$
 					
-				\item $\mathcal{M},\alpha\vDash(\phi\land\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\land\psi)$
+				iff
+				$\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$
 				
-				\item $\mathcal{M},\alpha\vDash(\phi\lor\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\lor\psi)$
+				iff
+				$\mathcal{M},\alpha\vDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
 				
-				\item $\mathcal{M},\alpha\vDash(\phi\to\psi)$ iff $\mathcal{M},\alpha\nvDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\to\psi)$
+				iff
+				$\mathcal{M},\alpha\nvDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
 				
-				\item $\mathcal{M},\alpha\vDash(\phi\leftrightarrow\psi)$ iff   either $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$, or $\mathcal{M},\alpha\nvDash\phi$ and $\mathcal{M},\alpha\nvDash\psi$.				
-				\item $\mathcal{M},\alpha\vDash\exists x\phi$ iff there exists a $d\in D^\mathcal{M}$, such that  $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\leftrightarrow\psi)$
+				iff
+				either $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$,
+				or $\mathcal{M},\alpha\nvDash\phi$ and $\mathcal{M},\alpha\nvDash\psi$.
+
+			  \item $\mathcal{M},\alpha\vDash\exists x\phi$
+				iff
+				there exists a $d\in D^\mathcal{M}$, such that  $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
 				
-				\item $\mathcal{M},\alpha\vDash\forall x\phi$ iff for all $d\in D^\mathcal{M}$, we have $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
+			  \item $\mathcal{M},\alpha\vDash\forall x\phi$
+				iff
+				for all $d\in D^\mathcal{M}$, we have $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
 											
 			\end{enumerate}
 
