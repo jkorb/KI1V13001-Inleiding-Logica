@@ -578,21 +578,19 @@ close with=\xmark
 }
 [{\neg \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
 	[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
-		[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
-					[{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
-						[{K(p)}
-							[{\forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
-								[{\neg S(p,p)\leftrightarrow S(p,p)}
-									[{\neg S(p,p)}
-										[{S(p,p)}, close ]
-									]
-									[{S(p,p)}
-										[{\neg S(p,p)}, close ]
-									]
-								]
-							]
-						]				
+		[{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
+			[{K(p)}
+				[{\forall y(\neg S(y,y)\leftrightarrow S(p,y))}
+					[{\neg S(p,p)\leftrightarrow S(p,p)}
+						[{\neg S(p,p)}
+							[{S(p,p)}, close ]
+						]
+						[{S(p,p)}
+							[{\neg S(p,p)}, close ]
+						]
 					]
+				]
+			]
 		]
 	]
 ]
@@ -1441,4 +1439,4 @@ How do we see that the tableau is open? Well, we note that all the atomic formul
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
