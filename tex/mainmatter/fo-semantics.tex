@@ -486,11 +486,16 @@ This concludes our induction.
 			Note that we're using the $min$ and $max$ functions here as functions defined on (non-empty) \emph{sets} of truth-values $X\subseteq\{0,1\}$, i.e. $min(X)$ is the smallest element of $X$ and $max(X)$ is the biggest element of $X$. More explicitly, we have $max(\{0\})=0, max(\{1\})=1, max(\{1,0\})=1$, and $min(\{0\})=0, min(\{1\})=1, min(\{1,0\})=0$. It might \emph{look} like $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is a (possibly) quite big set, depending on the size of $D^\mathcal{M}$. But note that each of the individual values $\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}$ is either $0$ or $1$. Since multiplicity doesn't matter in sets, the set $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is either $\{0\}$, $\{1\}$, or $\{0,1\}$.
 		
 			
-			\item Just like in (5.1.11), we can define truth in a model under a assignment as a \emph{property} of formulas. Here, we don't do this as an alternative definition, as we did in \S5.1, but rather, we take the property $\mathcal{M},\alpha\vDash\phi$ of a formula being true in a model under a assignment to be \emph{defined} as follows:
+	  \item Just like in (5.1.11), we can define truth in a model under a assignment as a \emph{property} of formulas.
+		Here, we don't do this as an alternative definition, as we did in \S5.1, but rather, we take the property
+		$\mathcal{M},\alpha\vDash\phi$
+		of a formula being true in a model under a assignment to be \emph{defined} as follows:
 			
 			\begin{itemize}
 			
-				\item $\mathcal{M},\alpha\vDash\phi$ iff $\llbracket\phi\rrbracket^\mathcal{M}_\alpha=1$
+			  \item $\mathcal{M},\alpha\vDash\phi$
+				iff
+				$\llbracket\phi\rrbracket^\mathcal{M}_\alpha=1$
 			
 			\end{itemize}
 			
