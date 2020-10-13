@@ -462,26 +462,27 @@ This concludes our induction.
 		
 		\begin{enumerate}[(i)]
 			
-				\item		\begin{enumerate}[(a)]
+		  \item	\begin{enumerate}[(a)]
 
-					\item $\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}$
-					\item $\llbracket t_1=t_2\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha)\\0 &\text{otherwise}\end{cases}$				
+				  \item $\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_n\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}$
+
+				  \item $\llbracket t_1=t_2\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_2\rrbracket^\mathcal{M}_\alpha)\\0 &\text{otherwise}\end{cases}$
 				\end{enumerate}
-				
-				\item \begin{enumerate}[(a)]
 
-					\item  $\llbracket\neg \phi\rrbracket^\mathcal{M}_\alpha=f_\neg(\llbracket\phi\rrbracket^\mathcal{M}_\alpha)$
-				
-				\item  $\llbracket(\phi\circ \psi)\rrbracket^\mathcal{M}_\alpha=f_\circ( \llbracket\phi\rrbracket^\mathcal{M}_\alpha, \llbracket\psi\rrbracket^\mathcal{M}_\alpha)$ for $\circ=\land,\lor,\to,\leftrightarrow$
-				
-				\item $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=max(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
-				
-				\item[] $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=min(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
-								
+		  \item \begin{enumerate}[(a)]
+
+				  \item  $\llbracket\neg \phi\rrbracket^\mathcal{M}_\alpha=f_\neg(\llbracket\phi\rrbracket^\mathcal{M}_\alpha)$
+
+				  \item  $\llbracket(\phi\circ \psi)\rrbracket^\mathcal{M}_\alpha=f_\circ( \llbracket\phi\rrbracket^\mathcal{M}_\alpha, \llbracket\psi\rrbracket^\mathcal{M}_\alpha)$ for $\circ=\land,\lor,\to,\leftrightarrow$
+
+				  \item $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=max(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+
+				  \item[] $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=min(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+
 				\end{enumerate}
 			
-			\end{enumerate}
-			
+		\end{enumerate}
+
 			Note that we're using the $min$ and $max$ functions here as functions defined on (non-empty) \emph{sets} of truth-values $X\subseteq\{0,1\}$, i.e. $min(X)$ is the smallest element of $X$ and $max(X)$ is the biggest element of $X$. More explicitly, we have $max(\{0\})=0, max(\{1\})=1, max(\{1,0\})=1$, and $min(\{0\})=0, min(\{1\})=1, min(\{1,0\})=0$. It might \emph{look} like $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is a (possibly) quite big set, depending on the size of $D^\mathcal{M}$. But note that each of the individual values $\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}$ is either $0$ or $1$. Since multiplicity doesn't matter in sets, the set $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is either $\{0\}$, $\{1\}$, or $\{0,1\}$.
 		
 			
