@@ -688,7 +688,12 @@ This concludes our induction.
 		
 		  \item $\mathcal{M},\alpha\nvDash \exists x\exists y\phi$
 			iff for all changes of the values of $x$ and subsequent changes of $y$, $\phi$ is false.
-		
+
+
+		  \item $\mathcal{M},\alpha\vDash \forall x \exists y\phi$ iff for all changes of $x$'s value there is a change of $y$'s value that leaves $x$ fixed and makes $\phi$ true
+
+		  \item $\mathcal{M},\alpha\nvDash \forall x \exists y\phi$ iff there exists a value for $x$ such that for all subsequent changes in the value of $y$ (keeping $x$ fixed), $\phi$ becomes false
+
 		\end{enumerate}	
 		
 		These clauses can be used to help you think about what you need to show in order to establish whether a complex quantified claim is true.
