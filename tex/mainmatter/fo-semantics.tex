@@ -32,11 +32,32 @@
 		iff
 		$\llbracket t_1\rrbracket^\mathcal{M}=\llbracket t_2\rrbracket^\mathcal{M}$.
 	
-	\item Let's continue thinking about the denotations of terms a bit more. In 8.1.3--4, we discussed the different kinds of terms recognized in classical, first order logic: constants, variables, and function expressions. Now, constants denote fixed objects, so it's quite clear how to interpret them in a model $\mathcal{M}$: just assign an object $a^\mathcal{M}$ to each constant $a$. Also with function expressions, it's quite clear what to do. If we have a function expression like ``the LCA of \dots and \underline{\phantom{\dots}},'' formalized as a binary function symbol $f$, the intended interpretation is the function that maps any two individuals to their LCA. And abstractly speaking, the interpretation of $f$ in a model $\mathcal{M}$ should just be a binary function, $f^\mathcal{M}$. In fact, when we consider iterations of functions, it's quite clear how to calculate their semantic values using recursion. Take ``the LCA of Ada Lovelace and the LCA of Alan Turing and Angela Merkel,'' for example. If we formalize this term as \[f(a,f(b,c)),\] where $a$ stands for ``Ada Lovelace,'' $b$ for ``Alan Turing,'' $c$ for ``Angela Merkel,'' and $f$ for `the LCA of \dots and \underline{\phantom{\dots}},'' then the value $\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}$ in a model $\mathcal{M}$ can be calculated as follows: 
+	  \item Let's continue thinking about the denotations of terms a bit more.
+		In 8.1.3--4, we discussed the different kinds of terms recognized in classical, first order logic: constants, variables, and function expressions.
+		Now, constants denote fixed objects, so it's quite clear how to interpret them in a model $\mathcal{M}$:
+		just assign an object $a^\mathcal{M}$ to each constant $a$.
+		Also with function expressions, it's quite clear what to do.
+		If we have a function expression like ``the LCA of \dots and \underline{\phantom{\dots}},''
+		formalized as a binary function symbol $f$,
+		the intended interpretation is the function that maps any two individuals to their LCA.
+		And abstractly speaking, the interpretation of $f$ in a model $\mathcal{M}$ should just be a binary function, $f^\mathcal{M}$.
+		In fact,
+		when we consider iterations of functions, it's quite clear how to calculate their semantic values using recursion.
+		Take ``the LCA of Ada Lovelace and the LCA of Alan Turing and Angela Merkel,''
+		for example.
+		If we formalize this term as \[f(a,f(b,c)),\] where $a$ stands for ``Ada Lovelace,'' $b$ for ``Alan Turing,'' $c$ for ``Angela Merkel,'' and $f$ for `the LCA of \dots and \underline{\phantom{\dots}},''
+		then the value $\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}$ in a model $\mathcal{M}$ can be calculated as follows:
 	\begin{align*}
 	\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}&=f^\mathcal{M}(a^\mathcal{M}, \llbracket f(b,c)\rrbracket^\mathcal{M})\\
-	&=f^\mathcal{M}(a^\mathcal{M}, f(b^\mathcal{M}, c^\mathcal{M}))
-	\end{align*} where $a^\mathcal{M}$ is the object denoted by $a$ in $\mathcal{M}$, $b^\mathcal{M}$ is the object denoted by $b$ in $\mathcal{M}$, $c^\mathcal{M}$ is the object denoted by $c$ in $\mathcal{M}$, and $f^\mathcal{M}$ is the function expressed by $f$ in $\mathcal{M}$. What's not so clear is how to handle variables, which is what we're going to discuss next.
+	&=f^\mathcal{M}(a^\mathcal{M}, f^{\mathcal{M}}(b^\mathcal{M}, c^\mathcal{M}))
+	\end{align*}
+		where $a^\mathcal{M}$ is the object denoted by $a$ in
+		$\mathcal{M}$, $b^\mathcal{M}$
+		is the object denoted by $b$ in
+		$\mathcal{M}$, $c^\mathcal{M}$
+		is the object denoted by $c$ in $\mathcal{M}$,
+		and $f^\mathcal{M}$ is the function expressed by $f$ in $\mathcal{M}$.
+		What's not so clear is how to handle variables, which is what we're going to discuss next.
 	
 	\item Remember that the variables $x,y,z,\mathellipsis$ are, essentially, logical pronouns, i.e. expressions like ``he,'' ``she,'' ``it.'' How do you figure out what a pronoun like ``it'' refers to? Take the sentence ``it is red,'' for example. Formally, we abstract this to \[P(x),\] where $x$ stands for ``it,'' and $P$ stands for ``\dots is red.'' If we want to know whether $P(x)$ is true, we need to know what $x$ stands for. And even on the intended reading, the natural language sentence itself doesn't give us any clue towards the denotation of $x$. We need more information. If, for example, you're talking to a friend and she says ``Yesterday, I bought a ball. It is red.'' Then you know that $x$ is supposed to refer to the ball. Or if another friend says ``My favorite pen is lying there on the table. It's red.'' Then $x$ is supposed to refer to the pen. There are two important points here: (i) you need some context to determine what pronouns stand for, and (ii) the denotation of the same pronoun in the same sentence can change from context to context. This is all in line with the way we think about variables in mathematics (cf.  2.2.3--10). How can we formally model this behavior? There is nothing in the formula $P(x)$ itself that lets us determine the relevant context, so we shall model the context as \emph{additional semantic information}: we will introduce the notion of an \emph{assignment} $\alpha$, which is essentially just a function that assigns to every variable $x\in\mathcal{V}$ an object $\alpha(x)$. In the same spirit as before, using assignments, we will be able to say that $P(x)$ is true in a model $\mathcal{M}$ \emph{under an assignment} $\alpha$ iff $\alpha(x)\in P^\mathcal{M}$. That is, in order to be able to think about variables, our definition of truth will be relative to a model \emph{and} an assignment. In order to take into account that the same variable, even within the same sentence, can have different meanings in different contexts, we'll consider different assignments in the same model. 
 	
