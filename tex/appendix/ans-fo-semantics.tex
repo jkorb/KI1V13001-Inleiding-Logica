@@ -79,6 +79,39 @@ See the added bullet 9.2.10 for (a). (b) and (c) work completely analogously.
 
 \subsection*{9.7.5}
 \begin{enumerate}
+
+  \item[(a)] We will first determine
+    $\llbracket x \rrbracket ^\mathcal{M}_\alpha$.
+    We get:
+    $\llbracket x \rrbracket ^\mathcal{M}_\alpha =\alpha(x)= 1$.
+
+    Next, we determine $\llbracket 1 \rrbracket ^\mathcal{M}$.
+    We get:
+    $\llbracket \underbrace{1}_{=S(0)} \rrbracket ^\mathcal{M} = \llbracket S(0)\rrbracket ^\mathcal{M}_\alpha = S^\mathcal{M}(\llbracket 0 \rrbracket ^\mathcal{M}_\alpha) = S^\mathcal{M}(0) = 0 + 1 = 1$.
+    Because $1 = 1$, it follows that $\llbracket x\rrbracket_{\alpha}^{\mathcal{M}}=\llbracket 1\rrbracket_{\alpha}^{\mathcal{M}}$ and so $\mathcal{M},\alpha\vDash x=1$.
+
+\item[(b)]  We want to determine whether
+    $\mathcal{M},\alpha\vDash S(x)=S(S(x))$.
+    We will first determine
+    $\llbracket S(x) \rrbracket ^\mathcal{M}_\alpha $ as follows:
+    \[\llbracket S(x) \rrbracket ^\mathcal{M}_\alpha =%
+    S^\mathcal{M}(\llbracket x \rrbracket ^\mathcal{M}_\alpha)%
+    \underset{\llbracket x\rrbracket_{\alpha}^{\mathcal{M}}=\alpha(x)=1}{=}=%
+    S^\mathcal{M}(1) = 1 + 1 = 2\]
+    We will then determine $\llbracket S(S(x)) \rrbracket ^\mathcal{M}_\alpha$ as follows:
+    \[\llbracket S(S(x)) \rrbracket ^\mathcal{M}_\alpha %
+    = S^\mathcal{M}(\llbracket S(x) \rrbracket ^\mathcal{M}_\alpha) %
+    = S^\mathcal{M}(S^\mathcal{M}(\llbracket x \rrbracket ^\mathcal{M}_\alpha))\] %
+    \[underset{\llbracket x\rrbracket_{\alpha}^{\mathcal{M}}=1}{=}%
+    S^\mathcal{M}(S^\mathcal{M}(1)) = 1 + 1 + 1 = 3.\]
+    Because $2 \neq 3$, it follows that
+    $\llbracket S(x) \rrbracket ^\mathcal{M}_\alpha \neq \llbracket S(S(x)) \rrbracket ^\mathcal{M}_\alpha$
+    and so $\mathcal{M}, \alpha \nvDash x = 1$.
+
+%   \item[(c)] $\mathcal{M},\alpha\vDash2+2=4$\\
+% We will first derive $\llbracket 2 + 2 \rrbracket ^\mathcal{M}_\alpha$ as follows: $\llbracket 2 + 2 \rrbracket ^\mathcal{M}_\alpha = +^\mathcal{M}(\llbracket 2 \rrbracket ^\mathcal{M},\llbracket 2 \rrbracket ^\mathcal{M}) = +^\mathcal{M}(\llbracket S(S(0))\rrbracket ^\mathcal{M}_\alpha, \llbracket S(S(0))\rrbracket ^\mathcal{M}_\alpha) = +^\mathcal{M}(S^\mathcal{M}(\llbracket S(0)\rrbracket ) ^\mathcal{M}_\alpha, S^\mathcal{M}(\llbracket S(0)\rrbracket) ^\mathcal{M}_\alpha) = +^\mathcal{M}(S^\mathcal{M}(S^\mathcal{M}(\llbracket 0 \rrbracket ^\mathcal{M}_\alpha)),S^\mathcal{M}(S^\mathcal{M}(\llbracket 0 \rrbracket ^\mathcal{M}_\alpha))) = +^\mathcal{M}(S^\mathcal{M}(S^\mathcal{M}(0)),S^\mathcal{M}(S^\mathcal{M}(0))) = +^\mathcal{M}(0 + 1 + 1,0 + 1 + 1) = 2 + 2= 4$.\\ We will then derive $\llbracket 4 \rrbracket ^\mathcal{M}_\alpha$ as follows: $\llbracket 4 \rrbracket ^\mathcal{M}_\alpha = \llbracket S(S(S(S(0))))\rrbracket^\mathcal{M}_\alpha = S^\mathcal{M}(\llbracket S(S(S(0))) \rrbracket ^\mathcal{M}_\alpha ) = S^\mathcal{M}(S^\mathcal{M}(\llbracket S(S(0)) \rrbracket ^\mathcal{M}_\alpha))  = S^\mathcal{M}(S^\mathcal{M}(S^\mathcal{M}(\llbracket S(0) \rrbracket ^\mathcal{M}_\alpha ))) = S^\mathcal{M}(S^\mathcal{M}(S^\mathcal{M}(S^\mathcal{M}(\llbracket 0 \rrbracket ^\mathcal{M}_\alpha )))) = S^\mathcal{M}(S^\mathcal{M}(S^\mathcal{M}(S^\mathcal{M}(0)))) = 0 + 1 + 1 + 1 + 1 = 4 $.\\ Because $4 = 4$, it follows that $\mathcal{M},\alpha\vDash2+2=4$.
+
+
     \item[(g)] %We will show that the claim holds for every $x,\ y$ by induction over $D^\mathcal{M} = \mathcal{M}athbb{N}$. We need to show that if $S(x) = S(y)$, then $x = y$ \\
     %Base case: Suppose $x=0$. $S(x) = x + 1 = 0 + 1 = 1$. As we assumed $S(x) = S(y), S(y) = 1$. $S(y) = 1 = y + 1$, so $y = 0$, therefore $x = y$.\\
     %Induction step: we assume that $S(n) = S(m) \rightarrow n = m$. We need to show that $S(n+1) = S(m+1) \rightarrow n+1 = m+1$ holds. $S(n+1) = n + 1 + 1 = S(n) + 1$ and $S(m+1)= m +1+1 = S(m) +1$. This can only be the case if $S(m) = S(n)$. But that just means by our induction hypothesis that $n = m$, Then it must also be the case that $n + 1 = m + 1$, which is what we needed to show. $\square$
@@ -161,4 +194,4 @@ See the added bullet 9.2.10 for (a). (b) and (c) work completely analogously.
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
