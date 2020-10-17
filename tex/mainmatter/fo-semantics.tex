@@ -10,17 +10,54 @@
 		
 		\item Let's begin by informally describing the idea of how we use the concepts from set-theory to provide the notion of a model for a first-order language. In \S8.1, we discussed the idea that in first-order logic, we need to take the subject-predicate structure of sentences into account but we abstract away from the concrete terms and predicates involved. For now, let's focus on simple, term-property sentences, like ``the ball is red.'' Logically speaking, i.e. abstracting away from the concrete terms and predicates involved, the structure of this sentence is \[P(a),\] where $a$ is a constant and $P$ is a unary predicate. Now, constants denote objects and unary predicates express properties. But remember that a property, at least for us, is just a set of objects, the set of objects with the property (cf. 3.6.1). The property of being red, in this picture, is the set of all red things. Now ask yourself, when is the sentence ``the ball is red'' true? Well, the natural answer is, just in case the ball is actually red, i.e. iff the ball is a member of the set of red things. 
 		
-		\item How can we formally model this? Well, by assigning the ball as the denotation to $a$ and the set of all red things, $\{x:\text{x is red}\}$, as the interpretation to $P$. To distinguish the actual ball from it's name, we call the ball $\llbracket a\rrbracket$ and use $a$ as its name. Our observation, so far, is that $P(a)$ should be true \emph{under the intended interpretation} of $a$ and $P$ iff $\llbracket a\rrbracket\in\{x:\text{x is red}\}$, i.e. iff the ball is a member of the set of red things. But now remember that for our logical purposes, we abstract away from the concrete terms and predicates involved, so we should forget about their meaning, too: $P(a)$ is just a formula. But we can use the idea we just described to obtain natural truth-conditions for $P(a)$. All we need to know os which object $a$ denotes and which property, conceived as a set, $P$ expresses. Then, we can say that $P(a)$ is true iff the object denoted by $a$ is in the set expressed by $P$. And that's precisely what a model for first-order logic does: it tells us which objects the terms denote and it tells us which properties (i.e. sets) the predicates express. From there, the definition of truth-in-a-model flows rather naturally.
+	  \item How can we formally model this?
+		Well, by assigning the ball as the denotation to $a$ and the set of all red things,
+		$\{x:\text{x is red}\}$,
+		as the interpretation to $P$.
+		To distinguish the actual ball from it's name, we call the ball $\llbracket a\rrbracket$ and use $a$ as its name.
+		Our observation, so far, is that $P(a)$ should be true \emph{under the intended interpretation} of $a$ and $P$ iff $\llbracket a\rrbracket\in\{x:\text{x is red}\}$, i.e. iff the ball is a member of the set of red things.
+		But now remember that for our logical purposes, we abstract away from the concrete terms and predicates involved, so we should forget about their meaning, too: $P(a)$ is just a formula.
+		But we can use the idea we just described to obtain natural truth-conditions for $P(a)$.
+		All we need to know is which object $a$ denotes and which property, conceived as a set, $P$ expresses.
+		Then, we can say that $P(a)$ is true iff the object denoted by $a$ is in the set expressed by $P$.
+		And that's precisely what a model for first-order logic does: it tells us which objects the terms denote and it tells us which properties (i.e. sets) the predicates express.
+		From there, the definition of truth-in-a-model flows rather naturally.
 		
 		\item Now let's generalize the idea from the previous point. Remember, from 8.1.5, that the general form of a simple sentence in first-order logic is \[R(t_1, \mathellipsis, t_n),\] where $R$ is an $n$-ary predicate and $t_1,\mathellipsis, t_n$ are terms. For example, the structure of ``the letter is in the left drawer'' is $R(t,u)$, where $t$ stands for ``the letter,'' $u$ stands for ``the left drawer,'' and $R$ stands for ``\dots is in \underline{\phantom{\dots}}.'' Now, on the intended interpretation, the terms denote the objects in question, that's clear: $\llbracket t\rrbracket$ is the letter and $\llbracket u\rrbracket$ is the left drawer. The predicate $R$ instead denotes the relation of one thing being inside another. Remember, from 3.6.2, that a binary relation is a set of ordered pairs: the set of pairs where the first thing stands in the relation to the second. So the relation of one thing being inside another is the set $\{(x,y):x\text{ is inside }y\}$. On the intended interpretation, therefore, $R(t,u)$ is true iff $(\llbracket t\rrbracket, \llbracket u\rrbracket)\in \{(x,y):x\text{ is inside }y\}$. Now, generally speaking, a model $\mathcal{M}$ gives us for each term $t$ an object $\llbracket t\rrbracket^\mathcal{M}$ denoted by $t$ in $\mathcal{M}$, and the model gives us for each $n$-ary predicate $R$ a set $R^\mathcal{M}$ of $n$-tuples. A formula $R(t_1, \mathellipsis, t_n)$, then, will be true in model $\mathcal{M}$ iff $(\llbracket t_1\rrbracket^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket^\mathcal{M})\in R^\mathcal{M}$. This is the general idea for truth of simple sentences in a model: a simple sentence is true iff the objects denoted by the terms stand in the relation expressed by the predicate. 		
 		
-	\item Note that in the case of the distinguished identity predicate, $=$, the situation is even easier. In 8.2.4, we discussed the idea that we want $=$ to express actual identity. The simple identity claim ``Darth Sidious is Palpatine'' is true, for example, iff ``Darth Sidious'' and ``Palpatine'' denote the same person (and for those of you who don't like Star Wars, they do!). This straight-forwardly generalizes to abstract models: the (one and only) way to achieve what we want is by saying that $t_1=t_2$ is true in a model $\mathcal{M}$ iff $t_1$ and $t_1$ denote the same object in the model, i.e. iff $\llbracket t_1\rrbracket^\mathcal{M}=\llbracket t_2\rrbracket^\mathcal{M}$.
+	  \item Note that in the case of the distinguished identity predicate, $=$, the situation is even easier.
+		In 8.2.4, we discussed the idea that we want $=$ to express actual identity.
+		The simple identity claim ``Darth Sidious is Palpatine'' is true, for example, iff ``Darth Sidious'' and ``Palpatine'' denote the same person (and for those of you who don't like Star Wars, they do!).
+		This straight-forwardly generalizes to abstract models: the (one and only) way to achieve what we want is by saying that $t_1=t_2$ is true in a model $\mathcal{M}$ iff $t_1$ and $t_1$ denote the same object in the model, i.e.
+		iff
+		$\llbracket t_1\rrbracket^\mathcal{M}=\llbracket t_2\rrbracket^\mathcal{M}$.
 	
-	\item Let's continue thinking about the denotations of terms a bit more. In 8.1.3--4, we discussed the different kinds of terms recognized in classical, first order logic: constants, variables, and function expressions. Now, constants denote fixed objects, so it's quite clear how to interpret them in a model $\mathcal{M}$: just assign an object $a^\mathcal{M}$ to each constant $a$. Also with function expressions, it's quite clear what to do. If we have a function expression like ``the LCA of \dots and \underline{\phantom{\dots}},'' formalized as a binary function symbol $f$, the intended interpretation is the function that maps any two individuals to their LCA. And abstractly speaking, the interpretation of $f$ in a model $\mathcal{M}$ should just be a binary function, $f^\mathcal{M}$. In fact, when we consider iterations of functions, it's quite clear how to calculate their semantic values using recursion. Take ``the LCA of Ada Lovelace and the LCA of Alan Turing and Angela Merkel,'' for example. If we formalize this term as \[f(a,f(b,c)),\] where $a$ stands for ``Ada Lovelace,'' $b$ for ``Alan Turing,'' $c$ for ``Angela Merkel,'' and $f$ for `the LCA of \dots and \underline{\phantom{\dots}},'' then the value $\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}$ in a model $\mathcal{M}$ can be calculated as follows: 
+	  \item Let's continue thinking about the denotations of terms a bit more.
+		In 8.1.3--4, we discussed the different kinds of terms recognized in classical, first order logic: constants, variables, and function expressions.
+		Now, constants denote fixed objects, so it's quite clear how to interpret them in a model $\mathcal{M}$:
+		just assign an object $a^\mathcal{M}$ to each constant $a$.
+		Also with function expressions, it's quite clear what to do.
+		If we have a function expression like ``the LCA of \dots and \underline{\phantom{\dots}},''
+		formalized as a binary function symbol $f$,
+		the intended interpretation is the function that maps any two individuals to their LCA.
+		And abstractly speaking, the interpretation of $f$ in a model $\mathcal{M}$ should just be a binary function, $f^\mathcal{M}$.
+		In fact,
+		when we consider iterations of functions, it's quite clear how to calculate their semantic values using recursion.
+		Take ``the LCA of Ada Lovelace and the LCA of Alan Turing and Angela Merkel,''
+		for example.
+		If we formalize this term as \[f(a,f(b,c)),\] where $a$ stands for ``Ada Lovelace,'' $b$ for ``Alan Turing,'' $c$ for ``Angela Merkel,'' and $f$ for `the LCA of \dots and \underline{\phantom{\dots}},''
+		then the value $\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}$ in a model $\mathcal{M}$ can be calculated as follows:
 	\begin{align*}
 	\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}&=f^\mathcal{M}(a^\mathcal{M}, \llbracket f(b,c)\rrbracket^\mathcal{M})\\
-	&=f^\mathcal{M}(a^\mathcal{M}, f(b^\mathcal{M}, c^\mathcal{M}))
-	\end{align*} where $a^\mathcal{M}$ is the object denoted by $a$ in $\mathcal{M}$, $b^\mathcal{M}$ is the object denoted by $b$ in $\mathcal{M}$, $c^\mathcal{M}$ is the object denoted by $c$ in $\mathcal{M}$, and $f^\mathcal{M}$ is the function expressed by $f$ in $\mathcal{M}$. What's not so clear is how to handle variables, which is what we're going to discuss next.
+	&=f^\mathcal{M}(a^\mathcal{M}, f^{\mathcal{M}}(b^\mathcal{M}, c^\mathcal{M}))
+	\end{align*}
+		where $a^\mathcal{M}$ is the object denoted by $a$ in
+		$\mathcal{M}$, $b^\mathcal{M}$
+		is the object denoted by $b$ in
+		$\mathcal{M}$, $c^\mathcal{M}$
+		is the object denoted by $c$ in $\mathcal{M}$,
+		and $f^\mathcal{M}$ is the function expressed by $f$ in $\mathcal{M}$.
+		What's not so clear is how to handle variables, which is what we're going to discuss next.
 	
 	\item Remember that the variables $x,y,z,\mathellipsis$ are, essentially, logical pronouns, i.e. expressions like ``he,'' ``she,'' ``it.'' How do you figure out what a pronoun like ``it'' refers to? Take the sentence ``it is red,'' for example. Formally, we abstract this to \[P(x),\] where $x$ stands for ``it,'' and $P$ stands for ``\dots is red.'' If we want to know whether $P(x)$ is true, we need to know what $x$ stands for. And even on the intended reading, the natural language sentence itself doesn't give us any clue towards the denotation of $x$. We need more information. If, for example, you're talking to a friend and she says ``Yesterday, I bought a ball. It is red.'' Then you know that $x$ is supposed to refer to the ball. Or if another friend says ``My favorite pen is lying there on the table. It's red.'' Then $x$ is supposed to refer to the pen. There are two important points here: (i) you need some context to determine what pronouns stand for, and (ii) the denotation of the same pronoun in the same sentence can change from context to context. This is all in line with the way we think about variables in mathematics (cf.  2.2.3--10). How can we formally model this behavior? There is nothing in the formula $P(x)$ itself that lets us determine the relevant context, so we shall model the context as \emph{additional semantic information}: we will introduce the notion of an \emph{assignment} $\alpha$, which is essentially just a function that assigns to every variable $x\in\mathcal{V}$ an object $\alpha(x)$. In the same spirit as before, using assignments, we will be able to say that $P(x)$ is true in a model $\mathcal{M}$ \emph{under an assignment} $\alpha$ iff $\alpha(x)\in P^\mathcal{M}$. That is, in order to be able to think about variables, our definition of truth will be relative to a model \emph{and} an assignment. In order to take into account that the same variable, even within the same sentence, can have different meanings in different contexts, we'll consider different assignments in the same model. 
 	
@@ -75,9 +112,11 @@
 			
 				\item every constant $c\in\mathcal{M}$ an element $c^\mathcal{M}\in D^\mathcal{M}$ of the domain
 				
-				\item every function symbol $f^n\in\mathcal{F}$, a function $f^\mathcal{M}:D^n\to D$
+			  \item every function symbol $f^n\in\mathcal{F}$,
+				a function $f^\mathcal{M}:(D^{\mathcal{M}})^n\to D^{\mathcal{M}}$
 				
-				\item every predicate $R^n\in\mathcal{R}$, a set $R^\mathcal{M}\subseteq D^n$.
+			  \item every predicate $R^n\in\mathcal{R}$, a set
+				$R^\mathcal{M}\subseteq (D^{\mathcal{M}})^n$.
 			
 			\end{enumerate}
 					
@@ -285,7 +324,7 @@
 
 						\item $\alpha(x)=2, \alpha(y)=\{2\}, \alpha(z)=\mathbb{N}$
 						
-						\item $\alpha(x)=\{x\in\mathbb{N}:n\text{ is even}\}, \alpha(y)=\{n\in\mathbb{N}:x\text{ is odd}\}, \alpha(x)=\{n\in\mathbb{N}:x\text{ is prime}\}$
+						\item $\alpha(x)=\{x\in\mathbb{N}:n\text{ is even}\}, \alpha(y)=\{n\in\mathbb{N}:x\text{ is odd}\}, \alpha(z)=\{n\in\mathbb{N}:x\text{ is prime}\}$
 						
 						\item $\alpha(x)=0$ for all $x\in\mathcal{V}$.
 
@@ -317,7 +356,7 @@
 		
 		\begin{enumerate}[(i)]
 		
-			\item In the standard model for $\mathcal{S}_{PA}$ (9.1.2.i.a) with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
+			\item In the standard model for $\mathcal{S}_{PA}$ (9.2.2.i.a) with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
 			\begin{align*}
 			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=0\\
 			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
@@ -326,7 +365,7 @@
 			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=3
 			\end{align*}
 			
-			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.b), which has $D^\mathcal{M}=\{x:x\text{ is even}\}$, with $\alpha(x)=0,\alpha(y)=0,\alpha(z)=0$ (9.2.5.i.c):
+			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.2.2.i.b), which has $D^\mathcal{M}=\{x:x\text{ is even}\}$, with $\alpha(x)=0,\alpha(y)=0,\alpha(z)=0$ (9.2.5.i.c):
 			\begin{align*}
 			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=0\\
 			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
@@ -335,7 +374,7 @@
 			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=2
 			\end{align*}
 			
-			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.c), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=1$ for all $x\in\mathcal{V}$ (9.2.5.i.e):
+			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.2.2.i.c), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=1$ for all $x\in\mathcal{V}$ (9.2.5.i.e):
 			
 			\begin{align*}
 			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=1\\
@@ -345,7 +384,7 @@
 			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=5
 			\end{align*}
 			
-			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.d), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
+			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.2.2.i.d), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
 			
 			\begin{align*}
 			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=42\\
@@ -406,14 +445,27 @@ This concludes our induction.
 		Let $\mathcal{M}$ be a model and $t\in\mathcal{T}$ a ground term. Then for all assignments $\alpha,\beta$, we have $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
 		\end{corollary}
 		\begin{proof}
-		Exercise 1.7.3.
+		Exercise 9.7.3.
 		\end{proof}
 	
-              \item \textbf{This passage has been added for clarificatory purposes.}
+              \item \textbf{This passage has been added for clarification purposes.}
 
-                There was some confusion about how to solve exercise 9.7.2, also among the TAs. So, I suppose I should have been clearer on the different variants of inductive proof, and so I'm trying to remedy the situation here. Remember that for \emph{every} inductively defined set, we have a corresponding principle for proof by induction. The idea is that if we can establish that all the basic or initial elements of the set have a property and the property is preserved under the constructions, then all elements of the set have the property. We're mainly relying on two versions of this proof principle, induction on terms and inductions of formulas. But sometimes, we want to prove things about inductively defined \emph{subsets} of the terms or formulas. This exercise is such a case.
+		There was some confusion about how to solve exercise 9.7.2, also among the TAs.
+		So, I suppose I should have been clearer on the different variants of inductive proof, and so I'm trying to remedy the situation here.
+		Remember that for \emph{every} inductively defined set, we have a corresponding principle for proof by induction.
+		The idea is that if we can establish that all the basic or initial elements of the set have a property and the property is preserved under the constructions, then all elements of the set have the property.
+		We're mainly relying on two versions of this proof principle, induction on terms and inductions of formulas.
+		But sometimes, we want to prove things about inductively defined \emph{subsets} of the terms or formulas.
+		This exercise is such a case.
 
-                In this exercise, we want to prove that all terms of a certain form, namely numerals of the form $S(\underbrace{\mathellipsis}_{n\text{ times}}S(0)\mathellipsis))=n$ have a certain semantic property: a given denotation. In order to use proof by induction for this purpose, we need to recognize that the terms in question have an inductive structure: their set can be defined by induction. The definition, in this case, is simple: the initial element is the term (!) 0 and the construction is writing the function symbol $S$ in front of a term. Let's call the terms constructed in this way \emph{natural numerals}. The corresponding induction principle for the construction of natural numerals states that if the natural numeral 0 has a property, and if a natural numeral $n$ has the property then the numeral $S(n)$ has the property, then all natural numerals have the property in question. Here is the solition for exercise i) of 9.7.2:
+		In this exercise, we want to prove that all terms of a certain form, namely numerals of the form
+		$S(\underbrace{\mathellipsis}_{n\text{ times}}S(0)\mathellipsis))=n$
+		have a certain semantic property: a given denotation.
+		In order to use proof by induction for this purpose, we need to recognize that the terms in question have an inductive structure: their set can be defined by induction.
+		The definition, in this case, is simple: the initial element is the term (!) 0 and the construction is writing the function symbol $S$ in front of a term.
+		Let's call the terms constructed in this way \emph{natural numerals}.
+		The corresponding induction principle for the construction of natural numerals states that if the natural numeral 0 has a property, and if a natural numeral $n$ has the property then the numeral $S(n)$ has the property, then all natural numerals have the property in question.
+		Here is the solution for exercise i) of 9.7.2:
 
 	\begin{lemma}[9.7.2.i]
           Let $\mathcal{M}$ be the standard model for the $PA$ (as defined in 9.2.2) and $\alpha$ an arbitrary assignment. Then for all terms of the form $n\in\mathcal{T}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$. 
@@ -436,58 +488,87 @@ This concludes our induction.
 		
 		\begin{enumerate}[(i)]
 			
-				\item		\begin{enumerate}[(a)]
+		  \item	\begin{enumerate}[(a)]
 
-					\item $\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}$
-					\item $\llbracket t_1=t_2\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha)\\0 &\text{otherwise}\end{cases}$				
+				  \item $\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_n\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}$
+
+				  \item $\llbracket t_1=t_2\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_2\rrbracket^\mathcal{M}_\alpha)\\0 &\text{otherwise}\end{cases}$
 				\end{enumerate}
-				
-				\item \begin{enumerate}[(a)]
 
-					\item  $\llbracket\neg \phi\rrbracket^\mathcal{M}_\alpha=f_\neg(\llbracket\phi\rrbracket^\mathcal{M}_\alpha)$
-				
-				\item  $\llbracket(\phi\circ \psi)\rrbracket^\mathcal{M}_\alpha=f_\circ( \llbracket\phi\rrbracket^\mathcal{M}_\alpha, \llbracket\psi\rrbracket^\mathcal{M}_\alpha)$ for $\circ=\land,\lor,\to,\leftrightarrow$
-				
-				\item $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=max(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
-				
-				\item[] $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=min(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
-								
+		  \item \begin{enumerate}[(a)]
+
+				  \item  $\llbracket\neg \phi\rrbracket^\mathcal{M}_\alpha=f_\neg(\llbracket\phi\rrbracket^\mathcal{M}_\alpha)$
+
+				  \item  $\llbracket(\phi\circ \psi)\rrbracket^\mathcal{M}_\alpha=f_\circ( \llbracket\phi\rrbracket^\mathcal{M}_\alpha, \llbracket\psi\rrbracket^\mathcal{M}_\alpha)$ for $\circ=\land,\lor,\to,\leftrightarrow$
+
+				  \item $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=max(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+
+				  \item[] $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=min(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+
 				\end{enumerate}
 			
-			\end{enumerate}
-			
+		\end{enumerate}
+
 			Note that we're using the $min$ and $max$ functions here as functions defined on (non-empty) \emph{sets} of truth-values $X\subseteq\{0,1\}$, i.e. $min(X)$ is the smallest element of $X$ and $max(X)$ is the biggest element of $X$. More explicitly, we have $max(\{0\})=0, max(\{1\})=1, max(\{1,0\})=1$, and $min(\{0\})=0, min(\{1\})=1, min(\{1,0\})=0$. It might \emph{look} like $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is a (possibly) quite big set, depending on the size of $D^\mathcal{M}$. But note that each of the individual values $\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}$ is either $0$ or $1$. Since multiplicity doesn't matter in sets, the set $\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\}$ is either $\{0\}$, $\{1\}$, or $\{0,1\}$.
 		
 			
-			\item Just like in (5.1.11), we can define truth in a model under a assignment as a \emph{property} of formulas. Here, we don't do this as an alternative definition, as we did in \S5.1, but rather, we take the property $\mathcal{M},\alpha\vDash\phi$ of a formula being true in a model under a assignment to be \emph{defined} as follows:
+	  \item Just like in (5.1.11), we can define truth in a model under a assignment as a \emph{property} of formulas.
+		Here, we don't do this as an alternative definition, as we did in \S5.1, but rather, we take the property
+		$\mathcal{M},\alpha\vDash\phi$
+		of a formula being true in a model under a assignment to be \emph{defined} as follows:
 			
 			\begin{itemize}
 			
-				\item $\mathcal{M},\alpha\vDash\phi$ iff $\llbracket\phi\rrbracket^\mathcal{M}_\alpha=1$
+			  \item $\mathcal{M},\alpha\vDash\phi$
+				iff
+				$\llbracket\phi\rrbracket^\mathcal{M}_\alpha=1$
 			
 			\end{itemize}
 			
-		\item Using this definition, we can provide the following lemma, which has the potential to make Definition 9.3.1 more transparent:
+	  \item Using this definition,
+		we can provide the following lemma,
+		which has the potential to make Definition 9.3.1 more transparent:
 			
 			\begin{lemma} For every model $\mathcal{M}$ and assignment $\alpha$, we have:
 			
 			\begin{enumerate}[(i)]
 			
-				\item $\mathcal{M},\alpha\vDash R(t_1,\mathellipsis, t_n)$ iff $(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$
+			  \item $\mathcal{M},\alpha\vDash R(t_1,\mathellipsis, t_n)$
+				iff
+				$(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_n\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$
 				
-				\item $\mathcal{M},\alpha\vDash t_1=t_2$ iff $\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha$								
-				\item $\mathcal{M},\alpha\vDash \neg\phi$ iff $\mathcal{M},\alpha\nvDash\phi$
+			  \item $\mathcal{M},\alpha\vDash t_1=t_2$
+				iff
+				$\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_2\rrbracket^\mathcal{M}_\alpha$
+
+			  \item $\mathcal{M},\alpha\vDash \neg\phi$
+				iff
+				$\mathcal{M},\alpha\nvDash\phi$
 					
-				\item $\mathcal{M},\alpha\vDash(\phi\land\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\land\psi)$
+				iff
+				$\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$
 				
-				\item $\mathcal{M},\alpha\vDash(\phi\lor\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\lor\psi)$
+				iff
+				$\mathcal{M},\alpha\vDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
 				
-				\item $\mathcal{M},\alpha\vDash(\phi\to\psi)$ iff $\mathcal{M},\alpha\nvDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\to\psi)$
+				iff
+				$\mathcal{M},\alpha\nvDash\phi$ or $\mathcal{M},\alpha\vDash\psi$
 				
-				\item $\mathcal{M},\alpha\vDash(\phi\leftrightarrow\psi)$ iff   either $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$, or $\mathcal{M},\alpha\nvDash\phi$ and $\mathcal{M},\alpha\nvDash\psi$.				
-				\item $\mathcal{M},\alpha\vDash\exists x\phi$ iff there exists a $d\in D^\mathcal{M}$, such that  $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
+			  \item $\mathcal{M},\alpha\vDash(\phi\leftrightarrow\psi)$
+				iff
+				either $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$,
+				or $\mathcal{M},\alpha\nvDash\phi$ and $\mathcal{M},\alpha\nvDash\psi$.
+
+			  \item $\mathcal{M},\alpha\vDash\exists x\phi$
+				iff
+				there exists a $d\in D^\mathcal{M}$, such that  $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
 				
-				\item $\mathcal{M},\alpha\vDash\forall x\phi$ iff for all $d\in D^\mathcal{M}$, we have $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
+			  \item $\mathcal{M},\alpha\vDash\forall x\phi$
+				iff
+				for all $d\in D^\mathcal{M}$, we have $\mathcal{M},{\alpha[x\mapsto d]}\vDash \phi$
 											
 			\end{enumerate}
 
@@ -590,18 +671,29 @@ This concludes our induction.
 		
 		\begin{enumerate}[(a)]
 		
-			\item $\mathcal{M},\alpha\vDash \exists x\forall y \phi$ iff there is a change of value of $x$ such that for all subsequent changes of $y$ which keep $x$ fixed, $\phi$ is true.
+		  \item $\mathcal{M},\alpha\vDash \exists x\forall y \phi$
+			iff there is a change of value of $x$ such that for all subsequent changes of $y$ which keep $x$ fixed, $\phi$ is true.
 		
-		\item $\mathcal{M},\alpha\vDash \exists x\forall y\phi$ iff for all changes of $x$ there is a subsequent change of $y$ (which keeps $x$ the same) such that $\phi$ becomes false.
+		  \item $\mathcal{M},\alpha\nvDash \exists x\forall y\phi$
+			iff for all changes of $x$ there is a subsequent change of $y$ (which keeps $x$ the same) such that $\phi$ becomes false.
 		
-		\item $\mathcal{M},\alpha\vDash \forall x\forall y\phi$ iff for all changes of $x$ and $y$ $\phi$ is true.
+		  \item $\mathcal{M},\alpha\vDash \forall x\forall y\phi$
+			iff for all changes of $x$ and subsequent changes of $y$, $\phi$ is true.
 		
-		\item $\mathcal{M},\alpha\vDash \forall x\forall y\phi$ iff for some change of $x$'s value there is a change of $y$'s value which keeps $x$'s value fixed and makes $\phi$ false.
+		  \item $\mathcal{M},\alpha\nvDash \forall x\forall y\phi$
+			iff for some change of $x$'s value there is a change of $y$'s value which keeps $x$'s value fixed and makes $\phi$ false.
 		
-		\item $\mathcal{M},\alpha\vDash \exists x\exists y\phi $ iff for somme change of $x$'s value there is a subsequent change of $y$'s value, which keeps the value of $x$ fixed and makes $\phi$ true
+		  \item $\mathcal{M},\alpha\vDash \exists x\exists y\phi$
+			iff for some change of $x$'s value there is a subsequent change of $y$'s value, which keeps the value of $x$ fixed and makes $\phi$ true
 		
-		\item $\mathcal{M},\alpha\vDash \exists x\exists y\phi $ iff for somme change of $x$'s value there is a subsequent change of $y$'s value, which keeps the value of $x$ fixed and makes $\phi$ true
-		
+		  \item $\mathcal{M},\alpha\nvDash \exists x\exists y\phi$
+			iff for all changes of the values of $x$ and subsequent changes of $y$, $\phi$ is false.
+
+
+		  \item $\mathcal{M},\alpha\vDash \forall x \exists y\phi$ iff for all changes of $x$'s value there is a change of $y$'s value that leaves $x$ fixed and makes $\phi$ true
+
+		  \item $\mathcal{M},\alpha\nvDash \forall x \exists y\phi$ iff there exists a value for $x$ such that for all subsequent changes in the value of $y$ (keeping $x$ fixed), $\phi$ becomes false
+
 		\end{enumerate}	
 		
 		These clauses can be used to help you think about what you need to show in order to establish whether a complex quantified claim is true.
@@ -645,7 +737,31 @@ This concludes our induction.
 			
 				\item From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=1$, it follows that for all $d\in D^\mathcal{M}$ we have $\mathcal{M},\alpha[y\mapsto d]\vDash\phi$. But for each $d$, consider $\beta[y\mapsto d]$. Since $\alpha(x)=\beta(x)$ for all $x\in V$, we have that $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V$. Moreover, $\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$. Hence $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V\cup\{y\}$. But by the induction hypothesis, this means that $\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=1$. So, $\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=1$, as desired.
 				
-				\item  From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=1$, it follows that for some $d\in D^\mathcal{M}$ we have $\mathcal{M},\alpha[y\mapsto d]\nvDash\phi$. For this $d$, consider $\beta[y\mapsto d]$. Since $\alpha(x)=\beta(x)$ for all $x\in V$, we have that $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V$. Moreover, $\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$. Hence $\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$ for all $x\in V\cup\{y\}$. But by the induction hypothesis, this means that $\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=0$. So, $\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=0$, as desired.
+			  \item  From $\llbracket\forall y\phi\rrbracket_\alpha^\mathcal{M}=0$,
+				it follows that for some
+				$d\in D^\mathcal{M}$
+				we have
+				$\mathcal{M},\alpha[y\mapsto d]\nvDash\phi$.
+				For this $d$,
+				consider
+				$\beta[y\mapsto d]$.
+				Since
+				$\alpha(x)=\beta(x)$
+				for all $x\in V$,
+				we have that
+				$\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$
+				for all $x\in V$.
+				Moreover,
+				$\alpha[y\mapsto d](y)=d=\beta[y\mapsto d](y)$.
+				Hence
+				$\alpha[y\mapsto d](x)=\beta[y\mapsto d](x)$
+				for all
+				$x\in V\cup\{y\}$.
+				But by the induction hypothesis, this means that
+				$\llbracket\phi\rrbracket_{\alpha[y\mapsto d]}^\mathcal{M}=\llbracket\phi\rrbracket_{\beta[y\mapsto d]}^\mathcal{M}=0$.
+				So,
+				$\llbracket\forall y\phi\rrbracket_\beta^\mathcal{M}=0$,
+				as desired.
 				
 			\end{itemize}
 			

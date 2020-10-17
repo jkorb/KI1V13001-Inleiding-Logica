@@ -578,21 +578,19 @@ close with=\xmark
 }
 [{\neg \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
 	[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
-		[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
-					[{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
-						[{K(p)}
-							[{\forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
-								[{\neg S(p,p)\leftrightarrow S(p,p)}
-									[{\neg S(p,p)}
-										[{S(p,p)}, close ]
-									]
-									[{S(p,p)}
-										[{\neg S(p,p)}, close ]
-									]
-								]
-							]
-						]				
+		[{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
+			[{K(p)}
+				[{\forall y(\neg S(y,y)\leftrightarrow S(p,y))}
+					[{\neg S(p,p)\leftrightarrow S(p,p)}
+						[{\neg S(p,p)}
+							[{S(p,p)}, close ]
+						]
+						[{S(p,p)}
+							[{\neg S(p,p)}, close ]
+						]
 					]
+				]
+			]
 		]
 	]
 ]
@@ -763,7 +761,7 @@ close with=\xmark
 			[{P(c)\to P(p)}
 				[{\neg P(c)} 
 					[{\neg P(c)}]
-					[{\neg P(p)}]
+					[{P(p)}]
 				]
 				[{\forall x P(x)}
 					[{\neg P(c)}
@@ -1142,8 +1140,22 @@ close with=\xmark
 $\dagger$: where $t$ is any \emph{ground term} already on the branch, or an arbitrary ``fresh'' \emph{ground term} if there are none.\\
 $\ddagger$: $\sigma$ here is any atomic formula, i.e. a formula of the form $R(t_1, \mathellipsis, t_n)$ or $t_1=t_2$.
 
-	\item So, there is nothing really different about the proof theory itself, i.e. the rules for constructing tableaux. The only topic on which we really have to say anything is how to interpret function symbols in the associated model of a branch. Remember that in a model $\mathcal{M}$, the interpretation of an $n$-ary function symbol $f^n\in\mathcal{F}$ is an $n$-ary function $f^\mathcal{M}:(D^\mathcal{M})^n\to D^\mathcal{M}$. But what on earth could this function be in our model? The solution is as simple as it is revealing about the whole game of associated models. First, let's adjust the definition of the associated model for an open branch $B$ in complete tableau to a setting with function terms. We define $[t]_{\sim_B}$ to be the set $\{u:t=u\in B\}$ when $t$ occurs in $B$ and $\{t\}$ otherwise:\footnote{Why this complicated definition, you ask? Well, you'll see in a moment.} \[[t]_{\sim_B}=\begin{cases} \{u:t=u\in B\} &\text{if }t\text{ occurs in }B\\
-	\{t\} &\text{ otherwise}\end{cases}\]
+	  \item So, there is nothing really different about the proof theory itself,
+		i.e.\ the rules for constructing tableaux.
+		The only topic on which we really have to say anything is how to interpret function symbols in the associated model of a branch.
+		Remember that in a model $\mathcal{M}$, the interpretation of an $n$-ary function symbol $f^n\in\mathcal{F}$ is an $n$-ary function
+		$f^\mathcal{M}:(D^\mathcal{M})^n\to D^\mathcal{M}$.
+		But what on earth could this function be in our model?
+		The solution is as simple as it is revealing about the whole game of associated models.
+		First, let's adjust the definition of the associated model for an open branch $B$ in complete tableau to a setting with function terms.
+		We define $[t]_{\sim_B}$ to be the set $\{u:t=u\in B\}$ when $t$ occurs in $B$ and $\{t\}$ otherwise:
+		\footnote{%
+		Why this complicated definition, you ask?
+		Well, you'll see in a moment.}
+		\[[t]_{\sim_B}=\begin{cases}
+			\{u:t=u\in B\} &\text{if }t\text{ occurs in }B\\
+			\{t\} &\text{ otherwise}\end{cases}
+		\]
 	Then, we say:
 		\begin{itemize}
 		
@@ -1154,7 +1166,22 @@ $\ddagger$: $\sigma$ here is any atomic formula, i.e. a formula of the form $R(t
 			\item $R^{\mathcal{M}_B}=\{([t_1]_{\sim_B}, \mathellipsis, [t_n]_{\sim_B}): R(t_1, \mathellipsis, t_n)\in B\}$
 
 		\end{itemize}
-Now, for $f^n\in\mathcal{F}$ an $n$-ary function symbol, we need to find a function $f^{\mathcal{M}_B}$ that maps $n$-tuples of equivalence classes of terms $([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})$ to a single such equivalence class. But which one should it be: \[f^{\mathcal{M}_B}([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})=[?]_{\sim_B}\] The ``obvious'' answer is that $f^{\mathcal{M}_B}([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})=[f(t_1, \mathellipsis, t_n)]_{\sim_B}$. Why is this obvious? First, note that this really defines a function on the terms. In particular, for every input we assign one and only one out. This crucially hinges on the fact that we've ``enlarged'' $D^{\mathcal{M}_B}$ to include also the equivalence classes of all the terms not in $B$: we know that the value for $f([t]_{\sim_B})=[f(t)]_{\sim_B}]$, namely $[f(t)]_{\sim_B}\in D^{\mathcal{M}_B}$ , but we're now also guaranteed that we get a value for $f^{\mathcal{M}_B}([f(t)]_{\sim_B})$, viz. $[f(f(t))]_{\sim_B}\in D^{\mathcal{M}_B}$, and so on. The definition guarantees exactly that the formulas on the branch involving the term $f(t_1, \mathellipsis, t_n)$ will be true. How so, is best illustrated by means of an example.
+		Now, for $f^n\in\mathcal{F}$ an $n$-ary function symbol, we need to find a function $f^{\mathcal{M}_B}$ that maps $n$-tuples of equivalence classes of terms
+		$([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})$
+		to a single such equivalence class.
+		But which one should it be:
+		\[f^{\mathcal{M}_B}([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})=[?]_{\sim_B}\]
+		The ``obvious'' answer is that $f^{\mathcal{M}_B}([t_1]_{\sim_B},\mathellipsis, [t_n]_{\sim_B})=[f(t_1, \mathellipsis, t_n)]_{\sim_B}$.
+		Why is this obvious?
+		First, note that this really defines a function on the terms.
+		In particular, for every input we assign one and only one out.
+		This crucially hinges on the fact that we've ``enlarged'' $D^{\mathcal{M}_B}$ to include also the equivalence classes of all the terms not in $B$:
+		we know that the value for
+		$f([t]_{\sim_B})=[f(t)]_{\sim_B}$,
+		namely $[f(t)]_{\sim_B}\in D^{\mathcal{M}_B}$ ,
+		but we're now also guaranteed that we get a value for $f^{\mathcal{M}_B}([f(t)]_{\sim_B})$, viz. $[f(f(t))]_{\sim_B}\in D^{\mathcal{M}_B}$, and so on.
+		The definition guarantees exactly that the formulas on the branch involving the term $f(t_1, \mathellipsis, t_n)$ will be true.
+		How so, is best illustrated by means of an example.
 
 	\item \emph{Example}. Let's consider the following derivation for $\nvdash \forall x\forall y(f(x)= f(y)\to x= y)$
 	
@@ -1363,7 +1390,30 @@ How do we see that the tableau is open? Well, we note that all the atomic formul
 
 \section{Self Study Questions}
 
-[Will be provided soon]
+\begin{enumerate}[\thesection.1]
+  \item Which of the following statements are correct?
+	\begin{enumerate}[(a)]
+	  \item The tableau for an inference can only be infinite if the premises don't entail the conclusion.
+
+	  \item It's possible to have a tableau for an inference where each branch contains both a statement and its negation, but the premises don't entail the conclusion.
+
+	  \item You will always be able to make the tableau for a given inference in a finite amount of time.
+
+	  \item You can have a tableau without any parameters on any branch.
+
+	  \item In FOL, if you both a formula and its negation on a branch, then the branch is closed and no rules need to be applied anymore (even if further rules could be applied).
+
+	  \item Parameters are treated like variables, i.e. we assign them a value only under a variable assignment and not as part of the model.
+
+	  \item If you make the complete tableau for an inference and find that it's open, then you get a model that makes the premises true and the conclusion false.
+
+	  \item When you make the tableau for an inference, you start by writing down the initial list, which consists of the premises and the conclusion and then you start applying the rules.
+
+	  \item It's possible that the tableau for an inference whose conclusion is a valid formula of FOL is not closed.
+
+	  \item If you find that all the branches of a tableau for an inference contain both a formula and its negation, then the premises entail the conclusion.
+\end{enumerate}
+\end{enumerate}
 
 \section{Exercises}
 	
@@ -1437,8 +1487,26 @@ How do we see that the tableau is open? Well, we note that all the atomic formul
 	
 	\end{enumerate}
 
+
+\vfill
+
+\hfill \rotatebox[origin=c]{180}{
+  \fbox{
+	\begin{minipage}{0.5\linewidth}
+
+	  \subsection*{Self Study Solutions}
+
+	  \begin{enumerate}
+
+		\item[10.7.1] (a, d, e, g, j)
+
+	  \end{enumerate}
+
+
+	\end{minipage}}}
+
 	
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:

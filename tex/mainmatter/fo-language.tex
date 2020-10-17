@@ -308,7 +308,13 @@ We've already talked about how we abstract from predicates in first-order logic,
 		Just like induction over formulas.
 		\end{proof}
 		
-		\item Similarly, function recursion works standardly: the sets of terms and formulas are inductively defined, hence we can use function recursion on them. The pattern is the same as always: give the value for the initial elements and say how to calculate the value for more complex elements based on the values of their components. As an example, let's generalize the notion of complexity from propositional logic (4.4.4) to first-order logic. First, we define a complexity $c:\mathcal{T}\to\mathbb{N}$ for terms by saying:
+	  \item Similarly, function recursion works standardly:
+		the sets of terms and formulas are inductively defined, hence we can use function recursion on them.
+		The pattern is the same as always: give the value for the initial elements and say how to calculate the value for more complex elements based on the values of their components.
+		As an example, let's generalize the notion of complexity from propositional logic (4.4.4) to first-order logic.
+		First, we define a complexity
+		$c:\mathcal{T}\to\mathbb{N}$
+		for terms by saying:
 	\begin{enumerate}[(i)]
 	
 		\item \begin{enumerate}[(a)]
@@ -319,7 +325,7 @@ We've already talked about how we abstract from predicates in first-order logic,
 	
 			\end{enumerate}
 			
-		\item $c(f(t_1, \mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))+1$
+		\item $c(f(t_1, \mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))+1$ for all $f^{n}\in\mathcal{F}$ and $t_{1}, \mathellipsis, t_{n}\in\mathcal{T}$
 	
 	\end{enumerate}
 Using the function on terms, we define a complexity function $c:\mathcal{L}\to\mathbb{N}$ on formulas by saying:
@@ -327,9 +333,9 @@ Using the function on terms, we define a complexity function $c:\mathcal{L}\to\m
 		
 			\item  \begin{enumerate}[(a)]
 			
-				\item $c(R(t_1,\mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))$
+				\item $c(R(t_1,\mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))$ for all $R^{n}\in\mathcal{R}$ and $t_{1}, \mathellipsis, t_{n}\in\mathcal{T}$
 				
-				\item $c(t_1=t_2)=max(c(t_1), c(t_2))$ 			
+				\item $c(t_1=t_2)=max(c(t_1), c(t_2))$ for $t_{1},t_{2}\in \mathcal{T}$
 			\end{enumerate}
 
 			
@@ -428,11 +434,12 @@ Using the function on terms, we define a complexity function $c:\mathcal{L}\to\m
 \end{center}
 			
 	
-	\item \emph{Example}. Since the idea of how to do parsing trees should be clear by now, we do just one, more involved example:
+	  \item \emph{Example}. Since the idea of how to do parsing trees should be clear by now,
+		we do just one, more involved example:
 	
 	\begin{center}
 	
-	\Tree [.{$\forall x(R(x,g(f(a),f(b)))\to \exists yR(y,y))$} [.{$R(x,g(f(a),f(b)))\to \exists yR(y,y)$} [.{$R(x,g(f(a),f(b)))$} [.$x$ ] [.{$g(f(a),f(b))$} [.$f(a)$ [.$a$ ]  ] [.$f(b)$ [.$a$ ]  ] ] ] [.$\exists yR(y,y)$ [.$R(y,y)$ [.$y$ ]  [.$y$ ] ] ] ] ]
+	\Tree [.{$\forall x(R(x,g(f(a),f(b)))\to \exists yR(y,y))$} [.{$R(x,g(f(a),f(b)))\to \exists yR(y,y)$} [.{$R(x,g(f(a),f(b)))$} [.$x$ ] [.{$g(f(a),f(b))$} [.$f(a)$ [.$a$ ]  ] [.$f(b)$ [.$b$ ]  ] ] ] [.$\exists yR(y,y)$ [.$R(y,y)$ [.$y$ ]  [.$y$ ] ] ] ] ]
 	
 	\end{center}
 	
@@ -557,7 +564,14 @@ Essentially, we name a node by giving the ``directions'' for someone traveling a
 	\end{center} 
 
 
-			\item The formula $R(x,y)$ occurs \emph{twice} in the formula $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$, once at $(r,1,2)$ and once at $(r,1,2,1,1,2,1)$:
+		  \item The formula
+			$R(x,y)$
+			occurs \emph{twice} in the formula
+			$\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$,
+			once at
+			$(r,1,1)$
+			and once at
+			$(r,1,2,1,1,2,1)$:
 \begin{center}
 \begin{tabular}{c}
 {\Tree [.$\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$
@@ -587,7 +601,12 @@ Essentially, we name a node by giving the ``directions'' for someone traveling a
 
 \end{enumerate}
 
-	\item The fact that an expression can occur more than once requires us to talk about \emph{occurrences} of expressions. For many purposes we want to be able to \emph{distinguish} different occurrences of expressions, we want, for example, to be able to distinguish the occurrence of $R(x,y)$ at $(r,1,2)$ from the occurrence at $(r,1,2,1,1,2,1)$. We do this by defining an \emph{occurrence} of an expression in a formula as the pair $(n,\sigma)$ where $n$ is a node in the parsing tree labelled with $\sigma$. 
+	  \item The fact that an expression can occur more than once requires us to talk about \emph{occurrences} of expressions.
+		For many purposes we want to be able to \emph{distinguish} different occurrences of expressions, we want, for example, to be able to distinguish the occurrence of
+		$R(x,y)$ at $(r,1,1)$
+		from the occurrence at
+		$(r,1,2,1,1,2,1)$.
+		We do this by defining an \emph{occurrence} of an expression in a formula as the pair $(n,\sigma)$ where $n$ is a node in the parsing tree labelled with $\sigma$.
 	
 	\item \emph{Examples}. Consider the formula $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$. We gave the ordinary parsing tree above. Here is the stripped one:
 	\begin{center}
@@ -658,8 +677,8 @@ Essentially, we name a node by giving the ``directions'' for someone traveling a
 					$((r,1,2),\exists x\forall y(R(y,x)\land \neg R(x,y))))$\\
 					$((r,1,2,1),\forall y(R(y,x)\land \neg R(x,y)))$\\
 					$((r,1,2,1,1),(R(y,x)\land \neg R(x,y)))$\\
-					$((r,1,2,1,1,2),\neg R(x,y))$\\		
 					$((r,1,2,1,1,1),R(y,x))$\\
+					$((r,1,2,1,1,2),\neg R(x,y))$\\
 					$((r,1,2,1,1,2,1),R(x,y))$\\
 					
 				\end{longtable}
@@ -768,8 +787,28 @@ When a variable occurrence in a formula is not bound by some quantifier occurren
 			
 			\end{itemize}
 
-		\item In the following, we shall study only inferences involving closed formulas or \emph{sentences} as they are typically called. The reason for this is that open formulas are not straight-forwardly apt to be true or false in a possible situation: an open formula, like $P(x)$, contains an unbound variable, which intuitively is something like a pronoun who's reference you don't know. This spells trouble for our account of valid inference. Suppose that somebody comes into the room and declares ``She's coming! So, we should all be happy.'' How can you possibly determine any relation between the truth of ``she's coming'' and ``we should all be happy'' without knowing who ``she'' refers to? It \emph{is} possible to use free variables (and disambiguated) pronouns in a reasonable, logical way. For example, in mathematics, we often write an open formula $x+y=y+x$ to express a general claim about all numbers, rather than using the universally quantified sentence $\forall x\forall y(x+y=y+x)$ for the same purpose. Similarly, we reasonably reason from ``he's coming'' to ``he's not not coming;'' we don't need to know who ``he'' is for that purpose. But, it turns out that if we consider valid inferences between open formulas, all sort of technical difficulties pop up (they're not unsurmountable, but they'r there). To avoid these problems, we'll focus on inferences between sentences alone. This is actually not that much of an restriction since we'll have to think about the truth-conditions for open formulas anyways when we try to give truth-conditions for sentences. Why you can already see now from a purely syntactic standpoint: sentences, like $\forall xP(x)$, are constructed from open formulas, in this case $P(x)$; so, if we want to trace the construction of a formula in our recursive definition of truth, we need to give the truth-conditions for the open formula $P(x)$.
-		
+	  \item In the following, we shall study only inferences involving closed formulas or \emph{sentences} as they are typically called.
+		The reason for this is that open formulas are not straight-forwardly apt to be true or false in a possible situation: an open formula, like $P(x)$, contains an unbound variable, which intuitively is something like a pronoun who's reference you don't know.
+		This spells trouble for our account of valid inference.
+		Suppose that somebody comes into the room and declares ``She's coming! So, we should all be happy.''
+		How can you possibly determine any relation between the truth of ``she's coming'' and ``we should all be happy'' without knowing who ``she'' refers to?
+		It \emph{is} possible to use free variables (and disambiguated) pronouns in a reasonable, logical way.
+		For example, in mathematics, we often write an open formula
+		$x+y=y+x$
+		to express a general claim about all numbers, rather than using the universally quantified sentence
+		$\forall x\forall y(x+y=y+x)$
+		for the same purpose.
+		Similarly, we reasonably reason from ``he's coming'' to ``he's not not coming;'' we don't need to know who ``he'' is for that purpose.
+		But, it turns out that if we consider valid inferences between open formulas, all sort of technical difficulties pop up (they're not unsurmountable, but they're there).
+		To avoid these problems, we'll focus on inferences between sentences alone.
+		This is actually not that much of an restriction since we'll have to think about the truth-conditions for open formulas anyways when we try to give truth-conditions for sentences.
+		Why you can already see now from a purely syntactic standpoint:
+		sentences, like
+		$\forall xP(x)$,
+		are constructed from open formulas,
+		in this case $P(x)$;
+		so, if we want to trace the construction of a formula in our recursive definition of truth, we need to give the truth-conditions for the open formula
+$P(x)$.
 		\item It is worth, as an exercise, to prove some basic facts about free and bound variable. Here we report some propositions, leaving most of the proofs as exercises, however:
 		
 		\begin{proposition}
@@ -912,13 +951,13 @@ Well, we could have done this without the recursive definition, sure. But the po
 		
 			\end{itemize}
 			
-			\item Here's a(n arbitrary) translation key for our abstract signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
+		  \item Here's a(n arbitrary) translation key for our abstract signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 			
 			\begin{itemize}
 			
-				\item $D=\{x:x \text{ is a professor at UU}\}$
+				\item $D=\{x:x \text{ is a human\}$
 				
-				\item $f$: the function that maps a person to their birthplace
+				\item $f$: the function that maps a person to their mother
 				
 				\item $g$: the function that maps two people to their LCA
 				
@@ -1083,10 +1122,10 @@ formula to the same effect is: \[\exists x\exists y(P(x)\land
 \item There is a path from the root to $m$ which does not go through $n$.
 \end{enumerate}
 
-\item Let $\phi$ be a formula with precisely one free variable,
-  $x$. Consider the result of a substitution $(\phi)[x:=t]$ of ground
-  (!) term $t$ for all free occurrences of $x$ in $\phi$. Which of the
-  following can\emph{not} happen?
+  \item Let $\phi$ be a formula with precisely one free variable, $x$.
+	Consider the result of a substitution $(\phi)[x:=t]$ of term $t$ \emph{without free variables}
+	for all free occurrences of $x$ in $\phi$.
+	Which of the following can\emph{not} happen?
 
 \begin{enumerate}
 \item $(\phi)[x:=t]$ is open.
@@ -1105,7 +1144,7 @@ formula to the same effect is: \[\exists x\exists y(P(x)\land
 	
 	\begin{enumerate}[\thesection.1]
 	
-		\item $[h]$ Define the notion of a subformula in first-order logic by generalizing Definition 4.4.3. 
+		\item $[h]$ Define the notion of a subformula in first-order logic by generalizing Definition 4.4.2.
 		
 		\item $[h]$ Prove that for each formula $\phi$, if $x$ is the only variable that occurs free in $\phi$, then $Q x\phi$ is closed for $Q=\forall,\exists$.
 		
@@ -1318,4 +1357,4 @@ $ \forall  x\,  \forall y\, (S(x,y) \rightarrow G(y,x))$
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
