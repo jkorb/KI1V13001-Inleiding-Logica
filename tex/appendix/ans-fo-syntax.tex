@@ -35,42 +35,141 @@ $$\forall x((R(x,y))[y := x] \rightarrow (\exists y R(y,y))[y := x])$$
 $$\forall x(R((x)[y := x],(y)[y := x]) \rightarrow \exists y R(y,y))$$
 $$\forall x(R(x,x) \rightarrow \exists y R(y,y))$$
 
-\vspace{2mm}
-\noindent \textbf{8.9.11 c}
-\newline
-Vertaalsleutel: \newline
-+($x,y$): De som van $x$ en $y$\newline
-$G(x,y)$: $x$ is groter dan $y$ \newline
-2: het getal twee \newline
-3: het getal drie \newline
-4: het getal vier \newline
-$G(+(2,3),4)$ \newline
 
-\vspace{2mm}
-\noindent \textbf{8.9.12 c}
-\newline
-Vertaalsleutel: \newline
-$G(x,y)$: $x$ is groter dan $y$ \newline
-3: het getal drie \newline
-4: het getal vier \newline
-$\forall x (G(x,4) \rightarrow G(x,3))$ \newline
+\begin{enumerate}
 
-\vspace{2mm}
-\noindent \textbf{8.9.12 f}
-\newline
-$K(x,y)$: $x$ is kleiner dan $y$ \newline
-3: het getal drie \newline
-4: het getal vier \newline
-$\forall x (K(x,3)\rightarrow K(x,4)$
+    Vertaalsleutel voor opdracht 8.9.11 t/m 8.9.13: \\
+    \begin{tabular}{l|l}
+      Denotatie & Betekenis\\
+      \hline
+      0 & het getal 0 \\
+      2 & het getal twee \\
+      3 & het getal drie \\
+      4 & het getal vier \\
+      $E^1(x)$ & $x$ is even \\
+      $O^1(x)$ & $x$ is oneven \\
+      $N^1(x)$ & ik heb het getal $x$ hier opgeschreven \\
+      $G^2(x,y)$ & $x$ is groter dan $y$\\
+      $K^2(x,y)$ & $x$ is kleiner dan $y$\\
+      $s^2(x,y)$ & De som van $x$ en $y$\\
+    \end{tabular}
 
-\vspace{2mm}
-\noindent \textbf{8.9.13 c}
-\newline
-$E(x)$: $x$ is een even getal \newline
-$O(x)$: $x$ is een oneven getal \newline
-$G(x,y)$: $x$ is groter dan $y$ \newline
-$K(x,y)$: $x$ is kleiner dan $y$ \newline
-$\exists x (E(x) \land \exists y (O(y) \land K(x,y) \land \exists z (O(z) \land G(y,z))))$ \newline
+  \item[8.9.11]
+    \begin{enumerate}[(a)]
+      \item
+        2 is een even getal.\\
+        $E(2)$
+      \item
+        2 is groter dan 3.\\
+        $G(2,3)$
+      \item
+        De som van 2 en 3 is groter dan 4.\\
+        $G(s(2,3),4)$
+      \item
+        Als dit getal groter dan 4 is, dan is het ook groter dan 3.\\
+        $G(x,4) \rightarrow G(x,3)$
+      \item
+        Als dit getal niet groter dan 2 is, dan is het ook niet groter dan 3.\\
+        $\neg G(x,2) \rightarrow \neg G(x,3)$
+      \item
+        Dit getal is kleiner dan 2 of groter dan 4.\\
+        $K(x,2) \vee G(x,4)$
+    \end{enumerate}
+  \item[8.9.12]
+    \begin{enumerate}[(a)]
+      \item
+        Er is een getal groter dan 4 en er is een getal kleiner dan 4.\\
+        $(\exists x G(x,4) \land \exists x K(x,4))$
+      \item
+        Er is een even getal groter dan 3.\\
+        $\exists x(E(x) \land G(x,3))$
+      \item
+        Ieder getal groter dan 4 is ook groter dan 3.\\
+        $\forall x (G(x,4) \rightarrow G(x,3))$
+      \item
+        Geen getal is groter dan 3 en kleiner dan 4.\\
+        $\neg \exists x (G(x,3) \land K(x,4)$
+      \item
+        Als dit getal groter dan 4 is, dan is ieder getal dat ik hier opgeschreven heb groter dan 4.\\
+        $G(x,4) \rightarrow \forall x ( N(x) \to G(x,4) )$
+      \item
+        Een getal dat kleiner dan 3 is, is kleiner dan 4.\\
+        $\forall x (K(x,3) \rightarrow K(x,4))$
+      \item
+        Een getal, dat kleiner dan 3 is, is kleiner dan 4.\\
+        $\exists x (K(x,3) \land K(x,4))$
+      \item Er is geen getal groter dan 4 en kleiner dan 3.\\
+        $\neg \exists x (G(x,4) \land K(x,3))$
+    \end{enumerate}
+  \item[8.9.13]
+    \begin{enumerate}[(a)]
+      \item
+        Een getal dat groter is dan ieder even getal, is oneven.\\
+        $\forall x ( \forall y ( E(y) \rightarrow G(x,y) ) \rightarrow O(x))$
+      \item
+        Ieder getal is groter dan tenminste één getal.\\
+        $\forall x ( \exists y G(x,y) )$
+      \item
+        Er is een even getal dat kleiner is dan een oneven getal dat groter is dan een oneven getal.\\
+        $\exists x ( E(x) \land \exists y ( O(y) \land K(x,y) \land \exists z ( O(z) \land G(y,z) ) ) )$
+      \item
+        Er is geen getal dat groter is dan ieder getal.\\
+        $\neg \exists x ( \forall y G(x,y) )$
+      \item
+        Geen getal is groter dan zichzelf.\\
+        $\neg \exists x G(x,x)$
+      \item
+        Ieder oneven getal is groter dan 0.\\
+        $\forall x ( O(x) \rightarrow G(x,0) )$
+      \item
+        Ieder oneven getal is groter dan een even getal.\\
+        $\forall x ( O(x) \rightarrow \exists y ( E(y) \land G(x,y) )$
+    \end{enumerate}
+  \item[8.9.14]
+    Vertaalsleutel voor opdracht a t/m e: \\
+    \begin{tabular}{l|l}
+      Denotatie  & Betekenis\\\hline
+      m          & mij\\
+      $V^1(x)$   & $x$ is verstandig\\
+      $B^2(x,y)$ & $x$ bemint $y$
+    \end{tabular}
+    \begin{enumerate}[(a)]
+      \item
+        Wie iemand bemint, bemint zichzelf.\\
+        $\forall x ( \exists y B(x,y) \rightarrow B(x,x) )$
+      \item
+        Wie niemand bemint, is niet verstandig.\\
+        $\forall x ( \neg \exists y B(x,y) \rightarrow \neg V(x))$
+      \item
+        Wie verstandig is, wordt door iemand bemind.\\
+        $\forall x ( V(x) \to \exists y B(y,x))$
+      \item
+        Iedereen bemint iemand.\\
+        $\forall x \exists y B(x,y)$
+      \item
+        Wie mij bemint, wordt door mij bemind.\\
+        $\forall x ( B(x,m) \to B(m,x))$
+        \\\\
+        Vertaalsleutel voor opdracht f t/m h: \\
+        \begin{tabular}{l|l}
+          Denotatie & Betekenis\\
+          \hline
+          $V^1(x)$ & $x$ is voor mij\\
+          $T^1(x)$ & $x$ is tegen mij\\
+        \end{tabular}
+      \item
+        Wie tegen mij is, is niet voor mij.\\
+        $\forall x ( T(x) \rightarrow \neg V(x) )$
+      \item
+        Wie niet voor mij is, is tegen mij.\\
+        $\forall x ( \neg V(x) \rightarrow T(x) )$
+      \item
+        Iedereen is óf voor mij, óf tegen mij.\\
+        $\forall x ( ( V(x) \vee T(x) ) \land \neg( V(x) \land T(x) )$
+    \end{enumerate}
+\end{enumerate}
+
+%% \addition by David
 
 \vspace{2mm}
 \noindent \textbf{8.9.16}
@@ -87,4 +186,4 @@ $\exists x (E(x) \land \exists y (O(y) \land K(x,y) \land \exists z (O(z) \land 
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
