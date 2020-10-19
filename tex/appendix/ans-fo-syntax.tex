@@ -1,42 +1,52 @@
-%by Maarten Burger, Alexander Apers, and Jos Zuiderwijk
+%by Maarten Burger, Alexander Apers, Jos Zuiderwijk, David Bikker
 
 \chapter{Chapter 8. Syntax for First-Order Logic}
 
 \section*{8.9 Exercises}
 
-	
-\noindent \textbf{8.9.1}
 \begin{enumerate}
-    \item[(i)] \begin{enumerate}
-        \item[(a)] 
-	$sub(R(t_1, \dots, t_n)) = \{R(t_1, \dots, t_n)\}$ for all $R^n \in \mathcal{P}$ and \\ $t_1, \dots, t_n \in \mathcal{T}$.
-        \item[(b)]
-	$sub(t_1 = t_2) = \{t_1 = t_2\}$ for all $t_1, t_2 \in \mathcal{T}$.
-	\end{enumerate}
-	\item[(ii)] \begin{enumerate}
-	    \item[(a)]
-	$sub(\neg \phi) = \{\neg \phi\} \cup sub(\phi)$ for all $\phi \in \mathcal L$.
-        \item[(b)]
-	$sub((\phi \circ \psi)) = \{(\phi \circ \psi)\} \cup sub(\phi) \cup sub(\psi)$ for all $\phi, \psi \in \mathcal L$.
-	    \item[(c)]
-	$sub(Qx \phi) = \{Qx\phi\} \cup sub(\phi)$ for all $\phi \in \mathcal L$ and $Q = \forall, \exists$.\\
-	\end{enumerate}
-\end{enumerate}
 
-\noindent \textbf{8.9.2} \\ 
-Suppose $\phi$ is a formula and $x$ is the only free variable in $\phi$, i.e. $x$ is not bound by a quantifier. Let's consider $Qx\phi$. By definition the root of the corresponding parsing tree is the following occurence: $\langle r, Qx \rangle$. Since it's the root, there is a path to the variable $x$. Therefore $x$ now is bound by $\langle r, Qx \rangle$. Since $x$ was the only free variable, $Qx\phi$ is now closed.\\
+  \item[8.9.1]
+    \begin{enumerate}
+      \item[(i)] \begin{enumerate}
+                   \item[(a)]
+                     $sub(R(t_1, \dots, t_n)) = \{R(t_1, \dots, t_n)\}$ for all $R^n \in \mathcal{P}$ and \\ $t_1, \dots, t_n \in \mathcal{T}$.
+                   \item[(b)]
+                     $sub(t_1 = t_2) = \{t_1 = t_2\}$ for all $t_1, t_2 \in \mathcal{T}$.
+                 \end{enumerate}
+      \item[(ii)] \begin{enumerate}
+                    \item[(a)]
+                      $sub(\neg \phi) = \{\neg \phi\} \cup sub(\phi)$ for all $\phi \in \mathcal L$.
+                    \item[(b)]
+                      $sub((\phi \circ \psi)) = \{(\phi \circ \psi)\} \cup sub(\phi) \cup sub(\psi)$ for all $\phi, \psi \in \mathcal L$.
+                    \item[(c)]
+                      $sub(Qx \phi) = \{Qx\phi\} \cup sub(\phi)$ for all $\phi \in \mathcal L$ and $Q = \forall, \exists$.\\
+                  \end{enumerate}
+    \end{enumerate}
 
-\noindent \textbf{8.9.6} \\ No, this is not the case. Consider $\exists x P(x)$. This is a sentence since all the variables it contains are bound (the $x$ is bound by the $\exists x$). The set of sub-formulas is $sub(\exists x P(x)) = \{\exists x P(x), P(x)\}$. $P(x)$ is a sub-formula, however it is not sentences since it contains an unbound variables, i.e. the $x$.\\
-\newline
-\noindent \textbf{8.9.9 (i)} \\
-$$(\forall x(R(x,y) \rightarrow \exists y R(y,y)))[y := x]$$
-$$\forall x((R(x,y) \rightarrow \exists y R(y,y)))[y := x]$$ 
-$$\forall x((R(x,y))[y := x] \rightarrow (\exists y R(y,y))[y := x])$$
-$$\forall x(R((x)[y := x],(y)[y := x]) \rightarrow \exists y R(y,y))$$
-$$\forall x(R(x,x) \rightarrow \exists y R(y,y))$$
+  \item[8.9.2]
+    Suppose $\phi$ is a formula and $x$ is the only free variable in $\phi$, i.e. $x$ is not bound by a quantifier.
+    Let's consider $Qx\phi$.
+    By definition the root of the corresponding parsing tree is the following occurence: $\langle r, Qx \rangle$.
+    Since it's the root, there is a path to the variable $x$.
+    Therefore $x$ now is bound by $\langle r, Qx \rangle$.
+    Since $x$ was the only free variable, $Qx\phi$ is now closed.\\
+
+  \item[8.9.6]
+    No, this is not the case.
+    Consider $\exists x P(x)$.
+    This is a sentence since all the variables it contains are bound (the $x$ is bound by the $\exists x$).
+    The set of sub-formulas is
+    $sub(\exists x P(x)) = \{\exists x P(x), P(x)\}$.
+    $P(x)$ is a sub-formula, however it is not sentences since it contains an unbound variables, i.e. the $x$.\\
 
 
-\begin{enumerate}
+  \item[8.9.9 (i)]
+    $$(\forall x(R(x,y) \rightarrow \exists y R(y,y)))[y := x]$$
+    $$\forall x((R(x,y) \rightarrow \exists y R(y,y)))[y := x]$$
+    $$\forall x((R(x,y))[y := x] \rightarrow (\exists y R(y,y))[y := x])$$
+    $$\forall x(R((x)[y := x],(y)[y := x]) \rightarrow \exists y R(y,y))$$
+    $$\forall x(R(x,x) \rightarrow \exists y R(y,y))$$
 
     Vertaalsleutel voor opdracht 8.9.11 t/m 8.9.13: \\
     \begin{tabular}{l|l}
@@ -167,23 +177,20 @@ $$\forall x(R(x,x) \rightarrow \exists y R(y,y))$$
         Iedereen is óf voor mij, óf tegen mij.\\
         $\forall x ( ( V(x) \vee T(x) ) \land \neg( V(x) \land T(x) )$
     \end{enumerate}
+
+    \item[8.9.16]
+    \newline
+    \begin{enumerate}[(a)]
+      \item Er is iemand die sterker is dan Peter.
+      \item Als een persoon sterker is dan een ander dan is de ander groter dan deze persoon.
+      \item Iemand die groter is dan een ander is ook sterker dan een ander.
+      \item Peter is groter dan niemand maar niemand is sterker dan Peter.
+      \item Als een persoon blij is dan is er iemand die groter is dan deze persoon.
+    \end{enumerate}
+
 \end{enumerate}
 
-%% \addition by David
-
-\vspace{2mm}
-\noindent \textbf{8.9.16}
-\newline
-\begin{enumerate}[(a)]
-\item Er is iemand die sterker is dan Peter.
-\item Als een persoon sterker is dan een ander dan is de ander groter dan deze persoon.
-\item Iemand die groter is dan een ander is ook sterker dan een ander.
-\item Peter is groter dan niemand maar niemand is sterker dan Peter.
-\item Als een persoon blij is dan is er iemand die groter is dan deze persoon.
-\end{enumerate}
-
-	
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
 %%% End:
