@@ -314,12 +314,24 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 	
 	\end{proof}
 	
-	\item Before we conclude the section and move to completeness, we remark that what we've just prove can also be interpreted differently: effectively, what we've proven is that the tableau method, construed as the algorithm laid out in 6.3.2, gives the correct result for unsatisfiable sets:
+  \item Before we conclude the section and move to completeness, we remark that what we've just proven can also be interpreted differently:
+	effectively, what we've proven is that the tableau method,
+	construed as the algorithm laid out in 6.3.2,
+	gives the correct result for unsatisfiable sets:
 	\begin{theorem}[Tableau Verification Part 1]
 	If the algorithm laid out in 6.3.2 gives the answer that a set is unsatisfiable, then the set \emph{is} unsatisfiable. 
 	\end{theorem}
 	\begin{proof}
-	Suppose that the tableau method gives the result that a set $\Gamma$ is unsatisfiable. By 6.3.2.4, this means that the tableau must be closed. Now suppose, for proof by contradiction, that the set $\Gamma$ is satisfiable. This means, by definition, that there's a valuation $v$ that makes all the members of $\Gamma$ true. By the same reasoning as in the proof of Soundness, we can conclude that there's at least one open branch in the complete tableau for $\Gamma$. Hence the tableau must be open, in contradiction to our assumption that the tableau method gave the result that $\Gamma$ is unsatisfiable. Hence $\Gamma$ must indeed be unsatisfiable, which is what we needed to show. 
+	  Suppose that the tableau method gives the result that a set $\Gamma$ is unsatisfiable.
+	  By 6.3.2.4, this means that the tableau must be closed.
+	  Now suppose, for proof by contradiction, that the set $\Gamma$ is satisfiable.
+	  This means, by definition, that there's a valuation $v$ that makes all the members of $\Gamma$ true.
+	  By the same reasoning as in the proof of Soundness,
+	  we can conclude that there's at least one open branch in the complete tableau for $\Gamma$.
+	  Hence the tableau must be open,
+	  in contradiction to our assumption that the tableau method gave the result that $\Gamma$ is unsatisfiable.
+	  Hence $\Gamma$ must indeed be unsatisfiable,
+	  which is what we needed to show.
 	\end{proof}
 
 \end{enumerate}
