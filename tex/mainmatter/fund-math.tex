@@ -126,7 +126,19 @@ Clearly, this is not feasible.
 		
 		\item Sometimes, we only know that we have finitely many objects, but not how many precisely. The standard way of expressing this mathematically is to say something of the sort: consider $n$-apples, $a_1, \mathellipsis, a_n$. Here $n$ is used as a variable for a some arbitrary but fixed natural number, just like we discussed above. When we use numbers as indexes for objects in this way, we typically use $i,j,\mathellipsis$ as variables ranging over these numbers. For example, we would say something like: consider $n$-apples, $a_1, \mathellipsis, a_n$ and let $a_i$ be one of these apples, for $1\leq i\leq n$. Here $i$ ranges over the numbers from $1$ to $n$ used as indices, it is an \emph{index variable}. Note that for each $i$ between 1 and $n$, $a_i$ is a variable that ranges over apples.
 		
-		\item As we said, a variable always stands for an arbitrary but fixed object of some category. But note that the information which kind of object a variable stands for is only valid in a given context with a preceding variable declaration. For example, if we let $n$ stand for the first prime after  $436\cdot 10^{99}$, then $n$ refers to this number \emph{until} we make a new variable declaration for $n$. We might, in the same piece of mathematical writing, later write: take finitely many apples $a_1, \mathellipsis, a_n$. Of course, in this second piece of writing, $n$ is no longer (necessarily) the first prime after after $436\cdot 10^{99}$, it could be any natural number. Watch out that you're always clear on your variable declarations so as not to illegitimately carry over information from previous contexts.
+  \item As we said, a variable always stands for an arbitrary but fixed object of some category.
+	But note that the information which kind of object a variable stands for is only valid in a given context with a preceding variable declaration.
+	For example, if we let $n$ stand for the first prime after  $436\cdot 10^{99}$,
+	then $n$ refers to this number \emph{until} the context of our assumption (current proof, sub-argument, etc.) is closed and we move to the next context.
+	Only when we move to a different context---
+	a new proof, for example---
+	we can re-use $n$ as a variable.
+	If we use $n$ again in the same context, it still refers to the first prime after
+	$436\cdot 10^{99}$.
+	So, for example, if you were to talk about finitely many apples $a_{1}, \mathellipsis, a_{n}$ in the same context where you've earlier assumed that $n$ is the first prime after
+	$436\cdot 10^{99}$,
+	then you would in fact be talking about that many apples (rather than some arbitrary finite number as per 2.2.9).
+	So: watch out that you're always clear on your variable declarations and what you can and cannot assume about the values of your variables.
 		
 		\item When we want talk about a \emph{distinguished} mathematical object, we typically use a \emph{constant} to refer to it. The numerals $0$, $1$, $2$, \dots, for example, stand for the first, second, and third natural number (and so forth). Note that there are also constants for functions, such as $+$ for addition, $\cdot$ for multiplication, etc.. There are also constants for properties and relations, like $\leq$ for the smaller-than (or equal to) relation. What distinguishes constants from variables is that they always denote the same object in every context. The numeral $0$ always denotes the first natural number, $+$ is always addition, and so on. In contrast, $n$ can assume any value from the natural numbers, $f$ can be any functions, etc. 
 		
