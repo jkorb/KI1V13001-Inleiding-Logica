@@ -551,7 +551,58 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 		
 		\item Where it get's tricky is if we want to use truth-tables to determine validity. Unfortunately, the method no longer works. Remember from 5.3.6 that in order to check whether $\phi_1,\mathellipsis, \phi_n\vDash \psi$ we did the truth-table for $(\phi_1\land\mathellipsis\land\phi_n)\to\psi$ (using result 5.2.16 that $\phi_1,\mathellipsis, \phi_n\vDash \psi$ iff $\vDash (\phi_1\land\mathellipsis\land\phi_n)\to\psi$ in the background). But if our premises are infinite, this idea breaks down. It is not possible to form a conditional with an infinite conjunction of premises as the if-part. And even if we could (which we can in \emph{infinitary logic}), we'd still have the problem that we can't always write down the truth-table for such a conditional: if we have infinitely many premises, we can have infinitely many sentence letters involved, and as we remarked in 5.1.4, we simply can't list all the possible distributions of truth-values on an infinite set of sentence letters. So, once we ``go infinitary,'' truth-tables are out. 
 		
-		\item Fortunately, tableaux are not. We'll now describe how the tableau method works for checking whether $\Gamma\vDash\phi$ when $\Gamma$ is infinitary. For our algorithm in 7.3.2, we began by writing down $\Gamma\cup\{\neg\phi\}$ as the initial list. This no longer works, since $\Gamma$ is infinite. So, instead, in our first step, what we're going to do is to write down $\neg\phi$ as our initial list. Then, without considering the premises for, we simply repeatedly apply the tableau rules to make the complete tableau for $\neg\phi$. If this tableau closes, we can already declare that $\Gamma\vdash\phi$, since if the tableau for $\neg\phi$ closes, this means that $\phi$ is valid, i.e. $\emptyset\vDash\phi$, and by Monotonicity (cf. 5.2.6) if follows that $\Gamma\vDash\phi$. So, let's continue assuming that the tableau for $\neg\phi$ doesn't close. Now, it will be important that we can write $\Gamma$ as $\{\psi_i:i\in I\}$, where $I\subseteq\mathbb{N}^+$, or, more transparently, as $\{\psi_1, \psi_2, \mathellipsis\}$. Now, what we're going to do is to write $\psi_1$ into the initial list, which so far only contained $\neg\phi$. Then we repeatedly apply the rules again to the new tableau. If the tableau closes, we declare that $\Gamma\vdash\phi$, since we've just shown that $\psi_1\vDash\phi$ (we did the tableau for $\{\psi_1,\neg\phi\}$) and by Monotonicity, $\psi_1, \psi_2, \mathellipsis\vDash\phi$ follows. If the tableau still doesn't close, we repeat this procedure with $\psi_2$, then with $\psi_3,$ and so on. If at any step the tableau closes, we claim $\Gamma\vdash\phi$. If we continue going trough the $\psi_i$'s and the tableau never closes, we declare $\Gamma\nvdash\phi$.
+	  \item Fortunately, tableaux are not.
+		We'll now describe how the tableau method works for checking whether
+		$\Gamma\vDash\phi$
+		when
+		$\Gamma$
+		is infinitary.
+		For our algorithm in 7.3.2, we began by writing down
+		$\Gamma\cup\{\neg\phi\}$
+		as the initial list.
+		This no longer works,
+		since $\Gamma$ is infinite.
+		So, instead, in our first step,
+		what we're going to do is to write down
+		$\neg\phi$
+		as our initial list.
+		Then,
+		without considering the premises for,
+		we simply repeatedly apply the tableau rules to make the complete tableau for
+		$\neg\phi$.
+		If this tableau closes, we can already declare that
+		$\Gamma\vdash\phi$,
+		since if the tableau for
+		$\neg\phi$
+		closes, this means that
+		$\phi$
+		is valid,
+		i.e. $\emptyset\vDash\phi$,
+		and by Monotonicity (cf. 5.2.6) if follows that
+		$\Gamma\vDash\phi$.
+		So, let's continue assuming that the tableau for $\neg\phi$ doesn't close.
+		Now, it will be important that we can write $\Gamma$ as
+		$\{\psi_i:i\in I\}$,
+		where $I\subseteq\mathbb{N}^+$,
+		or, more transparently, as
+		$\{\psi_1, \psi_2, \mathellipsis\}$.
+		Now,
+		what we're going to do is to write $\psi_1$ into the initial list,
+		which so far only contained
+		$\neg\phi$.
+		Then we repeatedly apply the rules again to the new tableau.
+		If the tableau closes, we declare that
+		$\Gamma\vdash\phi$,
+		since we've just shown that
+		$\psi_1\vDash\phi$
+		(we did the tableau for $\{\psi_1,\neg\phi\}$)
+		and by Monotonicity,
+		$\psi_1, \psi_2, \mathellipsis\vDash\phi$
+		follows.
+		If the tableau still doesn't close, we repeat this procedure with $\psi_2$, then with $\psi_3,$ and so on.
+		If at any step the tableau closes, we claim $\Gamma\vdash\phi$.
+		If we continue going through the $\psi_i$'s and the tableau never closes,
+		we declare $\Gamma\nvdash\phi$.
 		
 		\item Note that if $\Gamma\nvdash \phi$, we might never actually get the job done---we might continue checking for an infinite amount of time (well not actually, but we could continue indefinitely). But this doesn't mean that we can't show that $\Gamma\nvdash\phi$. It could happen, for example, that at some point we can \emph{prove} that the tableau will never close. This would require an insight concerning the structure of the premise set. For example, if $\Gamma$ is the set $\{\underbrace{\neg \mathellipsis\neg}_{n\text{ times}}p: n\in\mathbb{N}\}$\footnote{Or more precisely, the smallest set $X$ such that $p\in X$ and if $\phi\in X$, then $\neg\neg\phi\in X$.} If the tableau for $\Gamma\cup\{\neg\phi\}$ doesn't close after the first step, i.e. the tableau for $\{p,\neg\phi\}$, we can already see that the tableau will never ever close: after the initial step, all that our procedure will do is to add a new version of $\neg\neg p$ to the initial list, apply the rule for $\neg\neg p$ to give us a new node with $p$, then adding $\neg\neg \neg\neg p$ to the list, which gives us a new node with $\neg\neg p$ and then a new node with $p$, and so on. Basically, the only new nodes with sentence letters we can ever get from the premise set $\Gamma$ contain $p$; and so if the tableau for $\{p,\neg\phi\}$ doesn't close, we will never be able to close.
 		
