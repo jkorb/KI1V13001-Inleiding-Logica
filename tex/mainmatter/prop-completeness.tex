@@ -549,7 +549,23 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 		\end{itemize}
 		The definition requires that under all valuations where all the premises are true, also the conclusion is true. There's nothing finitary going on here: even if there are infinitely many premises, they can all be true under a valuation.
 		
-		\item Where it get's tricky is if we want to use truth-tables to determine validity. Unfortunately, the method no longer works. Remember from 5.3.6 that in order to check whether $\phi_1,\mathellipsis, \phi_n\vDash \psi$ we did the truth-table for $(\phi_1\land\mathellipsis\land\phi_n)\to\psi$ (using result 5.2.16 that $\phi_1,\mathellipsis, \phi_n\vDash \psi$ iff $\vDash (\phi_1\land\mathellipsis\land\phi_n)\to\psi$ in the background). But if our premises are infinite, this idea breaks down. It is not possible to form a conditional with an infinite conjunction of premises as the if-part. And even if we could (which we can in \emph{infinitary logic}), we'd still have the problem that we can't always write down the truth-table for such a conditional: if we have infinitely many premises, we can have infinitely many sentence letters involved, and as we remarked in 5.1.4, we simply can't list all the possible distributions of truth-values on an infinite set of sentence letters. So, once we ``go infinitary,'' truth-tables are out. 
+	  \item Where it gets tricky is if we want to use truth-tables to determine validity.
+		Unfortunately, the method no longer works.
+		Remember from 5.3.6 that in order to check whether
+		$\phi_1,\mathellipsis, \phi_n\vDash \psi$
+		we did the truth-table for $(\phi_1\land\mathellipsis\land\phi_n)\to\psi$
+		(using result 5.2.16 that
+		$\phi_1,\mathellipsis, \phi_n\vDash \psi$
+		iff
+		$\vDash (\phi_1\land\mathellipsis\land\phi_n)\to\psi$
+		in the background).
+		But if our premises are infinite, this idea breaks down.
+		It is not possible to form a conditional with an infinite conjunction of premises as the if-part.
+		And even if we could (which we can in \emph{infinitary logic}),
+		we'd still have the problem that we can't always write down the truth-table for such a conditional:
+		if we have infinitely many premises, we can have infinitely many sentence letters involved, and as we remarked in 5.1.4,
+		we simply can't list all the possible distributions of truth-values on an infinite set of sentence letters.
+		So, once we ``go infinitary,'' truth-tables are out.
 		
 	  \item Fortunately, tableaux are not.
 		We'll now describe how the tableau method works for checking whether
