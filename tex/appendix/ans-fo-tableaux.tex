@@ -75,32 +75,32 @@
         ]
       \end{prooftree}
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\forall xP(x)}, grouped
-	[{\neg \forall x(Q(x)\to P(x)\lor R(x))}, grouped
-		[{\exists x\neg (Q(x)\to P(x)\lor R(x))}
-			[{\neg (Q(p)\to P(p)\lor R(p))}
-				[Q(p)
-					[\neg (P(p)\lor R(p))
-						[\neg P(p)
-							[\neg R(p)
-								[P(p), close
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+      \item %
+        \begin{prooftree}
+          {%
+            line numbering=false,
+            for tree={s sep'=10mm},
+            single branches=true,
+            close with=\xmark
+          }
+          [{\forall xP(x)}, grouped
+            [{\neg \forall x(Q(x)\to P(x)\lor R(x))}, grouped
+                [{\exists x\neg (Q(x)\to P(x)\lor R(x))}
+                    [{\neg (Q(p)\to P(p)\lor R(p))}
+                        [Q(p)
+                            [\neg (P(p)\lor R(p))
+                                [\neg P(p)
+                                    [\neg R(p)
+                                        [P(p), close ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
 
 \end{enumerate}
