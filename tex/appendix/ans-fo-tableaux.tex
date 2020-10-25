@@ -25,30 +25,30 @@
           ]
         \end{prooftree}
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\exists x\exists yS(x,y)}, grouped
-	[{\neg \exists y\exists xS(x,y)}, grouped
-		[{\exists yS(p_1, y)}
-			[{S(p_1,p_2)}
-				[{\forall y\neg \exists xS(x,y)}
-					[{\neg\exists xS(x,p_2)}
-						[{\forall \neg S(x,p_2)}
-							[{\neg S(p_1, p_2)}, close
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+      \item%
+        \begin{prooftree}
+        {%
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\exists x\exists yS(x,y)}, grouped
+            [{\neg \exists y\exists xS(x,y)}, grouped
+                [{\exists yS(p_1, y)}
+                    [{S(p_1,p_2)}
+                        [{\forall y\neg \exists xS(x,y)}
+                            [{\neg\exists xS(x,p_2)}
+                                [{\forall \neg S(x,p_2)}
+                                    [{\neg S(p_1, p_2)}, close]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
 \item \begin{prooftree}
 {
