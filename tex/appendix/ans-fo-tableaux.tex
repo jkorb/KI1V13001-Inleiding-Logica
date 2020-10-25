@@ -107,43 +107,48 @@
 
 \item[10.8.2]
   \begin{enumerate}[(a)]
-  \item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\forall x(P(x)\to Q(x))}, grouped
-	[{\exists x\neg P(x)}, grouped
-		[{\neg \forall x\neg Q(x)}, grouped
-			[{\neg P(p_1)}
-				[P(p_1)\to Q(p_1)
-					[\exists x\neg\neg Q(x)
-						[\neg\neg Q(p_2)
-							[Q(p_2)
-								[P(p_2)\to Q(p_2)
-									[\neg P(p_1)
-										[\neg P(p_2)]
-										[Q(p_2)]
-									]
-									[Q(p_1)
-										[\neg P(p_2)]
-										[Q(p_2)]
-									]
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+    \item %
+      \begin{prooftree}
+        {%
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\forall x(P(x)\to Q(x))}, grouped
+            [{\exists x\neg P(x)}, grouped
+                [{\neg \forall x\neg Q(x)}, grouped
+                    [{\neg P(p_1)}
+                        [P(p_1)\to Q(p_1)
+                            [\exists x\neg\neg Q(x)
+                                [\neg\neg Q(p_2)
+                                    [Q(p_2)
+                                        [P(p_2)\to Q(p_2)
+                                            [\neg P(p_1)
+                                                [\neg P(p_2)]
+                                                    [Q(p_2)]
+                                            ]
+                                            [Q(p_1)
+                                                [\neg P(p_2)]
+                                                [Q(p_2)]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
-Call the leftmost branch $B$. Then we get $\mathcal{M}_B$ with 
-$D^{\mathcal{M}_B}=\{p_1, p_2\}$ as well as $P^{\mathcal{M}_B}=\emptyset$ and $Q^{\mathcal{M}_B}=\{p_2\}$.
+      Call the leftmost branch $B$.
+      Then we get $\mathcal{M}_B$ with 
+      $D^{\mathcal{M}_B}=\{p_1, p_2\}$
+      as well as
+      $P^{\mathcal{M}_B}=\emptyset$
+      and $Q^{\mathcal{M}_B}=\{p_2\}$.
 
 \item \begin{prooftree}
 {
