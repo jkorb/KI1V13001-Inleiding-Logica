@@ -19,7 +19,7 @@ points.
 
 \begin{itemize}
 
-\item[11.7.1] \emph{Long answer}: In order to determine all variable and
+\item[11.7.1.1] \emph{Long answer}: In order to determine all variable and
   quantifier occurrences, we first construct the stripped parsing
   tree for the formula:
   \begin{center}
@@ -61,7 +61,7 @@ points.
     \item Fully formulated sentences. 
     \end{itemize}
     
-  \item[11.7.2] \emph{Full answer}:
+  \item[11.7.1.2] \emph{Full answer}:
     \begin{enumerate}
     \item $\forall x(V(x)\to L(x))$
     \item $\neg \forall x(L(x)\to \forall y(\neg L(y)\to I(x,y)))$
@@ -82,7 +82,7 @@ points.
         in (iv) to indicate an existential quantifier.
     \end{itemize}
 
-   \item[11.7.3] \emph{Long answer}: We are asked to determine the value of $\llbracket
+   \item[11.7.1.3] \emph{Long answer}: We are asked to determine the value of $\llbracket
      (0+x)\cdot S(0)\rrbracket^\mathcal{M}_\alpha$ for the given model
      and assignment. Applying the recursive definition of the
      denotation of a term in a model under an assignment, we get the
@@ -113,7 +113,7 @@ points.
      \item Gets the correct result.
      \end{itemize}
 
-     \item[11.7.4] \emph{(Very) Long Answer}: We claim that $\mathcal{M},\alpha\vDash \forall
+     \item[11.7.1.4] \emph{(Very) Long Answer}: We claim that $\mathcal{M},\alpha\vDash \forall
        x\forall y(R(x,y)\to R(f(y), f(x))$. In order to determine what
        we need to show is, we observe the following
        \begin{itemize}
@@ -164,7 +164,7 @@ points.
     \item Is written in full, comprehensible sentences.
     \end{itemize}
 
-  \item[11.7.5]
+  \item[11.7.1.5]
 
     \begin{enumerate}
 
@@ -280,7 +280,7 @@ given by the following specification:
    
     \end{enumerate}
 
-    \item[11.7.6] \emph{Long answer}: We're asked to determine whether
+    \item[11.7.1.6] \emph{Long answer}: We're asked to determine whether
       the following 
       inference is valid:
       \begin{itemize}
@@ -351,9 +351,9 @@ Since the tableau is closed, we can infer that \[R(b), \forall
         \item Gets the correct result.
         \end{itemize}
     
-      \end{itemize}
+\end{itemize}
 
-      \section*{11.7.2 Part B --- Proving}
+\section*{11.7.2 Part B --- Proving}
 
       Below, I provide a proof for each of the claimed
       theorems. Please keep in mind that, as I said in the last
@@ -397,8 +397,8 @@ Since the tableau is closed, we can infer that \[R(b), \forall
 		{[squiggles]} & No (unexplained)  paintings!
 		\end{longtable}
 
-                \begin{itemize}
-                \item[11.7.1] We're asked to show that if $\phi$ is an
+        \begin{itemize}
+                \item[11.7.2.1] We're asked to show that if $\phi$ is an
                   open formula with $y$ as its only free variable,
                   then $\forall x\phi$ is also an open formula
                   (i.e. not a sentence). We
@@ -428,7 +428,7 @@ Since the tableau is closed, we can infer that \[R(b), \forall
                   \emph{Alternative strategy (way more complicated)}:
                   Using induction on formulas.
 
-                  \item[11.7.2] We're asked to show that for all $\Gamma$, we
+                  \item[11.7.2.2] We're asked to show that for all $\Gamma$, we
                     have $\Gamma\vdash P(c)\lor \neg P(c)$. We know,
                     by definition, that this is the case iff the
                     tableau for $\Gamma\cup\{\neg (P(c)\lor \neg
@@ -463,7 +463,7 @@ Hence the tableau is always closed, which is what we needed to show.
                 $\Gamma\vDash P(c)\lor\neg P(c)$ and then use
                 completeness to infer the result.
 
-                \item[11.7.3] We aim to show that $\forall
+                \item[11.7.2.3] We aim to show that $\forall
                   x(\phi\to\psi)\vDash\neg \exists x(\phi\land
                   \neg\psi)$. By definition, we know that $\forall
                   x(\phi\to\psi)\vDash\neg \exists x(\phi\land
@@ -495,7 +495,7 @@ Hence the tableau is always closed, which is what we needed to show.
                   indirect proof, we can infer that  $\mathcal{M},\alpha\vDash\neg
                   \exists x(\phi\land\neg\psi)$, as desired.
                   
-                  \item[11.7.4] We want to find a model
+                  \item[11.7.2.4] We want to find a model
                     $\mathcal{M}^+$ that makes
                     $\forall x\exists yR(x,y)$ true and a model
                     $\mathcal{M}^-$ that makes the formula
@@ -551,7 +551,7 @@ Hence the tableau is always closed, which is what we needed to show.
                     R(x,y)$ since $R^{\mathcal{M}-}=\emptyset$. So  $\mathcal{M}^-,\alpha\nvDash
                     \forall x\exists yR(x,y)$, as desired.
                     
-                    \item[11.7.5]We need to show that if $\Gamma\vDash
+                    \item[11.7.2.5]We need to show that if $\Gamma\vDash
                       c\neq c$, then $\Gamma$ is unsatisfiable. By
                       definition $\Gamma$ is satisfiable iff there is
                       a model $\mathcal{M}$ and assignment $\alpha$
@@ -570,7 +570,7 @@ Hence the tableau is always closed, which is what we needed to show.
                       impossible. So, there is no such $\mathcal{M}$
                       and $\alpha$ and $\Gamma$ is therefore unsatisfiable.
 
-                  \item[11.7.6] We're asked to prove that for all
+                  \item[11.7.2.6] We're asked to prove that for all
                     terms $s$ and $t$ we have, in the given model
                     $\mathcal{M}$ and under the given assignment
                     $\alpha$, that $\llbracket
@@ -612,7 +612,7 @@ Hence the tableau is always closed, which is what we needed to show.
                     all terms $t$, from which our main claim follows
                     as explained before.
 
-                  \item[11.7.7] We're asked to prove by induction that
+                  \item[11.7.2.7] We're asked to prove by induction that
                     if $\phi$ is an open formula with $x$ as its only
                     free variable, then $(\phi)[x:=c]$ where $c$ is a
                     constant is a closed formula, i.e. a sentence.
@@ -735,7 +735,7 @@ Hence the tableau is always closed, which is what we needed to show.
                         x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
                           d]})=(d,d)\in R^\mathcal{M}$. 
 
-                        \item[11.7.9]. We're asked to show that in the
+                        \item[11.7.2.9]. We're asked to show that in the
                           given model $\mathcal{M}$ we have
                           \[\mathcal{M},\alpha\vDash \exists xP(x)\to
                           P(a)\lor P(b)\lor P(b)\] for each
@@ -772,7 +772,7 @@ Hence the tableau is always closed, which is what we needed to show.
                           lemma. So, either way,  $\mathcal{M},\alpha\vDash \exists xP(x)\to
                           P(a)\lor P(b)\lor P(b)$, as desired.
 
-                          \item[11.7.10] We're asked to prove that if
+                          \item[11.7.2.10] We're asked to prove that if
                             $\phi\vdash\psi$ and $\psi\vdash\phi$,
                             then $\phi\vdash\psi$. There are many
                             different ways we could do this, but I'll
@@ -805,7 +805,7 @@ Hence the tableau is always closed, which is what we needed to show.
                             completeness, we have $\phi\vdash\theta$,
                             as desired.
 
-                            \item[11.7.11] We want to show that if
+                            \item[11.7.2.11] We want to show that if
                               $\Gamma\vDash c\neq c$, then for all
                               formulas $\phi$, either $\Gamma\vDash\phi$ or
                               $\Gamma\vDash\neg\phi$ (the either
@@ -833,7 +833,7 @@ Hence the tableau is always closed, which is what we needed to show.
                               c\neq c$, then $\Gamma\vDash\phi$, as
                               desired.
 
-                              \item[11.7.12] In order to define the
+                              \item[11.7.2.12] In order to define the
                                 desired function, we first define the
                                 auxiliary function
                                 $c:\mathcal{T}\to\mathbb{N}$ given by
@@ -948,7 +948,7 @@ Hence the tableau is always closed, which is what we needed to show.
                            So, by induction, we indeed have
                            $\#T(\phi)=c(\phi)$, as desired.
 
-                         \item[11.7.13]
+                         \item[11.7.2.13]
 
                            We show that Betrand is correct using
                            logic. First, we formalize the stranger's
@@ -1021,4 +1021,4 @@ Now, since  $\vdash \neg \exists x(K(x)\land \forall y(\neg
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End:                
+%%% End:

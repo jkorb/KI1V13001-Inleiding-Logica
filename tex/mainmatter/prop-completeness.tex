@@ -314,12 +314,24 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 	
 	\end{proof}
 	
-	\item Before we conclude the section and move to completeness, we remark that what we've just prove can also be interpreted differently: effectively, what we've proven is that the tableau method, construed as the algorithm laid out in 6.3.2, gives the correct result for unsatisfiable sets:
+  \item Before we conclude the section and move to completeness, we remark that what we've just proven can also be interpreted differently:
+	effectively, what we've proven is that the tableau method,
+	construed as the algorithm laid out in 6.3.2,
+	gives the correct result for unsatisfiable sets:
 	\begin{theorem}[Tableau Verification Part 1]
 	If the algorithm laid out in 6.3.2 gives the answer that a set is unsatisfiable, then the set \emph{is} unsatisfiable. 
 	\end{theorem}
 	\begin{proof}
-	Suppose that the tableau method gives the result that a set $\Gamma$ is unsatisfiable. By 6.3.2.4, this means that the tableau must be closed. Now suppose, for proof by contradiction, that the set $\Gamma$ is satisfiable. This means, by definition, that there's a valuation $v$ that makes all the members of $\Gamma$ true. By the same reasoning as in the proof of Soundness, we can conclude that there's at least one open branch in the complete tableau for $\Gamma$. Hence the tableau must be open, in contradiction to our assumption that the tableau method gave the result that $\Gamma$ is unsatisfiable. Hence $\Gamma$ must indeed be unsatisfiable, which is what we needed to show. 
+	  Suppose that the tableau method gives the result that a set $\Gamma$ is unsatisfiable.
+	  By 6.3.2.4, this means that the tableau must be closed.
+	  Now suppose, for proof by contradiction, that the set $\Gamma$ is satisfiable.
+	  This means, by definition, that there's a valuation $v$ that makes all the members of $\Gamma$ true.
+	  By the same reasoning as in the proof of Soundness,
+	  we can conclude that there's at least one open branch in the complete tableau for $\Gamma$.
+	  Hence the tableau must be open,
+	  in contradiction to our assumption that the tableau method gave the result that $\Gamma$ is unsatisfiable.
+	  Hence $\Gamma$ must indeed be unsatisfiable,
+	  which is what we needed to show.
 	\end{proof}
 
 \end{enumerate}
@@ -506,11 +518,24 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 		
 \section{Infinite Premiss Sets and Compactness}
 
-\emph{In this section, we remain a bit less mathematically precise than we usually are in this course. This is because we haven't introduced the proper methods of dealing with infinity and the topic is infinity in logic. However, we will introduce some ideas that will become important in first-order logic, so stay tuned.}
+\begin{em}
+  In this section, we remain a bit less mathematically precise than we usually are in this course.
+  This is because we haven't introduced the proper methods of dealing with infinity and the topic is infinity in logic.
+  However, we will introduce some ideas that will become important in first-order logic, so stay tuned.
+\end{em}
 
 	\begin{enumerate}[\thesection.1]
 
-		\item We conclude our treatment of tableaux and of propositional logic in general by looking at inferences with \emph{infinite} premise sets. So far, especially for tableau and truth-tables, we've restricted ourselves to inferences with finite premise sets. And for good reason: humans usually don't make arguments with infinitely many statements in them; how could they? But, especially from a mathematical perspective, it's desirable to be able to deal with inferences potentially involving infinite premises. It turns out that many mathematical theories need to have \emph{infinitely many axioms}. The standard theory of the natural numbers, called \emph{Peano arithmetic} typically abbreviated $PA$, is already an example. It's in fact provable that there is no finite set of axioms that describes the same theory as $PA$ (although we will not prove this here). So, already for something as simple as a proper mathematical treatment of $0,1,2,\mathellipsis$ we need inferences with infinite premise sets. We'll get familiar with $PA$ in the following section, $PA$ is a \emph{first-order theory}. For now, we'll simply discuss how we can make tableau work for inferences with infinitely many premises in the ``safe harbor'' of propositional logic.
+	  \item We conclude our treatment of tableaux and of propositional logic in general by looking at inferences with \emph{infinite} premise sets.
+		So far, especially for tableaux and truth-tables, we've restricted ourselves to inferences with finite premise sets.
+		And for good reason: humans usually don't make arguments with infinitely many statements in them; how could they?
+		But, especially from a mathematical perspective, it's desirable to be able to deal with inferences potentially involving infinite premises.
+		It turns out that many mathematical theories need to have \emph{infinitely many axioms}.
+		The standard theory of the natural numbers, called \emph{Peano arithmetic} typically abbreviated $PA$, is already an example.
+		It's in fact provable that there is no finite set of axioms that describes the same theory as $PA$ (although we will not prove this here).
+		So, already for something as simple as a proper mathematical treatment of $0,1,2,\mathellipsis$ we need inferences with infinite premise sets.
+		We'll get familiar with $PA$ in the following section, $PA$ is a \emph{first-order theory}.
+		For now, we'll simply discuss how we can make tableau work for inferences with infinitely many premises in the ``safe harbor'' of propositional logic.
 		
 		\item We'll, in fact, still make a limiting assumption, namely that the infinite premise sets we'll be considering can be \emph{indexed} or \emph{enumerated} by the (positive) natural numbers. That is, if $\Gamma$ is a premise set, then there is a way of writing $\Gamma$ as the set $\{\phi_i:i\in I\}$, where $I\subseteq\mathbb{N}^+$;\footnote{$\mathbb{N}^+=\mathbb{N}\setminus\{0\}$.} in other words, there is a first member of $\Gamma$, a second member of $\Gamma$, and so on.\footnote{This doesn't mean that there's an \emph{algorithm} that does that; this is a different, much more complicated question.}  It might be surprising to learn that there are actually infinite sets of formulas \emph{bigger than that}. And, in fact, they only occur in the more technical realms of logic. Even in most infinitary applications, our premise sets can still be indexed. In fact, coming from a computer science perspective, the assumption that our premise sets are enumerable is quite reasonable from a technical perspective: computers \emph{can} handle infinity, like the natural numbers, using inductive definitions and recursion; but with respect to the higher-realms of infinity, computers are rather limited in their capabilities (computers already approximate reals like $\pi$ with \emph{floats}).
 		
@@ -536,9 +561,76 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 		\end{itemize}
 		The definition requires that under all valuations where all the premises are true, also the conclusion is true. There's nothing finitary going on here: even if there are infinitely many premises, they can all be true under a valuation.
 		
-		\item Where it get's tricky is if we want to use truth-tables to determine validity. Unfortunately, the method no longer works. Remember from 5.3.6 that in order to check whether $\phi_1,\mathellipsis, \phi_n\vDash \psi$ we did the truth-table for $(\phi_1\land\mathellipsis\land\phi_n)\to\psi$ (using result 5.2.16 that $\phi_1,\mathellipsis, \phi_n\vDash \psi$ iff $\vDash (\phi_1\land\mathellipsis\land\phi_n)\to\psi$ in the background). But if our premises are infinite, this idea breaks down. It is not possible to form a conditional with an infinite conjunction of premises as the if-part. And even if we could (which we can in \emph{infinitary logic}), we'd still have the problem that we can't always write down the truth-table for such a conditional: if we have infinitely many premises, we can have infinitely many sentence letters involved, and as we remarked in 5.1.4, we simply can't list all the possible distributions of truth-values on an infinite set of sentence letters. So, once we ``go infinitary,'' truth-tables are out. 
+	  \item Where it gets tricky is if we want to use truth-tables to determine validity.
+		Unfortunately, the method no longer works.
+		Remember from 5.3.6 that in order to check whether
+		$\phi_1,\mathellipsis, \phi_n\vDash \psi$
+		we did the truth-table for $(\phi_1\land\mathellipsis\land\phi_n)\to\psi$
+		(using result 5.2.16 that
+		$\phi_1,\mathellipsis, \phi_n\vDash \psi$
+		iff
+		$\vDash (\phi_1\land\mathellipsis\land\phi_n)\to\psi$
+		in the background).
+		But if our premises are infinite, this idea breaks down.
+		It is not possible to form a conditional with an infinite conjunction of premises as the if-part.
+		And even if we could (which we can in \emph{infinitary logic}),
+		we'd still have the problem that we can't always write down the truth-table for such a conditional:
+		if we have infinitely many premises, we can have infinitely many sentence letters involved, and as we remarked in 5.1.4,
+		we simply can't list all the possible distributions of truth-values on an infinite set of sentence letters.
+		So, once we ``go infinitary,'' truth-tables are out.
 		
-		\item Fortunately, tableaux are not. We'll now describe how the tableau method works for checking whether $\Gamma\vDash\phi$ when $\Gamma$ is infinitary. For our algorithm in 7.3.2, we began by writing down $\Gamma\cup\{\neg\phi\}$ as the initial list. This no longer works, since $\Gamma$ is infinite. So, instead, in our first step, what we're going to do is to write down $\neg\phi$ as our initial list. Then, without considering the premises for, we simply repeatedly apply the tableau rules to make the complete tableau for $\neg\phi$. If this tableau closes, we can already declare that $\Gamma\vdash\phi$, since if the tableau for $\neg\phi$ closes, this means that $\phi$ is valid, i.e. $\emptyset\vDash\phi$, and by Monotonicity (cf. 5.2.6) if follows that $\Gamma\vDash\phi$. So, let's continue assuming that the tableau for $\neg\phi$ doesn't close. Now, it will be important that we can write $\Gamma$ as $\{\psi_i:i\in I\}$, where $I\subseteq\mathbb{N}^+$, or, more transparently, as $\{\psi_1, \psi_2, \mathellipsis\}$. Now, what we're going to do is to write $\psi_1$ into the initial list, which so far only contained $\neg\phi$. Then we repeatedly apply the rules again to the new tableau. If the tableau closes, we declare that $\Gamma\vdash\phi$, since we've just shown that $\psi_1\vDash\phi$ (we did the tableau for $\{\psi_1,\neg\phi\}$) and by Monotonicity, $\psi_1, \psi_2, \mathellipsis\vDash\phi$ follows. If the tableau still doesn't close, we repeat this procedure with $\psi_2$, then with $\psi_3,$ and so on. If at any step the tableau closes, we claim $\Gamma\vdash\phi$. If we continue going trough the $\psi_i$'s and the tableau never closes, we declare $\Gamma\nvdash\phi$.
+	  \item Fortunately, tableaux are not.
+		We'll now describe how the tableau method works for checking whether
+		$\Gamma\vDash\phi$
+		when
+		$\Gamma$
+		is infinitary.
+		For our algorithm in 7.3.2, we began by writing down
+		$\Gamma\cup\{\neg\phi\}$
+		as the initial list.
+		This no longer works,
+		since $\Gamma$ is infinite.
+		So, instead, in our first step,
+		what we're going to do is to write down
+		$\neg\phi$
+		as our initial list.
+		Then,
+		without considering the premises for,
+		we simply repeatedly apply the tableau rules to make the complete tableau for
+		$\neg\phi$.
+		If this tableau closes, we can already declare that
+		$\Gamma\vdash\phi$,
+		since if the tableau for
+		$\neg\phi$
+		closes, this means that
+		$\phi$
+		is valid,
+		i.e. $\emptyset\vDash\phi$,
+		and by Monotonicity (cf. 5.2.6) if follows that
+		$\Gamma\vDash\phi$.
+		So, let's continue assuming that the tableau for $\neg\phi$ doesn't close.
+		Now, it will be important that we can write $\Gamma$ as
+		$\{\psi_i:i\in I\}$,
+		where $I\subseteq\mathbb{N}^+$,
+		or, more transparently, as
+		$\{\psi_1, \psi_2, \mathellipsis\}$.
+		Now,
+		what we're going to do is to write $\psi_1$ into the initial list,
+		which so far only contained
+		$\neg\phi$.
+		Then we repeatedly apply the rules again to the new tableau.
+		If the tableau closes, we declare that
+		$\Gamma\vdash\phi$,
+		since we've just shown that
+		$\psi_1\vDash\phi$
+		(we did the tableau for $\{\psi_1,\neg\phi\}$)
+		and by Monotonicity,
+		$\psi_1, \psi_2, \mathellipsis\vDash\phi$
+		follows.
+		If the tableau still doesn't close, we repeat this procedure with $\psi_2$, then with $\psi_3,$ and so on.
+		If at any step the tableau closes, we claim $\Gamma\vdash\phi$.
+		If we continue going through the $\psi_i$'s and the tableau never closes,
+		we declare $\Gamma\nvdash\phi$.
 		
 		\item Note that if $\Gamma\nvdash \phi$, we might never actually get the job done---we might continue checking for an infinite amount of time (well not actually, but we could continue indefinitely). But this doesn't mean that we can't show that $\Gamma\nvdash\phi$. It could happen, for example, that at some point we can \emph{prove} that the tableau will never close. This would require an insight concerning the structure of the premise set. For example, if $\Gamma$ is the set $\{\underbrace{\neg \mathellipsis\neg}_{n\text{ times}}p: n\in\mathbb{N}\}$\footnote{Or more precisely, the smallest set $X$ such that $p\in X$ and if $\phi\in X$, then $\neg\neg\phi\in X$.} If the tableau for $\Gamma\cup\{\neg\phi\}$ doesn't close after the first step, i.e. the tableau for $\{p,\neg\phi\}$, we can already see that the tableau will never ever close: after the initial step, all that our procedure will do is to add a new version of $\neg\neg p$ to the initial list, apply the rule for $\neg\neg p$ to give us a new node with $p$, then adding $\neg\neg \neg\neg p$ to the list, which gives us a new node with $\neg\neg p$ and then a new node with $p$, and so on. Basically, the only new nodes with sentence letters we can ever get from the premise set $\Gamma$ contain $p$; and so if the tableau for $\{p,\neg\phi\}$ doesn't close, we will never be able to close.
 		

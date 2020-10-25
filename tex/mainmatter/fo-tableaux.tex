@@ -16,7 +16,14 @@
 		\end{theorem}
 Proving this theorem is out of reach for the methods of this course. In order to prove it we need to think about what an ``effective algorithm'' is in the first place. You can study the methods in ``Logische Complexiteit'' (KI3V12013). Here we will content ourselves with some observations about why \emph{our} tableau algorithm doesn't lead to decidability, which will let us glimpse at why first-order logic really is undecidable.
 
-	\item Throughout this chapter, we will restrict ourselves to finite inferences, i.e. inferences with only finitely many premises.\footnote{This is not where the infinitary issues mentioned above come from.} And furthermore, we shall limit ourselves (as in the previous chapter) to inferences involving \emph{sentences} only. In order to avoid an irreparable overdose of new techniques, we'll introduce first-order tableaux step-by-step: in \S\ref{fo_tableaux_simple}, we'll discuss tableaux for inferences involving only the quantifiers but no identity predicate and no function symbols; in \S\ref{fo_tableaux_identity}, we'll add identity; and in \S\ref{fo_tableau_functions}, we'll add function symbols. Without further ado: here we go!
+	  \item Throughout this chapter, we will restrict ourselves to finite inferences, i.e. inferences with only finitely many premises.\footnote{%
+		This is not where the infinitary issues mentioned above come from.}
+		And furthermore, we shall limit ourselves (as in the previous chapter) to inferences involving \emph{sentences} only.
+		In order to avoid an irreparable overdose of new techniques, we'll introduce first-order tableaux step-by-step:
+		in \S\ref{fo_tableaux_simple},
+		we'll discuss tableaux for inferences involving only the quantifiers but no identity predicate and no function symbols;
+		in \S\ref{fo_tableaux_identity}, we'll add identity; and in \S\ref{fo_tableaux_functions}, we'll add function symbols.
+		Without further ado: here we go!
 				
 	\end{enumerate}
 
@@ -270,7 +277,7 @@ is \emph{not} allowed. Much less are the following moves allowed:
 										}
 											[{\exists x\exists yR(x,y)}
 												[{\exists yR(p,y)}
-													[{$R(p,p)$}
+													[{R(p,p)}
 													]
 												]
 											]
@@ -1364,9 +1371,30 @@ How do we see that the tableau is open? Well, we note that all the atomic formul
 	\end{itemize}
 				In fact, we will be able to prove soundness and completeness for first-order tableaux, which, of course, crucially depends on the existence of associated models. 
 
-	\item This brings me to the last point of this chapter, decidability. Soundness and completeness should \emph{not} be confused with decidability. What we will be able to show, the soundness and completeness theorem, is that $\Gamma\vDash\phi$ iff the tableau for $\Gamma\cup\{\neg\phi\}$ is closed. But that doesn't mean that there's an effective algorithm, which \emph{in a finite amount of time} determines whether $\Gamma\vDash\phi$. In fact, we've just seen that our algorithm can ``loop'' and never spit out an answer. In such cases, we can still reason to the right answer, but this isn't algorithmic anymore. A computer can't figure out that reasoning. Now, this shows that the tableau algorithm doesn't decide first-order logic. But the fact that one algorithm doesn't work, of course, doesn't mean that \emph{no} algorithm works. What we can see, however, is that a certain \emph{kind} of algorithm will not work: one that tries to construct countermodels for invalid inferences. The idea to construct countermodels is something that tableaux and truth-tables have in common: in truth-tables, we check whether there's a line in the table that gives us a countermodel and in tableaux we look for a branch to do the job. And in propositional logic, this method works: since we only need to consider the interpretations (read: truth-values) of the finitely many  sentence letters in the formula, we can do this checking in a finite amount of time. The problem in first-order logic is that countermodels sometimes \emph{need to be} be infinite. To see this, note that some sets of formulas have only infinite models: an example can be found in Exercise 9.7.11. If we want to show that something doesn't follow from such a set, we need an infinite countermodel. And we can't possibly search through all of those. 
+	  \item This brings me to the last point of this chapter, decidability.
+		Soundness and completeness should \emph{not} be confused with decidability.
+		What we will be able to show, the soundness and completeness theorem, is that
+		$\Gamma\vDash\phi$
+		iff the tableau for
+		$\Gamma\cup\{\neg\phi\}$
+		is closed.
+		But that doesn't mean that there's an effective algorithm, which \emph{in a finite amount of time} determines whether $\Gamma\vDash\phi$.
+		In fact, we've just seen that our algorithm can ``loop'' and never spit out an answer.
+		In such cases, we can still reason to the right answer, but this isn't algorithmic anymore.
+		A computer can't figure out that reasoning.
+		Now, this shows that the tableau algorithm doesn't decide first-order logic.
+		But the fact that one algorithm doesn't work, of course, doesn't mean that \emph{no} algorithm works.
+		What we can see, however, is that a certain \emph{kind} of algorithm will not work: one that tries to construct countermodels for invalid inferences.
+		The idea to construct countermodels is something that tableaux and truth-tables have in common: in truth-tables, we check whether there's a line in the table that gives us a countermodel and in tableaux we look for a branch to do the job.
+		And in propositional logic, this method works: since we only need to consider the interpretations (read: truth-values) of the finitely many  sentence letters in the formula, we can do this checking in a finite amount of time.
+		The problem in first-order logic is that countermodels sometimes \emph{need to be} infinite.
+		To see this, note that some sets of formulas have only infinite models: an example can be found in Exercise 9.7.11.
+		If we want to show that something doesn't follow from such a set, we need an infinite countermodel.
+		And we can't possibly search through all of those.
 	
-	Now that's a whole class of algorithms that won't work. But in order to show that really absolutely no algorithm can possibly work ever, we need to dig deeper. The reasoning that establishes \emph{that} is closer related to the paradoxes, like Russel's paradox, but we won't be able to go into that in this course (that's more for ``Logische Complexiteit'').
+		Now that's a whole class of algorithms that won't work.
+		But in order to show that really absolutely no algorithm can possibly work ever, we need to dig deeper.
+		The reasoning that establishes \emph{that} is closer related to the paradoxes, like Russel's paradox, but we won't be able to go into that in this course (that's more for ``Logische Complexiteit'').
 		
 	\end{enumerate}
 
@@ -1475,7 +1503,7 @@ How do we see that the tableau is open? Well, we note that all the atomic formul
 
 				\item $[h]$ $\exists x(P(x)\land \forall y(P(y)\to x=y)\vdash \forall x\forall y(P(x)\land P(y)\to x=y)$
 				
-				\item $\vdash \exists x(\exists yPy\to Px)$
+				\item $\vdash \exists x(\exists yP(y)\to P(x))$
 							
 			\end{enumerate}
 			

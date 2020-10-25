@@ -179,6 +179,89 @@ See the added bullet 9.2.10 for (a). (b) and (c) work completely analogously.
     \emptyset$ is valid in our model.
 \end{enumerate}
 
+\subsection*{9.7.10}
+
+\begin{enumerate}
+  \item[(i)] We will prove $\mathcal{M} \vDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y)$ iff $P^{\mathcal{M}}$ has at least two elements.
+
+    \emph{Left-to right}:
+    We will prove this using conditional proof, followed by proof by contradiction.
+    We begin with the conditional proof.
+    Let $\mathcal{M}$ and  $\alpha$ be arbitrary such that
+    $\mathcal{M}, \alpha \vDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y)$.
+    Now, we assume the negation of our conclusion for the proof by contradiction.
+    Thus, we assume $P^\mathcal{M}$ does not have at least two elements.
+    This means $P^\mathcal{M}$ has strictly fewer than 2 elements, meaning we can distinguish two cases: $P^\mathcal{M}$ has 0 elements (1) and $P^\mathcal{M}$ has 1 element (2).
+    \begin{enumerate}[(1)]
+      \item Note that we assumed
+        $\mathcal{M}, \alpha \vDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y)$.
+        This means there has to be a $d \in D^\mathcal{M}$ such that
+        $\mathcal{M},\alpha_{[x\mapsto d]}\vDash P(x)$.
+        Now, for case (1), we assume $P^\mathcal{M}$ has 0 elements, so $P^\mathcal{M} = \emptyset$.
+        Then there is no $d \in D^\mathcal{M}$ such that $d \in P^\mathcal{M}$.
+        This is a contradiction to our original assumption.
+        It follows that if
+        $P^\mathcal{M} = \emptyset$, $\mathcal{M}, \alpha \nvDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y)$.
+
+      \item We assume $P^\mathcal{M}$ has 1 element.
+        Because we assumed
+        \[\mathcal{M}, \alpha \vDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y),\]
+        there must exist $d \in D^\mathcal{M}$ and $d' \in \mathcal{M}$ such that
+        $\mathcal{M}, \alpha_{[x \mapsto d, y \mapsto d']} \vDash P(x) \land P(y) \land x\neq y$.
+        It follows that
+        $\mathcal{M}, \alpha_{[x \mapsto d, y \mapsto d']} \vDash P(x)$
+        and
+        $\mathcal{M}, \alpha_{[x \mapsto d, y \mapsto d']} \vDash P(y)$
+        and
+        $\mathcal{M}, \alpha_{[x \mapsto d, y \mapsto d']} \vDash x \neq y$.
+        The latter tells us that $d$ and $d'$ are two distinct elements of $D^\mathcal{M}$.
+        But, this is in contradiction to our assumption that $P^\mathcal{M}$ has 1 element.
+        Thus, it follows that if $P^\mathcal{M}$ has 1 element,
+        $\mathcal{M}, \alpha \nvDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y)$.
+
+    \end{enumerate}
+
+    \emph{Right-to-left}:
+    We will (again) prove this using conditional proof, followed by proof by contradiction.
+    First, for the conditional proof, we assume $P^\mathcal{M}$ has at least two elements.
+    Now, for our proof by contradiction, we assume $\mathcal{M}, \alpha \nvDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y)$.
+    The latter can be rewritten:
+    \begin{align*}
+        \mathcal{M}, \alpha & \nvDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y) \\
+        \mathcal{M}, \alpha & \vDash \neg \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y) \\
+        \mathcal{M}, \alpha & \vDash \forall x \neg \exists y (P(x) \wedge P(y) \wedge x \neq y) \\
+        \mathcal{M}, \alpha & \vDash \forall x \forall y \neg (P(x) \wedge P(y) \wedge x \neq y) \\
+        \mathcal{M}, \alpha & \vDash \forall x \forall y (\neg P(x) \vee \neg P(y) \vee x = y) \\
+    \end{align*} 
+    So, we have
+    $\mathcal{M}, \alpha \vDash \forall x \forall y (\neg P(x) \vee \neg P(y) \vee x = y)$
+    and we know $P^\mathcal{M}$ has at least two elements.
+    We will give a counterexample.
+    Assume $p, q \in D^\mathcal{M}$ and $p, q \in P^\mathcal{M}$, where $p \neq q$.
+    It follows that, in order for our claim to be valid,
+    $\mathcal{M}, \alpha_{[x \mapsto p, y \mapsto q]} \vDash (\neg P(x) \vee \neg P(y) \vee x = y)$
+    must hold.
+    This means that either
+    $\mathcal{M}, \alpha_{[x \mapsto p, y \mapsto q]} \vDash \neg P(x)$,
+    or
+    $\mathcal{M}, \alpha_{[x \mapsto p, y \mapsto q]} \vDash \neg P(x)$
+    or
+    $\mathcal{M}, \alpha_{[x \mapsto p, y \mapsto q]} \vDash x = y$
+    must be true.
+    Let's look at them individually: since we have $p \in P^\mathcal{M}$, we know
+    $\mathcal{M}, \alpha_{[x \mapsto p, y \mapsto q]} \vDash \neg P(x)$
+    cannot be true.
+    The same goes for $q \in P^\mathcal{M}$ and
+    $\mathcal{M}, \alpha_{[x \mapsto p, y \mapsto q]} \vDash \neg P(y)$.
+    Lastly, we assumed $p \neq q$, so we cannot have
+    $\mathcal{M}, \alpha_{[x \mapsto p, y \mapsto q]} \vDash x = y$
+    either.
+    Thus, we have found a counterexample.
+    It follows that if $P^{\mathcal{M}}$ has at least two elements then
+    $\mathcal{M} \vDash \exists x \exists y (P(x) \wedge P(y) \wedge x \neq y)$.
+    $\qedsymbol$
+\end{enumerate}
+
 \subsection*{9.7.13}
 
 \begin{enumerate}
