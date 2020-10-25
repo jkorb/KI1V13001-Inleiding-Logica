@@ -5,24 +5,25 @@
 
 \begin{itemize}
 \item[10.8.1]
-  \begin{enumerate}[(a)]
-  \item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[\forall xP(x), grouped
-	[\neg \forall yP(y), grouped
-		[\exists y\neg P(y)
-			[\neg P(p)
-				[P(p), close]
-			]
-		]
-	]
-]
-\end{prooftree}
+    \begin{enumerate}[(a)]
+      \item %
+        \begin{prooftree}
+          {%
+            line numbering=false,
+            for tree={s sep'=10mm},
+            single branches=true,
+            close with=\xmark
+          }
+          [\forall xP(x), grouped
+            [\neg \forall yP(y), grouped
+                [\exists y\neg P(y)
+                    [\neg P(p)
+                        [P(p), close]
+                    ]
+                ]
+            ]
+          ]
+        \end{prooftree}
 
 \item \begin{prooftree}
 {
@@ -346,4 +347,4 @@ close with=\xmark
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
