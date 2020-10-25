@@ -50,30 +50,30 @@
         ]
       \end{prooftree}
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\neg \exists xP(x)}, grouped
-	[{\neg \forall x(P(x)\to Q(x))}, grouped
-		[{\exists x\neg (P(x)\to Q(x))}
-			[{\neg (P(p)\to Q(p))}
-				[P(p)
-					[\neg Q(p)
-						[\forall x\neg P(x)
-							[\neg P(p), close
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+      \item %
+        \begin{prooftree}
+          {%
+            line numbering=false,
+            for tree={s sep'=10mm},
+            single branches=true,
+            close with=\xmark
+          }
+          [{\neg \exists xP(x)}, grouped
+            [{\neg \forall x(P(x)\to Q(x))}, grouped
+                [{\exists x\neg (P(x)\to Q(x))}
+                    [{\neg (P(p)\to Q(p))}
+                        [P(p)
+                            [\neg Q(p)
+                                [\forall x\neg P(x)
+                                    [\neg P(p), close ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
 \item \begin{prooftree}
 {
