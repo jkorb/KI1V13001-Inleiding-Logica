@@ -190,27 +190,63 @@
       $P^{\mathcal{M}_B}=\{p\}$
       and
       $Q^{\mathcal{M}_B}=\emptyset$.
-  \end{enumerate}
 
-  \item %
-    \begin{prooftree}
-    {%
-      line numbering=false,
-      for tree={s sep'=10mm},
-      single branches=true,
-      close with=\xmark
-    }
-    [{\neg (\forall x\exists yS(x,y)\to \exists xS(x,x))}, grouped
-      [{\forall x\exists yS(x,y)}
-        [{\neg\exists xS(x,x)}
-          [{\forall x\neg S(x,x)}
-            [{\exists yS(p_1, y)}
-              [{\neg S(p_1, p_1)}
-                [{S(p_1, p_2)}
-                  [{\exists yS(p_2, y)}
-                    [{\neg S(p_2, p_2)}
-                      [{S(p_2, p_3)}
-                        [\vdots]
+    \item %Here goes (c)
+
+    \item %
+      \begin{prooftree}
+        {%
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\forall x\exists yS(x,y)}, grouped
+          [{\neg\exists xS(x,x)}, grouped
+            [{\forall x\neg S(x,x)}
+              [{\exists yS(p_1, y)}
+                [{\neg S(p_1, p_1)}
+                  [{S(p_1, p_2)}
+                    [{\exists yS(p_2, y)}
+                      [{\neg S(p_2, p_2)}
+                        [{S(p_2, p_3)}
+                          [\vdots]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      \end{prooftree}
+
+      We get $\mathcal{M}_B$ with
+      $D^{\mathcal{M}_B}=\{p_1, p_2, \mathellipsis\}$
+      and
+      $S^{\mathcal{M}_B}=\{\langle p_1, p_2\rangle, \langle p_2, p_3\rangle, \mathellipsis\}$.
+
+    \item %
+      \begin{prooftree}
+      {%
+        line numbering=false,
+        for tree={s sep'=10mm},
+        single branches=true,
+        close with=\xmark
+      }
+      [{\exists x\neg\exists yS(x,y)}, grouped
+        [{\neg \exists x\forall yS(x,y)}, grouped
+          [{\forall x\neg \forall yS(x,y)}
+            [{\neg\exists yS(p_1, y)}
+              [{\neg\forall yS(p_1, y)}
+                [{\forall y\neg S(p_1, y)}
+                  [{\neg S(p_1, p_1)}
+                    [{\exists y\neg S(p_1, y)}
+                      [{\neg S(p_1, p_2)}
+                        [{\neg \forall yS(p_2, y)}
+                          [\vdots]
+                        ]
                       ]
                     ]
                   ]
@@ -220,43 +256,9 @@
           ]
         ]
       ]
-    ]
-  \end{prooftree}
+    \end{prooftree}
 
-    We get $\mathcal{M}_B$ with
-    $D^{\mathcal{M}_B}=\{p_1, p_2, \mathellipsis\}$
-    and
-    $S^{\mathcal{M}_B}=\{\langle p_1, p_2\rangle, \langle p_2, p_3\rangle, \mathellipsis\}$.
-
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\exists x\neg\exists yS(x,y)}, grouped
-	[{\neg \exists x\forall yS(x,y)}, grouped
-		[{\forall x\neg \forall yS(x,y)}
-			[{\neg\exists yS(p_1, y)}
-				[{\neg\forall yS(p_1, y)}
-					[{\forall y\neg S(p_1, y)}
-						[{\neg S(p_1, p_1)}
-							[{\exists y\neg S(p_1, y)}
-								[{\neg S(p_1, p_2)}
-									[{\neg \forall yS(p_2, y)}
-										[\vdots]
-									]
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+  \end{enumerate}
 
 \item[10.8.5] (d)
 
