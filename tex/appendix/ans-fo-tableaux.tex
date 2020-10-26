@@ -192,40 +192,41 @@
       $Q^{\mathcal{M}_B}=\emptyset$.
   \end{enumerate}
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\neg (\forall x\exists yS(x,y)\to \exists xS(x,x))}, grouped
-	[{\forall x\exists yS(x,y)}
-		[{\neg\exists xS(x,x)}
-			[{\forall x\neg S(x,x)}
-				[{\exists yS(p_1, y)}
-					[{\neg S(p_1, p_1)}
-						[{S(p_1, p_2)}
-							[{\exists yS(p_2, y)}
-								[{\neg S(p_2, p_2)}
-									[{S(p_2, p_3)}
-										[\vdots]
-									]
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+  \item %
+    \begin{prooftree}
+    {%
+      line numbering=false,
+      for tree={s sep'=10mm},
+      single branches=true,
+      close with=\xmark
+    }
+    [{\neg (\forall x\exists yS(x,y)\to \exists xS(x,x))}, grouped
+      [{\forall x\exists yS(x,y)}
+        [{\neg\exists xS(x,x)}
+          [{\forall x\neg S(x,x)}
+            [{\exists yS(p_1, y)}
+              [{\neg S(p_1, p_1)}
+                [{S(p_1, p_2)}
+                  [{\exists yS(p_2, y)}
+                    [{\neg S(p_2, p_2)}
+                      [{S(p_2, p_3)}
+                        [\vdots]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{prooftree}
 
-We get $\mathcal{M}_B$ with 
-$D^{\mathcal{M}_B}=\{p_1, p_2, \mathellipsis\}$ and $S^{\mathcal{M}_B}=\{\langle p_1, p_2\rangle, \langle p_2, p_3\rangle, \mathellipsis\}$.  
-
-%As an exercise, check that $V^{\mathcal{M}_B}_\alpha(\forall x\exists yS(x,y))=1$ and $V^{\mathcal{M}_B}_\alpha(\exists xS(x,x))=0$ for all $\alpha$. To see the latter, note that $\neg S(p_i, p_i)\in B$ for all $p_i$. Hence, $\langle p_i, p_i\rangle\notin S^{\mathcal{M}_B}$ for all $i$.
+    We get $\mathcal{M}_B$ with
+    $D^{\mathcal{M}_B}=\{p_1, p_2, \mathellipsis\}$
+    and
+    $S^{\mathcal{M}_B}=\{\langle p_1, p_2\rangle, \langle p_2, p_3\rangle, \mathellipsis\}$.
 
 \item \begin{prooftree}
 {
