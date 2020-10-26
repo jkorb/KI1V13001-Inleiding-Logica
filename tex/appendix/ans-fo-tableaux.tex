@@ -193,6 +193,45 @@
 
     \item %Here goes (c)
 
+      \begin{prooftree}
+        {%
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\exists x(P(x)\to \forall yQ(y))}, grouped
+          [{\neg (\exists xP(x)\to \forall yQ(y))}, grouped
+            [\exists xP(x)
+              [\neg \forall yQ(y)
+                [\exists y\neg Q(y)
+                  [{P(p)}
+                    [{\neg Q(q)}
+                      [{P(r)\to \forall yQ(y)}
+                        [{\neg P(r)}]
+                          [{\forall y Q(y)}
+                            [{Q(p)}
+                              [{Q(q)}, close]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+      \end{prooftree}
+
+      Call the open branch $B$.
+      We get the following countermodel:
+      \begin{itemize}
+        \item $D^{\mathcal{M}_{B}}=\{p,q,r\}$
+        \item $P^{\mathcal{M}_{B}}=\{p\}$
+        \item $Q^{\mathcal{M}_{B}}=\emptyset$
+      \end{itemize}
+
     \item %
       \begin{prooftree}
         {%
