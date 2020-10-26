@@ -5,182 +5,192 @@
 
 \begin{itemize}
 \item[10.8.1]
-  \begin{enumerate}[(a)]
-  \item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[\forall xP(x), grouped
-	[\neg \forall yP(y), grouped
-		[\exists y\neg P(y)
-			[\neg P(p)
-				[P(p), close]
-			]
-		]
-	]
-]
-\end{prooftree}
+    \begin{enumerate}[(a)]
+      \item %
+        \begin{prooftree}
+          {%
+            line numbering=false,
+            for tree={s sep'=10mm},
+            single branches=true,
+            close with=\xmark
+          }
+          [\forall xP(x), grouped
+            [\neg \forall yP(y), grouped
+                [\exists y\neg P(y)
+                    [\neg P(p)
+                        [P(p), close]
+                    ]
+                ]
+            ]
+          ]
+        \end{prooftree}
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\exists x\exists yS(x,y)}, grouped
-	[{\neg \exists y\exists xS(x,y)}, grouped
-		[{\exists yS(p_1, y)}
-			[{S(p_1,p_2)}
-				[{\forall y\neg \exists xS(x,y)}
-					[{\neg\exists xS(x,p_2)}
-						[{\forall \neg S(x,p_2)}
-							[{\neg S(p_1, p_2)}, close
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+      \item%
+        \begin{prooftree}
+        {%
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\exists x\exists yS(x,y)}, grouped
+            [{\neg \exists y\exists xS(x,y)}, grouped
+                [{\exists yS(p_1, y)}
+                    [{S(p_1,p_2)}
+                        [{\forall y\neg \exists xS(x,y)}
+                            [{\neg\exists xS(x,p_2)}
+                                [{\forall \neg S(x,p_2)}
+                                    [{\neg S(p_1, p_2)}, close]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\neg \exists xP(x)}, grouped
-	[{\neg \forall x(P(x)\to Q(x))}, grouped
-		[{\exists x\neg (P(x)\to Q(x))}
-			[{\neg (P(p)\to Q(p))}
-				[P(p)
-					[\neg Q(p)
-						[\forall x\neg P(x)
-							[\neg P(p), close
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+      \item %
+        \begin{prooftree}
+          {%
+            line numbering=false,
+            for tree={s sep'=10mm},
+            single branches=true,
+            close with=\xmark
+          }
+          [{\neg \exists xP(x)}, grouped
+            [{\neg \forall x(P(x)\to Q(x))}, grouped
+                [{\exists x\neg (P(x)\to Q(x))}
+                    [{\neg (P(p)\to Q(p))}
+                        [P(p)
+                            [\neg Q(p)
+                                [\forall x\neg P(x)
+                                    [\neg P(p), close ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\forall xP(x)}, grouped
-	[{\neg \forall x(Q(x)\to P(x)\lor R(x))}, grouped
-		[{\exists x\neg (Q(x)\to P(x)\lor R(x))}
-			[{\neg (Q(p)\to P(p)\lor R(p))}
-				[Q(p)
-					[\neg (P(p)\lor R(p))
-						[\neg P(p)
-							[\neg R(p)
-								[P(p), close
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+      \item %
+        \begin{prooftree}
+          {%
+            line numbering=false,
+            for tree={s sep'=10mm},
+            single branches=true,
+            close with=\xmark
+          }
+          [{\forall xP(x)}, grouped
+            [{\neg \forall x(Q(x)\to P(x)\lor R(x))}, grouped
+                [{\exists x\neg (Q(x)\to P(x)\lor R(x))}
+                    [{\neg (Q(p)\to P(p)\lor R(p))}
+                        [Q(p)
+                            [\neg (P(p)\lor R(p))
+                                [\neg P(p)
+                                    [\neg R(p)
+                                        [P(p), close ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
-
-\end{enumerate}
+    \end{enumerate}
 
 \item[10.8.2]
   \begin{enumerate}[(a)]
-  \item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\forall x(P(x)\to Q(x))}, grouped
-	[{\exists x\neg P(x)}, grouped
-		[{\neg \forall x\neg Q(x)}, grouped
-			[{\neg P(p_1)}
-				[P(p_1)\to Q(p_1)
-					[\exists x\neg\neg Q(x)
-						[\neg\neg Q(p_2)
-							[Q(p_2)
-								[P(p_2)\to Q(p_2)
-									[\neg P(p_1)
-										[\neg P(p_2)]
-										[Q(p_2)]
-									]
-									[Q(p_1)
-										[\neg P(p_2)]
-										[Q(p_2)]
-									]
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+    \item %
+      \begin{prooftree}
+        {%
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\forall x(P(x)\to Q(x))}, grouped
+            [{\exists x\neg P(x)}, grouped
+                [{\neg \forall x\neg Q(x)}, grouped
+                    [{\neg P(p_1)}
+                        [P(p_1)\to Q(p_1)
+                            [\exists x\neg\neg Q(x)
+                                [\neg\neg Q(p_2)
+                                    [Q(p_2)
+                                        [P(p_2)\to Q(p_2)
+                                            [\neg P(p_1)
+                                                [\neg P(p_2)]
+                                                    [Q(p_2)]
+                                            ]
+                                            [Q(p_1)
+                                                [\neg P(p_2)]
+                                                [Q(p_2)]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
-Call the leftmost branch $B$. Then we get $\mathcal{M}_B$ with 
-$D^{\mathcal{M}_B}=\{p_1, p_2\}$ as well as $P^{\mathcal{M}_B}=\emptyset$ and $Q^{\mathcal{M}_B}=\{p_2\}$.
+      Call the leftmost branch $B$.
+      Then we get $\mathcal{M}_B$ with 
+      $D^{\mathcal{M}_B}=\{p_1, p_2\}$
+      as well as
+      $P^{\mathcal{M}_B}=\emptyset$
+      and $Q^{\mathcal{M}_B}=\{p_2\}$.
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\forall xP(x)\to \forall yQ(y)}, grouped
-	[{\neg\forall x(P(x)\to \forall yQ(y))}, grouped
-		[\exists x\neg (P(x)\to \forall yQ(y))
-			[\neg (P(p)\to \forall yQ(y))
-				[P(p)
-					[\neg \forall yQ(y)
-						[\exists y\neg Q(y)
-							[\neg Q(q)
-								[\neg \forall xP(x)
-									[\exists x\neg P(x)
-										[\neg P(r)
-										]
-									]
-								]
-								[\forall yQ(y)
-									[Q(q), close]
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+    \item %
+      \begin{prooftree}
+        {
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\forall xP(x)\to \forall yQ(y)}, grouped
+            [{\neg\forall x(P(x)\to \forall yQ(y))}, grouped
+                [\exists x\neg (P(x)\to \forall yQ(y))
+                    [\neg (P(p)\to \forall yQ(y))
+                        [P(p)
+                            [\neg \forall yQ(y)
+                                [\exists y\neg Q(y)
+                                    [\neg Q(q)
+                                        [\neg \forall xP(x)
+                                            [\exists x\neg P(x)
+                                                [\neg P(r) ]
+                                            ]
+                                        ]
+                                        [\forall yQ(y)
+                                            [Q(q), close]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
-Let $B$ be the open branch. We get $\mathcal{M}_B$ with 
-$D^{\mathcal{M}_B}=\{p, q, r\}$ as well as $P^{\mathcal{M}_B}=\{p\}$ and $Q^{\mathcal{M}_B}=\emptyset$.
-\end{enumerate}
+      Let $B$ be the open branch.
+      We get $\mathcal{M}_B$ with
+      $D^{\mathcal{M}_B}=\{p, q, r\}$
+      as well as
+      $P^{\mathcal{M}_B}=\{p\}$
+      and
+      $Q^{\mathcal{M}_B}=\emptyset$.
+  \end{enumerate}
 
 \item \begin{prooftree}
 {
@@ -346,4 +356,4 @@ close with=\xmark
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
