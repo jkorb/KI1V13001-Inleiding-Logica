@@ -674,29 +674,30 @@ We conclude by using (i) and (ii) to infer by induction that the parsing tree fo
 
 		\item In the previous section, we've given a justification for using function recursion on $\mathcal{L}$. Now, we'll define two important syntactic functions, i.e. functions with domain $\mathcal{L}$. The importance of these functions derives from their wide-spread use in logical literature (way beyond propositional logic). But also in our course, they will play an important role here and there.
 		
-		\item The first of the two functions, we'll define is a function that maps each formula to the set of formulas it was constructed from. These formulas are called the \emph{sub-formulas} of the formula in question. We define the function as follows using function recursion:
+	  \item The first of the two functions, we'll define a function that maps each formula to the set of formulas it was constructed from.
+		These formulas are called the \emph{sub-formulas} of the formula in question.
+		We define the function as follows using function recursion:
 		\begin{enumerate}[(i)]
-		
-			\item $sub(p)=\{p\}$ for $p\in\mathcal{P}$
-			
-			\item \begin{enumerate}[(a)]
-			
-				\item $sub(\neg\phi)= sub(\phi)\cup\{\neg \phi\}$
-				
-				\item $sub((\phi\circ\psi))= sub(\phi)\cup sub(\psi)\cup\{(\phi\circ\psi)\}$
-			
+		  \item%
+			$sub(p)=\{p\}$ for $p\in\mathcal{P}$
+		  \item%
+			\begin{enumerate}[(a)]
+			  \item%
+				$sub(\neg\phi)= sub(\phi)\cup\{\neg \phi\}$
+			  \item%
+				$sub((\phi\circ\psi))= sub(\phi)\cup sub(\psi)\cup\{(\phi\circ\psi)\}$
 			\end{enumerate}
-				\end{enumerate}
- Let's consider two examples. We have:
-		
+		\end{enumerate}
+		Let's consider two examples.
+		We have:
 		\begin{itemize}
-		
-			\item $sub(\neg \neg p)=\{p,\neg p, \neg\neg p\}$
-			
-			\item $sub(((p\land q)\lor r))=\{p,q,r,(p\land q), ((p\land q)\lor r)\}$
-		
+		  \item%
+			$sub(\neg \neg p)=\{p,\neg p, \neg\neg p\}$
+		  \item%
+			$sub(((p\land q)\lor r))=\{p,q,r,(p\land q), ((p\land q)\lor r)\}$
 		\end{itemize}
-In order to understand this definition, follow the advice for understanding a definition from lecture 2!
+		In order to understand this definition,
+		follow the advice for understanding a definition from lecture 2!
 
 	\item One thing that might help us understanding sub-formulas better is to compare them to notions we've previously introduced. For this purpose, we'll prove the following proposition:
 	
@@ -1273,4 +1274,4 @@ One last thing: don't buy these books until you really feel like the book will h
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../logic.tex"
-%%% End: 
+%%% End:
