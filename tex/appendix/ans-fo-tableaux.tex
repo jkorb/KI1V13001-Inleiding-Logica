@@ -222,10 +222,32 @@
         ]
       \end{prooftree}
 
-      We get $\mathcal{M}_B$ with
+      It's relatively straight-forward to see that the tableau will be infinite:
+      the universal quantifier in
+      $\forall x\exists y S(x,y)$
+      needs to be instantiated for each new parameter but itself generates an existential quantifier
+      $\exists y S(p_{i}, y)$,
+      which forces us to introduce a new parameter,
+      and so on.
+
+      At the same time,
+      the tableau will not be closed,
+      since the only negated atoms are going to be of the form
+      $\neg S(p_{i}, p_{i})$
+      coming from the universal quantifier $\forall x\neg S(x,x)$; and the only un-negated atoms come from our existential quantifiers
+      $\exists y S(p_{i}, y)$,
+      which can never give us a formula of the form $S(p_{i}, p_{i})$.
+
+      As our countermodel,
+      we get $\mathcal{M}_B$ with
       $D^{\mathcal{M}_B}=\{p_1, p_2, \mathellipsis\}$
       and
       $S^{\mathcal{M}_B}=\{\langle p_1, p_2\rangle, \langle p_2, p_3\rangle, \mathellipsis\}$.
+
+     A finite countermodel for the same inference is
+      $D^{\mathcal{M}_B}=\{p_1, p_2\}$
+      and
+      $S^{\mathcal{M}_B}=\{\langle p_1, p_2\rangle, \langle p_2, p_1\rangle \}$.
 
     \item %
       \begin{prooftree}
