@@ -237,15 +237,23 @@
       }
       [{\exists x\neg\exists yS(x,y)}, grouped
         [{\neg \exists x\forall yS(x,y)}, grouped
-          [{\forall x\neg \forall yS(x,y)}
-            [{\neg\exists yS(p_1, y)}
-              [{\neg\forall yS(p_1, y)}
-                [{\forall y\neg S(p_1, y)}
-                  [{\neg S(p_1, p_1)}
+          [{\neg\exists yS(p_1, y)}
+            [{\forall y\neg S(p_1, y)}
+              [{\neg S(p_1, p_1)}
+                [{\forall x\neg \forall yS(x,y)}
+                  [{\neg\forall yS(p_1, y)}
                     [{\exists y\neg S(p_1, y)}
                       [{\neg S(p_1, p_2)}
-                        [{\neg \forall yS(p_2, y)}
-                          [\vdots]
+                        [{\neg S(p_1, p_2)}
+                          [{\neg \forall yS(p_2, y)}
+                            [{\exists y\neg S(p_2, y)}
+                              [{\neg S(p_2, p_3)}
+                                [{\neg S(p_1, p_3)}
+                                  [\vdots]
+                                ]
+                              ]
+                            ]
+                          ]
                         ]
                       ]
                     ]
@@ -257,6 +265,29 @@
         ]
       ]
     \end{prooftree}
+
+      It's relatively straightforward to see that the branch is infinite:
+      we have to continue instantiating
+      $\forall x\neg\forall y S(x,y)$
+      with the new parameters we introduce,
+      then we get a new existential quantifier,
+      which forces us to introduce a new parameter,
+      \dots---we have a quantifier feedback loop.
+      At the same time,
+      there is never a non-negated atomic formula on the branch
+      (try to find the pattern).
+      Our countermodel thus looks like this:
+      \begin{itemize}
+        \item $D^{\mathcal{M}_{B}}=\{p_{1}, p_{2}, \mathellipsis\}$
+        \item $S^{\mathcal{M}_{B}}=\emptyset$
+      \end{itemize}
+
+      Here is a finite model that works as countermodel for the same inference:
+      \begin{itemize}
+        \item $D^{\mathcal{M}_{B}}=\{p_{1}\}$
+        \item $S^{\mathcal{M}_{B}}=\emptyset$
+      \end{itemize}
+      \end{itemize}
 
   \end{enumerate}
 
