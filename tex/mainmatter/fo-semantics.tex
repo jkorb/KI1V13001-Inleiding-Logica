@@ -394,17 +394,20 @@
 			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=(0^1)\cdot 2=2
 			\end{align*}
 			
-		\item Consider the abstract model (9.2.2.iv). In that model we have under the assignment $\alpha(x)=1, \alpha(y)=4, \alpha(z)=2$, we have:		
-		\begin{align*}
-		\llbracket f(f(x))\rrbracket^\mathcal{M}_\alpha&=1\\
-		\llbracket g(b,c)\rrbracket^\mathcal{M}_\alpha&=2\\	
-		\llbracket g(b,y)\rrbracket^\mathcal{M}_\alpha&=4\\	
-		\llbracket g(f(f(x)), g(b,c))\rrbracket^\mathcal{M}_\alpha&=1\\
-		\llbracket f(g(g(a,b),g(b,c))))\rrbracket^\mathcal{M}_\alpha&=1\\
-		\end{align*}
-		
+		  \item Consider the abstract model (9.2.2.iv).
+			In that model we have under the assignment $\alpha(x)=1, \alpha(y)=4, \alpha(z)=2$, we have:
+			\begin{align*}
+			  \llbracket f(f(x))\rrbracket^\mathcal{M}_\alpha&=f^{\mathcal{M}}(f^{\mathcal{M}}(\alpha(x))=1\\
+			  \llbracket g(b,c)\rrbracket^\mathcal{M}_\alpha&=min(b^\mathcal{M}, c^\mathcal{M})=min(3,2)=2\\
+			  \llbracket g(b,y)\rrbracket^\mathcal{M}_\alpha&=min(b^\mathcal{M}, \alpha(y))=min(3,4)=3\\
+			  \llbracket g(f(f(x)), g(b,c))\rrbracket^\mathcal{M}_\alpha&=min(\alpha(x), min(b^\mathcal{M}, c^\mathcal{M}))=min(1,min(3,2))=1\\
+			  \llbracket f(g(g(a,b),g(b,c))))\rrbracket^\mathcal{M}_\alpha&=min(min(a^\mathcal{M}, b^\mathcal{M}), min(b^\mathcal{M}, c^\mathcal{M}))=min(min(1,3), min(3,2))=1\\
+			\end{align*}
+
 		\end{enumerate}
-		Note that both the model and assignment crucially affect the values of terms. The results in weird models can be weird. Try some more examples by yourself.
+		Note that both the model and assignment crucially affect the values of terms.
+		The results in weird models can be weird.
+		Try some more examples by yourself.
 		
 		\item Finally, we shall define the crucial operation of changing the value of a variable under an assignment, which we need for the clauses for the quantifiers. Let $\alpha$ be an assignment in a model $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$. We define the function $\alpha[x\mapsto d]$, which is the result of setting the value of variable $x\in\mathcal{V}$ to $d\in D^\mathcal{M}$, by the following condition:
 		
