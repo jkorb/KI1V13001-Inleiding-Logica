@@ -102,8 +102,7 @@
         ]
       \end{prooftree}
 
-
-\end{enumerate}
+    \end{enumerate}
 
 \item[10.8.2]
   \begin{enumerate}[(a)]
@@ -150,43 +149,48 @@
       $P^{\mathcal{M}_B}=\emptyset$
       and $Q^{\mathcal{M}_B}=\{p_2\}$.
 
-\item \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\forall xP(x)\to \forall yQ(y)}, grouped
-	[{\neg\forall x(P(x)\to \forall yQ(y))}, grouped
-		[\exists x\neg (P(x)\to \forall yQ(y))
-			[\neg (P(p)\to \forall yQ(y))
-				[P(p)
-					[\neg \forall yQ(y)
-						[\exists y\neg Q(y)
-							[\neg Q(q)
-								[\neg \forall xP(x)
-									[\exists x\neg P(x)
-										[\neg P(r)
-										]
-									]
-								]
-								[\forall yQ(y)
-									[Q(q), close]
-								]
-							]
-						]
-					]
-				]
-			]
-		]
-	]
-]
-\end{prooftree}
+    \item %
+      \begin{prooftree}
+        {
+          line numbering=false,
+          for tree={s sep'=10mm},
+          single branches=true,
+          close with=\xmark
+        }
+        [{\forall xP(x)\to \forall yQ(y)}, grouped
+            [{\neg\forall x(P(x)\to \forall yQ(y))}, grouped
+                [\exists x\neg (P(x)\to \forall yQ(y))
+                    [\neg (P(p)\to \forall yQ(y))
+                        [P(p)
+                            [\neg \forall yQ(y)
+                                [\exists y\neg Q(y)
+                                    [\neg Q(q)
+                                        [\neg \forall xP(x)
+                                            [\exists x\neg P(x)
+                                                [\neg P(r) ]
+                                            ]
+                                        ]
+                                        [\forall yQ(y)
+                                            [Q(q), close]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+      \end{prooftree}
 
-Let $B$ be the open branch. We get $\mathcal{M}_B$ with 
-$D^{\mathcal{M}_B}=\{p, q, r\}$ as well as $P^{\mathcal{M}_B}=\{p\}$ and $Q^{\mathcal{M}_B}=\emptyset$.
-\end{enumerate}
+      Let $B$ be the open branch.
+      We get $\mathcal{M}_B$ with
+      $D^{\mathcal{M}_B}=\{p, q, r\}$
+      as well as
+      $P^{\mathcal{M}_B}=\{p\}$
+      and
+      $Q^{\mathcal{M}_B}=\emptyset$.
+  \end{enumerate}
 
 \item \begin{prooftree}
 {
