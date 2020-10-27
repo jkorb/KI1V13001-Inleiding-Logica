@@ -168,51 +168,60 @@ points.
 
     \begin{enumerate}
 
-    \item By definition, $\exists x(P(x)\land x=c),\forall x(P(x)\to
-      Q(x))\vdash  Q(c)$ iff the tableau for $\{ \exists x(P(x)\land x=c),\forall x(P(x)\to
-      Q(x)),\neg Q(c)\}$ is closed. Here is the tableau:
+      \item%
+        By definition,
+        $\exists x(P(x)\land x=c),\forall x(P(x)\to Q(x))\vdash  Q(c)$
+        iff the tableau for
+        $\{ \exists x(P(x)\land x=c),\forall x(P(x)\to Q(x)),\neg Q(c)\}$
+        is closed.
+        Here is the tableau:
 
-      \begin{center}
-\begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\exists x(P(x)\land x=c)}, grouped 
-     [{\forall x(P(x)\to Q(x))}, grouped
-          [{\neg Q(c)}, grouped
-               [{P(p)\land p=c}
-                    [{P(p)}
-                       [{p=c}
-                          [{P(p)\to Q(p)}
-                             [{\neg P(p)}, close ]
-                             [{Q(p)}
-                                [{\neg Q(c)}, close]
-                             ]
-                          ]      
-                       ]
+        \begin{center}
+          \begin{prooftree}
+            {%
+              line numbering=false,
+              for tree={s sep'=10mm},
+              single branches=true,
+              close with=\xmark
+            }
+            [{\exists x(P(x)\land x=c)}, grouped
+                [{\forall x(P(x)\to Q(x))}, grouped
+                    [{\neg Q(c)}, grouped
+                        [{P(p)\land p=c}
+                            [{P(p)}
+                                [{p=c}
+                                    [{P(p)\to Q(p)}
+                                        [{\neg P(p)}, close ]
+                                        [{Q(p)}
+                                            [{\neg Q(p)}, close]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
                     ]
-               ]
-          ]
-     ]
-]
-\end{prooftree}
-\end{center}
-Since the tableau is closed, we can infer the conclusion from the
-premises as claimed. 
+                ]
+            ]
+          \end{prooftree}
+        \end{center}
+        Since the tableau is closed,
+        we can infer the conclusion from the premises as claimed.
 
-\emph{Elements of a good answer}:
-\begin{itemize}
-\item Explains why the tableau is done.
-  \item Makes a tableau for $\Gamma\cup\{\neg\phi\}$ not for
-    $\Gamma\cup\{\phi\}$.
-    \item Applies all rules correctly.
-    \item Recognizes the correct application of the identity rule to
-      close the second branch.
-      \item Gets the correct answer.
-\end{itemize}
+        \emph{Elements of a good answer}:
+        \begin{itemize}
+          \item%
+            Explains why the tableau is done.
+          \item%
+            Makes a tableau for
+            $\Gamma\cup\{\neg\phi\}$
+            not for $\Gamma\cup\{\phi\}$.
+          \item%
+            Applies all rules correctly.
+          \item%
+            Recognizes the correct application of the identity rule to close the second branch.
+          \item%
+            Gets the correct answer.
+        \end{itemize}
 
 \item By definition, $P(c)\lor (P(c)\land Q(c)), \forall x(Q(x)\to
   \neg P(c))\vdash \neg P(c)$ iff the tableau for $\{P(c)\lor (P(c)\land Q(c)), \forall x(Q(x)\to
