@@ -116,34 +116,34 @@ points.
   \item[11.7.1.4] \emph{(Very) Long Answer}: We claim that
     $\mathcal{M},\alpha\vDash \forall x\forall y(R(x,y)\to R(f(y), f(x)))$.
     In order to determine what we need to show is, we observe the following
-       \begin{itemize}
-       \item[] $\mathcal{M},\alpha\vDash \forall
-         x\forall y(R(x,y)\to R(f(y), f(x)))$
-       \item[\emph{iff}] for all $d\in D^\mathcal{M}$,
-         $\mathcal{M},\alpha[x\mapsto d]\vDash \forall y(R(x,y)\to
-         R(f(y), f(x)))$
-       \item[\emph{iff}] for all $d,d'\in D^\mathcal{M}$,
-         $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
-         R(f(y), f(x))$  
-       \end{itemize}
-      Since there are only 2 elements in $D^\mathcal{M}=\{1,2\}$,
-      there are 4 possible choices for $d$ and $d'$ to consider:
-      \begin{itemize}
+    \begin{itemize}
+      \item[] $\mathcal{M},\alpha\vDash \forall
+        x\forall y(R(x,y)\to R(f(y), f(x)))$
+      \item[\emph{iff}] for all $d\in D^\mathcal{M}$,
+        $\mathcal{M},\alpha[x\mapsto d]\vDash \forall y(R(x,y)\to
+        R(f(y), f(x)))$
+      \item[\emph{iff}] for all $d,d'\in D^\mathcal{M}$,
+        $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
+        R(f(y), f(x))$
+    \end{itemize}
+    Since there are only 2 elements in $D^\mathcal{M}=\{1,2\}$,
+    there are 4 possible choices for $d$ and $d'$ to consider:
+    \begin{itemize}
       \item $d=1, d'=1$
       \item $d=1, d'=2$
       \item $d=2, d'=1$
       \item $d=2, d'=2$
-      \end{itemize}
-      Since for all choices of $d$ and $d'$ other than $d=1, d'=2$, we
-      have that $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\nvDash
-      R(x,y)$, so we don't have to check anything else to see that $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
-      R(f(y), f(x))$. 
+    \end{itemize}
+    Since for all choices of $d$ and $d'$ other than $d=1, d'=2$, we
+    have that $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\nvDash
+    R(x,y)$, so we don't have to check anything else to see that $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
+    R(f(y), f(x))$.
 
-      For $d=1, d'=2$, we observe that:\[\llbracket
-      f(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d, y\mapsto
-        d']}=f^\mathcal{M}(1)=2\]\[\llbracket
-      f(y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d, y\mapsto
-        d']}=f^\mathcal{M}(2)=1.\]
+    For $d=1, d'=2$, we observe that:\[\llbracket
+    f(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d, y\mapsto
+    d']}=f^\mathcal{M}(1)=2\]\[\llbracket
+    f(y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d, y\mapsto
+    d']}=f^\mathcal{M}(2)=1.\]
     But then, we have
     $\mathcal{M}, \alpha[x\mapsto d, y\mapsto d']\vDash R(f(y), f(x))$
     and so
@@ -469,41 +469,51 @@ close with=\xmark
 \end{center}
 Hence the tableau is always closed, which is what we needed to show.
 
-                \emph{Alternative strategy}: Semantically show that
+            \emph{Alternative strategy}: Semantically show that
                 $\Gamma\vDash P(c)\lor\neg P(c)$ and then use
                 completeness to infer the result.
 
-                \item[11.7.2.3] We aim to show that $\forall
-                  x(\phi\to\psi)\vDash\neg \exists x(\phi\land
-                  \neg\psi)$. By definition, we know that $\forall
-                  x(\phi\to\psi)\vDash\neg \exists x(\phi\land
-                  \neg\psi)$ iff for all models $\mathcal{M}$, we have
-                  that if $\mathcal{M},\alpha\vDash \forall
-                  x(\phi\to\psi$, then $\mathcal{M},\alpha\vDash\neg
-                  \exists x(\phi\land\neg\psi)$ (for some arbitrary
-                  assignment $\alpha$). So, let $\mathcal{M}$ be an
-                  arbitrary model and suppose that
-                  $\mathcal{M},\alpha\vDash\forall x(\phi\to
-                  \psi)$. This means, by definition, that for all
-                  $d\in D^\mathcal{M}$ we have
-                  $\mathcal{M},\alpha[x\mapsto d]\vDash
-                  \phi\to\psi$. From this, we need to derive that
-                  $\mathcal{M},\alpha\vDash\neg \exists
-                  (\phi\land\neg\psi)$. We do this indirectly. Suppose
-                  that $\mathcal{M},\alpha\nvDash\neg \exists
-                  (\phi\land\neg\psi)$. It follows that  $\mathcal{M},\alpha\vDash \exists
-                  (\phi\land\neg\psi)$. This means, by definition,
-                  that there must be a $d\in D^\mathcal{M}$ such that
-                  $\mathcal{M},\alpha[x\mapsto d]\vDash
-                  \phi\land\neg\psi$. From this it would follow
-                  that $\mathcal{M},\alpha[x\mapsto d]\vDash
-                  \phi$ and $\mathcal{M},\alpha[x\mapsto
-                  d]\nvDash\psi$, and so $\mathcal{M},\alpha[x\mapsto d]\nvDash
-                  \phi\to\psi$. But this would contradict our
-                  assumption that  $\mathcal{M},\alpha[x\mapsto d]\vDash
-                  \phi\to\psi$ for all $d\in D^\mathcal{M}$. So, by
-                  indirect proof, we can infer that  $\mathcal{M},\alpha\vDash\neg
-                  \exists x(\phi\land\neg\psi)$, as desired.
+          \item[11.7.2.3] We aim to show that
+            $\forall x(\phi\to\psi)\vDash\neg \exists x(\phi\land
+            \neg\psi)$.
+            By definition, we know that
+            $\forall x(\phi\to\psi)\vDash\neg \exists x(\phi\land \neg\psi)$
+            iff for all models $\mathcal{M}$,
+            we have that if
+            $\mathcal{M},\alpha\vDash \forall x(\phi\to\psi)$, then
+            $\mathcal{M},\alpha\vDash\neg \exists x(\phi\land\neg\psi)$
+            (for some arbitrary assignment $\alpha$).
+            So, let $\mathcal{M}$ be an
+            arbitrary model and suppose that
+            $\mathcal{M},\alpha\vDash\forall x(\phi\to\psi)$.
+            This means, by definition, that for all
+            $d\in D^\mathcal{M}$ we have
+            $\mathcal{M},\alpha[x\mapsto d]\vDash
+            \phi\to\psi$.
+            From this, we need to derive that
+            $\mathcal{M},\alpha\vDash\neg \exists x
+            (\phi\land\neg\psi)$.
+            We do this indirectly.
+            Suppose
+            that $\mathcal{M},\alpha\nvDash\neg \exists x
+            (\phi\land\neg\psi)$.
+            It follows that  $\mathcal{M},\alpha\vDash \exists x
+            (\phi\land\neg\psi)$.
+            This means, by definition,
+            that there must be a $d\in D^\mathcal{M}$ such that
+            $\mathcal{M},\alpha[x\mapsto d]\vDash
+            \phi\land\neg\psi$.
+            From this it would follow
+            that $\mathcal{M},\alpha[x\mapsto d]\vDash
+            \phi$ and $\mathcal{M},\alpha[x\mapsto
+            d]\nvDash\psi$, and so $\mathcal{M},\alpha[x\mapsto d]\nvDash
+            \phi\to\psi$.
+            But this would contradict our
+            assumption that  $\mathcal{M},\alpha[x\mapsto d]\vDash
+            \phi\to\psi$ for all $d\in D^\mathcal{M}$.
+            So, by
+            indirect proof, we can infer that  $\mathcal{M},\alpha\vDash\neg
+            \exists x(\phi\land\neg\psi)$, as desired.
                   
                   \item[11.7.2.4] We want to find a model
                     $\mathcal{M}^+$ that makes
