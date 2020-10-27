@@ -710,50 +710,50 @@ Hence the tableau is always closed, which is what we needed to show.
                     $\phi$ with only $x$ free, $(\phi)[x:=c]$ is a
                     sentence.
 
-                    \item We're essentially asked to show that for all
-                      models $\mathcal{M}$ and assignments $\alpha$,
-                      we have 
-                      $\mathcal{M},\alpha\vDash \forall xR(x,x)$ iff
-                      $(d,d)\in R^\mathcal{M}$ for all $d\in
-                      D^\mathcal{M}$. That is, we need to show two
-                      things:
+          \item[11.7.2.8] We're essentially asked to show that for all
+            models $\mathcal{M}$ and assignments $\alpha$,
+            we have
+            $\mathcal{M},\alpha\vDash \forall xR(x,x)$ iff
+            $(d,d)\in R^\mathcal{M}$ for all $d\in
+            D^\mathcal{M}$. That is, we need to show two
+            things:
 
-                      \begin{enumerate}[(a)]
-                      \item If  $\mathcal{M},\alpha\vDash \forall
-                        xR(x,x)$, then
-                      $(d,d)\in R^\mathcal{M}$ for all $d\in
-                      D^\mathcal{M}$
-                      \item If 
-                      $(d,d)\in R^\mathcal{M}$ for all $d\in
-                      D^\mathcal{M}$, then  $\mathcal{M},\alpha\vDash \forall
-                        xR(x,x)$.
-                      \end{enumerate}
+            \begin{enumerate}[(a)]
+              \item If  $\mathcal{M},\alpha\vDash \forall
+                xR(x,x)$, then
+                $(d,d)\in R^\mathcal{M}$ for all $d\in
+                D^\mathcal{M}$
+              \item If
+                $(d,d)\in R^\mathcal{M}$ for all $d\in
+                D^\mathcal{M}$, then  $\mathcal{M},\alpha\vDash \forall
+                xR(x,x)$.
+            \end{enumerate}
 
-                      To see that (a) holds, assume that
-                      $\mathcal{M},\alpha\vDash \forall 
-                        xR(x,x)$. This means, by definition, that
-                        $\mathcal{M},\alpha[x\mapsto d]\vDash
-                        R(x,x)$. We derive that  $(d,d)\in R^\mathcal{M}$ for all $d\in
-                      D^\mathcal{M}$ by contradiction. Suppose that
-                      there exists a $d\in D^\mathcal{M}$ such that
-                      $(d,d)\notin R^\mathcal{M}$. But then, we'd have
-                      that $\mathcal{M},\alpha[x\mapsto d]\nvDash
-                        R(x,x)$, contrary to our assumption that for
-                        \emph{all} $d\in 
-                        D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash
-                        R(x,x)$. Hence $(d,d)\in R^\mathcal{M}$ for all $d\in
-                        D^\mathcal{M}$, as desired.
+            To see that (a) holds, assume that
+            $\mathcal{M},\alpha\vDash \forall
+            xR(x,x)$. This means, by definition, that
+            $\mathcal{M},\alpha[x\mapsto d]\vDash
+            R(x,x)$. We derive that  $(d,d)\in R^\mathcal{M}$ for all $d\in
+            D^\mathcal{M}$ by contradiction. Suppose that
+            there exists a $d\in D^\mathcal{M}$ such that
+            $(d,d)\notin R^\mathcal{M}$. But then, we'd have
+            that $\mathcal{M},\alpha[x\mapsto d]\nvDash
+            R(x,x)$, contrary to our assumption that for
+            \emph{all} $d\in
+            D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash
+            R(x,x)$. Hence $(d,d)\in R^\mathcal{M}$ for all $d\in
+            D^\mathcal{M}$, as desired.
 
-                        To see that (b) holds assume that $(d,d)\in R^\mathcal{M}$ for all $d\in
-                      D^\mathcal{M}$. We need to derive that  $\mathcal{M},\alpha\vDash \forall 
-                        xR(x,x)$, i.e. for all $d\in D^\mathcal{M}$ we have
-                        $\mathcal{M},\alpha[x\mapsto d]\vDash
-                        R(x,x)$. But this follows immediately since  $\mathcal{M},\alpha[x\mapsto d]\vDash
-                        R(x,x)$ iff $(\llbracket
-                        x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
-                          d]},(\llbracket
-                        x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
-                          d]})=(d,d)\in R^\mathcal{M}$. 
+            To see that (b) holds assume that $(d,d)\in R^\mathcal{M}$ for all $d\in
+            D^\mathcal{M}$. We need to derive that  $\mathcal{M},\alpha\vDash \forall
+            xR(x,x)$, i.e. for all $d\in D^\mathcal{M}$ we have
+            $\mathcal{M},\alpha[x\mapsto d]\vDash
+            R(x,x)$. But this follows immediately since  $\mathcal{M},\alpha[x\mapsto d]\vDash
+            R(x,x)$ iff $(\llbracket
+            x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
+            d]},(\llbracket
+            x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
+            d]})=(d,d)\in R^\mathcal{M}$.
 
                         \item[11.7.2.9]. We're asked to show that in the
                           given model $\mathcal{M}$ we have
