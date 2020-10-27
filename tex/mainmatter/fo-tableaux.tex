@@ -12,8 +12,16 @@
 		The idea that we're going to once more exploit is that we can develop a syntactic method for determining whether a set of formulas is satisfiable (viz.\ tableaux).
 		By determining in a purely syntactic way whether $\Gamma\cup\{\neg\phi\}$ is satisfiable, we get a proof theory for first-order logic.
 		
-		\item There is, however, an important limitation that we'll have to take into account. In propositional logic, the tableau method was purely algorithmic: we could blindly apply the rules and would always, after a finite amount of time, get an answer about the he validity of an inference. This gave us a route to the decidability of propositional logic. In first-order logic, very unfortunately, things aren't as neat: while we can construct tableaux \emph{sort of} algorithmically, it will no longer be the case that we can blindly apply the rules and after finitely many steps get an answer: valid or invalid. The ``local'' reason for this, the reason why this happens with tableaux, is that (as you'll see) first-order tableaux can turn out to be \emph{infinite}. An infinite tableau is one with infinitely many nodes. But, as we'll see, an infinite tableau can nevertheless be \emph{complete}, in the sense that every rule that can be applied has been applied. This might seem surprising coming from propositional logic, where you really could construct every tableau by hand. This will no longer be the case in first-order logic: there are tableaux that no human could ever write down. 
-		
+	  \item There is, however, an important limitation that we'll have to take into account.
+		In propositional logic, the tableau method was purely algorithmic: we could blindly apply the rules and would always, after a finite amount of time, get an answer about the the validity of an inference.
+		This gave us a route to the decidability of propositional logic.
+		In first-order logic, very unfortunately, things aren't as neat: while we can construct tableaux \emph{sort of} algorithmically, it will no longer be the case that we can blindly apply the rules and after finitely many steps get an answer: valid or invalid.
+		The ``local'' reason for this, the reason why this happens with tableaux, is that (as you'll see) first-order tableaux can turn out to be \emph{infinite}.
+		An infinite tableau is one with infinitely many nodes.
+		But, as we'll see, an infinite tableau can nevertheless be \emph{complete}, in the sense that every rule that can be applied has been applied.
+		This might seem surprising coming from propositional logic, where you really could construct every tableau by hand.
+		This will no longer be the case in first-order logic: there are tableaux that no human could ever write down.
+
 		\item A more general and ``deeper'' reason why we can't construct tableaux as in propositional logic is that first-order logic is provably \emph{undecidable}:
 		
 		\begin{theorem}[Church and Turing 1935/36] There exists no effective algorithm that for every inference after finitely many steps correctly determines whether the premises entail the conclusion in first-order logic.
