@@ -6,7 +6,17 @@
 
 		\item In this chapter, we're going to develop the standard semantics for the first-order languages we've described and studied in the previous chapter. That is, we want to define the concept of a \emph{model} for these languages. The aim is, as always in logical semantics, to give a formal account of valid inference using truth-preservation across all models (cf. 1.1.5 and 5.2.1). We will do so, making use of several ideas from the elementary set-theory chapter, in particular \S3.6. So, make sure you're up to speed on properties, relations, and functions.
 		
-		\item Note that a model for propositional logic, i.e. a assignment, interprets the \emph{non-logical} vocabulary of the language in question (as truth-values). The meaning of logical vocabulary, i.e. the sentential operators, is given by the truth-functions. In first-order logic, the situation is similar. A model interprets the non-logical vocabulary of the first-order language in question, i.e. the signature. The meaning of the sentential operators is still given by the truth-functions, and we know how those work. The meaning of the quantifiers, instead, we'll have to study in a bit more detail. 
+	  \item Note that a model for propositional logic,
+		i.e.\ an assignment,
+		interprets the \emph{non-logical} vocabulary of the language in question (as truth-values).
+		The meaning of logical vocabulary,
+		i.e.\ the sentential operators,
+		is given by the truth-functions.
+		In first-order logic, the situation is similar.
+		A model interprets the non-logical vocabulary of the first-order language in question,
+		i.e.\ the signature.
+		The meaning of the sentential operators is still given by the truth-functions, and we know how those work.
+		The meaning of the quantifiers, instead, we'll have to study in a bit more detail.
 		
 		\item Let's begin by informally describing the idea of how we use the concepts from set-theory to provide the notion of a model for a first-order language. In \S8.1, we discussed the idea that in first-order logic, we need to take the subject-predicate structure of sentences into account but we abstract away from the concrete terms and predicates involved. For now, let's focus on simple, term-property sentences, like ``the ball is red.'' Logically speaking, i.e. abstracting away from the concrete terms and predicates involved, the structure of this sentence is \[P(a),\] where $a$ is a constant and $P$ is a unary predicate. Now, constants denote objects and unary predicates express properties. But remember that a property, at least for us, is just a set of objects, the set of objects with the property (cf. 3.6.1). The property of being red, in this picture, is the set of all red things. Now ask yourself, when is the sentence ``the ball is red'' true? Well, the natural answer is, just in case the ball is actually red, i.e. iff the ball is a member of the set of red things. 
 		
