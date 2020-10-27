@@ -355,52 +355,50 @@
 
   \begin{center}
     \begin{prooftree}
-      {
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\exists x(P(x)\land \forall y(P(y)\to x=y))}, grouped
-[{\neg\forall x\forall y(P(x)\land P(y)\to x=y}, grouped
-[{P(p)\land \forall y(P(y)\to p=y)}
-[{P(p)}
-[{\forall y(P(y)\to p=y)}
-[{\exists x\neg\forall y(P(x)\land P(y)\to x=y)}
-[{\neg\forall y(P(q)\land P(y)\to q=y)}
-[{\exists y\neg (P(q)\land P(y)\to q=y)}
-[{\neg (P(q)\land P(r)\to q=r)}
-[{P(q)\land P(r)}
-[{q\neq r}
-[{P(q)}
-[{P(r)}
-[{P(q)\to p=q}
-[{\neg P(q)}, close
-]
-[{p=q}
-[{P(r)\to p=r}
-[{\neg P(r)}, close
-]
-[{p=r}
-[{q=r}, close]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-]
-  \end{prooftree}
+      {%
+        line numbering=false,
+        for tree={s sep'=10mm},
+        single branches=true,
+        close with=\xmark
+      }
+      [{\exists x(P(x)\land \forall y(P(y)\to x=y))}, grouped
+        [{\neg\forall x\forall y(P(x)\land P(y)\to x=y)}, grouped
+          [{P(p)\land \forall y(P(y)\to p=y)}
+            [{P(p)}
+              [{\forall y(P(y)\to p=y)}
+                [{\exists x\neg\forall y(P(x)\land P(y)\to x=y)}
+                  [{\neg\forall y(P(q)\land P(y)\to q=y)}
+                    [{\exists y\neg (P(q)\land P(y)\to q=y)}
+                      [{\neg (P(q)\land P(r)\to q=r)}
+                        [{P(q)\land P(r)}
+                          [{q\neq r}
+                            [{P(q)}
+                              [{P(r)}
+                                [{P(q)\to p=q}
+                                  [{\neg P(q)}, close ]
+                                  [{p=q}
+                                    [{P(r)\to p=r}
+                                      [{\neg P(r)}, close ]
+                                      [{p=r}
+                                        [{q=r}, close]
+                                      ]
+                                    ]
+                                  ]
+                                ]
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    \end{prooftree}
   \end{center}
 
   \item[10.8.6] The reason why it's not possible to write such an
