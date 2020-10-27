@@ -508,40 +508,44 @@ In a sense, the information provided by the stripped parsing tree is the same as
 	
 	\end{center}
 	
-	\item In the following, we shall often need to access the information provided by parsing trees. In order to be able to do so, we need to be able to refer to the nodes in a given tree in a clear fashion. For this purpose, we introduce the following (standard!) naming  conventions for nodes in trees. Let me introduce the idea by means of an example. Take the tree:
-		
+	  \item In the following, we shall often need to access the information provided by parsing trees.
+		In order to be able to do so, we need to be able to refer to the nodes in a given tree in a clear fashion.
+		For this purpose, we introduce the following (standard!) naming  conventions for nodes in trees.
+		Let me introduce the idea by means of an example.
+		Take the tree:
 		\begin{center}
 		\Tree [.$\bullet$ [.$\bullet$  [.$\bullet$ [.$\bullet$ ] ] [.$\bullet$ [.$\bullet$ ] [.$\bullet$ ] ] ] ]
 		\end{center}
 		
-We then name nodes in this tree as follows:
+		We then name nodes in this tree as follows:
+		\begin{itemize}
+		  \item%
+			The root is always called $r$.
+		  \item%
+			The first child of the root is called $( r, 1)$.
+		  \item%
+			The first child of $( r, 1)$ is called $( r, 1, 1)$.
+		  \item%
+			The \emph{second} child of $( r, 1)$ is called $(r, 1, 2)$.
+		  \item%
+			\dots
+		\end{itemize}
+		So, the nodes in our tree are: \[r, (r,1), ( r,1,1), ( r,1,2),( r,1,1, 1), ( r,1,2,1) , ( r,1,2,2).\]
+		Note that there can be empty names for nodes.
+		For example, the node $(r,2,1,1)$ doesn't denote a node in our tree.
 
-	\begin{itemize}
-	
-		\item The root is always called $r$.
-		
-		\item The first child of the root is called $( r, 1)$.
-		
-		\item The first child of $( r, 1)$ is called $( r, 1, 1)$.
-		
-		\item The \emph{second} child of $( r, 1)$ is called $(r, 1, 2)$.
-		
-		\item \dots
-			
-	\end{itemize}
-So, the nodes in our tree are: \[r, (r,1), ( r,1,1), ( r,1,2),( r,1,1, 1), ( r,1,2,1) , ( r,1,2,2).\] Note that there can be empty names for nodes. For example, the node $(r,2,1,1)$ doesn't denote a node in our tree. 
+		Essentially, we name a node by giving the ``directions'' for someone traveling along the edges through the nodes.\footnote{%
+		For interested: the naming of the nodes depends on how we draw the tree, but we'll ignore this complication.}
+		Here is a more general, recursive (!) definition of the name $\ulcorner n\urcorner$ of a node $n$ in a tree:
+		\begin{itemize}
+		  \item%
+			The name of the root is $r$
+		  \item%
+			The name of the $i$-th child of node $n$ is called $(\ulcorner n\urcorner, i)$.\footnote{%
+			For this to look nice, we have to ``forget'' a bunch of parentheses in $\ulcorner n\urcorner$ according to the rule $((x,y),z)=(x,y,z)$.}
 
-Essentially, we name a node by giving the ``directions'' for someone traveling along the edges through the nodes.\footnote{For interested: the naming of the nodes depends on how we draw the tree, but we'll ignore this complication.} Here is a more general, recursive (!) definition of the name $\ulcorner n\urcorner$ of a node $n$ in a tree:
-
-	\begin{itemize}
-	
-		\item The name of the root is $r$
-		
-		\item The name of the $i$-th child of node $n$ is called $(\ulcorner n\urcorner, i)$.\footnote{For this too look nice, we have to ``forget'' a bunch of parentheses in $\ulcorner n\urcorner$ according to the rule $((x,y),z)=(x,y,z)$.}
-	
-	This definition allows you to step-by-step calculate the name of a node in a tree.
-	
-	\end{itemize}
+			This definition allows you to step-by-step calculate the name of a node in a tree.
+		\end{itemize}
 
 	\item We shall now define the central notion of an \emph{occurrence} of an expression in a formula. Intuitively, it's pretty clear what it means for an expression to occur in a formula: an expression occurs in a formula if you need to write it down in order to write the formula. So, for example, $P(x)$ occurs in $\forall x(P(x)\lor R(x,x))$. But for our intents and purposes, this intuitive notion doesn't provide enough information. We need better access to the internal structure of the formula. We get it, via the parsing tree. First, we shall give a precise definition of the notion of an occurrence:
 	
