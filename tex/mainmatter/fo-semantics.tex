@@ -526,7 +526,7 @@ This concludes our induction.
 		Exercise 9.7.3.
 		\end{proof}
 	
-              \item \textbf{This passage has been added for clarification purposes.}
+	  \item \textbf{This passage has been added for clarification purposes.}
 
 		There was some confusion about how to solve exercise 9.7.2, also among the TAs.
 		So, I suppose I should have been clearer on the different variants of inductive proof, and so I'm trying to remedy the situation here.
@@ -545,14 +545,24 @@ This concludes our induction.
 		The corresponding induction principle for the construction of natural numerals states that if the natural numeral 0 has a property, and if a natural numeral $n$ has the property then the numeral $S(n)$ has the property, then all natural numerals have the property in question.
 		Here is the solution for exercise i) of 9.7.2:
 
-	\begin{lemma}[9.7.2.i]
-          Let $\mathcal{M}$ be the standard model for the $PA$ (as defined in 9.2.2) and $\alpha$ an arbitrary assignment. Then for all terms of the form $n\in\mathcal{T}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$. 
-	\end{lemma}
+		\begin{lemma}[9.7.2.i]
+          Let $\mathcal{M}$ be the standard model for the $PA$ (as defined in 9.2.2) and $\alpha$ an arbitrary assignment.
+		  Then for all terms of the form $n\in\mathcal{T}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$.
+		\end{lemma}
         \begin{proof}
-          We prove this fact using induction on the natural numerals, i.e. terms of the of the form $n=S(\mathellipsis S(0)\mathellipsis)$. For the base case, consider the term $0$. By definition, we have that $\llbracket 0\rrbracket^\mathcal{M}_\alpha=0^\mathcal{M}=0$. Now, for the induction step, assume the induction hypothesis, that for the term $n=S(\mathellipsis S(0)\mathellipsis)$ we have  $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$. We need to show that for the term $S(n)=n+1$, we have  $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=n+1$. Now note that $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=S^\mathcal{M}(\llbracket n\rrbracket^\mathcal{M}_\alpha)=\llbracket n\rrbracket^\mathcal{M}_\alpha+1$. But by the induction hypothesis, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$, so we have  $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=n+1$, as desired.
+          We prove this fact using induction on the natural numerals, i.e. terms of the form $n=S(\mathellipsis S(0)\mathellipsis)$.
+		  For the base case, consider the term $0$.
+		  By definition, we have that $\llbracket 0\rrbracket^\mathcal{M}_\alpha=0^\mathcal{M}=0$.
+		  Now, for the induction step, assume the induction hypothesis, that for the term $n=S(\mathellipsis S(0)\mathellipsis)$ we have  $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$.
+		  We need to show that for the term $S(n)=n+1$, we have  $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=n+1$.
+		  Now note that $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=S^\mathcal{M}(\llbracket n\rrbracket^\mathcal{M}_\alpha)=\llbracket n\rrbracket^\mathcal{M}_\alpha+1$.
+		  But by the induction hypothesis, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$, so we have  $\llbracket S(n)\rrbracket^\mathcal{M}_\alpha=n+1$, as desired.
         \end{proof}
 
-        Note that we can use similar methods for other inductively definable subsets of terms or formulas. We can, for example, prove facts about all terms without variables (i.e. \emph{ground terms}) by showing that all constants have the property and the property is preserved under applying function symbols. Or, we can show that all formulas with an even number of negations have a property by showing that all atomic formulas have the property and that the property is preserved under writing two negations in front of a formula. In the following, we shall often (sometimes implicitly) make use of such ``restricted'' forms of induction on terms or variables.
+        Note that we can use similar methods for other inductively definable subsets of terms or formulas.
+		We can, for example, prove facts about all terms without variables (i.e. \emph{ground terms}) by showing that all constants have the property and the property is preserved under applying function symbols.
+		Or, we can show that all formulas with an even number of negations have a property by showing that all atomic formulas have the property and that the property is preserved under writing two negations in front of a formula.
+		In the following, we shall often (sometimes implicitly) make use of such ``restricted'' forms of induction on terms or variables.
 	
 	\end{enumerate}
 
