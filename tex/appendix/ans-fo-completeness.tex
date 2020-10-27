@@ -997,44 +997,41 @@ Hence the tableau is always closed, which is what we needed to show.
                              S(y,y)\leftrightarrow S(x,y)))\}$
                              closes. This can be seen as follows:
 
-                             \begin{center}
-                           \begin{prooftree}
-{
-line numbering=false,
-for tree={s sep'=10mm},
-single branches=true,
-close with=\xmark
-}
-[{\neg \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
-	[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
-		[{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
-					[{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
-						[{K(p)}
-							[{\forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
-								[{\neg S(p,p)\leftrightarrow S(p,p)}
-									[{\neg S(p,p)}
-										[{S(p,p)}, close ]
-									]
-									[{S(p,p)}
-										[{\neg S(p,p)}, close ]
-									]
-								]
-							]
-						]				
-					]
-		]
-	]
-]
-\end{prooftree}
-\end{center}
+            \begin{center}
+              \begin{prooftree}
+                {%
+                  line numbering=false,
+                  for tree={s sep'=10mm},
+                  single branches=true,
+                  close with=\xmark
+                }
+                [{\neg \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+                    [{\exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))}
+                        [{(K(p)\land \forall y(\neg S(y,y)\leftrightarrow S(p,y)))}
+                            [{K(p)}
+                                [{\forall y(\neg S(y,y)\leftrightarrow S(p,y))}
+                                    [{\neg S(p,p)\leftrightarrow S(p,p)}
+                                        [{\neg S(p,p)}
+                                            [{S(p,p)}, close ]
+                                        ]
+                                    [{S(p,p)}
+                                        [{\neg S(p,p)}, close ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+              \end{prooftree}
+            \end{center}
 
-Now, since  $\vdash \neg \exists x(K(x)\land \forall y(\neg
-                             S(y,y)\leftrightarrow S(x,y)))$, by
-                             soundness, we have  $\vDash \neg \exists x(K(x)\land \forall y(\neg
-                             S(y,y)\leftrightarrow S(x,y)))$. That is
-                             the stranger's claim cannot be true in
-                             any model, so also not in the actual
-                             world. Bertrand is right.
+            Now, since
+            $\vdash \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))$,
+            by soundness, we have
+            $\vDash \neg \exists x(K(x)\land \forall y(\neg S(y,y)\leftrightarrow S(x,y)))$.
+            That is the stranger's claim cannot be true in any model, so also not in the actual world.
+            Bertrand is right.
 
                              
                 \end{itemize}
