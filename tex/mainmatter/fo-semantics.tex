@@ -105,12 +105,55 @@
 		
 	\item Now everything is in place. We will spend the rest of the chapter pouring the previous ideas into fully formal, precise definitions. But before we do so, it's worth going through two ideas that one might have for how the quantifiers should work that actually \emph{don't} work. This will shed light on the idea that we're actually using in this course. The first idea is to use substitution as follows: why don't we say that $\forall x\phi$ is true iff $(\phi)[x:=t]$ is true for every term $t$, and, analogously, $\exists x\phi$ is true iff for some term $t$, $(\phi)[x:=t]$? This is known as the \emph{substitutional account of the quantifiers}. Considering an example of a concrete language and intuitive model quickly shows why this account can't be correct. Take the statement ``there is a red thing,'' which we formalize as $\exists xR(x)$ in a language with the predicate $R$ for ``\dots is red'' and additionally only the constant $a$ for the ball. Suppose that we're in a model $\mathcal{M}$ where there are only two things, the cup and the ball. The constant $a$ duly denotes the ball and $R$ expresses the property of being red, which in our model is such that the cup is red but the ball is not. Additionally, we're working with an assignment $\alpha$ such that $\alpha(x)$ is the ball for all variables $x\in\mathcal{V}$. Intuitively, it's correct that there is a red thing, namely the cup. So, $\exists R(x)$ should be true in the model. And, in fact, if we use our idea from above, we get this result: simply change the value of $x$ to the cup and $R(x)$ becomes true. But there is no term that, given our model and assignment, denotes the cup. So, we can't find a $t$ such that  $(R(x))[x:=t]$ comes out true. Our language is just not expressive enough to talk about all the objects in our model. There is no natural way of fixing this. It's simply unfeasible to postulate that we have names for all objects in all models---there are simply to many. There is a way of \emph{somehow} fixing the idea, but we won't explore it in the course. We'll return to the idea of substitution in the proof theory chapter.
 		
-	\item Another approach we might be tempted to say that: \[\llbracket \forall x(S(x)\to R(x))\rrbracket^\mathcal{M}_\alpha=1\text{ iff for every assignment }\beta, \llbracket S(x)\to R(x)\rrbracket^\mathcal{M}_\beta=1\] That is, we might be tempted to say that $\forall x(S(x)\to R(x))$ is true in a model under an assignment iff $S(x)\to R(x)$ is true under every other possible assignment in the model. This actually works in the case of relatively ``simple'' statements like $\forall x(S(x)\to R(x))$---if $S(x)\to R(x)$ is true under every assignment, then it must be true for every object, since for each object we will find at least one assignment $\beta$ such that $\beta(x)$ is the object. 
-	
-	The approach, however, doesn't work in general. To be precise, we can't say the following:
-	 \[\llbracket \forall \phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for every assignment }\beta, \llbracket \phi\rrbracket^\mathcal{M}_\beta=1\]
-	  \[\llbracket \exists \phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for some assignment }\beta, \llbracket \phi\rrbracket^\mathcal{M}_\beta=1\]
-	Once the quantificational structure of formulas gets more involved, the approach yields the intuitively wrong outcomes. Actually, to illustrate the problem, we can look at a statement with just one quantifier but one other kind of variable. Suppose that we're in a context where ``it'' clearly refers to the smallest natural number, i.e. 0. Then consider the statement ``every natural number is bigger than it.'' Formally, we'd represent this statement as \[\forall yR(x,y),\] where $R$ stands for ``\dots is smaller than (or equal to) \underline{\phantom{\dots}}.'' To model the intended reading suggests is to let $D^\mathcal{M}=\mathbb{N}$, i.e. we talk about the natural numbers, $R^\mathcal{M}=\{(n,m):n\leq m\}$ (i.e. the relation of being smaller than: the set of numbers such that the first is smaller than (or equal) to the second), and $\alpha(x)$ is the number zero. Intuitively speaking, on this reading, $\forall yR(x,y)$ should come out true in such a modeling situation: zero is indeed such that it is smaller than every other number (and identical to itself). But, alas, the present proposal gives another verdict: it's not the case that for every assignment $\beta$, $\llbracket R(x,y)\rrbracket^\mathcal{M}_\beta=1$. Just take any assignment $\beta$ which assigns $2$ to $x$ and $1$ to $y$. Since $(2,1)\notin \{(n,m):n\leq m\}=R^\mathcal{M}$, we get $\llbracket R(x,y)\rrbracket^\mathcal{M}_\beta=0$. And so, according to the proposal, $\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\alpha=0$. ---The problem is that, intuitively, the value of $x$ needs to remain fixed. Our official account from 9.1.9 guarantees this, but the account under consideration does not. The problem is has very much to do with what happens when we have more than one quantifier in a statement. In fact, our argument can be used to show that in our intended momdel,  $\llbracket \exists x\forall yR(x,y)\rrbracket^\mathcal{M}_\alpha$ turns out to be $0$, though intuitively it should be $1$. To see this, note that our proposal would say that $\llbracket \exists x\forall yR(x,y)\rrbracket^\mathcal{M}_\alpha=1$ iff there exists a assignment $\beta$, such that $\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\beta=1$, which in turn would be the case iff for every assignment $\gamma$, we have $\llbracket R(x,y)\rrbracket^\mathcal{M}_\gamma=1$. But we just figured out that no-matter what we start with, while there is a assignment $\beta$ such that  $\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\beta=1$, it's not the case that, then, for all assignments $\gamma$, $\llbracket R(x,y)\rrbracket^\mathcal{M}_\gamma=1$. Nested quantifiers are, in fact, the ultimate reason why we need the official definition that we endorse.
+	  \item Another approach we might be tempted to say that:
+		\[\llbracket \forall x(S(x)\to R(x))\rrbracket^\mathcal{M}_\alpha=1\text{ iff for every assignment }\beta, \llbracket S(x)\to R(x)\rrbracket^\mathcal{M}_\beta=1\]
+		That is, we might be tempted to say that $\forall x(S(x)\to R(x))$ is true in a model under an assignment iff $S(x)\to R(x)$ is true under every other possible assignment in the model.
+		This actually works in the case of relatively ``simple'' statements like $\forall x(S(x)\to R(x))$---if $S(x)\to R(x)$ is true under every assignment, then it must be true for every object, since for each object we will find at least one assignment $\beta$ such that $\beta(x)$ is the object.
+
+		The approach, however, doesn't work in general. To be precise, we can't say the following:
+		\[\llbracket \forall \phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for every assignment }\beta, \llbracket \phi\rrbracket^\mathcal{M}_\beta=1\]
+		\[\llbracket \exists \phi\rrbracket^\mathcal{M}_\alpha=1\text{ iff for some assignment }\beta, \llbracket \phi\rrbracket^\mathcal{M}_\beta=1\]
+		Once the quantificational structure of formulas gets more involved, the approach yields the intuitively wrong outcomes.
+		Actually, to illustrate the problem, we can look at a statement with just one quantifier but one other kind of variable.
+		Suppose that we're in a context where ``it'' clearly refers to the smallest natural number, i.e. 0.
+		Then consider the statement
+		``every natural number is bigger than it.''
+		Formally, we'd represent this statement as
+		\[\forall yR(x,y),\]
+		where $R$ stands for
+		``\dots is smaller than (or equal to) \underline{\phantom{\dots}}.''
+		To model the intended reading suggests is to let
+		$D^\mathcal{M}=\mathbb{N}$,
+		i.e. we talk about the natural numbers,
+		$R^\mathcal{M}=\{(n,m):n\leq m\}$
+		(i.e. the relation of being smaller than: the set of numbers such that the first is smaller than (or equal) to the second),
+		and $\alpha(x)$ is the number zero.
+		Intuitively speaking,
+		on this reading,
+		$\forall yR(x,y)$ should come out true in such a modeling situation:
+		zero is indeed such that it is smaller than every other number (and identical to itself).
+		But, alas, the present proposal gives another verdict:
+		it's not the case that for every assignment $\beta$, $\llbracket R(x,y)\rrbracket^\mathcal{M}_\beta=1$.
+		Just take any assignment $\beta$ which assigns $2$ to $x$ and $1$ to $y$.
+		Since $(2,1)\notin \{(n,m):n\leq m\}=R^\mathcal{M}$, we get $\llbracket R(x,y)\rrbracket^\mathcal{M}_\beta=0$.
+		And so, according to the proposal, $\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\alpha=0$.
+		---The problem is that, intuitively, the value of $x$ needs to remain fixed.
+		Our official account from 9.1.9 guarantees this, but the account under consideration does not.
+		The problem has very much to do with what happens when we have more than one quantifier in a statement.
+		In fact, our argument can be used to show that in our intended momdel,  $\llbracket \exists x\forall yR(x,y)\rrbracket^\mathcal{M}_\alpha$ turns out to be $0$, though intuitively it should be $1$.
+		To see this,
+		note that our proposal would say that
+		$\llbracket \exists x\forall yR(x,y)\rrbracket^\mathcal{M}_\alpha=1$
+		iff there exists a assignment $\beta$, such that
+		$\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\beta=1$,
+		which in turn would be the case iff for every assignment $\gamma$, we have
+		$\llbracket R(x,y)\rrbracket^\mathcal{M}_\gamma=1$.
+		But we just figured out that no-matter what we start with, while there is a assignment $\beta$ such that
+		$\llbracket \forall yR(x,y)\rrbracket^\mathcal{M}_\beta=1$,
+		it's not the case that, then,
+		for all assignments $\gamma$,
+		$\llbracket R(x,y)\rrbracket^\mathcal{M}_\gamma=1$.
+		Nested quantifiers are, in fact, the ultimate reason why we need the official definition that we endorse.
 	
 	\item That's it, these are the ideas that we're going to develop on this chapter. Let's briefly sum up:
 	
