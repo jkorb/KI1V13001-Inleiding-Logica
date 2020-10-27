@@ -113,12 +113,12 @@ points.
      \item Gets the correct result.
      \end{itemize}
 
-     \item[11.7.1.4] \emph{(Very) Long Answer}: We claim that $\mathcal{M},\alpha\vDash \forall
-       x\forall y(R(x,y)\to R(f(y), f(x))$. In order to determine what
-       we need to show is, we observe the following
+  \item[11.7.1.4] \emph{(Very) Long Answer}: We claim that
+    $\mathcal{M},\alpha\vDash \forall x\forall y(R(x,y)\to R(f(y), f(x)))$.
+    In order to determine what we need to show is, we observe the following
        \begin{itemize}
        \item[] $\mathcal{M},\alpha\vDash \forall
-         x\forall y(R(x,y)\to R(f(y), f(x))$
+         x\forall y(R(x,y)\to R(f(y), f(x)))$
        \item[\emph{iff}] for all $d\in D^\mathcal{M}$,
          $\mathcal{M},\alpha[x\mapsto d]\vDash \forall y(R(x,y)\to
          R(f(y), f(x)))$
@@ -144,9 +144,10 @@ points.
         d']}=f^\mathcal{M}(1)=2\]\[\llbracket
       f(y)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d, y\mapsto
         d']}=f^\mathcal{M}(2)=1.\]
-    But then, we have $\mathcal{M}, \alpha[x\mapsto d, y\mapsto
-        d'\vDash R(f(y), f(x))$ and so  $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
-      R(f(y), f(x))$.
+    But then, we have
+    $\mathcal{M}, \alpha[x\mapsto d, y\mapsto d']\vDash R(f(y), f(x))$
+    and so
+    $\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to R(f(y), f(x))$.
 
       So, for each choice of $d,d'\in D^\mathcal{M}$, we have \[\mathcal{M},\alpha[x\mapsto d, y\mapsto d']\vDash R(x,y)\to
       R(f(y), f(x))\] and so \[\mathcal{M},\alpha\vDash \forall
