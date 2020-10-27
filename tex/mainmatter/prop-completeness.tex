@@ -18,7 +18,12 @@ We're going to prove these two theorems in turn, beginning with soundness. But b
 
 	\item The reason why having a sound and complete proof system is desirable is that it allows us to approach validity in a purely syntactic fashion. Remember that proof systems are purely syntactic, they only manipulate formulas without reference to the semantic clauses. If we have a sound and complete proof system, this means that even though we don't explicitly talk about semantics in our system, we still effectively capture the semantically defined notion of validity---no small feat! From an AI perspective what's neat about this is that having reduced validity to syntactic derivability makes establishing validity \emph{much} more tractable for computer systems.
 	
-	\item Of the two kinds of theorems, soundness and completeness, the former is typically easier to show than the letter. Intuitively, the soundness theorem is a kind of ``sanity check'' for our proof system. As we stated it above, the theorem states that only in valid inferences, we can derive the conclusion from the premises. Why is that a sanity check? Well, because it means that if we can derive something, then it follows---it can't happen that we derive something and it doesn't follow.
+  \item%
+	Of the two kinds of theorems, soundness and completeness, the former is typically easier to show than the latter.
+	Intuitively, the soundness theorem is a kind of ``sanity check'' for our proof system.
+	As we stated it above, the theorem states that only in valid inferences, we can derive the conclusion from the premises.
+	Why is that a sanity check?
+	Well, because it means that if we can derive something, then it follows---it can't happen that we derive something and it doesn't follow.
 	
 	\item The completeness theorem is typically (much) harder to prove. And without knowing how the proof goes, it's already possible to see why. The theorem states that \emph{every} conclusion that can validly be drawn from a set of premises can be derived from them. But surely we usually don't know \emph{all} conclusions that can validly be drawn from a set of premises: there are many (actually infinitely many) of them, it takes some time to figure that out. But the completeness theorem states that, even if we don't know which are the conclusion we can validly draw, we can be sure that we can derive them. That's surprising! (I hope \dots) 
 	
