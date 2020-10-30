@@ -184,7 +184,7 @@ Clearly, this is not feasible.
 			
 			\end{enumerate}
 		
-	To say that a condition is necessary, we use the locution `only if:' something's a natural number only if it is non-negative. And to say that a condition is sufficient, we use the locution `if:' if a number is even, then it's an integer. Whence the origin of the phrase `if and only if.'
+	To say that a condition is necessary, we use the locution `only if:' something's a natural number only if it is non-negative. And to say that a condition is sufficient, we use the locution `if:' if a number is even, then it's an integer. Hence the origin of the phrase `if and only if.'
 		
 	\item The definition of a property always gives us a list of necessary and jointly sufficient conditions for something to have the property. Think of the conditions (i) and (ii) from our definition of being prime. They are both \emph{necessary} in the sense that an object that lacks one of these two properties is not prime: $1$, for example, is not prime since it violates condition (i); $4$ isn't prime because it violates condition (ii)---clearly $2<4$ and $2\cdot 2=4$, so just set $k=l=2$. At the same time, (i) and (ii) together are \emph{sufficient} for a number to be prime. For example, to see that $3$ is prime, first note that $1<3$ so condition (i) is satisfied. Second, there are just three numbers smaller than 3, viz. $0,1,$ and $2$. And $0\cdot 1=0\cdot 2= 0, 1\cdot 1=1, 1\cdot 2=2, 2\cdot 2=4$. So there are no $k,l<3$ such that $k\cdot l=3$, meaning condition (ii) is satisfied. So, $3$ is prime.
 	
@@ -239,7 +239,7 @@ The two claims say \emph{exactly} the same thing. While the first is very precis
 		
 		\begin{description}
 							
-			\item[Lemma.] An auxilliary claim, established in order to prove a more important proposition or theorem. Whether something counts as a lemma is thus context-dependent: one mathematician's important result may be another mathematician's lemma.
+			\item[Lemma.] An auxiliary claim, established in order to prove a more important proposition or theorem. Whether something counts as a lemma is thus context-dependent: one mathematician's important result may be another mathematician's lemma.
 						
 			\item[Proposition.] A run-of-the-mill, ordinary mathematical fact.
 			
@@ -294,7 +294,7 @@ The two claims say \emph{exactly} the same thing. While the first is very precis
 				
 			\item \emph{State your claim as clearly as possible.}
 									
-			As we've mentioned above, stating a mathematical claim in proper mathemateze is what makes it precise enough to prove. So, let's write our conjecture in proper mathemateze. Basically, what we want to say that for any natural number, if that number is a prime and bigger than two, then the number odd. So, we declare $n$ as a variable for natural numbers and write our conjecture as:
+			As we've mentioned above, stating a mathematical claim in proper mathemateze is what makes it precise enough to prove. So, let's write our conjecture in proper mathemateze. Basically, what we want to say is that for any natural number, if that number is a prime and bigger than two, then the number is odd. So, we declare $n$ as a variable for natural numbers and write our conjecture as:
 			
 			\begin{itemize}
 			
@@ -541,7 +541,7 @@ Strictly speaking, to prove the first claim, we have to prove the if-then claim 
 				\end{proposition}
 				
 				\begin{proof}
-				Suppose that $n$ and $m$ are natural numbers. We want to show that $n\cdot m$ is even, then either $n$ is even or $m$ is even. We prove the contrapositive, i.e. if neither $n$ nor $m$ is even, then $n\cdot m$ is odd. Note that if neither $n$ nor $m$ is even, then both $n$ and $m$ are both odd. This means that $n=2k+1$ and $m=2l+1$ for natural numbers $k,l$. Now consider the number $n\cdot m$. Since  $n=2k+1$ and $m=2l+1$, we have that $n\cdot m=(2k+1)(2l+1)=4kl+2k+2l+1=2(2kl+k+l)+1$. But now note that $2(2kl+k+l)+1$ is of the form $2x+1$ for $x$ a natural number, just let $x=2kl+k+l$. But this just means that $2(2kl+k+l)+1=n\cdot m$ is odd, which is what we needed to show.
+				Suppose that $n$ and $m$ are natural numbers. We want to show that $n\cdot m$ is even, then either $n$ is even or $m$ is even. We prove the contrapositive, i.e. if neither $n$ nor $m$ is even, then $n\cdot m$ is odd. Note that if neither $n$ nor $m$ is even, then both $n$ and $m$ are odd. This means that $n=2k+1$ and $m=2l+1$ for natural numbers $k,l$. Now consider the number $n\cdot m$. Since  $n=2k+1$ and $m=2l+1$, we have that $n\cdot m=(2k+1)(2l+1)=4kl+2k+2l+1=2(2kl+k+l)+1$. But now note that $2(2kl+k+l)+1$ is of the form $2x+1$ for $x$ a natural number, just let $x=2kl+k+l$. But this just means that $2(2kl+k+l)+1=n\cdot m$ is odd, which is what we needed to show.
 				\end{proof}
 			
 			\end{itemize}
@@ -599,11 +599,11 @@ Strictly speaking, to prove the first claim, we have to prove the if-then claim 
 			
 			\begin{itemize}
 			
-					\item \emph{Form}. 	We prove a that all objects (of a category) have a property by showing that any \emph{arbitrary} object (of the category) has the desired property.
+					\item \emph{Form}. 	We prove that all objects (of a category) have a property by showing that any \emph{arbitrary} object (of the category) has the desired property.
 				
 					\item \emph{Justification}. An arbitrary object is one about which we've not assumed anything. But that means that if we can show that an arbitrary object has the property, then any object we might pick will be just like the arbitrary object. So, if we have a proof that an arbitrary object has the property, we can just repeat the proof for any object we might pick. So, any object will have to have the property.
 										
-					\item \emph{Use}. Basically whenever we want prove a universal claim.
+					\item \emph{Use}. Basically whenever we want to prove a universal claim.
 					
 					\item \emph{Example}.
 					
@@ -757,9 +757,9 @@ done better.
 
 			\item $[h]$ The sum of two even numbers is even.
 			
-			\item $[h]$ If the product of two numbers is odd, then at least one of the two numbers is odd. 
+			\item $[h]$ If the product of two natural numbers is odd, then at least one of the two numbers is odd. 
 			
-			\item $[h]$ Every number is either even or odd.
+			\item $[h]$ Every natural number is either even or odd.
 			
 			\item If you add one to an even number, you get an odd number.
 
@@ -789,7 +789,7 @@ done better.
 		
 		\item For every natural number, $n$, either there exists a natural number $k$ such that $2k=n$ or there exists a natural number $k$ such that $2k+1=n$.
 		
-		\item If $n$ is natural number, then there exists a natural number $k$ such that $2k=n^2+n$.
+		\item If $n$ is a natural number, then there exists a natural number $k$ such that $2k=n^2+n$.
 		
 		\item There is no real number $x$ such that $x<0$ and whenever $y<0$ for some real number $y$, then $y\leq x$. 
 					
@@ -798,7 +798,7 @@ done better.
 	\item $[\nosym]$ Consider our running example from 2.3.7 and its final proof:
 	
 	\begin{proposition}
-				Let $n$ be natural number such that $n$ is prime. If $n>2$, then $n$ is odd.
+				Let $n$ be a natural number such that $n$ is prime. If $n>2$, then $n$ is odd.
 				\end{proposition}
 				
 				\begin{proof}

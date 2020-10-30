@@ -801,7 +801,7 @@ When a variable occurrence in a formula is not bound by some quantifier occurren
 		This spells trouble for our account of valid inference.
 		Suppose that somebody comes into the room and declares ``She's coming! So, we should all be happy.''
 		How can you possibly determine any relation between the truth of ``she's coming'' and ``we should all be happy'' without knowing who ``she'' refers to?
-		It \emph{is} possible to use free variables (and disambiguated) pronouns in a reasonable, logical way.
+		It \emph{is} possible to use free variables and (disambiguated) pronouns in a reasonable, logical way.
 		For example, in mathematics, we often write an open formula
 		$x+y=y+x$
 		to express a general claim about all numbers, rather than using the universally quantified sentence
@@ -833,7 +833,7 @@ $P(x)$.
 		\end{enumerate}
 		\end{proposition}
 		\begin{proof}
-		We only proof 3. Suppose that $x$ occurs free in $\phi$, at $(n,x)$, and $y\neq x$. Suppose further, for contradiction, $(n,x)$ is bound by some occurrence $(k,Q'x)$ of quantifier $Q'x$, $Q'=\forall,\exists$, in $Qy\phi$. Clearly, $k$ can't be $r$, i.e. the root of the stripped parsing tree for $Qy\phi$. Why? Well, since there we find $Qy$ and by assumption $x\neq y$. So, for $(r,Qy)$, condition (i) of Definition 8.4.5 is violated, meaning $(r,Qy)$ can't violate any occurrence of $x$. But since the (stripped) parsing tree for $Qy\phi$ looks as follows, 		
+		We only proof 3. Suppose that $x$ occurs free in $\phi$, at $(n,x)$, and $y\neq x$. Suppose further, for contradiction, $(n,x)$ is bound by some occurrence $(k,Q'x)$ of quantifier $Q'x$, $Q'=\forall,\exists$, in $Qy\phi$. Clearly, $k$ can't be $r$, i.e. the root of the stripped parsing tree for $Qy\phi$. Why? Well, since there we find $Qy$ and by assumption $x\neq y$. So, for $(r,Qy)$, condition (i) of Definition 8.4.5 is violated, meaning $(r,Qy)$ can't bind any occurrence of $x$. But since the (stripped) parsing tree for $Qy\phi$ looks as follows, 		
 		\begin{center}
 		\Tree [.$Qy$ [.$T_S(\phi)$ ] ]
 		\end{center}
@@ -894,7 +894,7 @@ Well, we could have done this without the recursive definition, sure. But the po
 
 			\end{enumerate}
 			
-	The crucial clause is (ii.c), which blocks us from substituting the variable as soon as we hit upon a quantifier that binds it. This is because we only want to replace \emph{free} occurrences of variables. Why? Well, first of all, because only for free variables it's unclear what they stand for. So only for them do we need use substitution to say what they stand for. Moreover, if we replaced bound variables, we could change the meaning of statements. To see this, note that $\exists xR(x)$ says that there exists a red thing (assuming that $R$ stands for ``\dots is red''). Now, suppose that $(\exists xR(x))[x:=a]$ would yield $\exists xR(a)$. This would turn the statement ``there exists a red thing'' into the statement ``there exists an object such that the ball is red'' (assuming that $a$ stands for the ball). This is not only a weird statement, it could actually be false, even if ``there exists a red thing'' is true: suppose that the ball is blue and the cup is red. Then ``there exists a red thing'' is true but ``there exists an object such that the ball is red''  is false. \frownie
+	The crucial clause is (ii.c), which blocks us from substituting the variable as soon as we hit upon a quantifier that binds it. This is because we only want to replace \emph{free} occurrences of variables. Why? Well, first of all, because only for free variables it's unclear what they stand for. So only for them do we need to use substitution to say what they stand for. Moreover, if we replaced bound variables, we could change the meaning of statements. To see this, note that $\exists xR(x)$ says that there exists a red thing (assuming that $R$ stands for ``\dots is red''). Now, suppose that $(\exists xR(x))[x:=a]$ would yield $\exists xR(a)$. This would turn the statement ``there exists a red thing'' into the statement ``there exists an object such that the ball is red'' (assuming that $a$ stands for the ball). This is not only a weird statement, it could actually be false, even if ``there exists a red thing'' is true: suppose that the ball is blue and the cup is red. Then ``there exists a red thing'' is true but ``there exists an object such that the ball is red''  is false. \frownie
 	
 	\item \emph{Example}. Here is a step-by-step calculation of the result of a substitution: 
 	

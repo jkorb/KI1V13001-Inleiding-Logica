@@ -65,7 +65,7 @@ points.
     \begin{enumerate}
     \item $\forall x(V(x)\to L(x))$
     \item $\neg \forall x(L(x)\to \forall y(\neg L(y)\to I(x,y)))$
-    \item $H(x)\land \neg V(x)\land \neg D(x)$
+    \item $L(x)\land \neg V(x)\land \neg D(x)$
     \item $\exists x(\neg L(x)\land \neg D(x))$
     \end{enumerate}
 
@@ -369,8 +369,7 @@ Since the tableau is closed, we can infer that \[R(b), \forall
       theorems. Please keep in mind that, as I said in the last
       lecture, if a mathematical claim is provable, then there is
       always more than one proof of it. This means, the proofs I
-      provide are not the only possible proofs. The merit of the%$
-      answers I formulate below is that they might give you a better
+      provide are not the only possible proofs. The merit of the answers I formulate below is that they might give you a better
       idea of what I expect a good answer to look like. Also keep in
       mind that my answer are always as explicit as possible, and I
       don't necessarily expect the same level of attention to detail
@@ -755,21 +754,21 @@ Hence the tableau is always closed, which is what we needed to show.
             x\rrbracket^\mathcal{M}_{\alpha[x\mapsto
             d]})=(d,d)\in R^\mathcal{M}$.
 
-                        \item[11.7.2.9]. We're asked to show that in the
+                        \item[11.7.2.9]We're asked to show that in the
                           given model $\mathcal{M}$ we have
                           \[\mathcal{M},\alpha\vDash \exists xP(x)\to
-                          P(a)\lor P(b)\lor P(b)\] for each
+                          P(a)\lor P(b)\lor P(c)\] for each
                           $\alpha$. We know that, by definition, $\mathcal{M},\alpha\vDash \exists xP(x)\to
-                          P(a)\lor P(b)\lor P(b)$ iff either (i)
+                          P(a)\lor P(b)\lor P(c)$ iff either (i)
                           $\mathcal{M},\alpha\nvDash \exists xP(x)$ or (ii)
                           $\mathcal{M},\alpha\vDash
-                          P(a)\lor P(b)\lor P(b)$. Now clearly, we
+                          P(a)\lor P(b)\lor P(c)$. Now clearly, we
                           either have (a) $\mathcal{M},\alpha\vDash
                           \exists xP(x)$ or (b)
                           $\mathcal{M},\alpha\nvDash \exists xP(x)$ by
                           bivalence. In case (b), we can immediately
                           infer that $\mathcal{M},\alpha\vDash \exists xP(x)\to
-                          P(a)\lor P(b)\lor P(b)$, so we focus on case
+                          P(a)\lor P(b)\lor P(c)$, so we focus on case
                           (a). Suppose that $\mathcal{M},\alpha\vDash
                           \exists xP(x)$. This means, by definition,
                           that there exists a $d\in D^\mathcal{M}$
@@ -786,11 +785,11 @@ Hence the tableau is always closed, which is what we needed to show.
                            P(a)$. But if $\mathcal{M},\alpha\vDash 
                            P(a)$, then $\mathcal{M},\alpha\vDash 
                            P(a)\lor P(b)\lor P(c)$ and so $\mathcal{M},\alpha\vDash \exists xP(x)\to
-                          P(a)\lor P(b)\lor P(b)$ by (ii), as
+                          P(a)\lor P(b)\lor P(c)$ by (ii), as
                           desired. If $d=2,3$, we can give the same,
                           analogous argument using the denotation
                           lemma. So, either way,  $\mathcal{M},\alpha\vDash \exists xP(x)\to
-                          P(a)\lor P(b)\lor P(b)$, as desired.
+                          P(a)\lor P(b)\lor P(c)$, as desired.
 
                           \item[11.7.2.10] We're asked to prove that if
                             $\phi\vdash\psi$ and $\psi\vdash\phi$,
@@ -986,7 +985,7 @@ Hence the tableau is always closed, which is what we needed to show.
                            \[ \exists x(K(x)\land \forall y(\neg
                              S(y,y)\leftrightarrow S(x,y)))\]
 
-                           We now prove that Betrand is correct, since
+                           We now prove that Bertrand is correct, since
                            the stranger's claim is a logical
                            falsehood. We show this using
                            tableaux. More specifically, we show that

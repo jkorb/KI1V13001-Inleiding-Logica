@@ -93,7 +93,7 @@
 			\item \emph{Claim}. For all $\Gamma,\Delta\subseteq\mathcal{L}$ and $\phi\in\mathcal{L}$, we have if $\Gamma\vDash\phi$, then $\Gamma\cup\Delta\vDash\phi$.
 			
 			\begin{proof}
-			We prove this by conditional proof. So let $\Gamma,\Delta\subseteq\mathcal{L}$ and $\phi\in\mathcal{L}$ be arbitrary and assume that $\Gamma\vDash\phi$. This means that for all valuations $v$, if $v$ makes all the members of $\Gamma$ true, then $v$ makes $\phi$ true. We want to show that $\Gamma\cup\Delta\vDash\phi$, i.e. if a valuation $v$ makes all the members of  $\Gamma\cup\Delta$ true, then $v$ makes all the members of $\phi$ true. So let $v$ be an arbitrary valuation that makes all the members of  $\Gamma\cup\Delta$ true. Since $\Gamma\subseteq\Gamma\subseteq\Delta$, it follows that $v$ makes all the members of $\Gamma$ true. But by assumption ($\Gamma\vDash\phi$), this means that $v$ makes $\phi$ true, which is what we needed to show.
+			We prove this by conditional proof. So let $\Gamma,\Delta\subseteq\mathcal{L}$ and $\phi\in\mathcal{L}$ be arbitrary and assume that $\Gamma\vDash\phi$. This means that for all valuations $v$, if $v$ makes all the members of $\Gamma$ true, then $v$ makes $\phi$ true. We want to show that $\Gamma\cup\Delta\vDash\phi$, i.e. if a valuation $v$ makes all the members of  $\Gamma\cup\Delta$ true, then $v$ makes all the members of $\phi$ true. So let $v$ be an arbitrary valuation that makes all the members of  $\Gamma\cup\Delta$ true. Since $\Gamma\subseteq\Gamma\cup\Delta$, it follows that $v$ makes all the members of $\Gamma$ true. But by assumption ($\Gamma\vDash\phi$), this means that $v$ makes $\phi$ true, which is what we needed to show.
 			\end{proof}
 		
 			\setcounter{enumii}{12}

@@ -47,7 +47,7 @@
                    completeness.
 
                    \item But before we prove our soundness and
-                     completness lemmas, we'll have to supply some
+                     completeness lemmas, we'll have to supply some
                      auxilliary lemmas. These two lemmas, the
                      denotation lemma and the locality lemma, are
                      semantic in nature and will figure into our proof
@@ -64,7 +64,7 @@
 
         \item The first lemma that we're going to prove is the
           denotation lemma. Let's first pause for a second and think
-          about the content of lemma (before having stated it
+          about the content of the lemma (before having stated it
           precisely). The core of the lemma is a kind of equivalence
           between the syntactic method of fixing the reference of
           variables via substitution and the semantic method of
@@ -76,7 +76,7 @@
           point of the lemma is that the following two ways of fixing
           the reference of $x$ in $P(x)$ to be $t$  are equivalent:
           \begin{enumerate}[1.]
-          \item We can subsitute the term $t$ in $P(x)$, i.e. consider
+          \item We can substitute the term $t$ in $P(x)$, i.e. consider
             $(P(x))[x:=t]$ which is just $P(t)$.
             \item We can change the value of $x$ under the assignment
               $\alpha$ to be $\llbracket
@@ -134,7 +134,7 @@
                 assignment $\alpha[x\mapsto \llbracket
                 t\rrbracket^\mathcal{M}_\alpha]$. By definition, we
                 have that $\mathcal{M}, \alpha[x\mapsto \llbracket
-                t\rrbracket^\mathcal{M}_\alpha\vDash R(t_1,
+                t\rrbracket^\mathcal{M}_\alpha ] \vDash R(t_1,
                 \mathellipsis, t, \mathellipsis, t_n)$ iff
                 \[(\llbracket
                 t_1\rrbracket^\mathcal{M}_{\alpha[x\mapsto \llbracket
@@ -311,7 +311,7 @@
 
                 \end{enumerate}
             \end{proof}
-            Now the role of the locality lemma is less intuitive as
+            Now the role of the locality lemma is less intuitive than
             the role of the denotation lemma. But as we'll see in a
             second, it plays a central role in our proof of the
             soundness lemma.
@@ -342,12 +342,12 @@
                   faithful---which is just an iterated version of the
                   down preservation principle. Now in first-order
                   tableaux, things aren't \emph{quite} as simple,
-                  thought he general idea remains the same.
+                  although the general idea remains the same.
 
                   \item The
                   concept of a faithful valuation is generalized to
                   first-order logic easy enough: we say that a model
-                  $\mathcal{M}$ is \emph{faithtful} to a branch iff for all
+                  $\mathcal{M}$ is \emph{faithful} to a branch iff for all
                   assignments $\alpha$ we have that
                   $\mathcal{M},\alpha\vDash \phi$ for all $\phi\in
                   B$. The major
@@ -454,7 +454,7 @@
                     D^\mathcal{M}$ such that
                     $\mathcal{M},\alpha[\alpha\mapsto d]\vDash
                     \phi$. Now, we define our model $\mathcal{N}$ just
-                    like $\mathcal{N}$, except that we set
+                    like $\mathcal{M}$, except that we set
                     $p^\mathcal{N}=d$. Now, note that by the
                     denotation lemma, it easily follows that
                     $\mathcal{N},\alpha\vDash
@@ -485,7 +485,7 @@
                         [{\varphi[x:=a]^\dagger} ]
                         ]
                       \end{prooftree}\quad\raisebox{-3ex}{{\small$\dagger$:
-                          $ta$ any ground term on the branch}}
+                          $t\a$ any ground term on the branch}}
 
                     \end{center}
                     Now, since $\mathcal{M}$ is faithful to $B$ and
@@ -497,7 +497,7 @@
                     simply let $\mathcal{M}=\mathcal{N}$.
 
                     Finally, we need to consider the case where the
-                    last rule was an idenity rule. The case where the
+                    last rule was an identity rule. The case where the
                     last rule was the $t=t$ rule, which introduces
                     $t=t$ for every ground term on every branch is
                     easily taken care of since it's easily checked
@@ -562,13 +562,13 @@
                       to the initial list. Now, every time that we
                       apply a rule to construct the complete tableau,
                       we obtain \emph{a} model (possibly
-                      differet from $\mathcal{M}$) which is
+                      different from $\mathcal{M}$) which is
                       faithful to at least one branch of that
                       tree. This means that there exists a model
                       $\mathcal{N}$ which is faithful to some branch
                       in the complete tableau for
                       $\Gamma\cup\{\neg\phi\}$. Now reasoning by
-                      contradiction quickl shows that this branch
+                      contradiction quickly shows that this branch
                       cannot be closed. For suppose that it were. Then
                       there would be an atomic formula and its
                       negation on the branch, which would then both
@@ -789,7 +789,7 @@ Revisit the self study questions of ch. 7.6.
 \begin{itemize}
 \item The exercises for this chapter are different. We're getting
  close to the endterm exam and it's high-time that we think a bit more
- concretely about exam preparation. The exercises for this an next lecture will just be that: exam preparation.
+ concretely about exam preparation. The exercises for this and next lecture will just be that: exam preparation.
 
  \item In a moment, I will describe the ``recipe'' for the exam to you
 so that, in principle, you can make as many mock exams from the

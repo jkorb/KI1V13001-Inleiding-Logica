@@ -342,7 +342,7 @@ close with=\xmark
 	]
 ]\end{prooftree}
 \end{center}
-The point is that first, we applied the rule to $\forall xP(x)$ for the constant $a$ which was the only constant or parameter at this point (when we only had the initial list). But then, we applied the rule for $\exists y R(a,y)$, which introduced a new parameter, $p$, to the branch. At this point, it became possible to apply the rule for $\forall xP(x)$ again, and so we did. So, even though the \emph{looks} like a good tree, it's not:
+The point is that first, we applied the rule to $\forall xP(x)$ for the constant $a$ which was the only constant or parameter at this point (when we only had the initial list). But then, we applied the rule for $\exists y R(a,y)$, which introduced a new parameter, $p$, to the branch. At this point, it became possible to apply the rule for $\forall xP(x)$ again, and so we did. So, even though the following \emph{looks} like a good tree, it's not:
 	\begin{center}
 \begin{prooftree}
 {
@@ -619,7 +619,7 @@ close with=\xmark
 		
 		\end{enumerate}
 		
-		\item Ok, so what about \emph{un}derivability, i.e. $\Gamma\nvdash\phi$? The definition of $\vdash$ automatically gives us $\Gamma\nvdash\phi$ iff the tableau for $\Gamma\cup\{\neg\phi\}$ is open, i.e. there is at least one branch. Here's an example:
+		\item Ok, so what about \emph{un}derivability, i.e. $\Gamma\nvdash\phi$? The definition of $\vdash$ automatically gives us $\Gamma\nvdash\phi$ iff the tableau for $\Gamma\cup\{\neg\phi\}$ is open, i.e. there is at least one open branch. Here's an example:
 		\begin{center}
 \begin{prooftree}
 {
@@ -668,7 +668,7 @@ The tableau gives us that $\forall x(P(x)\lor Q(x))\nvdash \forall xP(x)\lor \fo
 			\item $R^{\mathcal{M}_B}=\{(a_1, \mathellipsis, a_n): R(a_1, \mathellipsis, a_n)\in B\}$
 		
 		\end{enumerate}
-	There's something to talk about here. There's no typo here: the objects in the domain of $\mathcal{M}_B$ are really the constants and parameters on $B$ themselves. The model is what's known in the literature as a \emph{term-model}: it's a model build from the expressions of our language. In this weird model, every constant and parameter is just a name for itself. And, given that, predicates are interpreted just like the branch says they should be. Now, if you think back of the associated valuation of a branch in propositional logic (6.3.5), you will note that also there, we basically let the branch tell us what to do. In first-order logic, this is not much different. The only somewhat weird thing is that we let constants (and parameters denote themselves). But what's \emph{really} so weird about this: constants and parameters are themselves objects (they are things you can write down, etc.), so why shouldn't they be allowed to ``live'' in a model?
+	There's something to talk about here. There's no typo here: the objects in the domain of $\mathcal{M}_B$ are really the constants and parameters on $B$ themselves. The model is what's known in the literature as a \emph{term-model}: it's a model build from the expressions of our language. In this weird model, every constant and parameter is just a name for itself. And, given that, predicates are interpreted just like the branch says they should be. Now, if you think back of the associated valuation of a branch in propositional logic (6.3.5), you will note that also there, we basically let the branch tell us what to do. In first-order logic, this is not much different. The only somewhat weird thing is that we let constants (and parameters) denote themselves. But what's \emph{really} so weird about this: constants and parameters are themselves objects (they are things you can write down, etc.), so why shouldn't they be allowed to ``live'' in a model?
 	
 	\item \emph{Examples}:
 	
@@ -1294,13 +1294,13 @@ close with=\xmark
 \end{center}
 What's going on here? Well, what happened is that we get a universally quantifier formula $\forall x\neg\forall yR(x,y)$, which we instantiate with a fresh parameter $p_1$, which then lead to an \emph{existentially} quantified formula $\exists y\neg R(p_1, y)$, for which we introduced a fresh parameter, $p_2$, giving us $R(p_1, p_2)$, which then forces us to re-instantiate $\forall x\neg\forall yR(x,y)$, giving us $\exists y\neg R(p_2, y)$, forcing us to introduce $p_3$, and so on. We got caught in what we might call a \emph{quantifier feedback loop}. The possibilities of such loops has profound implications for the proof theory of first-order logic using tableaux.
 
-	\item But before we discuss these implications, let's talk about fact that we just wrote down an infinite tableau. Well, of course we didn't. What we did was to realize that if we were to continue applying the tableau rules trying to construct the tableau for $\neg\exists x\forall yR(x,y)$, we will never get to an end. So, we can't write down the tableau for that formula. But does that mean that this tableau doesn't \emph{exist}? To appreciate that the mathematical answer is \emph{No!}, we have to re-think what tableaux actually \emph{are}. So far, we've been talking about tableaux as a concrete tree that we write down. But, mathematically speaking, the actual ink-and-paper (or screen-and-pixel) tableau that you write down is not what the tableau \emph{is}. A tableau, for a mathematician, is a special kind of (graph-theoretic) tree, which in turn is a mathematical structure that consists of a set of nodes and a set of edges connecting them. Nothing in this requires the tree to be written down or even be finitely writable in the first-place---it's just a pair of sets. But what about the rules? Well, for a mathematician, the rules we use to construct our tableaux are just an inductive definition of the set of tableaux! And in first-order logic, that's how \emph{we} will need to think of tableau as well.
+	\item But before we discuss these implications, let's talk about the fact that we just wrote down an infinite tableau. Well, of course we didn't. What we did was to realize that if we were to continue applying the tableau rules trying to construct the tableau for $\neg\exists x\forall yR(x,y)$, we will never get to an end. So, we can't write down the tableau for that formula. But does that mean that this tableau doesn't \emph{exist}? To appreciate that the mathematical answer is \emph{No!}, we have to re-think what tableaux actually \emph{are}. So far, we've been talking about tableaux as a concrete tree that we write down. But, mathematically speaking, the actual ink-and-paper (or screen-and-pixel) tableau that you write down is not what the tableau \emph{is}. A tableau, for a mathematician, is a special kind of (graph-theoretic) tree, which in turn is a mathematical structure that consists of a set of nodes and a set of edges connecting them. Nothing in this requires the tree to be written down or even be finitely writable in the first-place---it's just a pair of sets. But what about the rules? Well, for a mathematician, the rules we use to construct our tableaux are just an inductive definition of the set of tableaux! And in first-order logic, that's how \emph{we} will need to think of tableau as well.
 	
 	\item Note that the tableau above, our example, shows that $\nvdash\exists x\forall yR(x,y)$, i.e. the formula $\exists x\forall yR(x,y)$ is not derivable. In fact, infinite tableaux can \emph{only} occur in cases where something \emph{isn't} derivable. Why? Well, because if something \emph{is} derivable, then the tableau needs to close (by definition). But if a tableau closes, it does so after finitely many steps: there will be two nodes, one containing an atomic formula the other its negation, which are at some point in the tree---everything that comes after doesn't matter (in first-order logic, we can ``close early''). But how do we know that the tableau we sketched above doesn't close at some point? Well, that we need to prove. But the argument is actually not that hard:
 	
 	\begin{itemize}
 	
-		\item Note that all the formulas after the initial list are of the form: $\neg \forall yR(p_i, y)$, $\exists y\neg R(p_i, y)$, and $\neg R(p_i, p_{i+1})$. But these statements are either begin with an existential quantifier or a negation. So, there can't be an atom and it's negation on the branch.
+		\item Note that all the formulas after the initial list are of the form: $\neg \forall yR(p_i, y)$, $\exists y\neg R(p_i, y)$, and $\neg R(p_i, p_{i+1})$. But these statements either begin with an existential quantifier or a negation. So, there can't be an atom and it's negation on the branch.
 		
 	\end{itemize}
 Further, we need to prove that the tableau is \emph{complete}, i.e. if we were to continue indefinitely to apply rules according to the pattern described, then for each node to which a rule could be applied, at some point it will be applied. Here's the argument:
@@ -1414,7 +1414,7 @@ How do we see that the tableau is open? Well, we note that all the atomic formul
 
 \begin{itemize}
 	
-		\item Tableaux for first-order logic work in similar way as propositional tableaux. Underlying is always the idea that an inference is valid iff the premises and negation of conclusion are jointly unsatisfiable.				
+		\item Tableaux for first-order logic work in a way similar to propositional tableaux. Underlying is always the idea that an inference is valid iff the premises and negation of conclusion are jointly unsatisfiable.				
 		\item We have three tiers of tableau systems: simple tableaux, tableaux with identity, and tableaux with identity and functions. We successively add rules for those.
 		
 		\item There is also a concept of an associated model, which in first-order logic is a \emph{term model}, i.e. a model based on the syntactic strings as the objects in the domain.
