@@ -1,0 +1,929 @@
+\documentclass[../slides.tex]{subfiles}
+
+\title{2018-2019 Inleiding Logica (KI1V13001) \\ Lecture 7}
+ 
+\date{October 8, 2019\\[2ex] {\tiny \textcopyright~The non-copyrighted content of these slides is open access under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}}}
+ 
+%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setcounter{framenumber}{200}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}{Overview}
+\tableofcontents
+\end{frame}
+
+\section{Rehash}
+\begin{frame}{Rehash}
+	
+\begin{itemize}
+
+	\item Our proof system is the method of tableaux.
+
+	\item $\Gamma\vDash\phi$ iff $\Gamma\cup\{\neg\phi\}$ is unsatisfiable.
+	
+	{\tiny\begin{center}
+					
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg\neg \phi [\phi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\land\psi [\phi [\psi ] ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg (\phi\land\psi) [\neg \phi ] [\neg \psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\lor\psi [\phi ] [\psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\lor\psi) [\neg\phi [\neg\psi ] ] ]
+					\end{prooftree}
+
+					\vspace{2ex}
+
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg (\phi\to\psi) [\phi [\neg \psi ] ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\to\psi [\neg \phi ] [\psi ] ]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\leftrightarrow \psi [\phi [\psi] ] [\neg \phi [\neg \psi] ] ]]
+					\end{prooftree}
+					%
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\leftrightarrow \psi) [\phi [\neg \psi] ] [\neg \phi [ \psi] ] ]]
+					\end{prooftree}
+
+				\end{center}}
+				
+	\item A branch $B$ is closed iff $p,\neg p\in B$ for some $p\in\mathcal{P}$.
+	
+	\item A tableau is closed iff every branch is closed.
+	
+	\item $\Gamma\vdash \phi$ iff the complete tableau for $\Gamma\cup\{\neg\phi\}$ is closed.
+	
+	\item $\Gamma\nvdash\phi$  iff there is at least one open branch.
+	
+\[v_B(p)=\begin{cases} 1 &\text{if }p\in B\\0&\text{if }p\notin B\end{cases}\]
+\end{itemize}
+
+
+\end{frame}
+		
+
+\section{7. Soundness and Completeness}
+\subsection{7.1 Soundness and Completeness}
+
+\begin{frame}{7.1 Soundness and Completeness}
+
+	\begin{itemize}
+		
+		\item (7.1.1) We want to be able to  derive the conclusion from the premises in all and only the valid inferences:
+		
+				\begin{description}
+		
+			\item[Soundness Theorem.] If $\Gamma\vdash\phi$, then $\Gamma\vDash\phi$.
+			
+			\item[Completeness Theorem.] If $\Gamma\vDash\phi$, then $\Gamma\vdash\phi$.
+		
+		\end{description}
+	
+		\item (7.1.2) Together, the two reduce semantic validity to syntactic validity.
+	
+		\item (7.1.3) Soundness is a ``sanity check:'' only if it follows, we can infer it.
+		
+		\item (7.1.4) Completeness is a strong property: \emph{everything} that follows, you can infer.
+		
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Proof Idea}
+
+	\begin{itemize}
+	
+		\item (7.1.6) Remember:
+		
+		\begin{description}
+			
+				\item[Down Preservation.] If the formula at the parent node of a rule is true under a valuation, then at least one formula on a newly generated child node is true under the valuation.
+				
+				\item[Up Preservation.] If a formula at a newly generated child node is true under a valuation, then the formula at the parent node is true.
+				
+		\end{description}
+		
+		\item Together, up and down preservation guarantee that when we're applying the rules, we consider precisely the different ways for a formula to be true.
+	
+	\end{itemize}
+
+
+\end{frame}
+
+\subsection{7.2 The Soundness Theorem}
+
+\begin{frame}{7.2 The Soundness Theorem --- Proof Idea}
+
+	\begin{itemize}
+
+		\item (7.2.1) We're actually going to prove the contrapositive:
+		
+			\begin{itemize}
+			
+				\item If $\Gamma\nvDash\phi$, then $\Gamma\nvdash\phi$.
+			
+			\end{itemize}
+			
+		\item If $\Gamma\nvDash\phi$, then there's a valuation $v$ that makes all the members of $\Gamma\cup\{\neg\phi\}$ true.
+		
+		\item That's the initial list. 
+		
+		
+		\item By Down Preservation, whenever we apply a rule, we get at least one branch all of whose members $v$ makes true.
+		
+		\item So, in the complete tableau, there has to be one branch, $B$, such that $v$ makes all the formulas on $B$ true.
+
+		\item But then $B$ cannot be closed. So the tableau is open.
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Soundness Lemma}
+
+	\begin{itemize}
+	
+		\item Let $B$ be a branch of a possibly incomplete tableau and $v$ a valuation:
+		
+			\begin{itemize}
+		
+				\item (7.2.2) We say that $v$ is \emph{faithful} to $B$ iff $\llbracket\phi\rrbracket_v=1$, for all $\phi\in B$
+	
+			\end{itemize}
+			
+				\begin{center}{\tiny
+\begin{prooftree}
+{
+proof statement format={centered},
+to prove={p\to q, q\nvdash p},
+line numbering=false,
+for tree={s sep'=5mm},
+single branches=true,
+close with=\xmark
+}
+[p\to q, grouped [q, grouped [\neg p, grouped [\neg p] [q]]]]
+\end{prooftree}
+
+\vspace{2ex}
+\emph{Countermodel}: $v_B(q)=1, v_B(p)=0$.}
+\end{center}
+			
+			\item (7.2.3) \textbf{Lemma}. Let $v$ be a valuation that is faithful to a branch $B$ of an incomplete tableau. If a rule is applied to a formula in the tableau, then $v$ is faithful to at least one branch $B'$ which extends $B$ in the new tableau.
+		
+		\item This is a direct consequence of Down Preservation!
+	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Example}
+
+	\begin{itemize}
+	
+		\item $v_1$ with $v_1(p)=1$ and $v_1(q)=0$
+		\item $v_2$ with $v_2(p)=0$ and $v_2(q)=1$
+	
+	\end{itemize}
+
+	\only<1|handout:0>{\begin{center}
+		\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 1cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[p\lor q, grouped [\neg p\lor \neg q, grouped ] ]
+					\end{prooftree}
+		\end{center}}
+	\only<2|handout:0>{\begin{center}
+		\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 1cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[p\lor q, grouped [\neg p\lor \neg q, grouped [p] [q]  ] ]
+					\end{prooftree}
+		\end{center}}
+	\only<3|handout:0>{\begin{center}
+		\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 1cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[p\lor q, grouped [\neg p\lor \neg q, grouped [p [\neg p] [\neg q] ] [q [\neg p] [\neg q] ]  ] ]
+					\end{prooftree}
+		\end{center}}
+	\only<4|handout:1>{\begin{center}
+		\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 1cm,
+					for tree={s sep'=5mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[p\lor q, grouped [\neg p\lor \neg q, grouped [p [\neg p, close] [\neg q] ] [q [\neg p] [\neg q, close] ]  ] ]
+					\end{prooftree}
+		\end{center}}
+
+
+\end{frame}
+
+\begin{frame}{(7.2.4)  Proof of the Soundness Lemma}
+
+The proof consists in a one-by-one inspection of the rules.
+
+There are 9 cases. We do: (a) $\phi\to\psi$ and (b) $\neg(\phi\to \psi)$.
+		
+		\begin{enumerate}[(a)]
+					
+		\item Let $v$ be faithful to $B$ and $\phi\to\psi\in B$.
+		
+					\begin{center}
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=10mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\to\psi [\neg \phi ] [\psi ] ]
+					\end{prooftree}
+					\end{center}
+					
+			We get two new branches extending $B$, $B_1$ and $B_2$. 
+			
+			\begin{itemize}
+						
+			\item We have $B_1=B\cup\{\neg\phi\}$ and $B_2=B\cup\{\psi\}$. 
+			
+			\item Since $v$ is faithful to $B$, we get $\llbracket\phi\to\psi\rrbracket_v=1$. 
+			
+			\item Since $\llbracket\phi\to\psi\rrbracket_v=max(1-\llbracket\phi\rrbracket_v,\llbracket\psi\rrbracket_v)$, we get either $\llbracket\phi\rrbracket_v=0$ or $\llbracket\psi\rrbracket_v=1$.
+			
+			\begin{itemize}
+		
+			\item If $\llbracket\phi\rrbracket_v=0$, then $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket_v=1$. So $v$ is faithful to $B_1=B\cup\{\neg\phi\}$. 
+		
+			\item If $\llbracket\phi\rrbracket_v=0$ or $\llbracket\psi\rrbracket_v=1$, then $v$ is faithful to $B_2=B\cup\{\psi\}$. 
+	
+		
+			\end{itemize}
+		
+		\end{itemize}
+	So, either way, $v$ is faithful to at least one new branch created by the rule for $\phi\to\psi$.
+	
+	\end{enumerate}
+	
+\end{frame}
+
+\begin{frame}{(7.2.4)  Proof of the Soundness Lemma (Cont'd)}
+	
+	\begin{enumerate}[(a)]
+
+	\setcounter{enumi}{1}
+					
+		\item Let $v$ be faithful to $B$ and $\neg(\phi\to\psi)\in B$.
+				\begin{center}{\small
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=10mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\to\psi) [\phi [\neg\psi ] ] ]
+					\end{prooftree}}
+					\end{center}
+			We get one new branch $B'=B\cup\{\phi,\neg\psi\}$.
+			
+			\begin{itemize}
+			
+				\item Since $v$ is faithful to $B$ , we get $\llbracket\neg(\phi\to\psi)\rrbracket_v=1$.
+				
+				\item Since $\llbracket\neg(\phi\to\psi)\rrbracket_v=1-max(1-\llbracket\phi\rrbracket_v, \llbracket\psi\rrbracket_v)$, we get that $max(1-\llbracket\phi\rrbracket_v, \llbracket\psi\rrbracket_v)=0$.
+				
+				\item So $\llbracket\phi\rrbracket_v=1$ and $\llbracket\psi\rrbracket_v=0$.
+			
+				\item Since $\llbracket\neg\psi\rrbracket_v=1-\llbracket\psi\rrbracket_v$, we can conclude  $\llbracket\neg\psi\rrbracket_v=1$.
+				
+				\item So $v$ is faithful to $B'$.
+			
+			\end{itemize}
+					
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{The Soundness Theorem}
+
+(7.2.5) \textbf{Theorem} (Soundness)\textbf{.} If $\Gamma\vdash\phi$, then $\Gamma\vDash\phi$.
+
+
+	\emph{Proof}:
+
+	\begin{itemize}
+	
+		\item Suppose that $\Gamma\nvDash\phi$.
+		
+		\item So, there's a $v$ that makes all the members of $\Gamma\cup\{\neg\phi\}$ true.
+		
+		\item That's the initial list of our tableau.
+		
+		\item Every time we apply a rule, $v$ remains faithful to at least one branch.
+		
+		\item So, in the complete tableau, there's a branch $B$ that $v$ is faithful to.
+		
+		\item Suppose that $B$ is closed, i.e. $p,\neg p\in B$. 
+		
+		\item It follows that $v(p)=1$ and $v(p)=0$. Contradiction.
+		
+		\item So $B$ is open, meaning $\Gamma\nvdash\phi$.
+	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Tableau Verification 1}
+
+	(7.2.6) \textbf{Theorem.} If the tableau algorithm gives the answer that a set is unsatisfiable, then the set \emph{is} unsatisfiable. 
+
+	\emph{Proof}:
+	
+	\begin{itemize}
+	
+		\item Suppose that the algorithm says $\Gamma$ is unsatisfiable.
+		
+		\item So, the tableau for $\Gamma$ is closed.
+		
+		\item Suppose, for contradiction, that $\Gamma$ is satisfiable via $v$.
+		
+		\item Using the soundness lemma, we can infer that there's a branch $B$ in the tableau for $\Gamma$ which is open (as in soundness). 
+	
+		\item Hence the tableau for $\Gamma$ is open. Contradiction.
+		
+		\item So $\Gamma$ is not satisfiable.
+	
+	\end{itemize}
+
+\end{frame}
+
+\subsection{7.3 The Completeness Theorem}
+
+\begin{frame}{7.3 The Completeness Theorem --- Proof Idea}
+
+
+	\begin{itemize}
+	
+		\item (7.3.1) We'll prove once more, the contrapositive:
+		
+		\begin{itemize}
+		
+			\item If $\Gamma\nvdash\phi$, then $\Gamma\nvDash\phi$.
+		
+		\end{itemize}
+		
+		\item The proof idea is simple:
+		
+			\begin{itemize}
+			
+				\item If $\Gamma\nvdash\phi$, then the tableau for $\Gamma\cup\{\neg\phi\}$ is open via open branch $B$.
+				
+				\item We get the associated valuation $v_B$ for $B$:
+				
+				\[v_B(p)=\begin{cases} 1 &\text{if }p\in B\\0&\text{if }p\notin B\end{cases}\]
+ 
+				
+				\item Using Up Preservation, we can inductively argue that $v_B$ makes all $B$'s true.
+				
+				\item But then $v_B$ satisfies  $\Gamma\cup\{\neg\phi\}$.
+				
+				\item Which gives us $\Gamma\nvDash\phi$. 
+			
+			\end{itemize}
+	
+		\item The devil is in the detail.
+	
+	\end{itemize}	
+
+\end{frame}
+
+\begin{frame}{The Completeness Lemma}
+
+(7.3.2) \textbf{Lemma} (Completeness Lemma)\textbf{.} Let $B$ be an open branch of a complete tableau. Then $v_B$ is faithful to $B$.
+
+\emph{Proof}: The proof is a (rather complicated) induction.
+
+	\begin{itemize}
+	
+		\item We note that $v_B$ is faithful to $B$ iff for all $\phi\in\mathcal{L}$:
+	\begin{enumerate}[1.]
+	
+		\item if $\phi\in B$, then $\llbracket\phi\rrbracket_{v_B}=1$, and 
+		\item if $\neg \phi\in B$, then $\llbracket\phi\rrbracket_{v_B}=0$.
+	
+	\end{enumerate}
+	
+		\item \emph{This} we prove by induction.
+		
+		\begin{enumerate}[(i)]
+	
+		\item \emph{Base case}. We need to show that for all $p\in \mathcal{P}$:
+		\begin{enumerate}[1.]
+		 	\item If $p\in B$, then $\llbracket p\rrbracket_{v_B}=1$
+			\item If $\neg p\in B$, then $\llbracket p\rrbracket_{v_B}=0$.
+		\end{enumerate}
+		
+		\begin{itemize}
+		
+		\item 1. is immediate from the definition of $v_B$. 
+		
+		\item For 2. note that if $\neg p\in B$, then $p\notin B$ since $B$ is open. So, by definition, $v_B(p)=0$. Since $\llbracket p\rrbracket_{v_B}=v_B(p)$, we get our desired claim.
+		
+		\end{itemize}
+		
+		\end{enumerate}
+	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Completeness Lemma (Cont'd)}
+
+\begin{enumerate}[(i)]
+	
+	\setcounter{enumi}{1}
+	
+	\item \emph{Induction steps}.
+	
+	\begin{enumerate}[(a)]
+		
+			\item We need to prove that if $\phi$ enjoys the property, then $\neg \phi$ enjoys the property. From the induction hypothesis
+		
+				\begin{enumerate}[1.]
+	
+					\item If $\phi\in B$, then $\llbracket\phi\rrbracket_{v_B}=1$. 
+	
+					\item If $\neg \phi\in B$, then $\llbracket\phi\rrbracket_{v_B}=0$.
+	
+				\end{enumerate}
+	We derive:
+		\begin{enumerate}[1'.]
+	
+		\item If $\neg\phi\in B$, then $\llbracket\neg\phi\rrbracket_{v_B}=1$.
+			\item If $\neg\neg \phi\in B$, then $\llbracket\neg\phi\rrbracket_{v_B}=0$.	
+		\end{enumerate}
+		
+		\begin{itemize}
+	
+		\item For 1', suppose that $\neg \phi\in B$. By 2., we have $\llbracket\phi\rrbracket_{v_B}=0$. But $\llbracket\neg\phi\rrbracket_{v_B}=1-\llbracket\phi\rrbracket_{v_B}$ and so $\llbracket\neg\phi\rrbracket_{v_B}=1$.
+		
+		\item For 2', assume $\neg\neg \phi\in B$. Since $B$ is an open branch of a \emph{complete} tableau, every rule that can be applied has been:
+		\begin{center}{\small
+					\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=10mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg\neg\phi [\phi ] ]
+					\end{prooftree}}
+			\end{center} 
+		So, $\phi\in B$. But then, by 1., we get $\llbracket\phi\rrbracket_{v_B}=1$. And since $\llbracket\neg\phi\rrbracket_{v_B}=1-\llbracket\phi\rrbracket_{v_B}$, we get $\llbracket\neg\phi\rrbracket_{v_B}=0$, as desired.
+		
+	\end{itemize}
+	
+	\end{enumerate}
+			
+	\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{The Completeness Lemma (Cont'd)}
+
+\begin{enumerate}[(i)]
+	
+	\setcounter{enumi}{1}
+	
+	\item \emph{Induction steps}.
+	
+		\begin{enumerate}[(a)]
+			\setcounter{enumii}{1}
+
+				\item We do the case for $\phi\land \psi$.
+				
+				We have two pairs of induction hypotheses:
+		\begin{enumerate}[1$_\phi$.]
+	
+		\item if $\phi\in B$, then $\llbracket\phi\rrbracket_{v_B}=1$, and 
+		\item if $\neg \phi\in B$, then $\llbracket\phi\rrbracket_{v_B}=0$.
+	
+	\end{enumerate}
+	
+	And
+	
+	\begin{enumerate}[1$_\psi$.]
+	
+		\item if $\psi\in B$, then $\llbracket\psi\rrbracket_{v_B}=1$, and 
+		\item if $\neg \psi\in B$, then $\llbracket\psi\rrbracket_{v_B}=0$.
+	
+	\end{enumerate}
+	What we need to prove are:
+	\begin{enumerate}[1$_{\phi\land\psi}$.]
+	
+		\item if $\phi\land \psi\in B$, then $\llbracket\phi\land \psi\rrbracket_{v_B}=1$, and 
+		\item if $\neg (\phi\land \psi)\in B$, then $\llbracket\phi\land \psi\rrbracket_{v_B}=0$.
+	\end{enumerate}
+		
+	
+		\end{enumerate}
+	
+	\end{enumerate}
+	
+\end{frame}
+
+\begin{frame}{The Completeness Lemma (Cont'd)}
+
+	\begin{itemize}
+		
+			\item Suppose that $\phi\land \psi\in B$. Since $B$ is an open branch of a complete tableau, every rule that can be applied has been applied:
+			\begin{center}
+				\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=10mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\phi\land\psi [\phi [\psi ] ] ]
+					\end{prooftree}
+				\end{center}
+		\item So, we can conclude that both $\phi,\psi\in B$. 
+		
+		\item But by 1$_\phi$. and 1$_\psi$., this means that $\llbracket\phi\rrbracket_{v_B}=1$ and $\llbracket\psi\rrbracket_{v_B}=1$. 
+		
+		\item Since $\llbracket\phi\land \psi\rrbracket_{v_B}=min(\llbracket\phi\rrbracket_{v_B},\llbracket\psi\rrbracket_{v_B})$, we get $\llbracket\phi\land \psi\rrbracket_{v_B}=1,$ as desired.
+		
+	\end{itemize}
+		
+
+\end{frame}
+
+\begin{frame}{The Completeness Lemma (Cont'd)}
+
+	\begin{itemize}
+		
+		\item Next, suppose that $\neg (\phi\land \psi)\in B$. Again, all rules that can be applied have been applied:
+		\begin{center}
+				\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=10mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\neg(\phi\land\psi) [\neg\phi ] [\neg\psi ] ]
+					\end{prooftree}
+				\end{center}
+		
+		\item So, we can conclude that either ($\ast$) $\neg\phi\in B$ or ($\ast\ast$) $\neg\psi\in B$.
+		
+		\begin{enumerate}
+		
+			\item[($\ast$)] \begin{itemize}
+		
+		\item If $\neg\phi\in B$, from 2$_\phi$., we get $\llbracket \phi\rrbracket=0$. 
+		
+		\item Since $\llbracket\phi\land \psi\rrbracket_{v_B}=min(\llbracket\phi\rrbracket_{v_B},\llbracket\psi\rrbracket_{v_B})$, this means we get $\llbracket\phi\land \psi\rrbracket_{v_B}=0$.
+		
+				\end{itemize}
+			\end{enumerate}
+			
+		\begin{enumerate}
+		
+			\item[($\ast\ast$)] \begin{itemize}
+			\item If $\neg\psi\in B$, from 2$_\psi$., we get $\llbracket \phi\rrbracket=0$. 
+		
+		\item So, we get $\llbracket\phi\land \psi\rrbracket_{v_B}=0$.
+		
+		\end{itemize}
+		
+		\end{enumerate}
+				
+		\item So either way,  $\llbracket\phi\land \psi\rrbracket_{v_B}=0$, as desired.
+	
+	
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{The Completeness Theorem}
+
+(7.3.3) \textbf{Theorem} (Completeness)\textbf{.} If $\Gamma\vDash\phi$, then $\Gamma\vdash\phi$.
+
+\emph{Proof}:
+
+	\begin{itemize}
+		
+		\item Assume that $\Gamma\nvdash\phi$.
+		
+		\item By definition, this means that there's an open branch, $B$, in the complete tableau for $\Gamma\cup\{\neg\phi\}$.
+		
+		\item Consider the associated valuation $v_B$.
+		
+		\item By the completeness lemma $v_B$ makes all the members of $B$ true.
+		
+		\item Since $\Gamma\cup\{\neg\phi\}\subseteq B$, it follows that $v_B$ satisfies $\Gamma\cup\{\neg\phi\}$.
+		
+		\item So $\Gamma\nvDash\phi$, as desired.
+	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Tableau Verification 2}
+
+	(7.3.4) \textbf{Theorem.} If the tableau algorithm gives the answer that a set is unsatisfiable, then the set \emph{is} unsatisfiable. 
+
+	\emph{Proof}:
+	
+	\begin{itemize}
+	
+		\item Suppose that the algorithm says $\Gamma$ is satisfiable.
+		
+		\item So, the tableau for $\Gamma$ is open.
+				
+		\item We can infer that there's a branch $B$ in the tableau for $\Gamma$ which is open. 
+	
+		\item By the completeness lemma $v_B$ makes all the members of $B$ true..
+		
+		\item Since $\Gamma\subseteq B$, we can infer that $v_B$ satisfies $\Gamma$ as desired.
+	
+	\end{itemize}
+	
+	(7.3.5) \textbf{Theorem} (Decidability)\textbf{.} 	Propositional logic is decidable, i.e. there exists an algorithm which after finitely many steps correctly determines whether a given inference (with finitely any premises) is valid.
+
+
+\end{frame}
+
+\subsection{7.4 Infinite Premiss Sets and Compactness}
+
+\begin{frame}{7.4 Infinite Premiss Sets and Compactness}
+
+	\begin{itemize}
+	
+		\item (7.4.1) For the formal treatment of mathematics, we sometimes need infinite premise sets:
+		\begin{itemize}
+		
+			\item The theory of natural numbers cannot be reduced to finitely many axioms.
+		
+		\end{itemize}
+		
+		\item (7.4.2) We'll go infinite, but we assume there is a way of writing $\Gamma$ as the set $\{\phi_i:i\in I\}$, where $I\subseteq\mathbb{N}^+$.
+		
+		\item (7.4.3) Examples:
+		
+			\begin{enumerate}[(a)]
+		
+			\item $\{p, \neg p, \neg\neg p, \mathellipsis\}$ (or more precisely the smallest set $X$ such that $p\in X$ and if $\phi\in X$ then $\neg \phi\in X$).
+			
+			
+			\item $\mathcal{P}=\{p_i: i\in \mathbb{N}\}$
+						
+			\item $\{\neg p_{2i}, p_{2i+1}: i\in\mathbb{N}\}$ which contains $\neg p_i$ for each even $i$ and $p_i$ for each odd $i\in\mathbb{N}$.
+			
+			\item Let $v$ be any valuation. Then the set $T_v=\{\phi:\llbracket\phi\rrbracket_v=1\}$ is always infinite! 
+					
+		\end{enumerate}
+		
+		\item (7.4.4) $\Gamma\vDash\phi$ works just like before.
+	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Truth-Tables Don't Work}
+	
+	\begin{itemize}
+	
+		\item (7.4.5) But truth-tables no longer work:
+		
+			\begin{itemize}
+			
+				\item With finite $\Gamma$, we can use: \[\phi_1,\mathellipsis, \phi_n\vDash \psi\text{ iff }\vDash (\phi_1\land\mathellipsis\land\phi_n)\to\psi\]
+				
+				\item But with infinite $\Gamma$, there is no theorem:
+				
+				\[\phi_1,\phi_2,\mathellipsis\vDash \psi\text{ iff }\vDash \underbrace{(\phi_1\land\phi_2\land\mathellipsis)}_{???}\to\psi\]
+			
+			\end{itemize}
+	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{(7.4.6) Infinite Tableaux}
+
+	\begin{itemize}
+	
+		\item  Tableaux, however, work.
+		
+		\item To make the tableau for $\{\phi_1,\phi_2,\mathellipsis,\neg\psi\}$ write down $\neg \psi$ as the initial list and do its tableau.
+		
+		\item Then, add $\phi_1$ to the initial list, and extend the tableau for $\neg\psi$ to the tableau for $\{\phi_1,\neg\phi\}$.
+		
+		\item Then add $\phi_2$, and extend the tableau to the one for $\{\phi_1,\phi_2,\neg\phi\}$.
+		
+		\item And so on.
+		
+		\item $\Gamma\vdash\phi$ iff the complete tableau is closed, $\Gamma\nvdash\phi$ iff the complete (?) tableau is open.
+		
+		\item Note that a complete tableau (which is open) can be infinite!
+	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Example}
+
+$p, \neg\neg p, \neg\neg \neg\neg p, \mathellipsis\nvdash q$
+
+\begin{center}
+				\begin{prooftree}
+					{
+					line numbering=false,
+					line no sep= 2cm,
+					for tree={s sep'=10mm},
+					single branches=true,
+					close with=\xmark
+					}
+					[\vdots, grouped [\neg\neg\neg\neg p, grouped [\neg\neg p, grouped [p, grouped [\neg q, grouped [p [ \neg \neg p [p [\vdots ]]] ] ] ]  ] ] ]
+					\end{prooftree}
+				\end{center}
+
+
+\end{frame}
+
+\begin{frame}{Compactness}
+
+But if a tableau closes, it closes after finitely many steps (``at some point''):
+
+\textbf{Theorem} (Compactness)\textbf{.} Let $\Gamma$ be an infinite set of formulas. If $\Gamma\vdash\phi$, then there exists a finite set $\Sigma\subseteq\Gamma$ such that $\Sigma\vdash\phi$. 
+
+\emph{Proof}:
+
+	\begin{itemize}
+	
+		\item Let $\Gamma=\{\psi_i: i\in I\}$ for some $I\subseteq\mathbb{N}^+$.
+	
+		\item Assume that $\Gamma\vdash\phi$. 
+		
+		\item This means that the tableau closes at some point.
+		
+		\item So there is a smallest $i$ such that $\psi_j$ is in the tableau for all $j\leq i$.
+		
+		\item We've actually made the tableau for $\{\neg\phi\}\cup\{\psi_j: j\leq i\}$.
+		
+		\item So $\{\psi_j: j\leq i\}\vdash\phi$.
+		
+		\item But clearly $\{\psi_j: j\leq i\}$ is finite and $\{\psi_j: j\leq i\}\subseteq\Gamma$.
+	
+	\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Core Ideas (Lecture Version)}
+
+
+\begin{itemize}
+
+	\item Soundness and completeness reduce validity to syntax.
+	
+	\item The soundness theorem is a ``sanity check.''
+	
+	\item The completeness theorem is a surprising mathematical fact.
+		
+	\item For tableaux, soundness relies on the fact that in every rule, if the upper formula is true, then at least one of the lower formulas is true (`down preservation').
+	
+	\item For tableaux, completeness relies on the fact that if one of the lower formulas in a rule is true, so is the upper formula (`up preservation').
+	
+	\item Truth tables don't work for infinitary premise sets but tableaux do.
+	
+	\item Compactness tells us that if there's a proof, we can always find a finitary one.
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+	\begin{center}
+	{\huge\bf Thanks!}
+	\end{center}
+
+\end{frame}
+
+\end{document}

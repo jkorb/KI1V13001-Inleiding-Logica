@@ -1,0 +1,763 @@
+\documentclass[../slides.tex]{subfiles}
+
+\title{2019-2020 Inleiding Logica (KI1V13001) \\ Lecture 11}
+ 
+\date{October 22, 2019\\[2ex] {\tiny \textcopyright~The non-copyrighted content of these slides is open access under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}}}
+ 
+%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\setcounter{framenumber}{346}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}{Overview}
+\tableofcontents
+\end{frame}
+
+\section{Rehash}
+\begin{frame}{Rehash}
+	
+\begin{itemize}
+	
+		\item Tableaux for first-order logic work in similar
+                  way as propositional tableaux. Underlying is always
+                  the idea that an inference is valid iff the premises
+                  and negation of conclusion are jointly
+                  unsatisfiable.
+                  
+		\item We have three tiers of tableau systems: simple
+                  tableaux, tableaux with identity, and tableaux with
+                  identity and functions. We successively add
+                  rules for those.
+		
+		\item There is also a concept of an associated model,
+                  which in first-order logic is a \emph{term model},
+                  i.e. a model based on the syntactic strings as the
+                  objects in the domain.
+		
+		\item First-order tableaux can turn out to be
+                  infinite, in which case we need to \emph{prove} that
+                  they are open and complete.
+		
+		\item The existence of infinite tableaux destroys our
+                  hopes for an easy decidability proof.
+		
+		\item Alas, first-order logic is actually provably
+                  undecidable.
+		
+					
+\end{itemize}
+
+\end{frame}
+		
+
+\section{11. Soundness and Completeness}
+\subsection{11.1 Overview}
+
+\begin{frame}{11.1 Overview}
+
+	\begin{itemize}
+		
+        \item (11.1.1) We're now going to prove soundness and
+          completeness for first-order logic. And it's going to be
+          \emph{hard}.
+
+          \item (11.1.2) The \emph{idea}, however, is essentially the
+            same as in propositional logic:
+            \begin{itemize}
+
+            \item Soundness follows from down preservation.
+
+            \item Completeness follows from up preservation.
+
+            \end{itemize}
+
+          \item (11.1.3) Infinite tableaux are not really a problem.
+
+           \item In this lecture version of the proofs, I will ignore
+             $=$ and function symbols, hopefully making the proofs
+             more perspicuous.
+
+            \item We still need to prove to auxilliary lemmas.
+          
+	\end{itemize}
+
+\end{frame}
+
+\subsection{11.2 The Denotation and Locality Lemma}
+\begin{frame}{11.2 The Denotation and Locality Lemma}
+
+  \begin{itemize}
+
+  \item (11.2.1) The denotation lemmma says (in a sense) that substitution and
+    variable fixing are equivalent:
+    \[\mathcal{M},\alpha\vDash (P(x))[x:=t]\text{ iff
+      }\mathcal{M},\alpha[x\mapsto\llbracket
+      t\rrbracket^\mathcal{M}_\alpha]\vDash P(x)\]
+    In words, replacing $x$ with $t$ is the same as setting the value
+    of $x$ to the value of $t$.
+
+    \item (11.2.2) \textbf{Lemma} (Denotation Lemma)\textbf{.}
+      Consider a formula $\phi$ with precisely one free
+            variable, $x$, and an arbitrary ground term $t$. Further,
+            let $\mathcal{M}$ be a model and
+            $\alpha$ an assignment. Then we have:
+            \[\mathcal{M},\alpha\vDash (\phi)[x:=t]\text{ iff
+              }\mathcal{M},\alpha[x\mapsto \llbracket
+              t\rrbracket^\mathcal{M}_\alpha]\vDash \phi\]
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Proof of the Denotation Lemmma (Sketch)}
+
+  \begin{itemize}
+
+  \item We prove this by induction. I sketch the proof, details are in
+    the reader.
+
+   \item For the base case, consider $R(t_1, \mathellipsis, t,
+     \mathellipsis, t_n)$.
+
+     \item This is of the form $(R(t_1, \mathellipsis,x, \mathellipsis,
+       t_n))[x:=t]$.
+
+       \item Note that all of $t_1, \mathellipsis, t_n$ are ground
+         terms.
+
+         \item We have: {\small\[\mathcal{M},\alpha\vDash R(t_1,
+               \mathellipsis, t, 
+               \mathellipsis, t_n)\text{ iff }(\llbracket
+                t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis,
+                \llbracket
+                t\rrbracket^\mathcal{M}_\alpha,\mathellipsis,\llbracket
+                t_n\rrbracket^\mathcal{M}_\alpha)\in
+                R^\mathcal{M}\]}
+
+            \item Since the $t_i$ are ground terms, their values are
+              not affected by changing the value of $x$.
+
+              \item By definition, $\alpha[x\mapsto \llbracket
+                t\rrbracket^\mathcal{M}_\alpha](x)=\llbracket
+                t\rrbracket^\mathcal{M}_\alpha$.
+
+              \item Together, these two observations give us:
+                 {\scriptsize\[\mathcal{M},\alpha[x\mapsto \llbracket
+                t\rrbracket^\mathcal{M}_\alpha]\vDash R(t_1,
+               \mathellipsis, x, 
+               \mathellipsis, t_n)\text{ iff }(\llbracket
+                t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis,
+                \llbracket
+                t\rrbracket^\mathcal{M}_\alpha,\mathellipsis,\llbracket
+                t_n\rrbracket^\mathcal{M}_\alpha)\in
+                R^\mathcal{M}\]}
+            
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Proof Cont'd}
+
+  \begin{itemize}
+
+  \item For the induction step, we assume that the claim holds for
+    $\phi$:
+    \[\mathcal{M},\alpha\vDash (\phi)[x:=t]\text{ iff
+              }\mathcal{M},\alpha[x\mapsto \llbracket
+              t\rrbracket^\mathcal{M}_\alpha]\vDash \phi\]
+
+   \item We derive that it holds for $\forall y\phi$:
+            \[\mathcal{M},\alpha\vDash (\forall
+              y\phi)[x:=t]\text{ iff }
+              \mathcal{M},\alpha[x\mapsto \llbracket
+              t\rrbracket^\mathcal{M}_\alpha]\vDash \forall
+              y\phi\]
+
+    \item Note that $(\forall y\phi)[x:=t]=\forall y(\phi)[x:=t]$.
+
+    \item We know that $\mathcal{M},\alpha\vDash \forall
+      y(\phi)[x:=t]$ iff for all $d\in
+      D^\mathcal{M}$: \[\mathcal{M},\alpha[y\mapsto d]\vDash
+        (\phi)[x:=t]\]
+
+    \item By the induction hypothesis, this is equivalent to:
+      \[\mathcal{M},\alpha[y\mapsto d, x\mapsto \llbracket
+        t\rrbracket^\mathcal{M}_\alpha]\vDash \phi\]
+
+      \item So we get $\mathcal{M},\alpha[x\mapsto \llbracket
+              t\rrbracket^\mathcal{M}_\alpha]\vDash \forall
+              y\phi$, as desired.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{(11.2.3) Use of the Denotation Lemmma}
+
+  \begin{itemize}
+  \item We can use the denotation lemma to show that $\forall
+    x\phi\vDash(\phi)[x:=t]$
+
+  \item If everything is $\phi$, then $t$ is $\phi$.
+
+  \item Suppose that $\mathcal{M},\alpha\vDash\forall x\phi$.
+
+    \item It follows that for each $d\in D^\mathcal{M}$, we have
+      \[\mathcal{M},\alpha[x\mapsto d]\vDash \phi.\]
+
+    \item Just set the value of $x$ to the value of $t$:
+      \[\mathcal{M},\alpha[x\mapsto \llbracket
+        t\rrbracket^\mathcal{M}_\alpha]\vDash \phi\]
+
+      \item By the denotation lemma, this gives
+        us: \[\mathcal{M},\alpha\vDash(\phi)[x:=t]\] as desired.
+        
+    \end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}{(11.2.4) Yet Another Locality Lemma}
+
+  \begin{itemize}
+
+  \item \textbf{Lemma} (Locality)\textbf{.} Let $\mathcal{M}$ and
+    $\mathcal{N}$ be models with 
+              $D^\mathcal{M}=D^\mathcal{N}$. Further, let $\varphi$ be
+              a sentence such that for all constants $c$ that occur in
+              $\varphi$, $c^\mathcal{M}=c^\mathcal{N}$ and for all
+              predicates $R$ that occur in $\varphi$,
+              $R^\mathcal{M}=R^\mathcal{N}$. Then for all assignments
+              $\alpha$, we have that \[\mathcal{M},\alpha\vDash
+                \varphi\text{ iff }\mathcal{N},\alpha\vDash\varphi.\]
+
+              \item The essence of this lemma is that if we changing
+                the interpretation of symbols not in the formula,
+                doesn't affect the truth-value of the formula.
+              
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Proof of the Locality Lemma}
+
+  \begin{itemize}
+  \item We prove the claim by induction.
+    \item I do the cases for $R(t_1, \mathellipsis, t_n)$ and $\forall
+      x\phi$, the rest is exercise.
+      \item For the base case, consider an atomic sentence $R(a_1,
+        \mathellipsis, a_n)$.
+        \item We know that $\mathcal{M},\alpha\vDash
+          R(a_1,\mathellipsis, a_n)$ iff \[(\llbracket
+                  a_1\rrbracket_\alpha^\mathcal{M}, \mathellipsis,
+                  \llbracket a_1\rrbracket_\alpha^\mathcal{M}) \in
+                  R^\mathcal{M}.\]
+                  \item But since $R^\mathcal{M}=R^\mathcal{N}$ and
+                    $a_i^\mathcal{M}=a_i^\mathcal{N}$, this immediately
+                    gives us \[(\llbracket
+                  a_1\rrbracket_\alpha^\mathcal{N}, \mathellipsis,
+                  \llbracket a_1\rrbracket_\alpha^\mathcal{N}) \in
+                  R^\mathcal{N},\] which just means that
+                $\mathcal{N},\alpha\vDash R(t_1, \mathellipsis, t_n)$.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Proof of Locality (Cont'd)}
+
+  \begin{itemize}
+  \item For the induction step, assume the induction hypothesis that
+    if $\mathcal{M}$ and 
+    $\mathcal{N}$ have the same domain and aggree on the
+    interpretation of the non-logical 
+    symbols in $\phi$, then $\mathcal{M},\alpha\vDash \phi$ iff
+    $\mathcal{N},\alpha\vDash\phi$.
+
+  \item We know that $\mathcal{M},\alpha\vDash\forall x\phi$ iff for
+    all $d\in D^\mathcal{M}$, we have that
+    \[\mathcal{M},\alpha[x\mapsto d]\vDash\phi.\]
+
+    \item But since $D^\mathcal{M}=D^\mathcal{N}$ by the induction
+      hypothesis, this is equivalent to it being the case that  for each $d\in D^\mathcal{N}$, we
+      have  \[\mathcal{N},\alpha[x\mapsto d]\vDash\phi.\]
+
+      \item But that just means that $\mathcal{N},\alpha\vDash \forall
+        x\phi$, as desired.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\subsection{11.3 The Soundness Theorem}
+
+\begin{frame}{11.3 The Soundness Theorem}
+
+  \begin{itemize}
+  \item (11.3.1) The idea remains the same as in propositional logic:
+    if the premises don't entail the conclusion, the corresponding
+    countermodel let's us see that there must be an open branch in the
+    corresponding tableau.
+
+  \item (11.3.2) This relies on the down-preservation property:
+
+    \begin{itemize}
+    \item If a valuation is faithful to a branch and a rule is
+      applied, then the valuation is faithful to at least one new
+      branch.
+    \item How do we define faithfulness in first-order logic?
+
+      \item A \emph{model} is faithful to a branch $B$ iff for all
+        valuations $\alpha$, all formulas on the branch are true.
+    \end{itemize}
+
+    \item But, unfortunately, the strict down preservation property
+      \emph{fails} in first-order logic:
+      \begin{itemize}
+      \item If $\exists x\phi$ is on the branch, we get $(\phi)[x:=p]$
+        in the branch for some fresh $p$.
+
+      \item But since $p$ wasn't on the branch so far, it's value
+        doesn't affect the truth of the formulas on the branch
+        (locality).
+        \item So, we can have $\exists xP(x)$ is true, but $P(p)$ is false.
+      \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{(11.3.3) The Soundness Lemma}
+
+\textbf{Lemma} (Soundness Lemma)\textbf{.} Let $B$ be a branch of a (possibly incomplete)
+                      tableau and suppose further that $\mathcal{M}$
+                      is a model that is faithful to $B$. Then, if a
+                      rule is applied to $B$, extending the branch to
+                      $B'$, then there \emph{exists} a model
+                      $\mathcal{N}$ with
+                      $D^\mathcal{M}=D^\mathcal{N}$ and
+                      $c^\mathcal{M}=c^\mathcal{N}$ for all
+                      $c\in\mathcal{C}$ which occur on $B$, such that
+                      $\mathcal{N}$ is faithful to $B'$.
+      
+  
+\end{frame}
+
+\begin{frame}{Proof of Soundness Lemma}
+  \begin{itemize}
+  \item The proof works essentially as in propositional logic: we go
+    through the rules one by one.
+
+    \item The propositional rules can be handled just as in
+      propositional logic, i.e. we can let $\mathcal{M}=\mathcal{N}$.
+
+    \item The rules for negated quantifiers are easy:
+      \begin{center}
+                        \begin{prooftree}
+                          {
+                            line numbering=false,
+                            line no sep= 2cm,
+                            for tree={s sep'=10mm},
+                            single branches=true,
+                            close with=\xmark
+                          }
+                          [\neg \forall x\varphi
+                          [\exists x\neg\varphi ]
+                          ]
+                        \end{prooftree}\hspace{4ex}
+                        \begin{prooftree}
+                          {
+                            line numbering=false,
+                            line no sep= 2cm,
+                            for tree={s sep'=10mm},
+                            single branches=true,
+                            close with=\xmark
+                          }
+                          [\neg \exists x\varphi
+                          [\forall x\neg \varphi ]
+                          ]
+                        \end{prooftree}
+                      \end{center}
+                     \item  Just note that $\neg\forall
+                      x\phi\equi \exists x\neg\phi$ and
+                      $\neg\exists x\phi\equi\forall x\neg \phi$.
+
+                    \item So we can let $\mathcal{M}=\mathcal{N}$.
+
+                      \item The interesting cases are the quantifiers.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Soundness ---  Universal Quantifier}
+
+  \begin{itemize}
+  \item Suppose that $\mathcal{M}$ is faithful to $B$ and we use
+
+
+    \begin{center}
+                      \begin{prooftree}
+                        {
+                          line numbering=false,
+                          line no sep= 2cm,
+                          for tree={s sep'=10mm},
+                          single branches=true,
+                          close with=\xmark
+                        }
+                        [\forall x\varphi
+                        [{\varphi[x:=a]^\dagger} ]
+                        ]
+                      \end{prooftree}\quad\raisebox{-3ex}{{\small$\dagger$:
+                          $a$ any constant or parameter on the branch}}
+                        to extend the branch to $B'$.
+                        \end{center}
+
+                        \item Since $\mathcal{M}$ is faithful to $B$
+                          and $\forall x\phi\in B$, we have
+                          $\mathcal{M},\alpha\vDash\forall x\phi$.
+
+                          \item But we've already observed that
+                            $\forall x\phi\vDash (\phi)[x:=t]$, for
+                            any ground term $t$, so
+                            $\mathcal{M},\alpha\vDash (\phi)[x:=a]$.
+
+                            \item Since $B'=B\cup\{ (\phi)[x:=a]\}$,
+                              we get that $\mathcal{M}$ is faithful to
+                              $B'$. 
+                     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Soundness --- Existential Quantifier}
+
+  \begin{itemize}
+  \item This is the interesting case.
+
+  \item Suppose $\mathcal{M}$ is faithful to $B$ and we extend $B$ to
+    $B'$ using:
+
+    \begin{center}
+			\begin{prooftree}
+                          {
+                            centered,
+                            line numbering=false,
+                            line no sep= 2cm,
+                            for tree={s sep'=10mm},
+                            single branches=true,
+                            close with=\xmark
+                          }
+                          [\exists x\varphi
+                          [{\varphi[x:=p]^\dagger} ]
+                          ]\end{prooftree}
+                        \quad\raisebox{-3ex}{{\small$\dagger$: $p$ a fresh parameter}}
+
+                      \end{center}
+
+              \item Since $\mathcal{M}$ is faithful to $B$, we know
+                that $\mathcal{M},\alpha\vDash\exists x\phi$.
+
+                \item So, there exists a $d\in D^\mathcal{M}$ such
+                  that \[\mathcal{M},\alpha[x\mapsto d]\vDash \phi\]
+
+                  \item So we can change $\mathcal{M}$ to
+                    $\mathcal{N}$ by setting $p^\mathcal{N}=d$ and
+                    leaving everything else the same.
+
+                    \item By the denotation lemma, we get
+                      $\mathcal{N},\alpha\vDash (\phi)[x:=p]$.
+
+                      \item And since $p$ was fresh, for all other
+                        formulas in $B$, the condition for the
+                        locality lemma are satisfied.
+
+                        \item So, $\mathcal{N},\alpha\vDash \psi$ for
+                          all $\psi\in B$.
+
+                          \item Since $B'=B\cup \{(\phi)[x:=p]\}$, we
+                            get that $\mathcal{N}$ is faithful to $B'$.
+                      
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{(11.3.4) The Soundness Theorem}
+
+\textbf{Theorem} (Soundness)\textbf{.} If $\Gamma\vdash\phi$, then
+$\Gamma\vDash\phi$.
+
+\emph{Proof}:
+
+\begin{itemize}
+\item By contrapositive proof.
+\item Suppose that $\Gamma\nvDash\phi$.
+  \item We get a mmodel $\mathcal{M}$, such that all the members of
+    $\Gamma$ are true in $\mathcal{M}$ and $\phi$ is false.
+  \item So $\mathcal{M}$ is faithful to $\Gamma\cup\{\neg\phi\}$.
+    \item Now everytime we apply a rule to construct the tableaux,
+      there will be a mmodel $\mathcal{N}$ that is faithful to at
+      least one new branch.
+      \item So, for the commplete tableau, there is a branch $B$ and
+        such a model 
+        $\mathcal{N}$ faithful to it.
+
+      \item But that means $B$ can't be closed.
+        \item Since if it were, we'd get $R(t_1, \mathellipsis, t_n)$
+          both true and false under $\mathcal{N}$.
+          \item Hence, $B$ is open, so $\Gamma\nvdash\phi$, as desired.
+\end{itemize}
+  
+\end{frame}
+
+\subsection{11.4 The Completeness Theorem}
+
+\begin{frame}{11.4 The Completeness Theorem}
+
+  \begin{itemize}
+
+    \item The aim is to prove that the associated model
+      $\mathcal{M}_B$ for an open branch $B$ in a complete tableau is
+      faithful to $B$.
+
+    \item This will give us completeness as in propositional logic.
+
+      \item \textbf{Lemma} (Completeness Lemma)\textbf{.} Let $B$ be an open
+      branch in a complete tableau. Then $\mathcal{M}_B$ defined as follows
+		\begin{enumerate}[(i)]
+		
+			\item $D^{\mathcal{M}_B}=\{a\in \mathcal{C}\cup Par: a\text{ occurs on }B\}$
+			
+			\item $a^{\mathcal{M}_B}=a$ for all $a\in \mathcal{C}\cup Par$
+			
+			\item $R^{\mathcal{M}_B}=\{(a_1, \mathellipsis, a_n): R(a_1, \mathellipsis, a_n)\in B\}$
+		
+		\end{enumerate}
+                is faithful to $B$.
+
+                \item We prove this by \dots surprise \dots induction.
+                
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Proof of the Completeness Lemma}
+
+  \begin{itemize}
+  \item The prove is again similar as in propositional logic,
+    i.e. what we actually prove by induction is that for all
+    $\phi\in\mathcal{L}$
+    \begin{enumerate}[1.]
+
+                      \item if $\phi\in B$, then
+                        $\mathcal{M}_B,\alpha\vDash\phi$
+
+                        \item if $\neg\phi\in B$, then
+                          $\mathcal{M}_B,\alpha\nvDash\phi$ 
+                      
+                        \end{enumerate}
+
+             \item I will do the base case and the induction steps for
+               $\forall x\phi$ and $\neg\forall x\phi$.
+
+               \item For the base case of 1., suppose that
+                 $R(a_1,\mathellipsis, a_n)\in B$.
+
+                 \item We know \[\mathcal{M}_B,\alpha\vDash R(a_1,
+                            \mathellipsis, a_n)\text{ iff }(\llbracket
+                            a_1\rrbracket^{\mathcal{M}_B}_\alpha,
+                            \mathellipsis, \llbracket
+                            a_1\rrbracket^{\mathcal{M}_B}_\alpha)\in
+                            R^{\mathcal{M}_B}.\]
+
+                            \item By definition of $\mathcal{M}_B$, we
+                              know:
+                              \begin{itemize}
+                              \item $\llbracket a_i\rrbracket^\mathcal{M}_\alpha=a_i^{\mathcal{M}_B}=a_i$
+                                \item $R^{\mathcal{M}_B}=\{(a_1, \mathellipsis, a_n): R(a_1, \mathellipsis, a_n)\in B\}$
+                                \end{itemize}
+
+                                \item So, since $R(a_1,\mathellipsis,
+                                  a_n)\in B$, we get $(a_1,
+                                  \mathellipsis, a_n)\in
+                                  R^\mathcal{M}$
+
+                                  \item This directly gives us
+                                    $\mathcal{M}_B,\alpha\vDash R(a_1,
+                                    \mathellipsis, a_n)$.
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Completeness Lemma --- Base Case}
+
+  \begin{itemize}
+
+  \item  For the base case of 2., suppose that
+                            $\neg R(t_1, \mathellipsis, t_n)\in
+                            B$.
+
+                            \item Since $B$ is open, we can conclude
+                            that $R(t_1,\mathellipsis, t_n)\notin
+                            B$.
+
+                            \item $R^{\mathcal{M}_B}=\{(a_1,
+                              \mathellipsis, a_n): R(a_1,
+                              \mathellipsis, a_n)\in B\}$, it follows
+                              that \[(a_1, \mathellipsis, a_n)\notin
+                              R^\mathcal{M}.\]
+
+                              \item Since $\llbracket
+                                a_i\rrbracket^\mathcal{M}_\alpha=a_i^{\mathcal{M}_B}=a_i$,
+                                we get \[(\llbracket
+                                a_i\rrbracket^\mathcal{M},
+                                \mathellipsis, \llbracket
+                                a_i\rrbracket^\mathcal{M})\notin
+                                R^{\mathcal{M}_B}.\]
+
+                                \item But that just means that
+                                  $\mathcal{M}_B,\alpha\nvDash R(a_1,
+                                  \mathellipsis, a_n)$, as desired.
+   
+  \end{itemize}
+
+
+  
+\end{frame}
+
+\begin{frame}{Completeness Lemma --- Universal Quantifier}
+
+  \begin{itemize}
+  \item For the induction step, assume the hypothesis that for all
+    $\alpha$,
+     \begin{enumerate}[1.]
+
+                      \item if $\phi\in B$, then
+                        $\mathcal{M}_B,\alpha\vDash\phi$
+
+                        \item if $\neg\phi\in B$, then
+                          $\mathcal{M}_B,\alpha\nvDash\phi$ 
+                      
+                        \end{enumerate}
+
+                      \item Now suppose that $\forall x\in B$.
+
+                        \item In order to show that
+                          $\mathcal{M},\alpha\vDash\forall x\phi$, we
+                          need to show that for all $d\in
+                          D^{\mathcal{M}_B}$, we
+                          have \[\mathcal{M}_B,\alpha[x\mapsto
+                            d]\vDash \phi\]
+                          \item Remember that $D^{\mathcal{M}_B}=\{a:
+                            a\text{ occurs in }
+                            B\}$, so we need to show \[\mathcal{M}_B,\alpha[x\mapsto
+                            a]\vDash \phi\]
+
+                              \item Since the tableau is complete, we
+                                know that the universal quantifier
+                                rule has been applied.
+
+                                \item It follows that $(\phi)[x:=a]\in
+                                  B$.
+
+                                  \item By the induction hypothesis,
+                                    we get $\mathcal{M},\alpha\vDash
+                                    (\phi)[x:=a]$.
+
+                                    \item By the denotation lemma, we
+                                      get $\mathcal{M}_B,\alpha[x\mapsto
+                            a]\vDash \phi$, as desired.
+                        
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{The Completeness Lemma --- Negated Universals}
+
+  \begin{itemize}
+
+  \item Now suppose that $\neg\forall x\in B$.
+
+    \item Since the tableau is complete, we know that $\exists
+      x\neg\phi$ and $(\neg \phi)[x:=p]$ are on $B$.
+
+    \item We know that $(\neg \phi)[x:=p]=\neg (\phi)[x:=p]$.
+
+      \item So, we can conclude using the induction hypothesis that $\mathcal{M}, \alpha\nvDash
+        (\phi)[x:=p]$
+
+        \item By the denotation lemma, we get
+          $\mathcal{M},\alpha[x\mapsto \llbracket
+          p\rrbracket^\mathcal{M}_\alpha]\nvDash \phi$.
+
+          \item But since $\llbracket
+            p\rrbracket^\mathcal{M}_\alpha=p\in D^{\mathcal{M}_B}$,
+            this immediately means $\mathcal{M},\alpha\nvDash \forall
+            x\phi$, as desired.
+
+            \item This completes our proof. 
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{The Completeness Theorem}
+
+  \textbf{Theorem} (Completeness for First-Order Tableaux)\textbf{.}
+  If $\Gamma\vDash\phi$, then $\Gamma\vdash\phi$.
+
+  \emph{Proof}:
+
+  \begin{itemize}
+  \item We prove the contrapositive.
+
+  \item So suppose that $\Gamma\nvdash\phi$.
+
+    \item This means, by definition, that the complete tableaux for
+      $\Gamma\cup\{\neg\phi\}$ has at least one open branch $B$.
+
+      \item By the completeness lemma, we have that $\mathcal{M}_B$ is
+        faithful to this branch.
+
+        \item Since $\Gamma\cup\{\neg\phi\}\subseteq B$, we get that
+          $\mathcal{M}_B$ makes the $\Gamma$'s true and $\phi$ false.
+
+        \item But that just means $\Gamma\nvDash\phi$.
+
+          \item We're done.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+  \vfill
+
+  \begin{center}
+  {\Large \textbf{Q.E.D.}}
+\end{center}
+  
+\end{frame}
+
+
+\begin{frame}{Core Ideas (Lecture Version)}
+
+  \begin{itemize}
+
+  \item (
+    
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+	\begin{center}
+	{\huge\bf Thanks!}
+	\end{center}
+
+\end{frame}
+
+\end{document}
