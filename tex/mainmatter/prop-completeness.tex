@@ -188,7 +188,7 @@ It turns out that these two properties, when thought through carefully lead to t
 	Now this is where the down preservation property comes into play.
 	Note that the initial list---in our case,
 	$\Gamma\cup\{\neg\phi\}$
-	---is at the root of our the tableau.
+	---is at the root of our tableau.
 	Our countermodel showing
 	$\Gamma\nvDash \phi$
 	makes all the members of
@@ -231,7 +231,7 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 					[p\lor q, grouped [\neg p\lor \neg q, grouped [p] [q]  ] ]
 					\end{prooftree}
 		\end{center}
-	We now have two branches in our tableau: $B_1$ which contains $p, \neg p\lor \neg q,$ and $p\lor q$ and the initial list and $B_2$ which contains $q, \neg p\lor \neg q,$ and $p\lor q$. Now it's easily checked that $v_1$ remains faithful to at least one of the new branches created, namely $B_1$: $v_1$ makes $p$ true. The valuation $v_1$, of course, is not faithful to \emph{all} the new branches, $B_2$ contains $q$ and $v_1$ makes $q$ false. But our lemma states that $v_1$ needs to make all the formulas on \emph{one} of the new branches true. (The case for $v_2$ is completely analogous). Continuing constructing our tableau hopefully drives the point home:  
+	We now have two branches in our tableau: $B_1$ which contains $p, \neg p\lor \neg q,$ and $p\lor q$ and $B_2$ which contains $q, \neg p\lor \neg q,$ and $p\lor q$. Now it's easily checked that $v_1$ remains faithful to at least one of the new branches created, namely $B_1$: $v_1$ makes $p$ true. The valuation $v_1$, of course, is not faithful to \emph{all} the new branches, $B_2$ contains $q$ and $v_1$ makes $q$ false. But our lemma states that $v_1$ needs to make all the formulas on \emph{one} of the new branches true. (The case for $v_2$ is completely analogous). Continuing constructing our tableau hopefully drives the point home:  
 		\begin{center}
 		\begin{prooftree}
 					{
@@ -502,7 +502,7 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 	\end{theorem}
 	
 	\begin{proof}
-	We use contrapositive proof. So assume that $\Gamma\nvdash\phi$. This means, by definition, that in the complete tableau for $\Gamma\cup\{\neg\phi\}$ there is at least one open branch. Call it $B$. The branch has an associated interpretation $v_B$ which is faithful to $B$ by Lemma 7.3.2. Since $\Gamma\cup\{\neg\phi\}$ is the root of the tableau, and therefore included in any branch, we have $\Gamma\cup\{\neg\phi\}\subseteq B$. But that means, sine $v_B$  is faithful to $B$, that $v_B$ makes all the members of $\Gamma\cup\{\neg\phi\}$ true and so $\Gamma\nvDash\phi$ (by 6.2.6), as desired.
+	We use contrapositive proof. So assume that $\Gamma\nvdash\phi$. This means, by definition, that in the complete tableau for $\Gamma\cup\{\neg\phi\}$ there is at least one open branch. Call it $B$. The branch has an associated interpretation $v_B$ which is faithful to $B$ by Lemma 7.3.2. Since $\Gamma\cup\{\neg\phi\}$ is the root of the tableau, and therefore included in any branch, we have $\Gamma\cup\{\neg\phi\}\subseteq B$. But that means, since $v_B$  is faithful to $B$, that $v_B$ makes all the members of $\Gamma\cup\{\neg\phi\}$ true and so $\Gamma\nvDash\phi$ (by 6.2.6), as desired.
 	\end{proof}
 	
 	\item Note that, just like in the case of soundness, our completeness theorem can be interpreted as a theorem about the tableau method with respect to satisfiability search: we've effectively shown that the method works with respect to satisfiability.
@@ -510,7 +510,7 @@ This lemma is, in a sense, a more precise version of the down preservation prope
 	\begin{theorem}[Tableau Verification Part 2.] If the algorithm laid out in 6.3.2 gives the answer that a set is satisfiable, then the set \emph{is} satisfiable.
 	\end{theorem}
 	\begin{proof}
-	Let $\Gamma$ be a set the algorithm says is satisfiable. This means that the complete tableau for $\Gamma$ is open. So, there is an open branch, $B$, in the tableau with an associated valuation $v_B$. By Lemma 7.3.2, $v_B$ is faithful to $B$ and since $\Gamma\subseteq B$, it follows that $v_B$ makes all the members of $\Gamma$ is true. In other words, $\Gamma$ is satisfiable.
+	Let $\Gamma$ be a set the algorithm says is satisfiable. This means that the complete tableau for $\Gamma$ is open. So, there is an open branch, $B$, in the tableau with an associated valuation $v_B$. By Lemma 7.3.2, $v_B$ is faithful to $B$ and since $\Gamma\subseteq B$, it follows that $v_B$ makes all the members of $\Gamma$ true. In other words, $\Gamma$ is satisfiable.
 	\end{proof}
 	
 	\item Together with the observation that the tableau method applied to a finite set terminates after finitely many steps, Theorems 7.2.3 and 7.3.4 give an alternative proof of Theorem 5.3.7, the decidability of classical propositional logic:
