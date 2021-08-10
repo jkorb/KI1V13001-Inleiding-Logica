@@ -1,15 +1,10 @@
-%\documentclass[handout]{beamer}
-\documentclass{beamer}
-
-\usepackage{subfiles}
-
+\documentclass[\HANDOUT]{beamer}
 \usepackage{graphicx}
 \graphicspath{{img/}{../img/}}
 
-
 \beamertemplatenavigationsymbolsempty
   \setbeamertemplate
- {footline}{\quad\hfill\insertframenumber\quad\vspace{1ex}}%/\inserttotalframenumber\quad\vspace{1ex}} 
+ {footline}{\quad\hfill\insertframenumber\quad\vspace{1ex}/\inserttotalframenumber\quad\vspace{1ex}} 
  
 \usepackage{amssymb,amsmath, amsthm}
 \usepackage{stmaryrd}
@@ -22,30 +17,21 @@
 \usepackage[all]{xy}
 \usepackage{proof}
 \usepackage{prooftrees}
-
 \usepackage{pifont}% http://ctan.org/pkg/pifont
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
-
 \usepackage{hyperref}
 \frenchspacing
-
 \usepackage{venndiagram}
 \usepackage{tikz}
 \usetikzlibrary{fit,shapes}
 \tikzset{edge from parent/.append style={->}}
-
-
 \theoremstyle{definition}
-%\newtheorem*{definition}{Definition}
-%\newtheorem*{theorem}{Theorem}
 \newtheorem*{conjecture}{Conjecture}
 \newtheorem*{axiom}{Axiom}
 \newtheorem*{claim}{Claim}
 \newtheorem*{notation}{Notation}
-%\newtheorem*{example}{Example(s)}
 \newtheorem*{proposition}{Proposition}
-
 \makeatletter
 \providecommand*{\equi}{%
   \mathrel{%
@@ -75,17 +61,5 @@
 
 \begin{document}
 
-\subfile{tex/lecture1}
-\subfile{tex/lecture2}
-\subfile{tex/lecture3}
-\subfile{tex/lecture4}
-\subfile{tex/lecture5}
-\subfile{tex/lecture6}
-\subfile{tex/lecture7}
-\subfile{tex/lecture8}
-\subfile{tex/lecture9}
-\subfile{tex/lecture10}
-\subfile{tex/lecture11}
-\subfile{tex/lecture12}
 
 \end{document}
