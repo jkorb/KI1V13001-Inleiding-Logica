@@ -1,31 +1,43 @@
-\documentclass[\HANDOUT]{beamer}
+\documentclass[
+$if(handout)$
+handout
+$endif$
+]{beamer}
+
 \usepackage{graphicx}
-\graphicspath{{img/}{../img/}}
+\graphicspath{{../$(resource-dir)$/img/}}
 
 \beamertemplatenavigationsymbolsempty
   \setbeamertemplate
  {footline}{\quad\hfill\insertframenumber\quad\vspace{1ex}/\inserttotalframenumber\quad\vspace{1ex}} 
- 
-\usepackage{amssymb,amsmath, amsthm}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\frenchspacing
+
+\usepackage{amssymb,amsmath,amsthm}
 \usepackage{stmaryrd}
 \usepackage{enumerate}
+
+\usepackage[all]{xy}
+
 \usepackage{tikz}
 \usetikzlibrary{fit,shapes}
 \usepackage{tikz-qtree}
+\tikzset{edge from parent/.append style={->}}
+
 \usepackage{wasysym}
-\usepackage{graphicx}
-\usepackage[all]{xy}
+
 \usepackage{proof}
 \usepackage{prooftrees}
 \usepackage{pifont}% http://ctan.org/pkg/pifont
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
 \usepackage{hyperref}
-\frenchspacing
+
 \usepackage{venndiagram}
-\usepackage{tikz}
-\usetikzlibrary{fit,shapes}
-\tikzset{edge from parent/.append style={->}}
+
 \theoremstyle{definition}
 \newtheorem*{conjecture}{Conjecture}
 \newtheorem*{axiom}{Axiom}
@@ -43,23 +55,19 @@
 }
 \makeatother
 
-\title{2019-2020 Inleiding Logica (KI1V13001)}
- 
-\author[J. Korbmacher]{Dr. Johannes Korbmacher}
+\title{$academic-year$ Inleiding Logica (KI1V13001)}
+\author{$for(author)$$author$$sep$ \and $endfor$}
+\date{$dates.1$ {\tiny \textcopyright~The non-copyrighted content of these slides is open access under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}}}
 
 \institute{
-	\begin{tabular}{c}
-		Department of Philosophy and Religious Studies\\
-     		\includegraphics[width=28ex]{uu-logo.png}\\
-		\href{http://jkorbmacher.org/teaching}{http://jkorbmacher.org/teaching}
-	\end{tabular}
-	}
+  \begin{tabular}{c}
+    Department of Philosophy and Religious Studies\\
+    \includegraphics[width=28ex]{uu-logo.png}\\
+    \href{http://jkorbmacher.org/teaching}{http://jkorbmacher.org/teaching}
+  \end{tabular}
+}
 
-\date{}
-
-%%%%%%%%%%%%%%%
 
 \begin{document}
-
-
+$body$
 \end{document}
