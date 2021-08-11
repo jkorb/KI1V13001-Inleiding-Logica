@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# echo "Pulling updates from repository..."
+# git pull --rebase origin
+
+if ! command -v pandoc &> /dev/null
+then
+    >&2 echo "Couldn't find pandoc. Make sure it's installed and in your PATH."
+    exit 1
+fi
+if ! command -v fd &> /dev/null
+then
+    >&2 echo "Couldn't find fd. Make sure it's installed and in your PATH."
+    exit 1
+fi
+
+SRC_DIR=lib/
+TMP_DIR=tmp/
+DST_DIR=pdf/
+
+RESOURCE_DIR=$SRC_DIR/resources
+UUREPORT_SRC=$RESOURCE_DIR/uureport/uureport.cls
+UUREPORT_DST=$TMP_DIR/uureport.cls
+META_FILE=$TMP_DIR/meta.md
+
+[ -d $TMP_DIR ] & rm -rf $TMP_DIR
+mkdir $TMP_DIR
+
+source ./meta.conf
+
+cat <<EOF >> $META_FILE
+---
+academic-year: $ACADEMIC_YEAR
+EOF
+
+echo "lecturer:" >> $META_FILE
+for LECTURER in "${LECTURER[@]}"
+do
+   echo "   - $LECTURER"
+done >> $META_FILE
+echo "dates:" >> $META_FILE
+COUNTER=1
+for DATE in "${LECTURE_DATE[@]}"
+do
+    echo "  lecture-$COUNTER: $DATE"
+    ((COUNTER++))
+done >> $META_FILE
+cat <<EOF >> $META_FILE
+midterm-date: $MIDTERM_DATE
+midterm-location: $MIDTERM_LOCATION
+endterm-date: $ENDTERM_DATE
+endterm-location: $ENDTERM_LOCATION
+EOF
+echo "tas:" >> $META_FILE
+for TA in "${TA[@]}"
+do
+    echo "  - $TA"
+done >> $META_FILE
+cat <<EOF >> $META_FILE
+resource-dir: $RESOURCE_DIR
+...
+EOF
+cp $UUREPORT_SRC $UUREPORT_DST
+mkdir -p $DST_DIR
