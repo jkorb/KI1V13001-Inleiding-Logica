@@ -1,15 +1,11 @@
-\documentclass[
-$if(handout)$
-handout
-$endif$
-]{beamer}
+\documentclass[handout]{beamer}
 
 \usepackage{graphicx}
-\graphicspath{{../$(resource-dir)$/img/}}
+\graphicspath{{../$resource-dir$/img/}}
 
 \beamertemplatenavigationsymbolsempty
   \setbeamertemplate
- {footline}{\quad\hfill\insertframenumber\quad\vspace{1ex}/\inserttotalframenumber\quad\vspace{1ex}} 
+ {footline}{\quad\hfill\insertframenumber\quad\vspace{1ex}/\inserttotalframenumber\quad\vspace{1ex}}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -44,30 +40,26 @@ $endif$
 \newtheorem*{claim}{Claim}
 \newtheorem*{notation}{Notation}
 \newtheorem*{proposition}{Proposition}
-\makeatletter
-\providecommand*{\equi}{%
-  \mathrel{%
-    \mathpalette\@equi\vDash
-  }%
-}
-\newcommand*{\@equi}[2]{%
-  \reflectbox{$\vDash$}\hspace{-0.5ex}\vDash %
-}
-\makeatother
 
 \title{$academic-year$ Inleiding Logica (KI1V13001)}
-\author{$for(author)$$author$$sep$ \and $endfor$}
-\date{$dates.1$ {\tiny \textcopyright~The non-copyrighted content of these slides is open access under \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC BY-SA 4.0}}}
+\author{$for(lecturer)$$lecturer$$sep$ \and $endfor$}
+\date{%
+  $for(dates)$
+  $if(lecture-1)$
+  $dates.lecture-1$
+  $endif$
+  $if(lecture-2)$
+  $dates.lecture-2$
+  $endif$
+  $endfor$
+}
 
 \institute{
   \begin{tabular}{c}
     Department of Philosophy and Religious Studies\\
-    \includegraphics[width=28ex]{uu-logo.png}\\
-    \href{http://jkorbmacher.org/teaching}{http://jkorbmacher.org/teaching}
+    \includegraphics[width=28ex]{uu-logo.png}
   \end{tabular}
 }
-
-
 \begin{document}
 $body$
 \end{document}
