@@ -1,35 +1,30 @@
-SRC_DIR = lib
-DST_DIR = pdf
-TMP_DIR = tmp
+# Glorious makefile for the entire course. Make it so!
 
-RESOURCE_DIR =  $(SRC_DIR)/resources
-RESOURCE_PATH = $(shell fd -t d . $(RESOURCE_DIR) | tr "\n" ":")
+# Base directories
+SRC_DIR   = lib
+SYL_DIR   = $(SRC_DIR)/syllabus
+RSRC_DIR  = resources
+DST_DIR   = pdf
 
-META_FILE = $(TMP_DIR)/meta.md
+export TMP_DIR  = $(CURDIR)/tmp
+export INFO     = "$(TMP_DIR)/info.md"
 
-SLIDES_SRC_DIR = $(SRC_DIR)/slides/tex
-SLIDES_SRC_FILES = $(shell fd -t f ".tex" $(SLIDES_SRC_DIR))
-SLIDES_DST_DIR = $(DST_DIR)/slides
-SLIDES_DST_FILES = $(patsubst $(SLIDES_SRC_DIR)/%.tex, $(SLIDES_DST_DIR)/%.pdf, $(SLIDES_SRC_FILES))
-SLIDES_TEMPLATE = $(shell fd -a "slides_template.tex" $(RESOURCE_DIR))
+# My uureport class for corporate identity purposes...
+export UU_RPT    = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
+export TEXINPUTS := $(UU_RPT):
 
+# Here we go...
 .PHONY : all
-all : slides | $(DST_DIR)
+all : syllabus
 
 $(DST_DIR) :
-	mkdir -p $(DST_DIR)
+	@mkdir -p $@
 
-.PHONY : slides
+.PHONY : syllabus
 
-slides : $(SLIDES_DST_FILES)
-
-$(SLIDES_DST_DIR) :
-	mkdir -p $@
-
-$(SLIDES_DST_DIR)/%.pdf : $(SLIDES_SRC_DIR)/%.tex | $(SLIDES_DST_DIR)
-	pandoc -s --resource-path="$(RESOURCE_PATH)" --template "$(SLIDES_TEMPLATE)" -o $@ $(META_FILE) $<
+syllabus : | $(DST_DIR)
+	@$(MAKE) --no-print-directory -C "$(SYL_DIR)/" && mv "$(SYL_DIR)/syllabus.pdf" $(DST_DIR)/
 
 .PHONY : clean
-
 clean :
-	rm -rf $(DST_DIR) $(TMP_DIR)
+	@echo "Cleaning up..." && rm -rf $(DST_DIR) $(TMP_DIR)

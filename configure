@@ -1,64 +1,94 @@
-#!/bin/sh
+#!/bin/zsh
+# Read relevant input from `info.conf ` and make it available for the build.
 
-# echo "Pulling updates from repository..."
-# git pull --rebase origin
-
+# Check that our dependencies are there...
 if ! command -v pandoc &> /dev/null
 then
     >&2 echo "Couldn't find pandoc. Make sure it's installed and in your PATH."
     exit 1
 fi
+# TODO I think fd is no longer used anywhere. Check...
 if ! command -v fd &> /dev/null
 then
     >&2 echo "Couldn't find fd. Make sure it's installed and in your PATH."
     exit 1
 fi
 
-SRC_DIR=lib/
-TMP_DIR=tmp/
-DST_DIR=pdf/
+# Base directories...
+TMP_DIR=tmp
 
-RESOURCE_DIR=$SRC_DIR/resources
-UUREPORT_SRC=$RESOURCE_DIR/uureport/uureport.cls
-UUREPORT_DST=$TMP_DIR/uureport.cls
-META_FILE=$TMP_DIR/meta.md
-
+# Clear temp directory if it exists already
 [ -d $TMP_DIR ] & rm -rf $TMP_DIR
 mkdir $TMP_DIR
 
-source ./meta.conf
+# Payloads...
+INFO_FILE=$TMP_DIR/info.md
+SYL_FILE=${TMP_DIR}/08_tas.md
 
-cat <<EOF >> $META_FILE
+# The goods...
+source ./info.conf
+
+# Process info
+
+# General
+cat <<EOF >> $INFO_FILE
 ---
 academic-year: $ACADEMIC_YEAR
+teamscode: $TEAMS_CODE
 EOF
-
-echo "lecturer:" >> $META_FILE
-for LECTURER in "${LECTURER[@]}"
-do
-   echo "   - $LECTURER"
-done >> $META_FILE
-echo "dates:" >> $META_FILE
-COUNTER=1
-for DATE in "${LECTURE_DATE[@]}"
-do
-    echo "  lecture-$COUNTER: $DATE"
-    ((COUNTER++))
-done >> $META_FILE
-cat <<EOF >> $META_FILE
-midterm-date: $MIDTERM_DATE
-midterm-location: $MIDTERM_LOCATION
-endterm-date: $ENDTERM_DATE
-endterm-location: $ENDTERM_LOCATION
+# Add lecturers...
+cat <<EOF >> $INFO_FILE
+lecturer:
 EOF
-echo "tas:" >> $META_FILE
-for TA in "${TA[@]}"
+for i in $(seq 1 ${#LECTURER_NAME[@]})
 do
-    echo "  - $TA"
-done >> $META_FILE
-cat <<EOF >> $META_FILE
-resource-dir: $RESOURCE_DIR
-...
+cat <<EOF
+   -  name: $LECTURER_NAME[$i]
+      email: $LECTURER_EMAIL[$i]
+      office: $LECTURER_OFFICE[$i]
+      role: $LECTURER_ROLE[$i]
 EOF
-cp $UUREPORT_SRC $UUREPORT_DST
-mkdir -p $DST_DIR
+done >> $INFO_FILE
+# Schedule
+cat <<EOF >> $INFO_FILE
+dates:
+EOF
+# Add lecture dates
+for i in $(seq 1 ${#LECTURE_DATE[@]})
+do
+cat <<EOF
+    lecture-$i: $LECTURE_DATE[$i]
+EOF
+done >> $INFO_FILE
+# Add exam dates
+cat <<EOF >> $INFO_FILE
+exam:
+     - name: Tussentoets
+       date: $MIDTERM_DATE
+       time: $MIDTERM_TIME
+       location: $MIDTERM_LOCATION
+     - name: Eindtoets
+       date: $ENDTERM_DATE
+       time: $ENDTERM_TIME
+       location: $ENDTERM_LOCATION
+     - name: Herkansing
+       date: $RESIT_DATE
+       time: $RESIT_TIME
+       location: $RESIT_LOCATION
+EOF
+# End of creation of info.md
+echo "..." >> $INFO_FILE
+# Syllabus helper...
+# > Clear syllabus helper if it already exists
+[ -f $SYL_FILE ] && rm $SYL_FILE
+# > GIMME TAs
+cat <<EOF >> ${SYL_FILE}
+  **WG**    **TA**
+  --------  ------------
+EOF
+for i in $(seq 1 ${#TA_NAME[@]})
+do
+cat <<EOF
+  $i          $TA_NAME[$i]
+EOF
+done >> $SYL_FILE
