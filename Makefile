@@ -25,6 +25,9 @@ all : syllabus slides
 $(DST_DIR) :
 	@mkdir -p $@
 
+$(SLI_DST) :
+	@mkdir -p $@
+
 .PHONY : syllabus
 syllabus : | $(DST_DIR)
 	@$(MAKE) --no-print-directory -C "$(SYL_SRC)/" && mv "$(SYL_SRC)/syllabus.pdf" $(DST_DIR)
@@ -35,4 +38,4 @@ slides : | $(DST_DIR) $(SLI_DST)
 
 .PHONY : clean
 clean :
-	@echo "Cleaning up..." && rm -rf $(DST_DIR) $(TMP_DIR)
+	@echo "Cleaning up..." && rm -rf $(DST_DIR)
