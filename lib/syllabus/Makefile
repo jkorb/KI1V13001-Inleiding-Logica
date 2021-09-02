@@ -14,8 +14,9 @@ TEMPLATE  			= $(shell find "$(TEX_DIR)" -name "template.tex")
 INFO				= $(shell find "$(ROOT_DIR)" -name "info.md")
 
 # Resources...
-UU_RPT 			    =  $(shell find "$(ROOT_DIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
-export TEXINPUTS   := $(UU_RPT):
+RSRC_DIR			= $(shell find "$(ROOT_DIR)" \( ! -regex '.*/\..*' \) -type d -name "resources")
+# UU_RPT 			    = $(shell find "$(ROOT_DIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
+export TEXINPUTS   := $(RSRC_DIR):
 
 # Target...
 TARGET    = $(DST_DIR)/syllabus.pdf
