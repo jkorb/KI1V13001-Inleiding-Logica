@@ -8,13 +8,7 @@ TEX_DIR   			= tex
 DST_DIR   			= ./
 
 # Source files...
-# TODO Clean up this mess: basically, I couldn't figure out a nice way to
-# include the helper 08_tas.md, which is created by configure. This works but is
-# _quite_ hacky...
-MD_SRC  			= $(shell find "$(MD_DIR)" -type f )
-MD_TA_SRC			= $(TMP_DIR)/08_tas.md
-MD_TA				= $(MD_DIR)/08_tas.md
-MD_FILES			= $(shell echo $(MD_SRC) $(MD_TA))
+MD_FILES  			= $(shell find "$(MD_DIR)" -type f | sort)
 
 TEMPLATE  			= $(shell find "$(TEX_DIR)" -name "template.tex")
 INFO				= $(shell find "$(ROOT_DIR)" -name "info.md")
@@ -23,18 +17,13 @@ INFO				= $(shell find "$(ROOT_DIR)" -name "info.md")
 UU_RPT 			    =  $(shell find "$(ROOT_DIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
 export TEXINPUTS   := $(UU_RPT):
 
-
-
 # Target...
 TARGET    = $(DST_DIR)/syllabus.pdf
 
 all : $(TARGET)
 
 $(TARGET) : $(MD_FILES) $(TEMPLATE)
-	@echo "> Compiling syllabus..." &&  pandoc -s -f markdown -t pdf --template=$(TEMPLATE) "$(INFO)" $(shell find "$(MD_DIR)" -type f | sort) -o $(TARGET)
-
- $(MD_TA) :
-	@cp "$(MD_TA_SRC)" $@
+	@echo "> Compiling syllabus..." &&  pandoc -s -f markdown -t pdf --template=$(TEMPLATE) "$(INFO)" $(MD_FILES) -o $(TARGET)
 
 .PHONY : clean
 clean :

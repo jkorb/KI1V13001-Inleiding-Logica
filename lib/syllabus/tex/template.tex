@@ -12,6 +12,17 @@ $for(exam)$
 \newcommand{\$exam.name$}{%
   \textbf{$exam.name$}: $exam.date$, $exam.time$, $exam.location$}
 $endfor$
+\newcommand{\TAS}{%
+  \begin{longtable}[]{@{}ll@{}}
+    \toprule
+    \textbf{WG} & \textbf{TA} \\
+    \midrule
+    \endhead
+    $for(ta)$
+    $ta.workgroup$ & $ta.name$\\
+    $endfor$
+    \bottomrule
+  \end{longtable}}
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \frenchspacing
