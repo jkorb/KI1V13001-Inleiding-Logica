@@ -63,19 +63,30 @@ done >> $INFO_FILE
 # Add exam dates
 cat <<EOF >> $INFO_FILE
 exam:
-     - name: Tussentoets
-       date: $MIDTERM_DATE
-       time: $MIDTERM_TIME
-       location: $MIDTERM_LOCATION
-     - name: Eindtoets
-       date: $ENDTERM_DATE
-       time: $ENDTERM_TIME
-       location: $ENDTERM_LOCATION
-     - name: Herkansing
-       date: $RESIT_DATE
-       time: $RESIT_TIME
-       location: $RESIT_LOCATION
+     - name:        Tussentoets
+       date:        $MIDTERM_DATE
+       time:        $MIDTERM_TIME
+       location:    $MIDTERM_LOCATION
+     - name:        Eindtoets
+       date:        $ENDTERM_DATE
+       time:        $ENDTERM_TIME
+       location:    $ENDTERM_LOCATION
+     - name:        Herkansing
+       date:        $RESIT_DATE
+       time:        $RESIT_TIME
+       location:    $RESIT_LOCATION
 EOF
+# Add TAs
+cat <<EOF >> $INFO_FILE
+ta:
+EOF
+for i in $(seq 1 ${#TA_NAME[@]})
+do
+cat <<EOF
+    - name:         $TA_NAME[$i]
+      workgroup:    $i
+EOF
+done >> $INFO_FILE
 # End of creation of info.md
 echo "..." >> $INFO_FILE
 # Syllabus helper...

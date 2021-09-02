@@ -2,8 +2,12 @@
 
 # Base directories
 SRC_DIR   = lib
-SYL_DIR   = $(SRC_DIR)/syllabus
-RSRC_DIR  = resources
+
+SYL_SRC   = $(SRC_DIR)/syllabus
+SLI_SRC   = $(SRC_DIR)/slides
+
+# RSRC_DIR  = resources
+
 DST_DIR   = pdf
 
 export TMP_DIR  = $(CURDIR)/tmp
@@ -15,15 +19,19 @@ export TEXINPUTS := $(UU_RPT):
 
 # Here we go...
 .PHONY : all
-all : syllabus
+all : syllabus slides
+	@echo "Done!"
 
 $(DST_DIR) :
 	@mkdir -p $@
 
 .PHONY : syllabus
-
 syllabus : | $(DST_DIR)
-	@$(MAKE) --no-print-directory -C "$(SYL_DIR)/" && mv "$(SYL_DIR)/syllabus.pdf" $(DST_DIR)/
+	@$(MAKE) --no-print-directory -C "$(SYL_SRC)/" && mv "$(SYL_SRC)/syllabus.pdf" $(DST_DIR)
+
+.PHONY : slides
+slides : | $(DST_DIR) $(SLI_DST)
+	@$(MAKE) --no-print-directory -C "$(SLI_SRC)" && mv "$(SLI_SRC)/slides" $(DST_DIR)
 
 .PHONY : clean
 clean :
