@@ -17,8 +17,10 @@ export INFO     = "$(TMP_DIR)/info.md"
 export UU_RPT    = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
 export TEXINPUTS := $(UU_RPT):
 
+
 # Here we go...
 .PHONY : all
+${info Compiling course ...}
 all : syllabus slides
 	@echo "Done!"
 
@@ -30,11 +32,11 @@ $(SLI_DST) :
 
 .PHONY : syllabus
 syllabus : | $(DST_DIR)
-	@$(MAKE) --no-print-directory -C "$(SYL_SRC)/" && mv "$(SYL_SRC)/syllabus.pdf" $(DST_DIR)
+	@$(MAKE) --no-print-directory -C "$(SYL_SRC)/"
 
 .PHONY : slides
 slides : | $(DST_DIR) $(SLI_DST)
-	@$(MAKE) --no-print-directory -C "$(SLI_SRC)" && mv "$(SLI_SRC)/slides" $(DST_DIR)
+	@$(MAKE) --no-print-directory -C "$(SLI_SRC)"
 
 .PHONY : clean
 clean :

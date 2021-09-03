@@ -51,13 +51,14 @@ EOF
 done >> $INFO_FILE
 # Schedule
 cat <<EOF >> $INFO_FILE
-dates:
+date:
 EOF
 # Add lecture dates
 for i in $(seq 1 ${#LECTURE_DATE[@]})
 do
 cat <<EOF
-    lecture-$i: $LECTURE_DATE[$i]
+    - week: $i
+      date: $LECTURE_DATE[$i]
 EOF
 done >> $INFO_FILE
 # Add exam dates

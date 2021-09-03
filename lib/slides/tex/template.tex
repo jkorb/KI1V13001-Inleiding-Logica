@@ -1,7 +1,10 @@
 \documentclass[handout]{beamer}
 
+
+
+
 \usepackage{graphicx}
-\graphicspath{{$resource-dir$/img/}}
+\graphicspath{{../resources/img/}}
 
 \beamertemplatenavigationsymbolsempty
   \setbeamertemplate
@@ -43,6 +46,13 @@
 \newtheorem*{notation}{Notation}
 \newtheorem*{proposition}{Proposition}
 
+$for(date)$
+\expandafter\newcommand\csname lecture-$date.week$\endcsname{$date.date$}
+$endfor$
+\newcommand{\LectureNo}[1]{\def\LectureVar{\csname lecture-#1\endcsname}}
+\def\LectureVar{???}
+\newcommand{\LectureDate}{\LectureVar}
+
 \makeatletter
 \providecommand*{\equi}{%
   \mathrel{%
@@ -53,26 +63,34 @@
   \reflectbox{$$\vDash$$}\hspace{-0.5ex}\vDash %
 }
 \makeatother
-
-
-
 \title{$academic-year$ Inleiding Logica (KI1V13001)}
-\author{$for(lecturer)$$lecturer$$sep$ \and $endfor$}
+\author{$for(lecturer)$
+  $lecturer.name$$sep$ \and $endfor$}
 \date{%
-  $for(dates)$
-  $if(lecture-1)$
-  $dates.lecture-1$
-  $endif$
-  $if(lecture-2)$
-  $dates.lecture-2$
-  $endif$
-  $endfor$
+  \LectureDate
 }
+
+\newcommand{\TAS}{%
+  \begin{longtable}[]{@{}ll@{}}
+    \toprule
+    \textbf{WG} & \textbf{TA} \\
+    \midrule
+    \endhead
+    $for(ta)$
+    $ta.workgroup$ & $ta.name$\\
+    $endfor$
+    \bottomrule
+  \end{longtable}}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
 
 \institute{
   \begin{tabular}{c}
     Department of Philosophy and Religious Studies\\
-    \includegraphics[width=28ex]{uu-logo.png}
+    \includegraphics[width=28ex]{UU_logo_NL_CMYK.png}
   \end{tabular}
 }
 \begin{document}
