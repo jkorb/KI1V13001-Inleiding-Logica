@@ -1,11 +1,11 @@
 # Make the syllabus...
 
 # Directories...
-ROOT_DIR  			= $(shell git rev-parse --show-toplevel)
+ROOT_DIR  			= ../../
 TMP_DIR				= $(ROOT_DIR)/tmp
 MD_DIR    			= md
 TEX_DIR   			= tex
-DST_DIR   			= ./
+DST_DIR   			= $(ROOT_DIR)/pdf
 
 # Source files...
 MD_FILES  			= $(shell find "$(MD_DIR)" -type f | sort)
@@ -21,7 +21,7 @@ export TEXINPUTS   := $(RSRC_DIR):
 # Target...
 TARGET    = $(DST_DIR)/syllabus.pdf
 
-all : $(TARGET)
+syllabus : $(TARGET)
 
 $(TARGET) : $(MD_FILES) $(TEMPLATE)
 	@echo "> Compiling syllabus..." &&  pandoc -s -f markdown -t pdf --template=$(TEMPLATE) "$(INFO)" $(MD_FILES) -o $(TARGET)
