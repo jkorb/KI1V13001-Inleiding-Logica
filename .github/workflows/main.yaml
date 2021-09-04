@@ -1,0 +1,44 @@
+name : Main
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: r-lib/actions/setup-pandoc@v1
+        with:
+          pandoc-version: '2.14.0.2'
+      - run: sudo apt-get install texlive latexmk texlive-fonts-extra # Merrieweather
+      - run: make
+      - uses: ame-yu/action-delete-latest-release@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     -
+      - name: Create new release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: "These are the current course docs"
+          name: Rolling
+          tag_name: release
+          files: |
+            ./pdf/syllabus.pdf
+            ./pdf/notes.pdf
+            ./pdf/slides/lecture1.pdf
+            ./pdf/slides/lecture2.pdf
+            ./pdf/slides/lecture3.pdf
+            ./pdf/slides/lecture4.pdf
+            ./pdf/slides/lecture5.pdf
+            ./pdf/slides/lecture6.pdf
+            ./pdf/slides/lecture7.pdf
+            ./pdf/slides/lecture8.pdf
+            ./pdf/slides/lecture9.pdf
+            ./pdf/slides/lecture10.pdf
+            ./pdf/slides/lecture11.pdf
+            ./pdf/slides/lecture12.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
