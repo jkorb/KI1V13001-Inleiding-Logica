@@ -8,6 +8,15 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \newcommand{\teamscode}{$teamscode$}
+$for(date)$
+\expandafter\newcommand\csname lecture-$date.week$\endcsname{$date.date$}
+$endfor$
+\makeatletter
+\providecommand*{\equi}{%
+  \mathrel{%
+    \mathpalette\@equi\vDash
+  }%
+}
 $for(exam)$
 \newcommand{\$exam.name$}{%
   \textbf{$exam.name$}: $exam.date$, $exam.time$, $exam.location$}
@@ -15,7 +24,7 @@ $endfor$
 \newcommand{\TAS}{%
   \begin{longtable}[]{@{}ll@{}}
     \toprule
-    \textbf{WG} & \textbf{TA} \\
+    \textbf{WG} & \textbf{SA} \\
     \midrule
     \endhead
     $for(ta)$

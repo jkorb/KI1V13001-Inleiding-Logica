@@ -19,6 +19,8 @@ De huiswerkopdrachten worden niet becijferd.
 
 In je rooster (<https://mytimetable.uu.nl>) kun je zien in welke werkgroep je
 zit.
-Een overzicht van welke TA bij welke werkgroep hoort vind je hier:
+Een overzicht van welke studentenassistent (SA) bij welke werkgroep hoort vind je hier:
 
 \TAS
+
+Je SA gaat haar/zijn contactdata tijdens het eerste werkcollege met jij delen.
