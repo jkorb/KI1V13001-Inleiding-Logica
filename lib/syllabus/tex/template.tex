@@ -1,0 +1,56 @@
+\documentclass[a4paper,11pt,dutch]{uureport}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\newcommand{\teamscode}{$teamscode$}
+$for(date)$
+\expandafter\newcommand\csname lecture-$date.week$\endcsname{$date.date$}
+$endfor$
+\makeatletter
+\providecommand*{\equi}{%
+  \mathrel{%
+    \mathpalette\@equi\vDash
+  }%
+}
+$for(exam)$
+\newcommand{\$exam.name$}{%
+  \textbf{$exam.name$}: $exam.date$, $exam.time$, $exam.location$}
+$endfor$
+\newcommand{\TAS}{%
+  \begin{longtable}[]{@{}ll@{}}
+    \toprule
+    \textbf{WG} & \textbf{SA} \\
+    \midrule
+    \endhead
+    $for(ta)$
+    $ta.workgroup$ & $ta.name$\\
+    $endfor$
+    \bottomrule
+  \end{longtable}}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\frenchspacing
+\titlepageinfo{%
+  Kunstmatige Intelligentie, Block 1\\
+  Cursusmail:\\
+  \href{mailto:inleiding.logica@uu.nl}{\texttt{inleiding.logica@uu.nl}}}
+\title[]{%
+  $academic-year$ Inleiding Logica (KI1V13001)}
+\author{%
+  $for(lecturer)$
+  $lecturer.name$
+  $sep$\and
+  $endfor$
+}
+\sender[Kunstmatige intelligentie]{}
+\begin{document}
+\maketitle
+$body$
+\end{document}

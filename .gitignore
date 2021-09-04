@@ -2,6 +2,14 @@
 
 .DS_Store
 
+# tmp folder
+
+tmp/
+
+# build folder
+
+build/
+
 #Local archive folder
 
 .archive/

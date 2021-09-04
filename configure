@@ -1,0 +1,106 @@
+#!/bin/zsh
+# Read relevant input from `info.conf ` and make it available for the build.
+
+# Check that our dependencies are there...
+if ! command -v pandoc &> /dev/null
+then
+    >&2 echo "Couldn't find pandoc. Make sure it's installed and in your PATH."
+    exit 1
+fi
+# TODO I think fd is no longer used anywhere. Check...
+if ! command -v fd &> /dev/null
+then
+    >&2 echo "Couldn't find fd. Make sure it's installed and in your PATH."
+    exit 1
+fi
+
+# Base directories...
+TMP_DIR=tmp
+
+# Clear temp directory if it exists already
+[ -d $TMP_DIR ] & rm -rf $TMP_DIR
+mkdir $TMP_DIR
+
+# Payloads...
+INFO_FILE=$TMP_DIR/info.md
+SYL_FILE=${TMP_DIR}/08_tas.md
+
+# The goods...
+source ./info.conf
+
+# Process info
+
+# General
+cat <<EOF >> $INFO_FILE
+---
+academic-year: $ACADEMIC_YEAR
+teamscode: $TEAMS_CODE
+EOF
+# Add lecturers...
+cat <<EOF >> $INFO_FILE
+lecturer:
+EOF
+for i in $(seq 1 ${#LECTURER_NAME[@]})
+do
+cat <<EOF
+   -  name: $LECTURER_NAME[$i]
+      email: $LECTURER_EMAIL[$i]
+      office: $LECTURER_OFFICE[$i]
+      role: $LECTURER_ROLE[$i]
+EOF
+done >> $INFO_FILE
+# Schedule
+cat <<EOF >> $INFO_FILE
+date:
+EOF
+# Add lecture dates
+for i in $(seq 1 ${#LECTURE_DATE[@]})
+do
+cat <<EOF
+    - week: $i
+      date: $LECTURE_DATE[$i]
+EOF
+done >> $INFO_FILE
+# Add exam dates
+cat <<EOF >> $INFO_FILE
+exam:
+     - name:        Tussentoets
+       date:        $MIDTERM_DATE
+       time:        $MIDTERM_TIME
+       location:    $MIDTERM_LOCATION
+     - name:        Eindtoets
+       date:        $ENDTERM_DATE
+       time:        $ENDTERM_TIME
+       location:    $ENDTERM_LOCATION
+     - name:        Herkansing
+       date:        $RESIT_DATE
+       time:        $RESIT_TIME
+       location:    $RESIT_LOCATION
+EOF
+# Add TAs
+cat <<EOF >> $INFO_FILE
+ta:
+EOF
+for i in $(seq 1 ${#TA_NAME[@]})
+do
+cat <<EOF
+    - name:         $TA_NAME[$i]
+      workgroup:    $i
+EOF
+done >> $INFO_FILE
+# End of creation of info.md
+echo "..." >> $INFO_FILE
+# Syllabus helper...
+# > Clear syllabus helper if it already exists
+[ -f $SYL_FILE ] && rm $SYL_FILE
+# > GIMME TAs
+cat <<EOF >> ${SYL_FILE}
+  **WG**    **TA**
+  --------  ------------
+EOF
+for i in $(seq 1 ${#TA_NAME[@]})
+do
+cat <<EOF
+  $i          $TA_NAME[$i]
+EOF
+done >> $SYL_FILE

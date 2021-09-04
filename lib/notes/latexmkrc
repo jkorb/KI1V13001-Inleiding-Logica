@@ -1,0 +1,7 @@
+@default_files = ('notes.tex');
+# Apparently already in 2015 this didn't work anymore...
+# $cleanup_mode = 2;
+$clean_ext = "pdfsync synctex.gz";
+$force_mode = 1;
+$out_dir = "../../pdf";
+$pdf_mode = 1

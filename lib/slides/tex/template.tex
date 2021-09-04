@@ -1,0 +1,80 @@
+\documentclass[handout]{beamer}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\beamertemplatenavigationsymbolsempty
+  \setbeamertemplate
+ {footline}{\quad\hfill\insertframenumber\quad\vspace{1ex}/\inserttotalframenumber\quad\vspace{1ex}}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\frenchspacing
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usetikzlibrary{fit,shapes}
+\usepackage{tikz-qtree}
+\tikzset{edge from parent/.append style={->}}
+\usepackage{wasysym}
+\usepackage{proof}
+\usepackage{prooftrees}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{hyperref}
+\usepackage{venndiagram}
+\theoremstyle{definition}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{claim}{Claim}
+\newtheorem*{notation}{Notation}
+\newtheorem*{proposition}{Proposition}
+$for(date)$
+\expandafter\newcommand\csname lecture-$date.week$\endcsname{$date.date$}
+$endfor$
+\newcommand{\LectureNo}[1]{\def\LectureVar{\csname lecture-#1\endcsname}}
+\def\LectureVar{???}
+\newcommand{\LectureDate}{\LectureVar}
+\makeatletter
+\providecommand*{\equi}{%
+  \mathrel{%
+    \mathpalette\@equi\vDash
+  }%
+}
+\newcommand*{\@equi}[2]{%
+  \reflectbox{$$\vDash$$}\hspace{-0.5ex}\vDash %
+}
+\makeatother
+\title{$academic-year$ Inleiding Logica (KI1V13001)}
+\author{$for(lecturer)$
+  $lecturer.name$$sep$ \and $endfor$}
+\date{%
+  \LectureDate
+}
+\newcommand{\TAS}{%
+  \begin{longtable}[]{@{}ll@{}}
+    \toprule
+    \textbf{WG} & \textbf{TA} \\
+    \midrule
+    \endhead
+    $for(ta)$
+    $ta.workgroup$ & $ta.name$\\
+    $endfor$
+    \bottomrule
+  \end{longtable}}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\institute{
+  \begin{tabular}{c}
+    Department of Philosophy and Religious Studies\\
+    \includegraphics[width=28ex]{UU_logo_NL_CMYK.png}
+  \end{tabular}
+}
+\begin{document}
+$body$
+\end{document}
