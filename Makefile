@@ -5,6 +5,7 @@ SRC_DIR   = lib
 
 SYL_SRC   = $(SRC_DIR)/syllabus
 SLI_SRC   = $(SRC_DIR)/slides
+NOT_SRC	  = $(SRC_DIR)/notes
 
 # RSRC_DIR  = resources
 
@@ -21,7 +22,7 @@ export TEXINPUTS := $(UU_RPT):
 # Here we go...
 .PHONY : all
 ${info Compiling course ...}
-all : syllabus slides
+all : syllabus slides notes
 	@echo "Done!"
 
 $(DST_DIR) :
@@ -37,6 +38,10 @@ syllabus : | $(DST_DIR)
 .PHONY : slides
 slides : | $(DST_DIR) $(SLI_DST)
 	@$(MAKE) --no-print-directory -C "$(SLI_SRC)"
+
+.PHONY : notes
+notes : | $(DST_DIR)
+	@$(MAKE) --no-print-directory -C "$(NOT_SRC)"
 
 .PHONY : clean
 clean :
