@@ -15,7 +15,7 @@ jobs:
         with:
           pandoc-version: '2.14.0.2'
       - run: sudo apt-get install texlive latexmk texlive-fonts-extra # Merrieweather
-      - run: make
+      - run: ./configure && make all
       - uses: ame-yu/action-delete-latest-release@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     -
