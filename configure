@@ -8,12 +8,12 @@ then
     >&2 echo "Couldn't find pandoc. Make sure it's installed and in your PATH."
     exit 1
 fi
-# TODO I think fd is no longer used anywhere. Check...
-if ! command -v fd &> /dev/null
-then
-    >&2 echo "Couldn't find fd. Make sure it's installed and in your PATH."
-    exit 1
-fi
+# # TODO I think fd is no longer used anywhere. Check...
+# if ! command -v fd &> /dev/null
+# then
+#     >&2 echo "Couldn't find fd. Make sure it's installed and in your PATH."
+#     exit 1
+# fi
 
 # Base directories...
 TMP_DIR=tmp
