@@ -1,4 +1,5 @@
 #!/bin/zsh
+# TODO URGENT: make this run on bash! It doesn't because of the array stuff..
 # Read relevant input from `info.conf ` and make it available for the build.
 
 # Check that our dependencies are there...
