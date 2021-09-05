@@ -22,8 +22,8 @@ jobs:
       - name: Create new release
         uses: softprops/action-gh-release@v1
         with:
-          body: "These are the current course docs"
-          name: Rolling
+          body: "These are pdfs compiled from the most recent versions of the course material."
+          name: Course materials
           tag_name: release
           files: |
             ./pdf/syllabus.pdf
