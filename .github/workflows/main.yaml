@@ -35,15 +35,15 @@ jobs:
           files: |
             ./pdf/syllabus.pdf
             ./pdf/notes.pdf
-            ./pdf/slides/lecture1.pdf
-            ./pdf/slides/lecture2.pdf
-            ./pdf/slides/lecture3.pdf
-            ./pdf/slides/lecture4.pdf
-            ./pdf/slides/lecture5.pdf
-            ./pdf/slides/lecture6.pdf
-            ./pdf/slides/lecture7.pdf
-            ./pdf/slides/lecture8.pdf
-            ./pdf/slides/lecture9.pdf
+            ./pdf/slides/lecture01.pdf
+            ./pdf/slides/lecture02.pdf
+            ./pdf/slides/lecture03.pdf
+            ./pdf/slides/lecture04.pdf
+            ./pdf/slides/lecture05.pdf
+            ./pdf/slides/lecture06.pdf
+            ./pdf/slides/lecture07.pdf
+            ./pdf/slides/lecture08.pdf
+            ./pdf/slides/lecture09.pdf
             ./pdf/slides/lecture10.pdf
             ./pdf/slides/lecture11.pdf
             ./pdf/slides/lecture12.pdf
