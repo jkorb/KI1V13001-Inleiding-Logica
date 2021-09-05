@@ -14,9 +14,10 @@ TEMPLATE  			= $(shell find "$(TEX_DIR)" -name "template.tex")
 INFO				= $(shell find "$(ROOT_DIR)" -name "info.md")
 
 # Resources...
-RSRC_DIR			= $(shell find "$(ROOT_DIR)" \( ! -regex '.*/\..*' \) -type d -name "resources")
-# UU_RPT 			    = $(shell find "$(ROOT_DIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
-export TEXINPUTS   := $(RSRC_DIR):
+TOP_LVL				= $(shell git rev-parse --show-toplevel)
+UU_RPT 			    = $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
+# RSRC_DIR			= $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -name "resources")
+export TEXINPUTS   := $(UU_RPT):
 
 # Target...
 TARGET    = $(DST_DIR)/syllabus.pdf
