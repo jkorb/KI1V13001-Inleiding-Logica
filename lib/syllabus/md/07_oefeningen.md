@@ -1,4 +1,4 @@
-# Oeffeningen en opdrachten {.unnumbered}
+# Oefeningen en opdrachten {.unnumbered}
 
 "*The best way to learn logic is to do exercises. A lot of exercises.*"
 
@@ -11,7 +11,7 @@ appendix van de lecture notes.
 De oefeningen waar een $[h]$ bij staat, zijn huiswerkopgaven.
 
 Elk student moet tenminste één keer tijdens de cursus een oplossing voor en opdracht voorrekenen. 
-Dit is jij *actieve deelname*.
+Dit is jou *actieve deelname*.
 Dus als je dat niet doet, krijg je een **ND** (niet deelgenomen) voor deze cursus.
 Je SA vertelt je meer tijdens je eerste werkgroepbijeenkomst.
 
@@ -28,4 +28,4 @@ Een overzicht van welke studentenassistent (SA) bij welke werkgroep hoort vind j
 
 \TAS
 
-Je SA gaat haar/zijn contactdata tijdens het eerste werkcollege met jij delen.
+Je SA gaat haar/zijn contactdata tijdens het eerste werkcollege met jou delen.

@@ -22,7 +22,7 @@ Dit is een van de reden waarom het gehele cursusmateriaal open source op GitHub
 beschikbaar is.
 Hoe de collaboratie precies werkt staat op GitHub.
 
-Als je nog GitHub en git nog niets zegt, dan is dit natuurlijk geen probleem. 
+Als je GitHub en git nog niets zeggen, dan is dit natuurlijk geen probleem. 
 Hier kun je meer hierover leren:
 
 -   <https://guides.github.com/>

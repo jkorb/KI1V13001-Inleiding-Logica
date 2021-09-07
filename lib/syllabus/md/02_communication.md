@@ -13,7 +13,7 @@ Verder maken we gebruik van Blackboard:
 -    <https://students.uu.nl/blackboard>
 
 Op Blackboard delen we vooral (belangrijke) mededelingen.
-Zoals goedgekeurd door je werkgroepleider kunt je hier ook je huiswerkopdrachten
+Zoals goedgekeurd door je werkgroepleider kun je hier ook je huiswerkopdrachten
 indienen.
 Iedereen die is ingeschreven voor de cursus heeft automatisch toegang tot de
 Blackboardomgeving.

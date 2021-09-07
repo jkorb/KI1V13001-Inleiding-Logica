@@ -15,7 +15,7 @@ Meer informatie over het onderwijs tijdens corona vind je hier:
 
 -   <https://students.uu.nl/gw/corona>
 
-Als er reden zijn waarom je niet naar locatie kunt komen, neem dan zo snel
+Als er redenen zijn waarom je niet naar locatie kunt komen, neem dan zo snel
 mogelijk contact op met je studieadviseurs. Voor de (eerstejars) KI studenten
 vind je hier meer info over de studieadviseurs:
 
