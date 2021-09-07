@@ -2,7 +2,7 @@
 
 # KI1V13001 - Inleiding Logica
 
-[About](#about) • [Contribute](#contribute) • [GitHub](#GitHub) • [Latex](#latex) • [License](#license) • [Contact](#contact)
+[About](#about) • [Contribute](#contribute) • [GitHub](#GitHub) • [Latex](#latex) • [Compiling](#compiling) • [License](#license) • [Contact](#contact)
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://gitgub.com/jkorb/truthmakers.bib/graphs/commit-activity)
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
@@ -50,6 +50,24 @@ Get started here [here](https://www.overleaf.com/learn/latex/Tutorials).
 
 The non-technical bits of the material are written in markdown (such as this readme and the syllabus), a *very* simple markup language.
 Learn more about it [here](https://guides.github.com/features/mastering-markdown/).
+
+## Compiling
+
+If you want to compile the source materials yourself, you need `git`, a standard LaTeX install (e.g. `texlive-core`), `pandoc`, and `make`.
+These are easy to get if you're working on Linux (via your package manager) or Mac (via `homebrew`).
+I don't know about Windows but that should be possible, too (if you know you're way around GNU Make on Windows, please let me know).
+
+The standard way of downloading and compiling is via the command line as follows (assuming you have installed the above dependencies):
+
+``` shell
+  git clone https://github.com/jkorb/KI1V13001-Inleiding-Logica.git
+  cd KI1V13001-Inleiding-Logica
+  ./configure
+  make all
+```
+
+This will create the folder `KI1V13001-Inleiding-Logica` in your current working directory with the course materials in it, and then compile the pdfs into a folder `pdf` inside.
+Don't forget to run the `configure` script, since this will update the source code with the current course specifics (dates, TAs, etc.).
 
 ## License
 
