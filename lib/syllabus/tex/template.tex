@@ -21,7 +21,7 @@ $endfor$
 }
 $for(exam)$
 \newcommand{\$exam.name$}{%
-  \textbf{$exam.name$}: $exam.date$, $exam.time$, $exam.location$}
+  \textbf{$exam.name$} ($exam.date$, $exam.time$), $exam.location$}
 $endfor$
 \newcommand{\TAS}{%
   \begin{longtable}[]{@{}ll@{}}
