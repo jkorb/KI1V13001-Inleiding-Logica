@@ -11,9 +11,9 @@ De cursushandleiding, het dictaat, en de slides zijn vrij beschikbaar en open
 source.
 De pdfs en broncode zijn op GitHub te vinden:
 
--   (<https://github.com/jkorb/KI1V13001-Inleiding-Logica>)
+-   (<https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica>)
 
-Voor de pdfs ga je naar [Course Material](https://github.com/jkorb/KI1V13001-Inleiding-Logica/releases/latest).
+Voor de pdfs ga je naar [Course Material](https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/releases/latest).
 Hier vind je altijd de meest recente versie van het cursusmateriaal.
 Meer over de broncode en collaboratie beneden.
 
