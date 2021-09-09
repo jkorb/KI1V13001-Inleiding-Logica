@@ -10,21 +10,23 @@ Oplossingen voor een deel van die oefeningen kun je vinden in de
 appendix van de lecture notes. 
 De oefeningen waar een $[h]$ bij staat, zijn huiswerkopgaven.
 
-Elk student moet tenminste één keer tijdens de cursus een oplossing voor en opdracht voorrekenen. 
-Dit is jou *actieve deelname*.
-Dus als je dat niet doet, krijg je een **ND** (niet deelgenomen) voor deze cursus.
-Je SA vertelt je meer tijdens je eerste werkgroepbijeenkomst.
+Elk student moet tenminste één keer tijdens de cursus een oplossing voor en
+opdracht voorrekenen. Dit is jou *actieve deelname*. Dus als je dat niet doet,
+krijg je een **ND** (niet deelgenomen) voor deze cursus. Je SA vertelt je meer
+tijdens je eerste werkgroepbijeenkomst.
 
-Als je je huiswerk op tijd inlevert, kan je TA (opbouwende) feedback teruggeven. 
+Als je je huiswerk op tijd inlevert, kan je TA (opbouwende) feedback teruggeven.
 Je TA zal je laten weten hoe en wanneer je het huiswerk kan inleveren.
 
-We adviseren jullie met klem gebruik te maken van deze mogelijkheid.
-Het is de best mogelijke voorbereiding op het tentamen. 
-De huiswerkopdrachten worden niet becijferd.
+We adviseren jullie met klem gebruik te maken van deze mogelijkheid. Het is de
+best mogelijke voorbereiding op het tentamen. De huiswerkopdrachten worden niet
+becijferd.
 
 In je rooster (<https://mytimetable.uu.nl>) kun je zien in welke werkgroep je
 zit.
-Een overzicht van welke studentenassistent (SA) bij welke werkgroep hoort vind je hier:
+Als je jouw werkgroep wilt wisselen, dan kan dat (alleen) in overleg met je
+werkgroepdocent. Een overzicht van welke studentenassistent (SA) bij welke
+werkgroep hoort vind je hier:
 
 \TAS
 
