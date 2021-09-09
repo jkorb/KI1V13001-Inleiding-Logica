@@ -885,10 +885,14 @@ Well, we could have done this without the recursive definition, sure. But the po
 	
 			\item \begin{enumerate}[(a)] 
 			
-				\item $(R(t_1, \mathellipsis, t_n))[x:=t]=R((t_1)[x:=t], \mathellipsis, (t_n)[x:=t])$
-				
-				\item $(t_1=t_2)[x:=t]=t_1[x:=t]=t_2[x:=t]$
-				
+					\item $(R(t_1, \mathellipsis, t_n))[x:=t]=R((t_1)[x:=t], \mathellipsis, (t_n)[x:=t])$
+
+					\item $(t_1=t_2)[x:=t]=(t_1[x:=t]=t_2[x:=t])$\footnote{%
+						  Note that the symbol ``='' is used in 3 different ways
+						  here: 1. in the substitution operation $(t_1=t_2)[x:\overset{\downarrow}{=}t]=(t_1[x:\overset{\downarrow}{=}t]=t_2[x:\overset{\downarrow}{=}t])$, 2.\
+						  as the strict identity of terms $(t_1=t_2)[x:=t]\overset{\downarrow}{=}(t_1[x:=t]=t_2[x:=t])$, and
+						  3.\ as the identity symbol of our language $(t_1\overset{\downarrow}{=}t_2)[x:=t]=(t_1[x:=t]\overset{\downarrow}{=}t_2[x:=t])$.}
+
 			\end{enumerate}
 			
 			\item \begin{enumerate}[(a)] 
