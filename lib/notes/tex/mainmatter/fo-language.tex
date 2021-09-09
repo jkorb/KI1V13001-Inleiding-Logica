@@ -260,7 +260,18 @@ We've already talked about how we abstract from predicates in first-order logic,
 
 		\item How do we prove that an expression $\sigma$ is \emph{not} a formula? Well, just like in propositional logic (cf. 4.1.9). Once we've introduced parsing trees in the following section, it will, in fact, be relatively straight-forward to adopt our algorithm from 4.3.10 to first-order logic. But we shall not do this explicitly, rather it will be left as an exercise (8.9.4). More generally, in first-order logic, we shall not focus so much on the more nit-picky details of syntax, like proving that a formula is an expression or not. We have bigger fish to fry.
 		
-		\item Since we're not so much concerned with very detailed syntax, we can already introduce the notational conventions here. Actually, they are precisely the same as in propositional logic (cf. \S4.5). To see that we can't leave out parentheses with the quantifiers, let's quickly look at one example. In the expression $\forall x(P(x)\to S(a))$, we really cannot leave out any parentheses. If we would, we'd get $\forall xP(x)\to S(a)$, which is very different from $\forall x(P(x)\to S(a))$. To see the difference, let's interpret $P$ as the predicate ``\dots passes,'' $S$ as ``\dots is surprised,'' and $a$ as denoting me. Under this reading, $\forall xP(x)\to S(a)$ says that if everybody passes, then I'm surprised. This is true---though, I'd be positively surprised. The formula  $\forall x(P(x)\to S(a))$, instead, says that for every individual student, if that student passes, I'm surprised. This is certainly false: I believe in every single one of you \smiley
+	  \item Since we're not so much concerned with very detailed syntax, we can already introduce the notational conventions here.
+			Actually, they are precisely the same as in propositional logic (cf.\ \S4.5).
+			To see that we can't leave out parentheses with the quantifiers, let's quickly look at one example.
+			In the expression $\forall x(P(x)\to S(a))$, we really cannot leave out any parentheses.
+			If we would, we'd get $\forall xP(x)\to S(a)$, which is very different from $\forall x(P(x)\to S(a))$.
+			To see the difference, let's interpret $P$ as the predicate ``\dots passes,'' $S$ as ``\dots is surprised,'' and $a$ as denoting me.
+			Under this reading, $\forall xP(x)\to S(a)$ says that if everybody passes, then I'm surprised.
+			This is true---though, I'd be positively surprised.
+			The formula  $\forall x(P(x)\to S(a))$, instead, says that for every individual student, if that student passes, I'm surprised.
+			This is certainly false: I believe in every single one of you \smiley \footnote{%
+			Though it would be enough already for this to be false that I believe in one of you\dots}
+
 		
 		\item Also the topic of proof by induction we can handle rather quickly. Since the set of formulas is defined recursively, proof by induction works just like in propositional logic: we show that all formulas have a property by showing that the atomic formulas have the property and that it's preserved under the constructions:
 		 \begin{theorem}
@@ -504,7 +515,7 @@ In a sense, the information provided by the stripped parsing tree is the same as
 	
 	\begin{center}
 	
-	\Tree [.{$\forall x$} [.{$\to$} [.{$R$} [.$x$ ] [.{$g$} [.$f$ [.$a$ ]  ] [.$f$ [.$a$ ]  ] ] ] [.$\exists y$ [.$R$ [.$y$ ]  [.$y$ ] ] ] ] ]
+	\Tree [.{$\forall x$} [.{$\to$} [.{$R$} [.$x$ ] [.{$g$} [.$f$ [.$a$ ]  ] [.$f$ [.$b$ ]  ] ] ] [.$\exists y$ [.$R$ [.$y$ ]  [.$y$ ] ] ] ] ]
 	
 	\end{center}
 	
@@ -849,7 +860,7 @@ This means that $k$ must be a node in $T_S(\phi)$. But that would mean that $(k,
 
 		\item Before we talk about formalization, we will introduce the concept of \emph{substitution} of terms for (free) variables in formulas. The point of this operation is to be able, in a purely syntactic way, to specify what certain pronouns stand for. Remember that in first-order logic, we treat pronouns as variables: ``it is red,'' for example, is formalized as $R(x)$. Now, without knowing what ``it'' stands for, we cannot determine whether this sentence is true or false. In semantics, which we treat in the next chapter, we will discuss a semantic way of achieving this. But for many purposes, especially proof theory, it will be useful to be able to do this in a purely syntactic fashion, i.e. just by manipulating symbols. This is what the operation of term-substitution allows us to do. To illustrate the idea, think of the sentence ``it is red'' formalized as $R(x)$ again. Suppose further that in our language we refer to the ball using the constant $a$. A simple way of making it explicit that ``it'' stands for the ball is to replace the $x$ in $R(x)$ with $a$ to get $R(a)$, a formula that says that the ball is red. We will now define this operation as a general operation on formulas: the operation of a term substituting a term $t$ for free occurrences of a variable $x$ in a formula $\phi$. For this, we write $(\phi)[x:=t]$.
 			
-		\item In order to be able to define the operation, we first need to define what it means to replace a term for a variable in another term. This is because variables can be nested somewhere in functional expressions, such as $f(a, g(h(x),c))$. To handle this, we define the operation $(s)[x:=t]$ of replacing a term $t$ for a variable $x$ in another term $t$ recursively as follows:
+		\item In order to be able to define the operation, we first need to define what it means to replace a term for a variable in another term. This is because variables can be nested somewhere in functional expressions, such as $f(a, g(h(x),c))$. To handle this, we define the operation $(s)[x:=t]$ of replacing a term $t$ for a variable $x$ in another term $s$ recursively as follows:
 		
 			\begin{enumerate}[(i)]
 			
@@ -874,10 +885,14 @@ Well, we could have done this without the recursive definition, sure. But the po
 	
 			\item \begin{enumerate}[(a)] 
 			
-				\item $(R(t_1, \mathellipsis, t_n))[x:=t]=R((t_1)[x:=t], \mathellipsis, (t_n)[x:=t])$
-				
-				\item $(t_1=t_2)[x:=t]=t_1[x:=t]=t_2[x:=t]$
-				
+					\item $(R(t_1, \mathellipsis, t_n))[x:=t]=R((t_1)[x:=t], \mathellipsis, (t_n)[x:=t])$
+
+					\item $(t_1=t_2)[x:=t]=(t_1[x:=t]=t_2[x:=t])$\footnote{%
+						  Note that the symbol ``='' is used in 3 different ways
+						  here: 1. in the substitution operation $(t_1=t_2)[x:\overset{\downarrow}{=}t]=(t_1[x:\overset{\downarrow}{=}t]=t_2[x:\overset{\downarrow}{=}t])$, 2.\
+						  as the strict identity of terms $(t_1=t_2)[x:=t]\overset{\downarrow}{=}(t_1[x:=t]=t_2[x:=t])$, and
+						  3.\ as the identity symbol of our language $(t_1\overset{\downarrow}{=}t_2)[x:=t]=(t_1[x:=t]\overset{\downarrow}{=}t_2[x:=t])$.}
+
 			\end{enumerate}
 			
 			\item \begin{enumerate}[(a)] 

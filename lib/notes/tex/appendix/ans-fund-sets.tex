@@ -38,10 +38,17 @@
 
         \begin{enumerate}[(a)]
 
-          \item To prove $X\subseteq Y$ iff $X\cup Y = Y$, we need to prove both directions.\\$\Rightarrow\\ to\ prove:\\$If $ X\subseteq Y,\ $then $ X\cup Y = Y \\$ Suppose $X \subseteq Y$. We'll show that $X \cup Y = Y$. To show this, we must prove two things: \begin{enumerate}[(i)]
-                                                                                                                                                                                                                                                                         \item $Y \subseteq X \cup Y$: from the definition of union follows that $X\cup Y$ consists of all elements in $X$ and all elements in $Y$, hence all elements in $Y$ are in $X\cup Y$, which is what we needed to show.
-                                                                                                                                                                                                                                                                         \item $X\cup Y \subseteq Y$ Let $x$ be an arbitrary element of $X \cup Y$. By the definition of union, we know that $x \in Y$ or $X \in X$. When $x \in Y$, we are fine, as we want to show that $x \in Y$. When $x \in X$, we know by our assumption that $X\subseteq Y$, that $x \in Y$. Therefore all $x \in X\cup Y$ are in $Y$, therefore $X\cup Y \subseteq Y$.
-                                                                                                                                                                                                                                                                       \end{enumerate}
+          \item To prove $X\subseteq Y$ iff $X\cup Y = Y$, we need to prove both directions.\\$\Rightarrow\\ to\ prove:\\$If $ X\subseteq Y,\ $then $ X\cup Y = Y \\$ Suppose $X \subseteq Y$. We'll show that $X \cup Y = Y$. To show this, we must prove two things:
+
+                \begin{enumerate}[(i)]
+                  \item $Y \subseteq X \cup Y$: from the definition of union follows that $X\cup Y$ consists of all elements in $X$ and all elements in $Y$, hence all elements in $Y$ are in $X\cup Y$, which is what we needed to show.
+                  \item $X\cup Y \subseteq Y$ Let $x$ be an arbitrary element of $X \cup Y$.
+                        By the definition of union, we know that $x \in Y$ or $X \in X$.
+                        We now make a distinction by cases (see \S2.3.9).
+                        When $x \in Y$, we are fine, as we want to show that $x \in Y$.
+                        When $x \in X$, we know by our assumption that $X\subseteq Y$, that $x \in Y$.
+                        Therefore all $x \in X\cup Y$ are in $Y$, therefore $X\cup Y \subseteq Y$.
+                \end{enumerate}
             Using the axiom of Extensionality, we can now conclude that $X \cup Y = Y$. \\\\
             $\Leftarrow\\to\ prove:$\\If $X\cup Y=Y$, then $X\subseteq Y$. We'll prove the contrapositive. We assume that $X \not \subseteq Y$. Hence there must be some element $x\in X$ such that $x\not \in Y$. As $X \cup Y$ contains all elements of $X$, it must also contain $x$. As there's one element that is in $X\cup Y$ and not in $Y$, $X \cup Y \neq Y$, which is what we needed to prove.\\\\ As we've now proved both directions, we've proved $X\subseteq Y$ iff $X\cup Y = Y \square$
 

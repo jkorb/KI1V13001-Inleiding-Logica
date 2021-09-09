@@ -404,8 +404,22 @@ When $\Gamma\vDash \phi$, we also say that the $\Gamma$'s \emph{entail} $\phi$ o
 		
 		\end{enumerate}
 		
-		\item Note that each of the examples in 5.2.3 is a claim about \emph{concrete} formulas, i.e. specific formulas of a fixed language. But an important aspect of logic is to figure out logical \emph{laws}: \emph{patterns} of valid inferences. An example of such a patter is that $\phi,\psi\therefore(\phi\land\psi)$ is valid for all $\phi,\psi\in\mathcal{L}$. Remember from 5.2.2 that the idea is that $\phi,\psi\therefore(\phi\land\psi)$ is valid iff $\phi,\psi\vDash (\phi\land\psi)$. So, what we have to prove in order to prove the logical law is that for all $\phi,\psi\in\mathcal{L}$, $\phi,\psi\vDash(\phi\land\psi)$. How would we do something like this? Well, even though this is a claim about formulas, we don't need to use induction to establish this. We can simply use the reasoning from 5.2.3.(i) and replace $p$ with $\phi$ and $q$ with $\psi$. To be perfectly explicit, here is the argument:
-			\begin{proof}We need to prove that for each valuation $v$, if $\llbracket \phi\rrbracket_v=1$ and $\llbracket \psi\rrbracket_v=1$, then $\llbracket \phi\land \psi\rrbracket_v=1$. So, let $v$ be an arbitrary valuation such that $\llbracket \phi\rrbracket_v=1$ and $\llbracket \psi\rrbracket_v=1$. Consider $\llbracket \phi\land \psi\rrbracket_v$. We know that $\llbracket \phi\land \psi\rrbracket_v=min(\llbracket \phi\rrbracket_v, \llbracket \psi\rrbracket_v)$. But since $\llbracket \phi\rrbracket_v=1$ and $\llbracket \psi\rrbracket_v=1$, we have that $min(\llbracket \phi\rrbracket_v, \llbracket \psi\rrbracket_v)=min(1,1)=1$, which is what we needed to show.
+	  \item Note that each of the examples in 5.2.3 is a claim about \emph{concrete} formulas, i.e.\ specific formulas of a fixed language.
+			But an important aspect of logic is to figure out logical \emph{laws}: \emph{patterns} of valid inferences.
+			An example of such a patter is that $\phi,\psi\therefore(\phi\land\psi)$ is valid for all $\phi,\psi\in\mathcal{L}$.
+			Remember from 5.2.2 that the idea is that $\phi,\psi\therefore(\phi\land\psi)$ is valid iff $\phi,\psi\vDash (\phi\land\psi)$.
+			So, what we have to prove in order to prove the logical law is that for all $\phi,\psi\in\mathcal{L}$, $\phi,\psi\vDash(\phi\land\psi)$.
+			How would we do something like this?
+			Well, even though this is a claim about formulas, we don't need to use induction to establish this.
+			We can simply use the reasoning from 5.2.3.(i) and replace $p$ with $\phi$ and $q$ with $\psi$.
+			To be perfectly explicit, here is the argument:
+			\begin{proof}
+			  Let $\phi,\psi\in\mathcal{L}$ be two formulas.
+			  We need to prove that for each valuation $v$, if $\llbracket \phi\rrbracket_v=1$ and $\llbracket \psi\rrbracket_v=1$, then $\llbracket \phi\land \psi\rrbracket_v=1$.
+			  So, let $v$ be an arbitrary valuation such that $\llbracket \phi\rrbracket_v=1$ and $\llbracket \psi\rrbracket_v=1$.
+			  Consider $\llbracket \phi\land \psi\rrbracket_v$.
+			  We know that $\llbracket \phi\land \psi\rrbracket_v=min(\llbracket \phi\rrbracket_v, \llbracket \psi\rrbracket_v)$.
+			  But since $\llbracket \phi\rrbracket_v=1$ and $\llbracket \psi\rrbracket_v=1$, we have that $min(\llbracket \phi\rrbracket_v, \llbracket \psi\rrbracket_v)=min(1,1)=1$, which is what we needed to show.
 			\end{proof}
 In a similar way, we can also transform the other examples from 5.2.3 into logical laws. 
 

@@ -496,7 +496,7 @@
 		
 		\item To tighten our understanding of terms and their denotations, we shall prove the following lemma:
 		\begin{lemma}[Term Locality Lemma]
-		Let $\mathcal{M}$ be a model and $t$ a term with precisely the variables in set $V$ in it. Then for all valuations $\alpha$ and $\beta$ in $\mathcal{M}$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
+		Let $\mathcal{M}$ be a model and $t$ a term with precisely the variables in set $V$ in it. Then for all assignments $\alpha$ and $\beta$ in $\mathcal{M}$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
 		\end{lemma}
 		\begin{proof}
 		We also prove this fact by induction on terms. 
@@ -748,13 +748,13 @@ This concludes our induction.
 				
 				\item $\mathcal{M},\alpha\vDash \forall x P(a)$. 
 				
-				We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each valuation: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
+				We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each assignment: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
 			
 			\end{enumerate}
 		
 		\end{enumerate}
 		
-		\item Note that in order to show that quantified claims are true in a model under an assignment we actually need to do some work. A stark contrast between first-order logic and propositional logic is that in the latter, we can simply calculate the truth-value of a formula under a valuation without too much effort. In first-order logic, in contrast, the definition of truth in a model under an assignment \emph{is} recursive and can thus be calculated, but it is not always easy to do so; we often need to prove non-trivial claims to establish that a quantified claim is true in a model. 			
+		\item Note that in order to show that quantified claims are true in a model under an assignment we actually need to do some work. A stark contrast between first-order logic and propositional logic is that in the latter, we can simply calculate the truth-value of a formula under a assignment without too much effort. In first-order logic, in contrast, the definition of truth in a model under an assignment \emph{is} recursive and can thus be calculated, but it is not always easy to do so; we often need to prove non-trivial claims to establish that a quantified claim is true in a model.
 		\item Nested quantifiers, as example 9.3.4.i.h, are somewhat tricky to wrap your head around. Here are some reading guidelines that might help understand what's going on:
 		
 		\begin{enumerate}[(a)]
@@ -786,13 +786,13 @@ This concludes our induction.
 		
 		These clauses can be used to help you think about what you need to show in order to establish whether a complex quantified claim is true.
 		
-		\item We conclude our discussion of truth in a model by proving that sentences, that is formulas with no free variables, have determinate truth-values, i.e. their truth-values don't depend on valuations:
+		\item We conclude our discussion of truth in a model by proving that sentences, that is formulas with no free variables, have determinate truth-values, i.e. their truth-values don't depend on assignments:
 		\begin{proposition}[Sentence Lemma]
 		Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ a sentence (i.e. a formula with no free variables). Then for all assignments $\alpha,\beta$, we have $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
 		\end{proposition}
 		We're actually going to prove something slightly stronger:
 		\begin{lemma}[Formula Locality Lemma]
-		Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ whose free variables form the set $V$. Then for all valuations $\alpha$ and $\beta$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
+		Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ whose free variables form the set $V$. Then for all assignments $\alpha$ and $\beta$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
 		\end{lemma}
 		\begin{proof}
 		We prove the claim using induction.
@@ -868,7 +868,7 @@ This concludes our induction.
 		
 		\end{itemize}
 		
-		By the Sentence Lemma, if $\phi$ is true under one valuation, then $\phi$ is true under all of them; and similarly, if $\phi$ is false under some valuation, then $\phi$ is false under all of them. So, whenever we're reasoning about $\mathcal{M}\vDash\phi$, we can supply an arbitrary assignment $\alpha$ as needed for the above definitions to work.
+		By the Sentence Lemma, if $\phi$ is true under one assignment, then $\phi$ is true under all of them; and similarly, if $\phi$ is false under some assignment, then $\phi$ is false under all of them. So, whenever we're reasoning about $\mathcal{M}\vDash\phi$, we can supply an arbitrary assignment $\alpha$ as needed for the above definitions to work.
 				
 	\end{enumerate}
 
@@ -897,11 +897,11 @@ This concludes our induction.
 		
 		\item $\forall xP(x)\vDash P(a)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
 		
 		\item $P(a)\vDash\exists xP(x)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
 		
 \item $\exists x(P(x)\land Q(x))\vDash \exists xP(x)\land \exists xQ(x)$
 
@@ -931,7 +931,7 @@ This concludes our induction.
 		
 		\end{itemize}
 		
-		It's relatively easily checked that $\forall x\exists y R(x,y)$ is true under every valuation in this model, since for every number there's a bigger number: for every $n\in\mathbb{N}$ we can pick $n+1\in\mathbb{N}$ and get $\mathcal{M},\alpha[x\mapsto n, y\mapsto n+1]\vDash R(x,y)$. At the same time, it's not the case that some number is bigger than all others: there is $n\in\mathbb{N}$ such that for all $m\in\mathcal{M}$, $\mathcal{M},\alpha[x\mapsto n, y\mapsto n+1]\vDash R(x,y)$.
+		It's relatively easily checked that $\forall x\exists y R(x,y)$ is true under every assignment in this model, since for every number there's a bigger number: for every $n\in\mathbb{N}$ we can pick $n+1\in\mathbb{N}$ and get $\mathcal{M},\alpha[x\mapsto n, y\mapsto n+1]\vDash R(x,y)$. At the same time, it's not the case that some number is bigger than all others: there is $n\in\mathbb{N}$ such that for all $m\in\mathcal{M}$, $\mathcal{M},\alpha[x\mapsto n, y\mapsto n+1]\vDash R(x,y)$.
 		
 		\item $\exists xP(x)\land \exists x Q(x)\nvDash \exists x(P(x)\land Q(x))$ 
 		
@@ -1261,11 +1261,11 @@ Either way, we get $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y
 			\item \begin{enumerate}[(a)]
 
 		
-			\item $[h]$ Prove, using induction on terms, that in model (9.2.2.i.a) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$, for all valuations $\alpha$
+			\item $[h]$ Prove, using induction on terms, that in model (9.2.2.i.a) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=n$, for all assignments $\alpha$
 						
-			\item Prove, using induction on terms, that in model (9.2.2.i.b) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=2\cdot n$, for all valuations $\alpha$
+			\item Prove, using induction on terms, that in model (9.2.2.i.b) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=2\cdot n$, for all assignments $\alpha$
 
-			\item Prove, using induction on terms, that in model (9.2.2.i.d) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=42$, for all valuations $\alpha$
+			\item Prove, using induction on terms, that in model (9.2.2.i.d) of $\mathcal{S}_{PA}$, we have $\llbracket n\rrbracket^\mathcal{M}_\alpha=42$, for all assignments $\alpha$
 			
 			\end{enumerate}
 			
