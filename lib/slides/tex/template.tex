@@ -31,6 +31,10 @@
 \newtheorem*{claim}{Claim}
 \newtheorem*{notation}{Notation}
 \newtheorem*{proposition}{Proposition}
+$for(exam)$
+\newcommand{\$exam.name$}{%
+  \textbf{$exam.name$} ($exam.date$, $exam.time$), $exam.location$}
+$endfor$
 $for(date)$
 \expandafter\newcommand\csname lecture-$date.week$\endcsname{$date.date$}
 $endfor$
