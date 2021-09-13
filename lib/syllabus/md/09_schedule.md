@@ -24,22 +24,22 @@ Week 4.
     ch. 4-5.
 
 Week 5.
-:   - Herhaling + Q&A
+:   - (\csname lecture-7\endcsname) Herhaling + Q&A
 :   - \Tussentoets
 
 Week 6.
-: - College 7 (\csname lecture-7\endcsname), Soundness and completeness for propositional logic (7),
+: - College 7 (\csname lecture-9\endcsname), Soundness and completeness for propositional logic (7),
     Houston ch. 32--35.
-: -  College 8 (\csname lecture-8\endcsname), Syntax for first-order logic (8), Houston ch. 10--12.
+: -  College 8 (\csname lecture-10\endcsname), Syntax for first-order logic (8), Houston ch. 10--12.
 
 Week 7
-: - College 9 (\csname lecture-9\endcsname), Semantics for first-order logic (9)a, reread Houston
+: - College 9 (\csname lecture-11\endcsname), Semantics for first-order logic (9)a, reread Houston
     ch. 1--5.
-: - College 10 (\csname lecture-10\endcsname), Proof theory for first-order logic (10)
+: - College 10 (\csname lecture-12\endcsname), Proof theory for first-order logic (10)
 
 Week 8
-: - College 11 (\csname lecture-11\endcsname), Soundness and completeness for first-order logic (11)
-: - College 12 (\csname lecture-12\endcsname), Conclusion
+: - College 11 (\csname lecture-13\endcsname), Soundness and completeness for first-order logic (11)
+: - College 12 (\csname lecture-14\endcsname), Conclusion
 
 Week 9.
 : - \Eindtoets
