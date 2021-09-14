@@ -4,7 +4,7 @@
 
 [About](#about) • [Contribute](#contribute) • [GitHub](#GitHub) • [Latex](#latex) • [Compiling](#compiling) • [License](#license) • [Contact](#contact)
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://gitgub.com/jkorb/truthmakers.bib/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://gitgub.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/graphs/commit-activity)
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by/4.0/)
 
@@ -19,7 +19,7 @@ The material consists of:
   + the slides (`lib/slides`)
   + the lecture notes (`lib/notes`)
 
-Students currently taking the course can find pdfs of the material under [Course Material](https://github.com/jkorb/KI1V13001-Inleiding-Logica/releases/latest).[^1]
+Students currently taking the course can find pdfs of the material under [Course Material](https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/releases/latest).[^1]
 
 ## Contribute
 
@@ -27,7 +27,7 @@ We encourage contributions, especially but not exclusively from past and present
 Two simple ways of contributing are:
 
   + *open issues*, for example to point out typos, mistakes, or make feature requests
-  + *making pull requests*, for example to fix a mistake yourself and become a [contributor](https://github.com/jkorb/KI1V13001-Inleiding-Logica/graphs/contributors).
+  + *making pull requests*, for example to fix a mistake yourself and become a [contributor](https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/graphs/contributors).
 
 If these things don't tell you anything yet, don't despair! 
 Check the next two sections.
@@ -60,7 +60,7 @@ I don't know about Windows but that should be possible, too (if you know you're 
 The standard way of downloading and compiling is via the command line as follows (assuming you have installed the above dependencies):
 
 ``` shell
-  git clone https://github.com/jkorb/KI1V13001-Inleiding-Logica.git
+  git clone https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica.git
   cd KI1V13001-Inleiding-Logica
   ./configure
   make all
