@@ -60,7 +60,7 @@ I don't know about Windows but that should be possible, too (if you know you're 
 The standard way of downloading and compiling is via the command line as follows (assuming you have installed the above dependencies):
 
 ``` shell
-  git clone https://github.com/jkorb/KI1V13001-Inleiding-Logica.git
+  git clone https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica.git
   cd KI1V13001-Inleiding-Logica
   ./configure
   make all
