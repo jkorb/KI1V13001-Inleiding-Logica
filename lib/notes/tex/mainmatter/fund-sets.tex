@@ -556,7 +556,10 @@ How do we know that such a set exists (and that it's unique)? Well, that needs t
 		We have that $\frac{1}{2}\notin \mathbb{N}$.
 		\end{proposition} 
 		\begin{proof}
-		Let $X$ be some set that satisfies the conditions (i) and (ii) of the definition of $\mathbb{N}$. Suppose further that $\frac{1}{2}\in X$. We claim that under this assumption, also the set \[Y=X\setminus \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}\] satisfies conditions (i) and (ii).\footnote{Note that the definitions of even and odd can easily be generalized to $\mathbb{Z}$: a number $n\in\mathbb{Z}$ is \emph{even} iff there exists a $k\in\mathbb{Z}$ such that $2k=2n$. And a number $n\in\mathbb{Z}$ is \emph{odd} iff $n$ is not even.}	We prove these in turn:
+          Let $X$ be some set that satisfies the conditions (i) and (ii) of the definition of $\mathbb{N}$. Suppose further that $\frac{1}{2}\in X$. We claim that under this assumption, also the set \[Y=X\setminus \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}\] satisfies conditions (i) and (ii).\footnote{%
+            Note that the definitions of even and odd can easily be generalized to $\mathbb{Z}$: a number $n\in\mathbb{Z}$ is \emph{even} iff there exists a $k\in\mathbb{Z}$ such that $n=2k$.
+            And a number $n\in\mathbb{Z}$ is \emph{odd} iff $n$ is not even.}
+          We prove these in turn:
 		\begin{enumerate}[(i)]
 	
 		\item To see that $0\in Y$, first note that $0\in X$. So, to show that $0\in Y$ all we need to show is that $0\notin \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$. Why? Because $Y=X\setminus  \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}=\{x\in X: x\notin  \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}\}$. We prove that $0\notin \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$ by contradiction. So suppose that $0\in \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$, which would mean that there exists a $k\in\mathbb{Z}$, which is odd and $\frac{k}{2}=0$. But then, it follows easily, that $k=0$. And $0$ is even (to see this note that $2\cdot 0=0$). Hence $k$ would need to be both even and odd, which is impossible. Hence $0\notin \{\frac{k}{2}: k\in \mathbb{Z}\text{ and }k\text{ is odd}\}$.
