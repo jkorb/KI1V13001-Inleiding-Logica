@@ -16,9 +16,6 @@ jobs:
           pandoc-version: '2.14.0.2'
       - run: sudo apt-get update && sudo apt-get install zsh texlive latexmk texlive-fonts-extra texlive-lang-european texlive-science
       - run: ./configure && make all
-      # - uses: ame-yu/action-delete-latest-release@v2
-      #   with:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}     -
       - uses: actions/github-script@v4
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
