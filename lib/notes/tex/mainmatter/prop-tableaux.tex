@@ -26,24 +26,29 @@
 	 \[\vdash_H\phi\text{ iff }\vDash\phi.\]
 	 That is, a formula is derivable in our Hilbert system iff it is valid. Using the idea of Theorem 5.2.16, we can use the Hilbert system to show that an inference is valid: we know that $\phi_1, \mathellipsis,\phi_n\vDash \psi$ iff $\vDash \phi_1\land \mathellipsis\land \phi_n\to\psi$, which by soundness and completeness of our Hilbert system is equivalent to $\vdash_H \phi_1\land \mathellipsis\land \phi_n\to\psi$
 	 
-	 \item But proving things in Hilbert systems is \emph{hard}. Hilbert systems are very economical, they only have a few axioms and rules---that's it. Our system, for example, has just 3 axioms and 2 rules. This makes reasoning \emph{about} our system very efficient. But it makes reasoning \emph{with} the system had. To see how hard, here I give a derivation of $p\to p$ in our Hilbert system:
-	\begin{enumerate}[1.] 
+  \item But proving things in Hilbert systems is \emph{hard}.
+		Hilbert systems are very economical, they only have a few axioms and rules---that's it.
+		Our system, for example, has just 3 axioms and 2 rules.
+		This makes reasoning \emph{about} our system very efficient.
+		But it makes reasoning \emph{with} the system hard.
+		To see how hard, here I give a derivation of $p\to p$ in our Hilbert system:
+		\begin{enumerate}[1.]
 
-	\item $((p \to ((p \to p) \to p)) \to ((p \to (p \to p)) \to (p \to p)))$ 
+		  \item $((p \to ((p \to p) \to p)) \to ((p \to (p \to p)) \to (p \to p)))$
 
-	\item[] \ \hfill (Axiom 2. with $\phi=p, \psi=(p\to p),$ and $\chi=p$)
+		  \item[] \ \hfill (Axiom 2. with $\phi=p, \psi=(p\to p),$ and $\chi=p$)
 
-	\item $(p \to ((p \to p) \to p))$ \hfill (Axiom 1. with $\phi=p$ and $\psi=(p\to p)$)
+		  \item $(p \to ((p \to p) \to p))$ \hfill (Axiom 1. with $\phi=p$ and $\psi=(p\to p)$)
 
-	\item $((p \to (p \to p)) \to (p \to p))$ \hfill (From 1. and 2. by MP.)
+		  \item $((p \to (p \to p)) \to (p \to p))$ \hfill (From 1. and 2. by MP.)
 
-	\item $(p \to (p \to p))$ \hfill (Axiom 1. with $\phi=p$ and $\psi=p$.)
+		  \item $(p \to (p \to p))$ \hfill (Axiom 1. with $\phi=p$ and $\psi=p$.)
 
-	\item $(p \to p)$\hfill (From 3. and 4. by MP.)
+		  \item $(p \to p)$\hfill (From 3. and 4. by MP.)
 
-\end{enumerate}
-This is how you would show that $p\vDash p$ using a Hilbert system. Would you have managed to find the proof yourself?
-	
+		\end{enumerate}
+		This is how you would show that $p\vDash p$ using a Hilbert system. Would you have managed to find the proof yourself?
+
 	
 	\item The next kind of proof system, we'll discuss are \emph{sequent calculi} or \emph{Gentzen systems}. A \emph{sequent} is an expression of the form $\Gamma\Rightarrow\Delta$, where $\Gamma$ and $\Delta$ are sets of formulas. Intuitively, we read a sequent $\phi_1,\mathellipsis,\phi_n\Rightarrow\psi_1,\mathellipsis, \psi_m$ as the claim that $\phi_1\land\mathellipsis\land\phi_n\vDash\psi_1\lor\mathellipsis\lor\psi_m$; that is, sequents are claims about consequence. The point is that we can derive consequence claims from other consequence claims (as we did in the previous chapter). In the Gentzen calculus for propositional logic, there is only one axiom (i.e. consequence claims held to be true no matter what): \[\phi\Rightarrow\phi\tag{Identity}\] The remaining ingredients are several \emph{rules}, which allow us to infer consequence claims from each other. These rules fall into two classes \emph{structural rules}, which don't involve the connectives, and \emph{logical rules}, a pair of two for each connective. 
 

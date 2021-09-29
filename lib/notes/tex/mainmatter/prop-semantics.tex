@@ -51,7 +51,10 @@
 			 	
 		\end{enumerate}
 		
-		\item Above we said that once we know the truth-values of the sentence letters under a given valuation, we can calculate the truth-values of all formulas using function recursion. In order to do so, we need to know how the truth-value of a complex formula depends on the truth-values of its immediate sub-formulas. Let's begin by guiding our intuitions first. The following principles seem plausible for all $\phi,\psi\in\mathcal{L}$, given that $\neg$ means \emph{not}, $\land$ means \emph{and}, and $\lor$ means \emph{or}:
+	  \item Above we said that once we know the truth-values of the sentence letters under a given valuation, we can calculate the truth-values of all formulas using function recursion.
+			In order to do so, we need to know how the truth-value of a complex formula depends on the truth-values of its immediate sub-formulas.
+			Let's begin by guiding our intuitions first.
+			The following principles seem plausible for all $\phi,\psi\in\mathcal{L}$, given that $\neg$ means \emph{not}, $\land$ means \emph{and}, and $\lor$ means \emph{or}:
 		
 		\begin{enumerate}[(i)]
 						
@@ -61,8 +64,16 @@
 						
 				\item $(\phi\lor\psi)$ is true iff $\phi$ is true or $\psi$ is true							
 				\end{enumerate}
-		How about a formula of the form $(\phi\to\psi)$? When is a formula of this form true? The standard answer to this question is actually not so easy to see. We will try to motivate it ``indirectly'' by thinking about when $(\phi\to\psi)$ should be \emph{false}. Surely, if $\phi$ is true and $\phi$ is false, then $(\phi\to\psi)$ should be false. To say that if the ball is red, then it's scarlet should exclude that the ball is red and not scarlet. The standard account for the truth of $(\phi\to\psi)$ says that this is the \emph{only} way in which $(\phi\to\psi)$ can be false: the only way in which it can turn out to be false that if the ball is red, then it's scarlet is if the ball is red but not scarlet. So, $(\phi\to\psi)$ is false if \emph{and only if} $\phi$ is true and $\psi$ is false. 		
-		Note that, by bivalence, this gives us an answer to when $(\phi\to\psi)$ is true: by bivalence, $(\phi\to\psi)$ is false iff $(\phi\to\psi)$ is not true; so $(\phi\to\psi)$ is true iff its not the case that $\phi$ is true and $\psi$ is false; and there are two ways in which it can not be the case that $\phi$ is true and $\psi$ is false: one is that $\phi$ is not true, and so false, and the other is that $\psi$ is not false, and so true. We arrive at:
+			How about a formula of the form $(\phi\to\psi)$?
+			When is a formula of this form true?
+			The standard answer to this question is actually not so easy to see.
+			We will try to motivate it ``indirectly'' by thinking about when $(\phi\to\psi)$ should be \emph{false}.
+			Surely, if $\phi$ is true and $\psi$ is false, then $(\phi\to\psi)$ should be false.
+			To say that if the ball is red, then it's scarlet should exclude that the ball is red and not scarlet.
+			The standard account for the truth of $(\phi\to\psi)$ says that this is the \emph{only} way in which $(\phi\to\psi)$ can be false: the only way in which it can turn out to be false that if the ball is red, then it's scarlet is if the ball is red but not scarlet.
+			So, $(\phi\to\psi)$ is false if \emph{and only if} $\phi$ is true and $\psi$ is false.
+			Note that, by bivalence, this gives us an answer to when $(\phi\to\psi)$ is true: by bivalence, $(\phi\to\psi)$ is false iff $(\phi\to\psi)$ is not true; so $(\phi\to\psi)$ is true iff its not the case that $\phi$ is true and $\psi$ is false; and there are two ways in which it can not be the case that $\phi$ is true and $\psi$ is false: one is that $\phi$ is not true, and so false, and the other is that $\psi$ is not false, and so true.
+			We arrive at:
 				\begin{enumerate}[(i)]
 				\setcounter{enumii}{3}	
 				\item $(\phi\to\psi)$ is true iff $\phi$ is false or $\psi$ is true							
@@ -134,7 +145,7 @@ The last case, $(\phi\leftrightarrow\psi)$ is somewhat easier, given that $\left
 			\end{tabular}
 			\end{center}
 			
-			\item \emph{Conditional}: $f_\leftrightarrow(x,y)=min(max(1-x,y), max(1-y,x))$.
+			\item \emph{Biconditional}: $f_\leftrightarrow(x,y)=min(max(1-x,y), max(1-y,x))$.
 			
 			\begin{center}
 			\begin{tabular}{c | c c}
