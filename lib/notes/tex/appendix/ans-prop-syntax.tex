@@ -310,7 +310,13 @@
 		
 			\item Assume the induction hypothesis, that numbers of $($ and $)$ in $\phi$ are the same. Consider $\neg\phi$. Note that the number of $($'s $\neg\phi$ is the same as in $\phi$ and the number of $)$'s in $\neg\phi$ is the same as in $\phi$ (no new parentheses have been added). Hence, the numbers of $($ and $)$ in $\neg\phi$ are also the same.
 			
-			\item Assume the induction hypotheses, that numbers of $($ and $)$ in $\phi$ are the same and the numbers of $($ and $)$ in $\psi$ are the same. Denote the number of $($'s in $\phi$ by $n$, the number of $)$'s in $\phi$ by $m$, the number of $($'s in $\psi$ by $k$, and the number of $)$'s in $\psi$ by $l$. We have $n=k$ and $m=l$. Consider $(\phi\circ\psi)$. The number of $($'s in $(\phi\circ\psi)$ is $n+k+1$. The number of $)$'s in $(\phi\circ\psi)$ is $m+l+1$. Since  $n=k$ and $m=l$,  $n+k+1=m+l+1$, as desired.
+                \item Assume the induction hypotheses, that numbers of $($ and $)$ in $\phi$ are the same and the numbers of $($ and $)$ in $\psi$ are the same.
+                      Denote the number of $($'s in $\phi$ by $n$, the number of $)$'s in $\phi$ by $m$, the number of $($'s in $\psi$ by $k$, and the number of $)$'s in $\psi$ by $l$.
+                      We have $n=m$ and $k=l$.
+                      Consider $(\phi\circ\psi)$.
+                      The number of $($'s in $(\phi\circ\psi)$ is $n+k+1$.
+                      The number of $)$'s in $(\phi\circ\psi)$ is $m+l+1$.
+                      Since  $n=m$ and $k=l$,  $n+k+1=m+l+1$, as desired.
 	
 		\end{enumerate}
 		We conclude our claim by induction on formulas.
