@@ -15,7 +15,7 @@
 
 	\item Our proof system is the method of tableaux.
 
-	\item $\Gamma\vDash\phi$ iff $\Gamma\cup\{\neg\phi\}$ is unsatisfiable.
+	% \item $\Gamma\vDash\phi$ iff $\Gamma\cup\{\neg\phi\}$ is unsatisfiable.
 	
 	{\tiny\begin{center}
 					
@@ -174,7 +174,7 @@
 			
 				\item[Down Preservation.] If the formula at the parent node of a rule is true under a valuation, then at least one formula on a newly generated child node is true under the valuation.
 				
-				\item[Up Preservation.] If a formula at a newly generated child node is true under a valuation, then the formula at the parent node is true.
+				\item[Up Preservation.] If the formula at a newly generated child node is true under a valuation, then the formula at the parent node is true.
 				
 		\end{description}
 		
@@ -349,7 +349,7 @@ There are 9 cases. We do: (a) $\phi\to\psi$ and (b) $\neg(\phi\to \psi)$.
 		
 			\item If $\llbracket\phi\rrbracket_v=0$, then $\llbracket\neg\phi\rrbracket_v=1-\llbracket\phi\rrbracket_v=1$. So $v$ is faithful to $B_1=B\cup\{\neg\phi\}$. 
 		
-			\item If $\llbracket\phi\rrbracket_v=0$ or $\llbracket\psi\rrbracket_v=1$, then $v$ is faithful to $B_2=B\cup\{\psi\}$. 
+			\item If $\llbracket\psi\rrbracket_v=1$, then $v$ is faithful to $B_2=B\cup\{\psi\}$.
 	
 		
 			\end{itemize}
@@ -447,7 +447,7 @@ There are 9 cases. We do: (a) $\phi\to\psi$ and (b) $\neg(\phi\to \psi)$.
 	
 		\item Hence the tableau for $\Gamma$ is open. Contradiction.
 		
-		\item So $\Gamma$ is not satisfiable.
+		\item So $\Gamma$ is unsatisfiable.
 	
 	\end{itemize}
 
@@ -472,7 +472,7 @@ There are 9 cases. We do: (a) $\phi\to\psi$ and (b) $\neg(\phi\to \psi)$.
 		
 			\begin{itemize}
 			
-				\item If $\Gamma\nvdash\phi$, then the tableau for $\Gamma\cup\{\neg\phi\}$ is open via open branch $B$.
+				\item If $\Gamma\nvdash\phi$, then the complete tableau for $\Gamma\cup\{\neg\phi\}$ is open via open branch $B$.
 				
 				\item We get the associated valuation $v_B$ for $B$:
 				
@@ -734,7 +734,7 @@ There are 9 cases. We do: (a) $\phi\to\psi$ and (b) $\neg(\phi\to \psi)$.
 
 \begin{frame}{Tableau Verification 2}
 
-	(7.3.4) \textbf{Theorem.} If the tableau algorithm gives the answer that a set is unsatisfiable, then the set \emph{is} unsatisfiable. 
+	(7.3.4) \textbf{Theorem.} If the tableau algorithm gives the answer that a set is satisfiable, then the set \emph{is} satisfiable.
 
 	\emph{Proof}:
 	
