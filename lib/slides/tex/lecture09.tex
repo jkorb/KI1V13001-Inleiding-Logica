@@ -204,7 +204,7 @@
 		
 		\end{itemize}
 		
-		\item Idea: Change values in $\alpha$, for $d$ an object, $\alpha[x\mapsto y]$ is the result of changing the value of $x$ to $d$
+		\item Idea: Change values in $\alpha$, for $d$ an object, $\alpha[x\mapsto d]$ is the result of changing the value of $x$ to $d$
 		
 		\begin{itemize}
 		
@@ -296,7 +296,7 @@
 			
 			\end{enumerate}
 			
-			\item (9.2.8) We $\alpha[x\mapsto d]$, the result of setting the value of variable $x\in\mathcal{V}$ to $d\in D^\mathcal{M}$, by:
+			\item (9.2.8) We define $\alpha[x\mapsto d]$, the result of setting the value of variable $x\in\mathcal{V}$ to $d\in D^\mathcal{M}$, by:
 		\[\alpha[x\mapsto d](y)=\begin{cases} y &\text{if }y\neq x\\ d & \text{if }y=x\end{cases}\]		
 
 	
@@ -601,7 +601,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 \begin{frame}{The Term Locality Lemma}
 
- (9.2.9) \textbf{Lemma}. Let $\mathcal{M}$ be a model and $t$ a term with precisely the variables in set $V$ in it. Then for all valuations $\alpha$ and $\beta$ in $\mathcal{M}$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
+ (9.2.9) \textbf{Lemma}. Let $\mathcal{M}$ be a model and $t$ a term with precisely the variables in set $V$ in it. Then for all assignments $\alpha$ and $\beta$ in $\mathcal{M}$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
 		
 \vspace{2ex}	
 		
@@ -679,7 +679,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 				\item $\mathcal{M},\alpha\vDash R(t_1,\mathellipsis, t_n)$ iff $(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$
 				
 				\item $\mathcal{M},\alpha\vDash t_1=t_2$ iff $\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha$								
-				\item $\mathcal{M},\alpha\vDash \neg\phi$ iff $v\nvDash\phi$
+				\item $\mathcal{M},\alpha\vDash \neg\phi$ iff $\mathcal{M},\alpha\nvDash\phi$
 					
 				\item $\mathcal{M},\alpha\vDash(\phi\land\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$
 				
@@ -808,7 +808,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 				
 				\item $\mathcal{M},\alpha\vDash \forall x P(a)$. 
 				
-				%We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each valuation: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
+				%We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each assignment: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
 			
 			\end{enumerate}
 			}
@@ -818,7 +818,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 	\begin{itemize}
 
-		\item (9.3.7) \textbf{Lemma.} Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ whose free variables form the set $V$. Then for all valuations $\alpha$ and $\beta$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
+		\item (9.3.7) \textbf{Lemma.} Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ whose free variables form the set $V$. Then for all assignments $\alpha$ and $\beta$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
 		
 
 \item (9.3.7) \textbf{Corollary.}	Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ a sentence (i.e. a formula with no free variables). Then for all assignments $\alpha,\beta$, we have $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
@@ -868,11 +868,11 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 		
 		\item $\forall xP(x)\vDash P(a)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
 		
 		\item $P(a)\vDash\exists xP(x)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
 
 \end{enumerate}
 
