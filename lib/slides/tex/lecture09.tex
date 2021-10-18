@@ -808,7 +808,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 				
 				\item $\mathcal{M},\alpha\vDash \forall x P(a)$. 
 				
-				%We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each valuation: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
+				%We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each assignment: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
 			
 			\end{enumerate}
 			}
@@ -868,11 +868,11 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 		
 		\item $\forall xP(x)\vDash P(a)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
 		
 		\item $P(a)\vDash\exists xP(x)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
 
 \end{enumerate}
 
