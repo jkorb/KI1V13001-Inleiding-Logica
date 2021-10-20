@@ -1135,7 +1135,7 @@ close with=\xmark
 
 \begin{frame}{Lemma 10.3.9}
 
-Let $B$ be an open branch of a complete tableau and $\mathcal{M}_B$ the associated model. Then, if $a=b\in B$, then $\mathcal{M}\vDash a=b$.
+Let $B$ be an open branch of a complete tableau and $\mathcal{M}_B$ the associated model. Then, if $a=b\in B$, then $\mathcal{M}_{B}\vDash a=b$.
 
 \vspace{2ex}
 
@@ -1177,7 +1177,7 @@ single branches=true,
 close with=\xmark
 }
 [\forall x\varphi
-	[{(\varphi)[x:=t]^\ddagger} ]
+	[{(\varphi)[x:=t]^\dagger} ]
 ]
 \end{prooftree}\hspace{8ex}
 \begin{prooftree}
@@ -1340,7 +1340,7 @@ close with=\xmark
 
 	\begin{itemize}
 	
-		\item Every time we instantiate $\forall x\neg\forall yR(x,y)$, we're forced to introduce a new parameter for $y$ $\exists y\neg R(p_i, y)$ for which we have to re-instantiate $\forall x\neg\forall yR(x,y)$, which \dots.
+		\item Every time we instantiate $\forall x\neg\forall yR(x,y)$, we're forced to introduce a new parameter for $y$ in $\exists y\neg R(p_i, y)$ for which we have to re-instantiate $\forall x\neg\forall yR(x,y)$, which \dots.
 		
 		\item (10.5.2) Obviously, we can never completely write down this tableau. But that doesn't mean that it doesn't \emph{exists} as a mathematical entity.
 		
