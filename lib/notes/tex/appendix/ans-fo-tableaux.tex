@@ -240,16 +240,19 @@
           single branches=true,
           close with=\xmark
         }
-        [{\forall x\exists yS(x,y)}, grouped
-          [{\neg\exists xS(x,x)}, grouped
-            [{\forall x\neg S(x,x)}
-              [{\exists yS(p_1, y)}
-                [{\neg S(p_1, p_1)}
-                  [{S(p_1, p_2)}
-                    [{\exists yS(p_2, y)}
-                      [{\neg S(p_2, p_2)}
-                        [{S(p_2, p_3)}
-                          [\vdots]
+        [{\neg (\forall x\exists yS(x,y)\to \exists x S(x,x))}, grouped
+          [{\forall x\exists yS(x,y)}
+            [{\neg\exists xS(x,x)}
+              [{\forall x\neg S(x,x)}
+                 [{\exists yS(p_1, y)}
+                   [{\neg S(p_1, p_1)}
+                     [{S(p_1, p_2)}
+                       [{\exists yS(p_2, y)}
+                         [{\neg S(p_2, p_2)}
+                           [{S(p_2, p_3)}
+                            [\vdots]
+                            ]
+                          ]
                         ]
                       ]
                     ]
@@ -258,7 +261,6 @@
               ]
             ]
           ]
-        ]
       \end{prooftree}
 
       It's relatively straight-forward to see that the tableau will be infinite:
