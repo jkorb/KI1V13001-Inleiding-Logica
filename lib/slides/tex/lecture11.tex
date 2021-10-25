@@ -241,18 +241,18 @@
   \item We prove the claim by induction.
     \item I do the cases for $R(t_1, \mathellipsis, t_n)$ and $\forall
       x\phi$, the rest is exercise.
-      \item For the base case, consider an atomic sentence $R(a_1,
-        \mathellipsis, a_n)$.
+      \item For the base case, consider an atomic sentence $R(t_1,
+        \mathellipsis, t_n)$.
         \item We know that $\mathcal{M},\alpha\vDash
-          R(a_1,\mathellipsis, a_n)$ iff \[(\llbracket
-                  a_1\rrbracket_\alpha^\mathcal{M}, \mathellipsis,
-                  \llbracket a_1\rrbracket_\alpha^\mathcal{M}) \in
+          R(t_1,\mathellipsis, t_n)$ iff \[(\llbracket
+                  t_1\rrbracket_\alpha^\mathcal{M}, \mathellipsis,
+                  \llbracket t_n\rrbracket_\alpha^\mathcal{M}) \in
                   R^\mathcal{M}.\]
                   \item But since $R^\mathcal{M}=R^\mathcal{N}$ and
-                    $a_i^\mathcal{M}=a_i^\mathcal{N}$, this immediately
+                    $t_i^\mathcal{M}=t_i^\mathcal{N}$, this immediately
                     gives us \[(\llbracket
-                  a_1\rrbracket_\alpha^\mathcal{N}, \mathellipsis,
-                  \llbracket a_1\rrbracket_\alpha^\mathcal{N}) \in
+                  t_1\rrbracket_\alpha^\mathcal{N}, \mathellipsis,
+                  \llbracket t_n\rrbracket_\alpha^\mathcal{N}) \in
                   R^\mathcal{N},\] which just means that
                 $\mathcal{N},\alpha\vDash R(t_1, \mathellipsis, t_n)$.
   \end{itemize}
@@ -303,7 +303,7 @@
     \item How do we define faithfulness in first-order logic?
 
       \item A \emph{model} is faithful to a branch $B$ iff for all
-        valuations $\alpha$, all formulas on the branch are true.
+        assignments $\alpha$, all formulas on the branch are true.
     \end{itemize}
 
     \item But, unfortunately, the strict down preservation property
@@ -484,7 +484,7 @@ $\Gamma\vDash\phi$.
 \begin{itemize}
 \item By contrapositive proof.
 \item Suppose that $\Gamma\nvDash\phi$.
-  \item We get a mmodel $\mathcal{M}$, such that all the members of
+  \item We get a model $\mathcal{M}$, such that all the members of
     $\Gamma$ are true in $\mathcal{M}$ and $\phi$ is false.
   \item So $\mathcal{M}$ is faithful to $\Gamma\cup\{\neg\phi\}$.
     \item Now everytime we apply a rule to construct the tableaux,
@@ -553,30 +553,30 @@ $\Gamma\vDash\phi$.
                $\forall x\phi$ and $\neg\forall x\phi$.
 
                \item For the base case of 1., suppose that
-                 $R(a_1,\mathellipsis, a_n)\in B$.
+                 $R(t_1,\mathellipsis, t_n)\in B$.
 
-                 \item We know \[\mathcal{M}_B,\alpha\vDash R(a_1,
-                            \mathellipsis, a_n)\text{ iff }(\llbracket
-                            a_1\rrbracket^{\mathcal{M}_B}_\alpha,
+                 \item We know \[\mathcal{M}_B,\alpha\vDash R(t_1,
+                            \mathellipsis, t_n)\text{ iff }(\llbracket
+                            t_1\rrbracket^{\mathcal{M}_B}_\alpha,
                             \mathellipsis, \llbracket
-                            a_1\rrbracket^{\mathcal{M}_B}_\alpha)\in
+                            t_1\rrbracket^{\mathcal{M}_B}_\alpha)\in
                             R^{\mathcal{M}_B}.\]
 
                             \item By definition of $\mathcal{M}_B$, we
                               know:
                               \begin{itemize}
-                              \item $\llbracket a_i\rrbracket^\mathcal{M}_\alpha=a_i^{\mathcal{M}_B}=a_i$
-                                \item $R^{\mathcal{M}_B}=\{(a_1, \mathellipsis, a_n): R(a_1, \mathellipsis, a_n)\in B\}$
+                              \item $\llbracket t_i\rrbracket^\mathcal{M}_\alpha=t_i^{\mathcal{M}_B}=t_i$
+                                \item $R^{\mathcal{M}_B}=\{(t_1, \mathellipsis, t_n): R(t_1, \mathellipsis, t_n)\in B\}$
                                 \end{itemize}
 
-                                \item So, since $R(a_1,\mathellipsis,
-                                  a_n)\in B$, we get $(a_1,
-                                  \mathellipsis, a_n)\in
-                                  R^\mathcal{M}$
+                                \item So, since $R(t_1,\mathellipsis,
+                                  t_n)\in B$, we get $(t_1,
+                                  \mathellipsis, t_n)\in
+                                  R^{\mathcal{M}_{B}}$
 
                                   \item This directly gives us
-                                    $\mathcal{M}_B,\alpha\vDash R(a_1,
-                                    \mathellipsis, a_n)$.
+                                    $\mathcal{M}_B,\alpha\vDash R(t_1,
+                                    \mathellipsis, t_n)$.
 
   \end{itemize}
 
@@ -594,23 +594,23 @@ $\Gamma\vDash\phi$.
                             that $R(t_1,\mathellipsis, t_n)\notin
                             B$.
 
-                            \item $R^{\mathcal{M}_B}=\{(a_1,
-                              \mathellipsis, a_n): R(a_1,
-                              \mathellipsis, a_n)\in B\}$, it follows
-                              that \[(a_1, \mathellipsis, a_n)\notin
+                            \item $R^{\mathcal{M}_B}=\{(t_i1,
+                              \mathellipsis, t_in): R(t_i1,
+                              \mathellipsis, t_in)\in B\}$, it follows
+                              that \[(t_i1, \mathellipsis, t_in)\notin
                               R^\mathcal{M}.\]
 
                               \item Since $\llbracket
-                                a_i\rrbracket^\mathcal{M}_\alpha=a_i^{\mathcal{M}_B}=a_i$,
+                                t_ii\rrbracket^\mathcal{M}_\alpha=t_ii^{\mathcal{M}_B}=t_ii$,
                                 we get \[(\llbracket
-                                a_i\rrbracket^\mathcal{M},
+                                t_ii\rrbracket^\mathcal{M},
                                 \mathellipsis, \llbracket
-                                a_i\rrbracket^\mathcal{M})\notin
+                                t_ii\rrbracket^\mathcal{M})\notin
                                 R^{\mathcal{M}_B}.\]
 
                                 \item But that just means that
-                                  $\mathcal{M}_B,\alpha\nvDash R(a_1,
-                                  \mathellipsis, a_n)$, as desired.
+                                  $\mathcal{M}_B,\alpha\nvDash R(t_i1,
+                                  \mathellipsis, t_in)$, as desired.
    
   \end{itemize}
 
@@ -633,10 +633,10 @@ $\Gamma\vDash\phi$.
                       
                         \end{enumerate}
 
-                      \item Now suppose that $\forall x\in B$.
+                      \item Now suppose that $\forall x\phi\in B$.
 
                         \item In order to show that
-                          $\mathcal{M},\alpha\vDash\forall x\phi$, we
+                          $\mathcal{M}_{B},\alpha\vDash\forall x\phi$, we
                           need to show that for all $d\in
                           D^{\mathcal{M}_B}$, we
                           have \[\mathcal{M}_B,\alpha[x\mapsto
@@ -654,7 +654,7 @@ $\Gamma\vDash\phi$.
                                   B$.
 
                                   \item By the induction hypothesis,
-                                    we get $\mathcal{M},\alpha\vDash
+                                    we get $\mathcal{M}_{B},\alpha\vDash
                                     (\phi)[x:=a]$.
 
                                     \item By the denotation lemma, we
