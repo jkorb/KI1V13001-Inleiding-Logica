@@ -228,22 +228,24 @@ We've already talked about how we abstract from predicates in first-order logic,
 				\[\forall x\exists y x\neq y\]
 				\[\exists x\exists y(x\neq y\land \forall z(z=x\lor z=y))\]
 				
-				\item Here are some formulas in $\mathcal{L}_\in$:
-				
-				\[{\in}(x,x)\]
-				\[\forall x{\in}(\emptyset,x)\]
-				\[\neg\exists x{\in}(x,\emptyset)\]
-				\[\forall x({\in}(x,y)\to {\in}(x,z))\]
-				\[\forall x\forall(x=y\leftrightarrow\forall z({\in}(z,x)\leftrightarrow {\in}(z,y))) \]			
-				
-				In $\mathcal{L}_\in,$ to make things more natural, we allow ourselves the notation $t\in u$ instead of the official ${\in}(t,u)$. Using this convention, the examples become:
-				\[x\in x\]
-				\[\forall x~\emptyset\in x\]
-				\[\neg\exists x~x\in \emptyset\]
-				\[\forall x(x\in y\to x\in z)\]
-				\[\forall x\forall y(x=y\leftrightarrow \forall z(z\in x\leftrightarrow z\in y))\]
-				This almost looks like the elementary set theory we studied in \S3. And, in fact, this is the language you use to develop \emph{formal} set-theory as a first-order theory.
-				
+				  \item Here are some formulas in $\mathcal{L}_\in$:
+
+						\[{\in}(x,x)\]
+						\[\forall x{\in}(\emptyset,x)\]
+						\[\neg\exists x{\in}(x,\emptyset)\]
+						\[\forall x({\in}(x,y)\to {\in}(x,z))\]
+						\[\forall x\forall(x=y\leftrightarrow\forall z({\in}(z,x)\leftrightarrow {\in}(z,y))) \]
+
+						In $\mathcal{L}_\in$, to make things more natural, we allow ourselves the notation $(t\in u)$ instead of the official ${\in}(t,u)$.
+						When no confusion can arise, we shall sometimes omit the outermost parentheses.
+						Our examples become:
+						\[x\in x\]
+						\[\forall x (\emptyset\in x)\]
+						\[\neg\exists x(x\in \emptyset)\]
+						\[\forall x(x\in y\to x\in z)\]
+						\[\forall x\forall y(x=y\leftrightarrow \forall z(z\in x\leftrightarrow z\in y))\]
+
+						This almost looks like the elementary set theory we studied in \S3. And, in fact, this is the language you use to develop \emph{formal} set-theory as a first-order theory.
 				
 				\item Finally, I shall use the abstract signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$ to give some \emph{extreme} examples:
 				
