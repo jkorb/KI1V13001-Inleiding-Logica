@@ -3,7 +3,7 @@
 \graphicspath{{img/}}
 \beamertemplatenavigationsymbolsempty
   \setbeamertemplate
- {footline}{\quad\hfill\insertframenumber\quad\vspace{1ex}/\inserttotalframenumber\quad\vspace{1ex}}
+ {footline}{\quad\hfill\insertframenumber\vspace{1ex}/\inserttotalframenumber\quad\vspace{1ex}}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \frenchspacing
@@ -42,6 +42,7 @@ $endfor$
 \def\LectureVar{???}
 \newcommand{\LectureDate}{\LectureVar}
 \makeatletter
+\def\beamer@cramped{}%%%%%%
 \providecommand*{\equi}{%
   \mathrel{%
     \mathpalette\@equi\vDash
