@@ -18,14 +18,4 @@ indienen.
 Iedereen die is ingeschreven voor de cursus heeft automatisch toegang tot de
 Blackboardomgeving.
 
-Tenslotte, maken we gebruik van MS Teams:
 
--    <https://manuals.uu.nl/nl/handleiding/teams-online-onderwijs-student/>
-
-Op MS Teams gaan de (digitale) hoorcolleges plaatsvinden.
-Verder kun je hier de docenten, werkgroepleiders, en medestudenten laagdrempelig
-bereiken.
-Maak hiervoor alsjeblieft gebruik van de ingerichte kanalen in onze omgeving.
-Inschrijven voor de MS Teams omgeving kan middels de volgende code:
-
--    \textbf{\teamscode}
