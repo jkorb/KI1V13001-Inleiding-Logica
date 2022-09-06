@@ -1,4 +1,4 @@
-# Communicatie --- Email, Blackboard en MS Teams {.unnumbered}
+# Communicatie --- Email en Blackboard {.unnumbered}
 
 Er is een mailadres ingericht voor deze cursus onder:
 
