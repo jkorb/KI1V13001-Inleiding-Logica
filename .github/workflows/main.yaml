@@ -32,17 +32,17 @@ jobs:
           files: |
             ./pdf/syllabus.pdf
             ./pdf/notes.pdf
-            ./pdf/slides/lecture01.pdf
-            ./pdf/slides/lecture02.pdf
-            ./pdf/slides/lecture03.pdf
-            ./pdf/slides/lecture04.pdf
-            ./pdf/slides/lecture05.pdf
-            ./pdf/slides/lecture06.pdf
-            ./pdf/slides/lecture07.pdf
-            ./pdf/slides/lecture08.pdf
-            ./pdf/slides/lecture09.pdf
-            ./pdf/slides/lecture10.pdf
-            ./pdf/slides/lecture11.pdf
-            ./pdf/slides/lecture12.pdf
+            ./pdf/slides/part-1/lecture01.pdf
+            ./pdf/slides/part-1/lecture02.pdf
+            ./pdf/slides/part-1/lecture03.pdf
+            ./pdf/slides/part-1/lecture04.pdf
+            ./pdf/slides/part-1/lecture05.pdf
+            ./pdf/slides/part-1/lecture06.pdf
+            ./pdf/slides/part-2/lecture07.pdf
+            ./pdf/slides/part-2/lecture08.pdf
+            ./pdf/slides/part-2/lecture09.pdf
+            ./pdf/slides/part-2/lecture10.pdf
+            ./pdf/slides/part-2/lecture11.pdf
+            ./pdf/slides/part-2/lecture12.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
