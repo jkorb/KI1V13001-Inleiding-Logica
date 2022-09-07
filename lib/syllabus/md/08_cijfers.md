@@ -42,4 +42,6 @@ Je voorlopige eindcijfer wordt dan ook je definitieve eindcijfer.
 
 De afronding van de cijfers gebeurt volgens de regels: 
 
-- <http://students.uu.nl/gw/ki/praktische-zaken/regelingen-en-procedures>
+
+- \small <https://students.uu.nl/gw/ki/praktische-zaken/regelingen-en-procedures/afronding-eindcijfers>
+
