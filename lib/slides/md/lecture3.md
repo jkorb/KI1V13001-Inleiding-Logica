@@ -19,6 +19,11 @@ header-includes:
   3. Functies
   4. Recursie
 
+# Aanwezigheid
+ 
+  \centering
+  ![](img/attendance.png){height=50% width=50%}
+
 # Herhaling: eisen aan definities?
 
   \centering 

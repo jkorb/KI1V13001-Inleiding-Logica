@@ -24,6 +24,10 @@ header-includes:
   3. Gevolg en deductietheorema
   4. Waarheidstafels en beslisbaarheid
 
+# Aanwezigheid
+ 
+  \centering
+  ![](img/attendance.png){height=50% width=50%}
 
 # Mogelijke situaties
 

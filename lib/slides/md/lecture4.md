@@ -22,6 +22,10 @@ header-includes:
   4. Ontleedbomen \& Unieke leesbaarheid
   5. Inductie over formules
 
+# Aanwezigheid
+ 
+  \centering
+  ![](img/attendance.png){height=50% width=50%}
 
 # Geldigheid
 

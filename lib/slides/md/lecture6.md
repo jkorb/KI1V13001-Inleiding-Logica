@@ -30,6 +30,11 @@ header-includes:
   2. Vervulbaarheid en gevolg
   3. Tableaux
 
+# Aanwezigheid
+ 
+  \centering
+  ![](img/attendance.png){height=50% width=50%}
+
 # Deductieve systemen
 
   \Large
