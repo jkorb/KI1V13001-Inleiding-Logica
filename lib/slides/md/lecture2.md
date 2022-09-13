@@ -22,6 +22,11 @@ header-includes:
   1. Objecten en definities
   2. Proposities en logica
 
+# Aanwezigheid
+ 
+  \centering
+  ![](img/attendance.png){height=50% width=50%}
+
 # Herhaling
 
   \Large
