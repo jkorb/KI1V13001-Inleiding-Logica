@@ -36,7 +36,7 @@ header-includes:
 
   ![](img/wooclap-5.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI5>
+  <https://www.wooclap.com/ILOGICA5>
 
 # Van situaties naar valuaties
 
@@ -117,7 +117,7 @@ header-includes:
 
   ![](img/wooclap-5.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI5>
+  <https://www.wooclap.com/ILOGICA5>
 
 
 # Waarheid: recursie
@@ -327,7 +327,7 @@ header-includes:
 
   ![](img/wooclap-5.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI5>
+  <https://www.wooclap.com/ILOGICA5>
 
 
 # Definitie van waarheid
@@ -365,7 +365,7 @@ header-includes:
 
   ![](img/wooclap-5.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI5>
+  <https://www.wooclap.com/ILOGICA5>
 
 # Disjunctief syllogisme 
 
