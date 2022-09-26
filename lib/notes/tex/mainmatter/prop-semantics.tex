@@ -617,7 +617,21 @@ But wait a moment, $\emptyset$ has no members. So there is no $\psi$ such that $
 			\item \emph{Claim}: $\vDash p\lor\neg p$
 		
 			\begin{proof}
-			We need to prove that for all valuations $v$, we have that $\llbracket p\lor\neg p\rrbracket_v=1$. So let $v$ be an arbitrary valuation. Since $\llbracket p\lor\neg p\rrbracket_v=max(\llbracket p\rrbracket_v,\llbracket\neg p\rrbracket_v)$ and $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v$, we get that $\llbracket p\lor\neg p\rrbracket_v=max(\llbracket p\rrbracket_v,1-\llbracket p\rrbracket_v)$. Now we can distinguish two exhaustive cases: (a) $\llbracket p\rrbracket_v=1$ and (b) $\llbracket p\rrbracket_v=0$. In case (a), we have $\llbracket p\lor\neg p\rrbracket_v=max(\llbracket p\rrbracket_v,1-\llbracket p\rrbracket_v)=max(1,1-1)=max(1,0)=1$. And in case (b), we have $\llbracket p\lor\neg p\rrbracket_v=max(\llbracket p\rrbracket_v,1-\llbracket p\rrbracket_v)=max(0, 1-0)=max(0,1)=1$. So, either way, $\llbracket p\lor\neg p\rrbracket_v=1,$ which is what we needed to show.			\end{proof}
+			We need to prove that for all valuations $v$, we have that $\llbracket
+			p\lor\neg p\rrbracket_v=1$. So let $v$ be an arbitrary valuation. Since
+			$\llbracket p\lor\neg p\rrbracket_v=max(\llbracket
+			p\rrbracket_v,\llbracket\neg p\rrbracket_v)$ and $\llbracket \neg
+			p\rrbracket_v=1-\llbracket p\rrbracket_v$, we get that $\llbracket
+			p\lor\neg p\rrbracket_v=max(\llbracket p\rrbracket_v,1-\llbracket
+			p\rrbracket_v)$. Now we can distinguish two exhaustive cases: (a)
+			$\llbracket p\rrbracket_v=1$ and (b) $\llbracket p\rrbracket_v=0$. In
+			case (a), we have $\llbracket p\lor\neg p\rrbracket_v=max(\llbracket
+			p\rrbracket_v,1-\llbracket p\rrbracket_v)=max(1,1-1)=max(1,0)=1$. And in
+			case (b), we have $\llbracket p\lor\neg p\rrbracket_v=max(\llbracket
+			p\rrbracket_v,1-\llbracket p\rrbracket_v)=max(0, 1-0)=max(0,1)=1$. So,
+			either way, $\llbracket p\lor\neg p\rrbracket_v=1,$ which is what we
+			needed to show.
+			\end{proof}
 			
 			\item \emph{Claim}: $\vDash (p\to q)\lor (q\to p)$
 			
@@ -631,8 +645,10 @@ But wait a moment, $\emptyset$ has no members. So there is no $\psi$ such that $
 			&=max(max(0,\llbracket q\rrbracket_v),1)\\
 			&=1
 			\end{align*}
-To see the critical identity ($\ast$), simply note that $max(x,1)$ for $x\in\{0,1\}$ is always going to be $1$. In case (b), the reasoning is analogous:
-\begin{align*}
+			To see the critical identity ($\ast$), simply note that $max(x,1)$ for
+			$x\in\{0,1\}$ is always going to be $1$. In case (b), the reasoning is
+			analogous:
+			\begin{align*}
 			\llbracket (p\to q)\lor (q\to p)\rrbracket_v&=max(max(1-\llbracket p\rrbracket_v,\llbracket q\rrbracket_v),max(1-\llbracket q\rrbracket_v,\llbracket p\rrbracket_v))\\
 			&=max(max(1-0,\llbracket q\rrbracket_v),max(1-\llbracket q\rrbracket_v,0))\\
 			&=max(\underbrace{max(1,\llbracket q\rrbracket_v)}_{=1},max(1-\llbracket q\rrbracket_v,0))\\
