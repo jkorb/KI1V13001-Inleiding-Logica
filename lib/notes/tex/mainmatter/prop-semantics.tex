@@ -546,21 +546,45 @@ The concept of equivalence is of fundamental importance for logical theory. To s
 		\end{itemize}
 		These kinds of derivations will be the topic in the next chapter, in proof theory. Here the point simply is that the laws given above are, essentially, laws of reasoning. And we can \emph{prove them} to be correct. 
 				
-		\item Note that it's a simple consequence of the definition of $\vDash$ that $\Gamma\nvDash\phi$ iff there exists a valuation $v$, such that $\llbracket\psi\rrbracket_v=1$, for all $\psi\in\Gamma$, but $\llbracket\phi\rrbracket_v=0$. This gives us the standard method for showing that some formuals $\Gamma$ \emph{don't} entail a given conclusion $\phi$: we produce a \emph{countermodel}, i.e. a valuation $v$, such that $\llbracket\psi\rrbracket_v=1$, for all $\psi\in\Gamma$, but $\llbracket\phi\rrbracket_v=0$. Here are some examples. For simplicity, we assume that $\mathcal{P}=\{p,q,r\}$.
+		\item Note that it's a simple consequence of the definition of $\vDash$
+			that $\Gamma\nvDash\phi$ iff there exists a valuation $v$, such that
+			$\llbracket\psi\rrbracket_v=1$, for all $\psi\in\Gamma$, but
+			$\llbracket\phi\rrbracket_v=0$. This gives us the standard method for
+			showing that some formuals $\Gamma$ \emph{don't} entail a given
+			conclusion $\phi$: we produce a \emph{countermodel}, i.e. a valuation
+			$v$, such that $\llbracket\psi\rrbracket_v=1$, for all $\psi\in\Gamma$,
+			but $\llbracket\phi\rrbracket_v=0$. Here are some examples. For
+			simplicity, we assume that $\mathcal{P}=\{p,q,r\}$.
 		
 		\begin{enumerate}[(i)]
 		
 			\item \emph{Claim}. $p\lor q, p\nvDash \neg q$
 			
-			\emph{Countermodel}. Any $v$ such that $v(p)=1$ and $v(q)=1$. If $v(p)=1$ and $v(q)=1$, then both $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$. And $\llbracket p\lor q\rrbracket_v=max(\llbracket p\rrbracket_v,\llbracket q\rrbracket_v)=max(1, 1)=1$. But $\llbracket q\rrbracket_v=1$ and $\llbracket \neg q\rrbracket_v=1-\llbracket q\rrbracket_v$, so $\llbracket \neg q\rrbracket_v=0$.
+			\emph{Countermodel}. Any $v$ such that $v(p)=1$ and $v(q)=1$. If $v(p)=1$
+			and $v(q)=1$, then both $\llbracket p\rrbracket_v=1$ and $\llbracket
+			q\rrbracket_v=1$. And $\llbracket p\lor q\rrbracket_v=max(\llbracket
+			p\rrbracket_v,\llbracket q\rrbracket_v)=max(1, 1)=1$. But $\llbracket
+			q\rrbracket_v=1$ and $\llbracket \neg q\rrbracket_v=1-\llbracket
+			q\rrbracket_v$, so $\llbracket \neg q\rrbracket_v=0$.
 		
-			\item \emph{Claim}. $p\to q, q\nvDash p$  (remember inference (2) from the introduction)
+			\item \emph{Claim}. $p\to q, q\nvDash p$  (remember inference (2) from
+				the introduction)
 			
-			\emph{Countermodel}. Any $v$ such that $v(p)=0$ and $v(q)=1$. If $v(p)=0$ and $v(q)=1$, then $\llbracket p\rrbracket_v=0$ and $\llbracket q\rrbracket_v=1$. Since $\llbracket p\to q\rrbracket_v=min(1-\llbracket p\rrbracket_v, \llbracket q\rrbracket)$, we have that $\llbracket p\to q\rrbracket_v=max(1-0,0)=max(1,0)=1$. But $\llbracket p\rrbracket_v=0$.
+			\emph{Countermodel}. Any $v$ such that $v(p)=0$ and $v(q)=1$. If $v(p)=0$
+			and $v(q)=1$, then $\llbracket p\rrbracket_v=0$ and $\llbracket
+			q\rrbracket_v=1$. Since $\llbracket p\to q\rrbracket_v=max(1-\llbracket
+			p\rrbracket_v, \llbracket q\rrbracket)$, we have that $\llbracket p\to
+			q\rrbracket_v=max(1-0,0)=max(1,0)=1$. But $\llbracket p\rrbracket_v=0$.
 		
 			\item \emph{Claim}. $p\to q, \neg p\nvDash \neg q$
 			
-			\emph{Countermodel}: Any $v$ such that $v(p)=0$ and $v(q)=1$. If $v(p)=0$, then $\llbracket p\rrbracket_v=0$. So $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=max(1-\llbracket p\rrbracket_v, \llbracket q\rrbracket)=max(1-0, 0)=max(1,0)=1$. But since $v(q)=1$, $\llbracket q\rrbracket_v=1$, and so  $\llbracket \neg q\rrbracket_v=1-\llbracket q\rrbracket_v=0$.
+			\emph{Countermodel}: Any $v$ such that $v(p)=0$ and $v(q)=1$. If
+			$v(p)=0$, then $\llbracket p\rrbracket_v=0$. So $\llbracket \neg
+			p\rrbracket_v=1-\llbracket p\rrbracket_v=1$ and $\llbracket p\to
+			q\rrbracket_v=max(1-\llbracket p\rrbracket_v, \llbracket
+			q\rrbracket)=max(1-0, 0)=max(1,0)=1$. But since $v(q)=1$, $\llbracket
+			q\rrbracket_v=1$, and so  $\llbracket \neg q\rrbracket_v=1-\llbracket
+			q\rrbracket_v=0$.
 			
 		\end{enumerate}
 		
