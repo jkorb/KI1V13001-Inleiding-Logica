@@ -347,69 +347,125 @@ It's an almost immediate consequence of Proposition 5.1.13 that these two defini
 
 When $\Gamma\vDash \phi$, we also say that the $\Gamma$'s \emph{entail} $\phi$ or that the $\Gamma$'s \emph{imply} $\phi$. Ultimately, the notion of logical consequence is going to be an \emph{auxialliary} notion in our account of valid inference. The idea is that an inference $\Gamma\therefore \phi$, couched in a formal language, is valid iff $\Gamma\vDash \phi$. Note that $\Gamma\therefore \phi$ is \emph{not} a formula of $\mathcal{L}$ (Ask yourself: Is $\therefore$ a symbol of $\mathcal{L}$? No! So simply apply Proposition 4.2.5 to conclude that $\Gamma\therefore \phi\notin\mathcal{L}$.) The expression $\Gamma\therefore \phi$ is an inference couched in a formal language: it's a model for a natural language inference, a piece of reasoning, and not itself a sentence. What we do is to give an account of when $\Gamma\therefore \phi$ is valid (iff $\Gamma\vDash\phi$), which we use as a model for the validity of natural language inferences.
 
-	\item Let's consider some examples. When we're writing out claims of consequence, it's common to leave out the set-brackets before the $\vDash$ for ease of exposition. So, instead of the more proper $\{p,q\}\vDash p\land q$, we'll typically write $p,q\vDash p\land q$.
+	\item Let's consider some examples. When we're writing out claims of
+		consequence, it's common to leave out the set-brackets before the $\vDash$
+		for ease of exposition. So, instead of the more proper $\{p,q\}\vDash
+		p\land q$, we'll typically write $p,q\vDash p\land q$.
 	
 		\begin{enumerate}[(i)]
 		
 			\item \emph{Claim}. $p,q\vDash p\land q$
 			
 			\begin{proof}
-			We need to prove that for each valuation $v$, if $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$, then $\llbracket p\land q\rrbracket_v=1$. So, let $v$ be an arbitrary valuation such that $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$. Consider $\llbracket p\land q\rrbracket_v$. We know that $\llbracket p\land q\rrbracket_v=min(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)$. But since $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$, we have that $min(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)=min(1,1)=1$, which is what we needed to show.
+			We need to prove that for each valuation $v$, if $\llbracket
+			p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$, then $\llbracket
+			p\land q\rrbracket_v=1$. So, let $v$ be an arbitrary valuation such that
+			$\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$. Consider
+			$\llbracket p\land q\rrbracket_v$. We know that $\llbracket p\land
+			q\rrbracket_v=min(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)$.
+			But since $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$,
+			we have that $min(\llbracket p\rrbracket_v, \llbracket
+			q\rrbracket_v)=min(1,1)=1$, which is what we needed to show.
 			\end{proof}
 			
 			\item \emph{Claim}. $p\land q\vDash p$ and $p\land q\vDash q$
 			
 			\begin{proof}
-			We only show $p\land q\vDash p$, since the proof for  $p\land q\vDash q$ is strictly analogous. We need to show that for each valuation $v$, if $\llbracket p\land q\rrbracket_v=1$, then $\llbracket p\rrbracket_v=1$. So, assume that $v$ is a valuation and $\llbracket p\land q\rrbracket_v=1$. We know that $\llbracket p\land q\rrbracket_v=min(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)$. But the only way that $min(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)=1$ is that both $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=1$. Hence $\llbracket p\rrbracket_v=1$, as desired.
+			We only show $p\land q\vDash p$, since the proof for  $p\land q\vDash q$
+			is strictly analogous. We need to show that for each valuation $v$, if
+			$\llbracket p\land q\rrbracket_v=1$, then $\llbracket p\rrbracket_v=1$.
+			So, assume that $v$ is a valuation and $\llbracket p\land
+			q\rrbracket_v=1$. We know that $\llbracket p\land
+			q\rrbracket_v=min(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)$.
+			But the only way that $min(\llbracket p\rrbracket_v, \llbracket
+			q\rrbracket_v)=1$ is that both $\llbracket p\rrbracket_v=1$ and
+			$\llbracket q\rrbracket_v=1$. Hence $\llbracket p\rrbracket_v=1$, as
+			desired.
 			\end{proof}
 			
 			\item \emph{Claim}. $p\vDash p\lor q$ and $q\vDash p\lor q$.
 			
 			\begin{proof}
-			We only show $p\vDash p\lor q$, since the proof for $q\vDash p\lor q$ is strictly analogous. We need to show that for each valuation $v$, if $\llbracket p\rrbracket_v=1$, then $\llbracket p\lor q\rrbracket_v=1$. So let $v$ be a valuation such that $\llbracket p\rrbracket_v=1$. Consider $\llbracket p\lor q\rrbracket_v$. We know that $\llbracket p\lor q\rrbracket_v=max(\llbracket p\rrbracket_v,\llbracket q\rrbracket_v)$. But since $\llbracket p\rrbracket_v=1$, $min(\llbracket p\rrbracket_v,\llbracket q\rrbracket_v)=max(1, \llbracket q\rrbracket_v)$. Now note that whatever the value of $\llbracket q\rrbracket_v$, we have that $max(1, \llbracket q\rrbracket_v)=1$, which is what we needed to show. If we want to be \emph{super} precise, we can argue using distinction by cases. There are two exhaustive cases (a) $\llbracket q\rrbracket_v=1$ and (b) $\llbracket q\rrbracket_v=0$. In case (a), we have $max(1, \llbracket q\rrbracket_v)=max(1,1)=1$. And in case (b), we have $max(1, \llbracket q\rrbracket_v)=max(1,0)=1$. So, either way, $max(1, \llbracket q\rrbracket_v)=1$.
+			We only show $p\vDash p\lor q$, since the proof for $q\vDash p\lor q$ is
+			strictly analogous. We need to show that for each valuation $v$, if
+			$\llbracket p\rrbracket_v=1$, then $\llbracket p\lor q\rrbracket_v=1$. So
+			let $v$ be a valuation such that $\llbracket p\rrbracket_v=1$. Consider
+			$\llbracket p\lor q\rrbracket_v$. We know that $\llbracket p\lor
+			q\rrbracket_v=max(\llbracket p\rrbracket_v,\llbracket q\rrbracket_v)$.
+			But since $\llbracket p\rrbracket_v=1$, $min(\llbracket
+			p\rrbracket_v,\llbracket q\rrbracket_v)=max(1, \llbracket
+			q\rrbracket_v)$. Now note that whatever the value of $\llbracket
+			q\rrbracket_v$, we have that $max(1, \llbracket q\rrbracket_v)=1$, which
+			is what we needed to show. If we want to be \emph{super} precise, we can
+			argue using distinction by cases. There are two exhaustive cases (a)
+			$\llbracket q\rrbracket_v=1$ and (b) $\llbracket q\rrbracket_v=0$. In
+			case (a), we have $max(1, \llbracket q\rrbracket_v)=max(1,1)=1$. And in
+			case (b), we have $max(1, \llbracket q\rrbracket_v)=max(1,0)=1$. So,
+			either way, $max(1, \llbracket q\rrbracket_v)=1$.
 			\end{proof}
 			
 			\item \emph{Claim}. $p\lor q, \neg p\vDash q$ (remember inference (1) from \S1)
 			
 			\begin{proof}
-			We need to prove that for each valuation $v$, if $\llbracket p\lor q\rrbracket_v=1$ and $\llbracket \neg p\rrbracket_v=1$, then also $\llbracket q\rrbracket_v=1$. So let $v$ be a valuation and suppose that $\llbracket p\lor q\rrbracket_v=1$ and $\llbracket \neg p\rrbracket_v=1$. Since $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v$, it follows that $\llbracket p\rrbracket_v=0$. We furthermore know that $\llbracket p\lor q\rrbracket_v=max(\llbracket p\rrbracket_v, \llbracket q\rrbracket_v)$. Since  $\llbracket p\rrbracket_v=0$, it follows that $\llbracket p\lor q\rrbracket_v=max(0, \llbracket q\rrbracket_v)$. But $\llbracket p\lor q\rrbracket_v=1$, by assumption, and we can only have $max(0, \llbracket q\rrbracket_v)=1$ if $\llbracket q\rrbracket_v=1$. So we can conclude that $\llbracket q\rrbracket_v=1$, as desired.
+			We need to prove that for each valuation $v$, if $\llbracket p\lor
+			q\rrbracket_v=1$ and $\llbracket \neg p\rrbracket_v=1$, then also
+			$\llbracket q\rrbracket_v=1$. So let $v$ be a valuation and suppose that
+			$\llbracket p\lor q\rrbracket_v=1$ and $\llbracket \neg p\rrbracket_v=1$.
+			Since $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v$, it
+			follows that $\llbracket p\rrbracket_v=0$. We furthermore know that
+			$\llbracket p\lor q\rrbracket_v=max(\llbracket p\rrbracket_v, \llbracket
+			q\rrbracket_v)$. Since  $\llbracket p\rrbracket_v=0$, it follows that
+			$\llbracket p\lor q\rrbracket_v=max(0, \llbracket q\rrbracket_v)$. But
+			$\llbracket p\lor q\rrbracket_v=1$, by assumption, and we can only have
+			$max(0, \llbracket q\rrbracket_v)=1$ if $\llbracket q\rrbracket_v=1$. So
+			we can conclude that $\llbracket q\rrbracket_v=1$, as desired.
 			\end{proof}
 			
 			\item \emph{Claim}. $p,p\to q\vDash q$
 			
 			\begin{proof}
-			We need to prove that for each valuation $v$, if $\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, then also $\llbracket q\rrbracket_v=1$. We could prove this directly, using similar reasoning as in (iii), but we'll use another argument form for illustrative purposes---we're going to prove the claim indirectly. So assume that it's \emph{not} the case that for each valuation $v$, if $\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, then also $\llbracket q\rrbracket_v=1$. This would mean that there \emph{exists} $v$, such that  $\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, but $\llbracket q\rrbracket_v=0$. Remember that $\llbracket p\to q\rrbracket_v=min(1-\llbracket p\rrbracket, \llbracket q\rrbracket_v)$. By assumption $\llbracket p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=0$. So we can infer that $min(1-\llbracket p\rrbracket, \llbracket q\rrbracket_v)=min(1-1, 0)=min(0, 0)=0$. But also by assumption, $\llbracket p\to q\rrbracket_v=min(1-\llbracket p\rrbracket, \llbracket q\rrbracket_v)=1$. So, we have arrived at a contradiction: $\llbracket p\to q\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=0$. So, we can conclude that our assumption for indirect proof---that there exists $v$, such that  $\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, but $\llbracket q\rrbracket_v=0$---is false. But this just means that for \emph{each} valuation $v$, if $\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, then also $\llbracket q\rrbracket_v=1$.
-			
+			We need to prove that for each valuation $v$, if $\llbracket
+			p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, then also
+			$\llbracket q\rrbracket_v=1$. We could prove this directly, using similar
+			reasoning as in (iii), but we'll use another argument form for
+			illustrative purposes---we're going to prove the claim indirectly. So
+			assume that it's \emph{not} the case that for each valuation $v$, if
+			$\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, then
+			also $\llbracket q\rrbracket_v=1$. This would mean that there
+			\emph{exists} $v$, such that  $\llbracket p\rrbracket_v=1$ and
+			$\llbracket p\to q\rrbracket_v=1$, but $\llbracket q\rrbracket_v=0$.
+			Remember that $\llbracket p\to q\rrbracket_v=min(1-\llbracket
+			p\rrbracket, \llbracket q\rrbracket_v)$. By assumption $\llbracket
+			p\rrbracket_v=1$ and $\llbracket q\rrbracket_v=0$. So we can infer that
+			$min(1-\llbracket p\rrbracket, \llbracket q\rrbracket_v)=min(1-1,
+			0)=min(0, 0)=0$. But also by assumption, $\llbracket p\to
+			q\rrbracket_v=min(1-\llbracket p\rrbracket, \llbracket q\rrbracket_v)=1$.
+			So, we have arrived at a contradiction: $\llbracket p\to q\rrbracket_v=1$
+			and $\llbracket p\to q\rrbracket_v=0$. So, we can conclude that our
+			assumption for indirect proof---that there exists $v$, such that
+			$\llbracket p\rrbracket_v=1$ and $\llbracket p\to q\rrbracket_v=1$, but
+			$\llbracket q\rrbracket_v=0$---is false. But this just means that for
+			\emph{each} valuation $v$, if $\llbracket p\rrbracket_v=1$ and
+			$\llbracket p\to q\rrbracket_v=1$, then also $\llbracket
+			q\rrbracket_v=1$.
 			\end{proof}
 			
 			\item \emph{Claim}. $\neg p, p\leftrightarrow q\vDash \neg q$. 
 			\begin{proof}
-			  We need to prove that for each valuation $v$,
-			  if
-			  $\llbracket \neg p\rrbracket_v=1$
-			  and
-			  $\llbracket p\leftrightarrow q\rrbracket_v=1$,
-			  then also
-			  $\llbracket \neg q\rrbracket_v=1$.
-			  So let $v$ be a valuation and suppose that
-			  $\llbracket \neg p\rrbracket_v=1$
-			  and
-			  $\llbracket p\leftrightarrow q\rrbracket_v=1$.
-			  Since
-			  $\llbracket \neg p\rrbracket_v=1-\llbracket p\rrbracket_v$,
-			  it follows that
-			  $\llbracket p\rrbracket_v=0$.
-			  We furthermore know that \[\llbracket(p\leftrightarrow q)\rrbracket_v=\begin{cases} 1 & \text{if } \llbracket p\rrbracket_v=\llbracket q\rrbracket_v\\0&\text{otherwise}\end{cases}.\]
-			  So,
-			  since
-			  $\llbracket p\leftrightarrow q\rrbracket_v=1$,
-			  it follows that
-			  $\llbracket q\rrbracket_v=\llbracket p\rrbracket_v=0$.
-			  But since
-			  $\llbracket \neg q\rrbracket_v=1-\llbracket q\rrbracket_v$,
-			  we get
-			  $\llbracket \neg q\rrbracket_v=1$,
-			  as desired.
+				We need to prove that for each valuation $v$, if $\llbracket \neg
+				p\rrbracket_v=1$ and $\llbracket p\leftrightarrow q\rrbracket_v=1$,
+				then also $\llbracket \neg q\rrbracket_v=1$. So let $v$ be a valuation
+				and suppose that $\llbracket \neg p\rrbracket_v=1$ and $\llbracket
+				p\leftrightarrow q\rrbracket_v=1$. Since $\llbracket \neg
+				p\rrbracket_v=1-\llbracket p\rrbracket_v$, it follows that $\llbracket
+				p\rrbracket_v=0$. We furthermore know that
+				\[\llbracket(p\leftrightarrow q)\rrbracket_v=\begin{cases} 1 & \text{if
+				} \llbracket p\rrbracket_v=\llbracket
+					q\rrbracket_v\\0&\text{otherwise}\end{cases}.\] So, since $\llbracket
+					p\leftrightarrow q\rrbracket_v=1$, it follows that $\llbracket
+					q\rrbracket_v=\llbracket p\rrbracket_v=0$. But since $\llbracket \neg
+					q\rrbracket_v=1-\llbracket q\rrbracket_v$, we get $\llbracket \neg
+					q\rrbracket_v=1$, as desired.
 			
 			\end{proof}		
 		
