@@ -1,5 +1,6 @@
-\setcounter{framenumber}{264}
+
 \begin{frame}
+  \setcounter{framenumber}{257}
   \LectureNo{9}
   \maketitle
 \end{frame}
@@ -11,30 +12,17 @@
 \section{Rehash}
 \begin{frame}{Rehash}
 	
-\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item In f.o. logic, we take the grammatical structure of simple sentences into account.
+		\item We analyze the inner structure of atomics in f.o. logic.
 		
-		\item  \alert{Singular terms stand for objects, predicates for properties/relations.}
+		\item  Terms stand for objects, predicates for properties/relations.
 		
-		\item \alert{Quantifiers allow us talk about things in generality.}
+		\item Quantifiers allow us talk about things in generality.
 		
-		\item \alert{The signature consists of a set of constants, of function symbols, and of predicate symbols each.}
-		
-		\item Both terms and formulas are defined inductively in f.o.r logic.
-		
-		\item \alert{We have induction for formulas and terms and function recursion.}
-		
-		\item Parsing trees are defined for terms and functions.
-		
-		\item Nodes in trees have a canonical way of being named: by the directions for how to find them starting at the root. 
-		
-		\item \alert{Variables are bound by quantifiers.}
-		
-		\item \alert{A formula without free variables is closed, a sentence.}
-		
-		\item Just like in propositional logic, there are guidelines for formalization.
-					
+		\item A formula without free variables is closed/a sentence.
+							
 	\end{itemize}
 
 \end{frame}
@@ -45,27 +33,16 @@
 
 \begin{frame}{9.1 Truth, Models, and Assignments}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 		
-		\item (9.1.1) Our aim is to define models for first-language.
-		
-		\item (9.1.2) Generally speaking, a model interprets the non-logical vocabulary:
-		
-		\begin{itemize}
-			
-			\item in propositional logic the sentence letters
-			
-			\item in first-order logic the signature
-		
-		\end{itemize}
-		
-		\item (9.1.3) We'll first go through the idea of how to build models and then develop these ideas formally:
+		\item Our aim is to define models, which are structures that interprets the non-logical vocabulary of our formal language.
 		
 		\begin{itemize}
-		
-			\item The simplest sentences have subject-predicate form:
 			
-			\item $P(a)$ formalizes ``the ball is red''
+			\item in propositional logic, that meant sentence letters
+			
+			\item now, in f.o. logic, it means the entire signature
 		
 		\end{itemize}
 		
@@ -75,32 +52,31 @@
 
 \begin{frame}{Towards Models}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (9.1.3--4) Names denote objects, unary predicates express properties:
+		\item Names denote objects, predicates apply to sets (of sequences) of objects that have a certain property or relation, e.g.
 		
 		\begin{itemize}
 		
 			\item $a$ denotes the ball
 				
 			\item $P$ expresses $\{x:\text{x is red}\}$
+			
+			\item then, $P(a)$ is true iff the ball is a member of $\{x:\text{x is red}\}$ 
 		
-		\end{itemize}
+		\end{itemize}		
 		
-		\item $P(a)$ is true iff the ball is a member of $\{x:\text{x is red}\}$ 
-		
-		\item (9.1.4--5) Generally, in a model $\mathcal{M}$,
+		\item Roughly, in any model $\mathcal{M}$ we have: 
 	
 			\begin{itemize}
 			
-				\item $t$ denotes $\llbracket t\rrbracket^\mathcal{M}$
+				\item each $t$ denotes an object, indicated by $\llbracket t\rrbracket^\mathcal{M}$
 				
-				\item $R$ expresses $R^\mathcal{M}$
+				\item each $R$ expresses a set, indicated by $R^\mathcal{M}$
 				
 				\item $R(t_1, \mathellipsis, t_n)$ is true in $\mathcal{M}$ iff $(\llbracket t_1\rrbracket^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket^\mathcal{M})\in R^\mathcal{M}$
 				
-				\item (9.1.6) $t_1=t_2$ is true in $\mathcal{M}$ iff $\llbracket t_1\rrbracket^\mathcal{M}=\llbracket t_2\rrbracket^\mathcal{M}$
-			
 			\end{itemize}
 
 	\end{itemize}
@@ -109,69 +85,55 @@
 
 \begin{frame}{Denotations of Terms}
 
-	(9.1.7) Different terms have different denotations:
+	(9.1.7) However, different terms get different denotations.
+	
+	\medskip
 		
-			\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 			
-				\item Constants denote fixed objects: 
+				\item Each constant simply denotes an object.
 				
 				\begin{itemize}
 				
-					\item $a\in\mathcal{M}$ denotes $a^\mathcal{M}$
+					\item[] $a\in\mathcal{C}$ denotes an object indicated by $a^\mathcal{M}$
+					\item[] naturally, $\llbracket a\rrbracket^\mathcal{M}=a^\mathcal{M}$ for any constant
 				
 				\end{itemize}
 				
-				\item Function symbols express functions: $f^n\in\mathcal{F}$ expresses an $n$-ary function: 
-				
-				\begin{itemize}
-				
-					\item Let $f^2$ stand for ``the LCA of \dots and \underline{\phantom{\dots}}''
-					
-					\item $f^\mathcal{M}$ is a function that (intuitively) maps two individuals to their LCA 
-					
-					\item If $a$ stands for ``Ada Lovelace,'' $b$ for ``Alan Turing,'' $c$ for ``Angela Merkel,'' then ``the LCA of Ada Lovelace and the LCA of Alan Turing and Angela Merkel,'' is \[f(a,f(b,c))\]
-					
-					\item Denotations of function terms can be calculated recursively:
-					\begin{align*}
-	\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}&=f^\mathcal{M}(a^\mathcal{M}, \llbracket f(b,c)\rrbracket^\mathcal{M})\\
-	&=f^\mathcal{M}(a^\mathcal{M}, f(b^\mathcal{M}, c^\mathcal{M}))
-	\end{align*}
-				
-				\end{itemize}
-			
+				\item Each function symbol $f^n\in\mathcal{F}$ expresses a function $f^\mathcal{M}$ that maps $n$-tuples of objects to to some object. The denotation of a \emph{function term} is calculated recursively, e.g.
+				\small
+				\[
+				\llbracket f(a,f(b,c))\rrbracket^\mathcal{M}
+				\;=\;
+				f^\mathcal{M}(a^\mathcal{M}, \llbracket f(b,c)\rrbracket^\mathcal{M})
+				\;=\;
+				f^\mathcal{M}(a^\mathcal{M}, f^\mathcal{M}(b^\mathcal{M}, c^\mathcal{M}))
+				\]
+				\normalsize
+	
+				\item Constant/Function denotations are fixed and unchanging.
+
 			\end{itemize}
 
 \end{frame}
 
 \begin{frame}{And the Variables?}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (9.1.8) Variables are pronouns: $x,y,z,\mathellipsis$ are like ``he,'' ``she,'' ``it''
-		
-		\item ``It is red'' becomes $P(x)$
-		
-		\item To know where ``it is red'' is true we need to know what ``it'' stands for.
-		
-		\item In natural language, this information comes from the context:
+	\item Variables are a bit different. We don't want them to have totally fixed denotation, like pronouns  ``he,'' ``she,'' ``it'', ``that''.
+	
+		\item We introduce \emph{assignments} $\alpha$ on top of a model, which give a `temporary, changeable' denotation to each variable $x$, then:
 		
 		\begin{itemize}
 		
-			\item Yesterday, I bought a ball. It is red.
-			
-			\item My favorite pen is lying there on the table. It's red.
+			\item[] $\llbracket x\rrbracket^\mathcal{M}_\alpha=\alpha(x)$
+			\quad
+			\alert{(note the relativization to subscript $\alpha$)}
 		
 		\end{itemize}
-		
-		\item Formally, this role will be played by \emph{assignments}, functions $\alpha$ from the variables, $x$, to objects, $\alpha(x)$:
-		
-		\begin{itemize}
-		
-			\item $\llbracket x\rrbracket^\mathcal{M}_\alpha=\alpha(x)$
-		
-		\end{itemize}
-	
-	\item We've interpreted the signature (and a bit more).
 	
 	\end{itemize}
 
@@ -180,37 +142,38 @@
 
 \begin{frame}{Truth}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 		
-		\item (9.1.9) Truth, then, is recursively defined relative to a model and context:
+		\item Given \emph{just} the denotations determined by model $\mathcal{M}$ and assignment $\alpha$, we can calculate a truth-value for any formula.
+		
+		\medskip
 		
 		\begin{itemize}
+		\itemsep=10pt
 		
 			 \item { $\llbracket R(t_1, \mathellipsis, t_n)\rrbracket^\mathcal{M}_\alpha=1$ iff $(\llbracket t_1\rrbracket^\mathcal{M}_\alpha, \mathellipsis, \llbracket t_n\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$}
 				
-			\item {$\llbracket t_1=t_2\rrbracket^\mathcal{M}_\alpha=1$  iff $\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_2\rrbracket^\mathcal{M}_\alpha$}
+			\item {$\llbracket t_1=t_2\rrbracket^\mathcal{M}_\alpha=1$  iff $\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_2\rrbracket^\mathcal{M}_\alpha$ \quad \alert{(special rule for `$=$')}}
 			
-			\item We can use the truth-functions to interpret the connectives: 
-			\begin{itemize}
+			\item We apply truth-functions to interpret connectives as before.
+				\begin{itemize}
 			
-			\item $\llbracket \neg\phi\rrbracket^\mathcal{M}_\alpha=f_\neg(\llbracket\phi\rrbracket^\mathcal{M}_\alpha)$	
+				\item $\llbracket \neg\phi\rrbracket^\mathcal{M}_\alpha=f_\neg(\llbracket\phi\rrbracket^\mathcal{M}_\alpha)$	
 			
-			\item $\llbracket\phi\circ\psi\rrbracket^\mathcal{M}_\alpha=f_\circ(\llbracket\phi\rrbracket^\mathcal{M}_\alpha,\llbracket\psi\rrbracket^\mathcal{M}_\alpha)$
+				\item $\llbracket\phi\circ\psi\rrbracket^\mathcal{M}_\alpha=f_\circ(\llbracket\phi\rrbracket^\mathcal{M}_\alpha,\llbracket\psi\rrbracket^\mathcal{M}_\alpha)$
 			
-			\end{itemize}
+				\end{itemize}
 					
-			\item But what about the quantifiers?
-			\[\llbracket \exists x\phi\rrbracket^\mathcal{M}_\alpha=???\]\[\llbracket \forall x\phi\rrbracket^\mathcal{M}_\alpha=???\]
+			\item But what about quantified formulas? Idea: we survey changes from assignment $\alpha$ to $\alpha[x\mapsto d]$ which is the assignment \emph{like $\alpha$} except that it changes the value of $x$ to denote object $d$.
+
+				\begin{itemize}
+				
+				\item $\forall x\phi$ is true under $\mathcal{M}$ and $\alpha$ \,iff\, for every relevant object $d$, the formula $\phi$ is true under the change of assignment $\alpha[x\mapsto d]$ 
+				\item $\exists x\phi$ is true under $\mathcal{M}$ and $\alpha$ \,iff\, for at least one relevant object $d$, the formula $\phi$ is true under change of assignment $\alpha[x\mapsto d]$ 
 		
-		\end{itemize}
-		
-		\item Idea: Change values in $\alpha$, for $d$ an object, $\alpha[x\mapsto d]$ is the result of changing the value of $x$ to $d$
-		
-		\begin{itemize}
-		
-			\item $\forall x\phi$ is true in $\mathcal{M}$ under $\alpha$ iff for every possible value $d$ of $x$, $\phi$ is true under $\alpha[x\mapsto d]$ 
-			\item $\exists x\phi$ is true in $\mathcal{M}$ under $\alpha$ iff for somme value $d$ of $x$, $\phi$ is true under $\alpha[x\mapsto d]$ 
-		
+				\end{itemize}
+				
 		\end{itemize}
 		
 	\end{itemize}
@@ -219,87 +182,45 @@
 
 \begin{frame}{Domains}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (9.1.10) We don't want to consider \emph{all} possible values:
+		\item However, to make this as clear and precise as possible, we do not assume that are working with `absolutely all' objects.
 		
-		\begin{itemize}
+		\item Instead, each model $\mathcal{M}$ comes equipped with a domain $D^\mathcal{M}$.
 		
-			\item ``Everybody passes'' is $\forall xP(x)$
-			
-			\item The quantifier ``ranges'' over students.
-		
-		\end{itemize}
-		
-		\item A model $\mathcal{M}$ comes with a fixed domain $D^\mathcal{M}$
-		
-		\item There are also technical reasons for why the domain needs to be fixed: paradoxes of universal sets.
+		\item Think of it this way: a model is a reasoning situation and the domain is what we are reasoning about; when we use the quantifiers `something' or `everything' in such a situation we are generalization \emph{about things in the current domain}.
 			
 	\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Ideas in One Place}
-
-	\begin{itemize}
-	
-		\item A model interprets the signature by assigning denotation to every constant, a function to every function symbol, and an $n$-ary relation to every $n$-ary relation symbol
-		
-		\item An assignment in a model tells us what the variables denote. It plays the role of the context in natural language. 
-	
-		\item We can recursively calculate the denotation of arbitrary terms in a model under an assignment.
-		
-		\item We can recursively calculate the truth-value of a formula relative to a model under an assignment.
-	
-	\end{itemize}
-
 
 \end{frame}
 
 \subsection{9.2 Models and Assignments}
 
-\begin{frame}{9.2 Models and Assignments}
+\begin{frame}{9.2 Official Definition of Models and Assignments}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 		
-		\item \alert{(9.2.1) A \emph{model} for $\mathcal{S}$ is a structure $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$, s.t.:
+		\item (9.2.1) A \emph{model} for $\mathcal{S}$ is a structure $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$ where:
 		\begin{enumerate}[(i)]
 		
-			\item $D^\mathcal{M}$ is a non-empty (!) set, the \emph{domain} of $\mathcal{M}$
+			\item $D^\mathcal{M}$ is a non-empty set
 			
-			\item $\cdot^\mathcal{M}$ is an \emph{interpretation function}, which assigns to:
+			\item $\cdot^\mathcal{M}$ is an \emph{interpretation function} that does these jobs:
 			\begin{enumerate}[(a)]
 			
-				\item every constant $c\in\mathcal{M}$ an element $c^\mathcal{M}\in D^\mathcal{M}$ of the domain
-				
-				\item every function symbol $f^n\in\mathcal{F}$, a function $f^\mathcal{M}:D^n\to D$
-				
-				\item every predicate $R^n\in\mathcal{R}$, a set $R^\mathcal{M}\subseteq D^n$.
+				\item for every $c\in\mathcal{C}$, it gives an object $c^\mathcal{M}\in D^\mathcal{M}$.
+
+				\item for every $f^n\in\mathcal{F}$, it gives a function $f^\mathcal{M}:D^n\to D$
+
+				\item for every $R^n\in\mathcal{R}$, it gives a set $R^\mathcal{M}\subseteq D^n$.
 			
 			\end{enumerate}
-		\end{enumerate}}
-			
+		\end{enumerate}
+
 		\item (9.2.4) An \emph{assignment} in a model $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$ of signature $\mathcal{S}$ is a function $\alpha:\mathcal{V}\to D^\mathcal{M}$. 
-		
-		\item (9.2.6) We define the \emph{denotation} $\llbracket t\rrbracket_\alpha^\mathcal{M}$ of a term $t$ in a model $\mathcal{M}$ under assignment $\alpha$ by the following recursion:
-		
-			\begin{enumerate}[(a)]
-			
-				\item		\begin{enumerate}[(i)]
 
-					\item $\llbracket x\rrbracket_\alpha^\mathcal{M}=\alpha(x)$
-					\item $\llbracket c\rrbracket_\alpha^\mathcal{M}=c^\mathcal{M}$
-				
-				\end{enumerate}
-				
-				\item $\llbracket f(t_1,\mathellipsis,t_n)\rrbracket_\alpha^\mathcal{M}=f^\mathcal{M}(\llbracket t_1\rrbracket_\alpha^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket_\alpha^\mathcal{M})$
-			
-			\end{enumerate}
-			
-			\item (9.2.8) We define $\alpha[x\mapsto d]$, the result of setting the value of variable $x\in\mathcal{V}$ to $d\in D^\mathcal{M}$, by:
-		\[\alpha[x\mapsto d](y)=\begin{cases} y &\text{if }y\neq x\\ d & \text{if }y=x\end{cases}\]		
-
-	
 	\end{itemize}
 
 \end{frame}
@@ -307,8 +228,11 @@
 \begin{frame}{Examples (9.2.2)}
 
 Models of signature $\mathcal{S}_{PA}=(\{0\}, \{S^1, +^2, \cdot^2\}, \emptyset)$:
+
+\bigskip
 				
 				\begin{enumerate}[(a)]
+				\itemsep=16pt
 				
 					\item The standard, intended model:
 					
@@ -344,82 +268,41 @@ Models of signature $\mathcal{S}_{PA}=(\{0\}, \{S^1, +^2, \cdot^2\}, \emptyset)$
 
 \end{frame}
 
-\begin{frame}{Examples (9.2.2)}
+\begin{frame}{Examples (9.2.5)}
 
-Models of signature $\mathcal{S}_{PA}=(\{0\}, \{S^1, +^2, \cdot^2\}, \emptyset)$:
-				
+With assignments only the domain counts:
+
+\bigskip
+
+			\begin{enumerate}[(a)]
+			\itemsep=16pt
+		
+			\item Some assignments when the domain is $D^\mathcal{M}=\mathbb{N}$
+			
 				\begin{enumerate}[(a)]
 				
-				\setcounter{enumi}{2}
-
-
-					\item A natural, but non-intended model on the odd numbers:
+					\item $\alpha(x_1)=0, \alpha(y)=1, \alpha(z)=2$
 					
-						\begin{itemize}
+					\item $\alpha(x)=1, \alpha(y)=0, \alpha(z)=3$
 					
-							\item $D^\mathcal{M}=\{n\in\mathbb{N}:n\text{ is odd}\}$
-																					\item $0^\mathcal{M}=1$
+					\item $\alpha(x)=0, \alpha(y)=0, \alpha(z)=0$
 					
-							\item $S^\mathcal{M}(n)=n+2$
-							
-							\item $+^\mathcal{M}(n,m)=\begin{cases}n+m&\text{if }n+m\text{ is odd}\\n+m+1&\text{ otherwise}\end{cases}$
-							
-							\item $\cdot^\mathcal{M}(n,m)=n\cdot m$
-					
-						\end{itemize}
-					
-			\end{enumerate}
-			
-\vspace{2ex}			
-			
-With signature $\mathcal{S}_\emptyset=(\emptyset,\emptyset,\emptyset)$, literally every set is a model!
-
-\vspace{2ex}
+					\item $\alpha(x)=1$ for all $x\in\mathcal{V}$
+									
+				\end{enumerate}
 				
-For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
-							
-						
-						\begin{itemize}
-						
-							\item $D^\mathcal{M}=\{1,2,3,4\}$
-							
-							\item $a^\mathcal{M}=1, b^\mathcal{M}=3, c^\mathcal{M}=2$
-						
-							\item $f^\mathcal{M}(x)=x$ and $g^\mathcal{M}(x,y)=min(x,y)$
-							
-							\item $P^\mathcal{M}=\{1,3\}$ and $R^\mathcal{M}=\{(1,1), (1,2),(2,2) (2,3), (3,3)\}$
-						
-						\end{itemize}
-						
-						
-					
-	
-	
+			\item On the other hand, for $D^\mathcal{M}=\{\ast\}$ there is \emph{one} assignment (period), viz. the constant assignment $\alpha(x)=\ast$ for all $x$.
+
+		\end{enumerate}
+
 \end{frame}
 
-\begin{frame}{9.2 Models and Assignments}
 
-	\begin{itemize}
-		
-		\item {(9.2.1) A \emph{model} for $\mathcal{S}$ is a structure $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$, s.t.:
-		\begin{enumerate}[(i)]
-		
-			\item $D^\mathcal{M}$ is a non-empty (!) set, the \emph{domain} of $\mathcal{M}$
-			
-			\item $\cdot^\mathcal{M}$ is an \emph{interpretation function}, which assigns to:
-			\begin{enumerate}[(a)]
-			
-				\item every constant $c\in\mathcal{M}$ an element $c^\mathcal{M}\in D^\mathcal{M}$ of the domain
-				
-				\item every function symbol $f^n\in\mathcal{F}$, a function $f^\mathcal{M}:D^n\to D$
-				
-				\item every predicate $R^n\in\mathcal{R}$, a set $R^\mathcal{M}\subseteq D^n$.
-			
-			\end{enumerate}
-		\end{enumerate}}
-			
-		\item \alert{(9.2.4) An \emph{assignment} in a model $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$ of signature $\mathcal{S}$ is a function $\alpha:\mathcal{V}\to D^\mathcal{M}$.}
-		
+\begin{frame}{9.2 Official Definition of Denotations}
+
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
+					
 		\item (9.2.6) We define the \emph{denotation} $\llbracket t\rrbracket_\alpha^\mathcal{M}$ of a term $t$ in a model $\mathcal{M}$ under assignment $\alpha$ by the following recursion:
 		
 			\begin{enumerate}[(a)]
@@ -435,95 +318,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 			
 			\end{enumerate}
 			
-			\item (9.2.8) We $\alpha[x\mapsto d]$, the result of setting the value of variable $x\in\mathcal{V}$ to $d\in D^\mathcal{M}$, by:
-		\[\alpha[x\mapsto d](y)=\begin{cases} y &\text{if }y\neq x\\ d & \text{if }y=x\end{cases}\]		
-
-	
-	\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Examples (9.2.5)}
-
-\begin{itemize}
-
-	\item With assignments only the domain counts:
-	
-	\begin{enumerate}[(i)]
-		
-			\item Models with domain $D^\mathcal{M}=\mathbb{N}$ (9.2.2.i.a--d):
-			
-				\begin{enumerate}[(a)]
-				
-					\item $\alpha(x_1)=0, \alpha(y)=1, \alpha(z)=2$
-					
-					\item $\alpha(x)=1, \alpha(y)=0, \alpha(z)=3$
-					
-					\item $\alpha(x)=0, \alpha(y)=0, \alpha(z)=0$
-					
-					\item For $\mathcal{V}=\{x_i:i\in\mathbb{N}\}$, $\alpha(x_i)=i$.
-					\item $\alpha(x)=1$ for all $x\in\mathcal{V}$.
-									
-				\end{enumerate}
-				
-			\item Models with domain $D^\mathcal{M}=\mathbb{N}\cup\wp(\mathbb{N})$ (9.2.2.iii.a):
-
-					\begin{enumerate}[(a)]
-
-						\item $\alpha(x)=2, \alpha(y)=\{2\}, \alpha(z)=\mathbb{N}$
-						
-						\item $\alpha(x)=\{x\in\mathbb{N}:n\text{ is even}\}, \alpha(y)=\{n\in\mathbb{N}:x\text{ is odd}\}, \alpha(x)=\{n\in\mathbb{N}:x\text{ is prime}\}$
-						
-						\item $\alpha(x)=0$ for all $x\in\mathcal{V}$.
-
-						\end{enumerate}
-
-			\item For $D^\mathcal{M}=\{\ast\}$ (9.2.2.i.e) there is only \emph{one} assignment, which is the constant assignment $\alpha(x)=\ast$ for all $x\in\mathcal{V}$
-
-		\end{enumerate}
-
-\end{itemize}
-
-\end{frame}
-\begin{frame}{9.2 Models and Assignments}
-
-	\begin{itemize}
-		
-		\item {(9.2.1) A \emph{model} for $\mathcal{S}$ is a structure $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$, s.t.:
-		\begin{enumerate}[(i)]
-		
-			\item $D^\mathcal{M}$ is a non-empty (!) set, the \emph{domain} of $\mathcal{M}$
-			
-			\item $\cdot^\mathcal{M}$ is an \emph{interpretation function}, which assigns to:
-			\begin{enumerate}[(a)]
-			
-				\item every constant $c\in\mathcal{M}$ an element $c^\mathcal{M}\in D^\mathcal{M}$ of the domain
-				
-				\item every function symbol $f^n\in\mathcal{F}$, a function $f^\mathcal{M}:D^n\to D$
-				
-				\item every predicate $R^n\in\mathcal{R}$, a set $R^\mathcal{M}\subseteq D^n$.
-			
-			\end{enumerate}
-		\end{enumerate}}
-			
-		\item {(9.2.4) An \emph{assignment} in a model $\mathcal{M}=(D^\mathcal{M},\cdot^\mathcal{M})$ of signature $\mathcal{S}$ is a function $\alpha:\mathcal{V}\to D^\mathcal{M}$.}
-		
-		\item \alert{(9.2.6) We define the \emph{denotation} $\llbracket t\rrbracket_\alpha^\mathcal{M}$ of a term $t$ in a model $\mathcal{M}$ under assignment $\alpha$ by the following recursion:
-		
-			\begin{enumerate}[(a)]
-			
-				\item		\begin{enumerate}[(i)]
-
-					\item $\llbracket x\rrbracket_\alpha^\mathcal{M}=\alpha(x)$
-					\item $\llbracket c\rrbracket_\alpha^\mathcal{M}=c^\mathcal{M}$
-				
-				\end{enumerate}
-				
-				\item $\llbracket f(t_1,\mathellipsis,t_n)\rrbracket_\alpha^\mathcal{M}=f^\mathcal{M}(\llbracket t_1\rrbracket_\alpha^\mathcal{M}, \mathellipsis, \llbracket t_n\rrbracket_\alpha^\mathcal{M})$
-			
-			\end{enumerate}}
-			
-			\item (9.2.8) We $\alpha[x\mapsto d]$, the result of setting the value of variable $x\in\mathcal{V}$ to $d\in D^\mathcal{M}$, by:
+			\item Change of assignment $\alpha[x\mapsto d]$ is defined by:
 		\[\alpha[x\mapsto d](y)=\begin{cases} y &\text{if }y\neq x\\ d & \text{if }y=x\end{cases}\]		
 
 	
@@ -534,8 +329,9 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 \begin{frame}{Examples (9.2.7)}
 
 \begin{enumerate}[(i)]
+\itemsep=16pt
 		
-			\item In the standard model for $\mathcal{S}_{PA}$ (9.1.2.i.a) with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
+			\item Take the standard model for $\mathcal{S}_{PA}$ and consider any assignment that assigns $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$, then we have:
 			\begin{align*}
 			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=0\\
 			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
@@ -550,8 +346,9 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 \begin{frame}{Examples (9.2.7)}
 
 \begin{enumerate}[(i)]
+\itemsep=16pt
 \setcounter{enumi}{1}			
-			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.b), which has $D^\mathcal{M}=\{x:x\text{ is even}\}$, with $\alpha(x)=0,\alpha(y)=0,\alpha(z)=0$ (9.2.5.i.c):
+			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.b), which has $D^\mathcal{M}=\{x:x\text{ is even}\}$, with $\alpha(x)=0,\alpha(y)=0,\alpha(z)=0$
 			\begin{align*}
 			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=0\\
 			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
@@ -562,56 +359,22 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 			
 	\end{enumerate}
 \end{frame}
-\begin{frame}{Examples (9.2.7)}
-
-\begin{enumerate}[(i)]
-\setcounter{enumi}{2}
-			
-			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.c), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=1$ for all $x\in\mathcal{V}$ (9.2.5.i.e):
-			
-			\begin{align*}
-			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=1\\
-			\llbracket x\rrbracket^\mathcal{M}_\alpha&=1\\
-			\llbracket S(0)\rrbracket^\mathcal{M}_\alpha&=3\\
-			\llbracket y\cdot S(0)\rrbracket^\mathcal{M}_\alpha&=3\\
-			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=5
-			\end{align*}
-			
-	\end{enumerate}
-\end{frame}
-\begin{frame}{Examples (9.2.7)}
-
-\begin{enumerate}[(i)]
-\setcounter{enumi}{3}
-			
-			\item In the non-intended model for $\mathcal{S}_{PA}$ (9.1.2.i.d), which has $D^\mathcal{M}=\{x:x\text{ is odd}\}$, with $\alpha(x)=0,\alpha(y)=1,\alpha(z)=2$ (9.2.5.i.a):
-			
-			\begin{align*}
-			\llbracket 0\rrbracket^\mathcal{M}_\alpha&=42\\
-			\llbracket x\rrbracket^\mathcal{M}_\alpha&=0\\
-			\llbracket S(0)\rrbracket^\mathcal{M}_\alpha&=42\\
-			\llbracket y\cdot S(0)\rrbracket^\mathcal{M}_\alpha&=1^{42}=1\\
-			\llbracket S(((x\cdot y)+z))\rrbracket^\mathcal{M}_\alpha&=(0^1)\cdot 2=2
-			\end{align*}
-
-\end{enumerate}
-
-
-\end{frame}
 
 \begin{frame}{The Term Locality Lemma}
 
- (9.2.9) \textbf{Lemma}. Let $\mathcal{M}$ be a model and $t$ a term with precisely the variables in set $V$ in it. Then for all assignments $\alpha$ and $\beta$ in $\mathcal{M}$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$.
+ (9.2.9) \textbf{Lemma}. Let $\mathcal{M}$ be a model and $t$ a term with precisely the variables in set $V$ in it. Then for all valuations $\alpha$ and $\beta$ in $\mathcal{M}$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket t\rrbracket_\alpha^\mathcal{M}=\llbracket t\rrbracket_\beta^\mathcal{M}$. (proof by induction)
 		
-\vspace{2ex}	
-		
-\emph{Proof}. By induction:
+\medskip
 
 \begin{itemize}
+\itemsep=16pt
 
 	\item Induction base:
 	
+	\medskip
+	
 	\begin{itemize}
+	\itemsep=10pt
 	
 	\item If $t$ is a constant $a\in\mathcal{C}$, we can reason that $\llbracket a\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}=\llbracket a\rrbracket^\mathcal{M}_\beta$ for all assignments $\alpha,\beta$. 
 	
@@ -621,8 +384,8 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 	
 	\item Induction step:
 
-\vspace{-2ex}	
 	\end{itemize}
+	\itemsep=10pt
 
 	{\small
 	\begin{center}
@@ -638,29 +401,34 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 \subsection{9.3 Truth in a Model}
 
-\begin{frame}{9.3 Truth in a Model}
+\begin{frame}{9.3 Official Definition of Truth in a Model}
 
 (9.3.1) We define the truth-value $\llbracket\phi\rrbracket^\mathcal{M}_\alpha$ of a formula $\phi$ under an assignment $\alpha$ in a model $\mathcal{M}$ by the following recursion:
 		
+		\medskip
+		
 		\begin{enumerate}[(i)]
+		\itemsep=16pt
 			
-				\item		\begin{enumerate}[(a)]
+				\item	\begin{enumerate}[(a)]
+						\itemsep=10pt
 
-					\item $\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}$
-					\item $\llbracket t_1=t_2\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha)\\0 &\text{otherwise}\end{cases}$				
-				\end{enumerate}
+						\item $\llbracket R(t_1,\mathellipsis, t_n)\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}\\0 &\text{otherwise}\end{cases}$
+						\item $\llbracket t_1=t_2\rrbracket_\alpha^\mathcal{M}=\begin{cases} 1 & \text{if }\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha)\\0 &\text{otherwise}\end{cases}$				
+						\end{enumerate}
 				
-				\item \begin{enumerate}[(a)]
+				\item 	\begin{enumerate}[(a)]
+						\itemsep=10pt
 
-					\item  $\llbracket\neg \phi\rrbracket_v=f_\neg(\llbracket\phi\rrbracket_v)$
+						\item  $\llbracket\neg \phi\rrbracket_v=f_\neg(\llbracket\phi\rrbracket_v)$
 				
-				\item  $\llbracket(\phi\circ \psi)\rrbracket_v=f_\circ( \llbracket\phi\rrbracket_v, \llbracket\psi\rrbracket_v)$ for $\circ=\land,\lor,\to,\leftrightarrow$
+						\item  $\llbracket(\phi\circ \psi)\rrbracket_v=f_\circ( \llbracket\phi\rrbracket_v, \llbracket\psi\rrbracket_v)$ for $\circ=\land,\lor,\to,\leftrightarrow$
 				
-				\item $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=max(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+						\item $\llbracket\exists x\phi\rrbracket_\alpha^\mathcal{M}=max(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
 				
-				\item[] $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=min(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
+						\item[] $\llbracket\forall x\phi\rrbracket_\alpha^\mathcal{M}=min(\{\llbracket \phi\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}: d\in D^\mathcal{M}\})$
 								
-				\end{enumerate}
+						\end{enumerate}
 			
 			\end{enumerate}
 
@@ -668,18 +436,22 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 \begin{frame}{Truth as a Property}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (9.3.2) We set $\mathcal{M},\alpha\vDash\phi$ iff $\llbracket\phi\rrbracket^\mathcal{M}_\alpha=1$.
+		\item We can also write $\mathcal{M},\alpha\vDash\phi$ to mean $\llbracket\phi\rrbracket^\mathcal{M}_\alpha=1$.
 		
-		\item (9.3.4) \textbf{Lemma}. For every model $\mathcal{M}$ and assignment $\alpha$, we have:
+		\item Then, for model $\mathcal{M}$ and assignment $\alpha$, we have:
+
+			\medskip
 			
 			\begin{enumerate}[(i)]
+			\itemsep=6pt
 			
 				\item $\mathcal{M},\alpha\vDash R(t_1,\mathellipsis, t_n)$ iff $(\llbracket t_1\rrbracket^\mathcal{M}_\alpha,\mathellipsis, \llbracket t_1\rrbracket^\mathcal{M}_\alpha)\in R^\mathcal{M}$
 				
 				\item $\mathcal{M},\alpha\vDash t_1=t_2$ iff $\llbracket t_1\rrbracket^\mathcal{M}_\alpha=\llbracket t_1\rrbracket^\mathcal{M}_\alpha$								
-				\item $\mathcal{M},\alpha\vDash \neg\phi$ iff $\mathcal{M},\alpha\nvDash\phi$
+				\item $\mathcal{M},\alpha\vDash \neg\phi$ iff $v\nvDash\phi$
 					
 				\item $\mathcal{M},\alpha\vDash(\phi\land\psi)$ iff $\mathcal{M},\alpha\vDash\phi$ and $\mathcal{M},\alpha\vDash\psi$
 				
@@ -702,6 +474,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 In the standard model for $\mathcal{S}_{PA}$:
 
 \begin{enumerate}[(a)]
+\itemsep=16pt
 			
 				\item $\mathcal{M},\alpha\vDash S(0)=y$
 				
@@ -709,15 +482,6 @@ In the standard model for $\mathcal{S}_{PA}$:
 				
 				\setcounter{enumi}{5}
 				
-%				\item $\mathcal{M},\alpha\nvDash S(0)=x$
-%								
-%				\item $\mathcal{M},\alpha\vDash S(0)\neq x$
-%				
-%				
-%				\item $\mathcal{M},\alpha\vDash (S(0)\neq x\lor 4\neq 4)$
-%									
-%				\item $\mathcal{M},\alpha\vDash S(0)=x\to 1\neq 1$
-									
 				\item $\mathcal{M},\alpha\vDash\forall x(S(x)\neq 0)$
 
 				{We need to show that for each  $n\in D^\mathcal{M}=\mathbb{N}$, we have $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)\neq 0$. So let $n\in \mathbb{N}$ be an arbitrary number. We know that  $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)\neq 0$ iff $\mathcal{M},\alpha[x\mapsto n]\nvDash S(x)=0$. Assume $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)=0$ for contradiction. It follows that $\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}=\llbracket0\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}$. We have $\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}=S^\mathcal{M}(n)=n+1$. And we have $0^\mathcal{M}=0$. So we get that $n+1=0$. But we know that there is no natural number $n\in\mathbb{N}$ s.t. $n+1=0$. So, we can conclude that $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)\neq 0$, as desired.}
@@ -725,30 +489,6 @@ In the standard model for $\mathcal{S}_{PA}$:
 				\end{enumerate}
 				
 				\end{frame}
-
-\begin{frame}{(9.3.4.i) Examples}
-
-		{\small\begin{enumerate}[(a)]
-			
-				
-				\setcounter{enumi}{6}
-				
-				\item $\mathcal{M},\alpha\vDash \exists x S(x)=S(S(0))$
-				
-				We need to establish that there exists an $n\in\mathbb{N}$ s.t.  $\mathcal{M},\alpha[x\mapsto n]\vDash S(x)=S(S(0))$. We can easily check that $\llbracket S(S(0))\rrbracket_\alpha^\mathcal{M}=2$. So, for $n=1$, we have $\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto 1]}=S^\mathcal{M}(\alpha[x\mapsto 1](x))=S^\mathcal{M}(1)=2$. By Lemma 9.2.9, we have $\llbracket S(S(0))\rrbracket_{\alpha[x:\mapsto1]}^\mathcal{M}=2$ since $\llbracket S(S(0))\rrbracket_\alpha^\mathcal{M}=2$ and $S(S(0))$ is a ground-term. Hence: $\llbracket S(x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto n]}=\llbracket S(S(0))\rrbracket_{\alpha[x:\mapsto1]}^\mathcal{M},$ as desired.			
-				
-				\item $\mathcal{M},\alpha\vDash \forall x\exists y x\cdot y=x$.
-				
-			This holds iff for all $n\in\mathbb{N}$, $\mathcal{M},\alpha[x\mapsto n]\vDash \exists y x\cdot y=x$. We have $\mathcal{M},\alpha[x\mapsto n]\vDash \exists y x\cdot y=x$ iff there exists an $m\in\mathbb{N}$ s.t. $\mathcal{M},\alpha[x\mapsto n, y\mapsto m]\vDash x\cdot y=x$. We need to show that for each $n$, there exists an $m$ s.t. $\mathcal{M},\alpha[x\mapsto n, y\mapsto m]\vDash x\cdot y=x$. So let $n\in\mathbb{N}$ be arbitrary. For $m=1$, we get 
-				\begin{align*}
-				\llbracket x\cdot y\rrbracket^\mathcal{M}_{\alpha[x\mapsto n, y\mapsto 1]}&=\alpha[x\mapsto n, y\mapsto 1](x)\cdot \alpha[x\mapsto n, y\mapsto 1](y)=n\cdot 1
-				\end{align*}
-			So $\llbracket x\cdot y\rrbracket^\mathcal{M}_{\alpha[x\mapsto n, y\mapsto 1]}=\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto n, y\mapsto 1]}$ and  $\mathcal{M},\alpha[x\mapsto n, y\mapsto 1]\vDash x\cdot y=x$. So $\mathcal{M},\alpha[x\mapsto n]\vDash \exists y x\cdot y=x$ and, since $n$ was arbitrary $\mathcal{M},\alpha\vDash \forall x \exists y x\cdot y=x$, as desired.
-				
-			\end{enumerate}}
-	
-
-\end{frame}
 
 \begin{frame}{(9.3.4.ii) Examples}
 
@@ -767,74 +507,51 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 						
 						\end{itemize}
 						
-	Examples:
-	\begin{enumerate}[(a)]
-			
-			\item $\mathcal{M},\alpha\vDash P(a)$
-				
-				Simply note that $\llbracket A\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}=1\in \{1,3\}=P^\mathcal{M}$		
-					
-				\item $\mathcal{M},\alpha\vDash P(x)$
-				
-				Simply note that $\llbracket x\rrbracket^\mathcal{M}_\alpha=\alpha(x)=1\in \{1,3\}=P^\mathcal{M}$
-				
-				\item $\mathcal{M},\alpha\nvDash P(z)$
-				
-				Simply note that $\llbracket z\rrbracket^\mathcal{M}_\alpha=\alpha(z)=4\notin \{1,3\}=P^\mathcal{M}$
-				
-				\item $\mathcal{M},\alpha\vDash R(x,x)$
-				
-				First,  remember that $\llbracket x\rrbracket^\mathcal{M}_\alpha=1.$ It follows that $(\llbracket x\rrbracket^\mathcal{M}_\alpha,\llbracket x\rrbracket^\mathcal{M}_\alpha)=(1,1)\in\{(1,1), (1,2),(2,2) (2,3), (3,3)\}\in R^\mathcal{M}$.
-				
-	\end{enumerate}
 						
 
 \end{frame}
 
 \begin{frame}{(9.3.4.ii) Examples}
 
-{\small
+	Various results in the foregoing model:
 	\begin{enumerate}[(a)]
-	\setcounter{enumi}{4}
+	\itemsep=10pt
+			
+		  	\item $\mathcal{M},\alpha\vDash P(a)$
 
-
-\item $\mathcal{M},\alpha\vDash \exists y (y\neq x\land R(y,y))$
+				Simply note that $\llbracket a\rrbracket^\mathcal{M}_\alpha=a^\mathcal{M}=1$ and $1\in P^\mathcal{M}$		
+					
+				\item $\mathcal{M},\alpha\nvDash P(z)$
 				
-				We need to show that there exists a $d\in D^\mathcal{M}$ such that $\mathcal{M},\alpha[y\mapsto d]\vDash y\neq x\land R(y,y)$. We have $\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]}=\alpha[y\mapsto 3](y)=3$  and $3\neq 1=\alpha[y\mapsto 3](x)$. Hence $\mathcal{M},\alpha[y\mapsto 3]\vDash y\neq x$. Since $\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]}=3,$ we have that $(\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]},\llbracket y\rrbracket^\mathcal{M}_{\alpha[y\mapsto 3]})=(3,3)\in R^\mathcal{M}$. So, we have $\mathcal{M},\alpha[y\mapsto 3]\vDash R(y,y)$. We have $\mathcal{M},\alpha[y\mapsto 3]\vDash y\neq x\land R(y,y)$. We get $\mathcal{M},\alpha\vDash \exists y (y\neq x\land R(y,y))$, as desired.
+				Simply note that $\llbracket z\rrbracket^\mathcal{M}_\alpha=\alpha(z)=4$ and $4\notin P^\mathcal{M}$
+				
+				\item $\mathcal{M},\alpha\vDash R(x,x)$
+				
+				First,  remember that $\llbracket x\rrbracket^\mathcal{M}_\alpha=1.$ It follows that $(\llbracket x\rrbracket^\mathcal{M}_\alpha,\llbracket x\rrbracket^\mathcal{M}_\alpha)=(1,1)$ and $(1,1)\in R^\mathcal{M}$.
+				
+
+        \item $\mathcal{M},\alpha\vDash \exists y (y\neq x\land R(y,y))$
 				
 				\item $\mathcal{M},\alpha\vDash \forall x P(g(a,x))$
 				
-				 We show that for each $d\in D^\mathcal{M},$ we have $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=1$. Since $1\in P^\mathcal{M}$, the claim follows.  We know that $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=g^\mathcal{M}(\llbracket a\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}, \llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]})$, since $g^\mathcal{M}(x,y)=min(x,y)$, $\llbracket a\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=a^\mathcal{M}$, and $\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=\alpha[x\mapsto d](d)=d$, we get $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=min(1,d)$. Now, $D^\mathcal{M}=\{1,2,3,4\}$, so for each $d\in D^\mathcal{M}$, we have $\llbracket g(a,x)\rrbracket^\mathcal{M}_{\alpha[x\mapsto d]}=min(1,d)=1$. But that's all we needed to show.
-				
 				\item $\mathcal{M},\alpha\vDash \forall x P(a)$. 
 				
-				%We need to show that for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$. But the value of $P(a)$ is the same under each assignment: the proof of $\mathcal{M},\alpha\vDash P(a)$ doesn't depend on $\alpha$. So, clearly for each $d\in D^\mathcal{M}$ that $\mathcal{M},\alpha[x\mapsto d]\vDash P(a)$.
+			  \item[] \ldots think about how to explain these yourself!
 			
 			\end{enumerate}
-			}
 	\end{frame}
 	
 \begin{frame}{Two Lemmas}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=20pt
 
-		\item (9.3.7) \textbf{Lemma.} Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ whose free variables form the set $V$. Then for all assignments $\alpha$ and $\beta$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
+		\item (9.3.7) \textbf{Lemma.} Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ whose free variables form the set $V$. Then for all valuations $\alpha$ and $\beta$, if $\alpha(x)=\beta(x)$ for all $x\in V$, then $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
 		
 
 \item (9.3.7) \textbf{Corollary.}	Let $\mathcal{M}$ be a model and $\phi\in\mathcal{L}$ a sentence (i.e. a formula with no free variables). Then for all assignments $\alpha,\beta$, we have $\llbracket\phi\rrbracket_\alpha^\mathcal{M}=\llbracket\phi\rrbracket_\beta^\mathcal{M}$.
 		
 		
-		\item Proofs in the notes. 
-		
-		\item We can use the Sentence Lemma to justify the following definition of truth in a model:
-		
-		\begin{itemize}
-		
-			\item For $\phi$ a sentence, we define $\mathcal{M}\vDash\phi$ as $\mathcal{M},\alpha\vDash\phi$.
-		
-		\end{itemize}
-
-
 \end{itemize}
 
 \end{frame}
@@ -843,21 +560,13 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 \begin{frame}{9.4 Consequence and Validity}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (9.4.1) We set:
-		
-		\begin{itemize}
-		
-			\item For $\Gamma$ a set of sentences and $\phi$ a sentence, we say that $\Gamma\vDash\phi$ iff for all models $\mathcal{M}$, if $\mathcal{M}\vDash\psi$ for all $\psi\in\Gamma$, then $\mathcal{M}\vDash\phi$.
+		\item For $\Gamma$ a set of sentences and $\phi$ a sentence, we say that $\Gamma\vDash\phi$ iff for all models $\mathcal{M}$, if $\mathcal{M}\vDash\psi$ for all $\psi\in\Gamma$, then $\mathcal{M}\vDash\phi$.
 			
-			\item This gives us: $\Gamma\nvDash\phi$ iff there exists a (counter)model $\mathcal{M}$, such taht $\mathcal{M}\vDash\psi$ for all $\psi\in\Gamma$, but $\mathcal{M}\nvDash\phi$
+			\item This gives us: $\Gamma\nvDash\phi$ iff there exists a (counter)model $\mathcal{M}$, such that $\mathcal{M}\vDash\psi$ for all $\psi\in\Gamma$, but at the same time $\mathcal{M}\nvDash\phi$.
 		
-		\end{itemize}
-		\item The expression $\phi\equi \psi$ still means both $\phi\vDash\psi$ and $\psi\vDash\phi$
-		
-		\item $\vDash\phi$ still means $\emptyset\vDash\phi$
-	
 	\end{itemize}
 
 \end{frame}
@@ -865,14 +574,15 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 \begin{frame}{(9.4.2) Examples}
 
 \begin{enumerate}[(i)]
+\itemsep=16pt
 		
 		\item $\forall xP(x)\vDash P(a)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash\forall xP(x)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. It follows that for all $d\in D^\mathcal{M}$, we have $\mathcal{M},\alpha[x\mapsto d]\vDash P(x)$. But $a^\mathcal{M}\in D^\mathcal{M}$. So, if we set $d=a^\mathcal{M}$, we get $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$. But that just means that $\alpha[x\mapsto a^\mathcal{M}](x)=a^\mathcal{M}\in P^\mathcal{M}$, from which it immediately follows that $\mathcal{M},\alpha\vDash P(a)$.
 		
 		\item $P(a)\vDash\exists xP(x)$
 		
-		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and assignment $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
+		\item[] To see this, suppose that $\mathcal{M},\alpha\vDash P(a)$ for some arbitrary model $\mathcal{M}$ and valuation $\alpha$. This means that $a^\mathcal{M}\in P^\mathcal{M}$. But then, we can simply set $d=a^\mathcal{M}$, and get that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists xP(x)$, as desired.
 
 \end{enumerate}
 
@@ -881,6 +591,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 \begin{frame}{(9.4.2) Examples}
 
 \begin{enumerate}[(i)]
+\itemsep=16pt
 
 \setcounter{enumi}{2}
 
@@ -895,23 +606,7 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 \begin{frame}{(9.4.2) Examples}
 
 \begin{enumerate}[(i)]
-
-\setcounter{enumi}{4}
-
-\item $\vDash \forall x(P(x)\lor \neg P(x))$
-		
-		\item[] To see this, suppose that for some model $\mathcal{M}$ and assignment $\alpha$, we have $\mathcal{M},\alpha\nvDash  \forall x(P(x)\lor \neg P(x))$. This means that there exists a $d\in D^\mathcal{M}$ such that $\mathcal{M},\alpha[x\mapsto d]\nvDash  P(x)\lor \neg P(x)$. But this means that both $\mathcal{M},\alpha[x\mapsto d]\nvDash  P(x)$ and $\mathcal{M},\alpha[x\mapsto d]\nvDash  \neg P(x)$ and so both $\mathcal{M},\alpha[x\mapsto d]\nvDash  P(x)$ and $\mathcal{M},\alpha[x\mapsto d]\vDash  P(x),$ which is a contradiction. Hence $\mathcal{M},\alpha\nvDash  \forall x(P(x)\lor \neg P(x))$ for all $\mathcal{M}$ and  $\alpha$.
-		
-		\item $\vDash\exists x~x=\mathsf{Batman}$ (it's logically true that Batman exists)
-		
-		\item[] Let $\mathcal{M}$ be an arbitrary model and $\alpha$ an arbitrary assignment therein. We have $\mathsf{Batman}^\mathcal{M}\in D^\mathcal{M}$; that is, the denotation of $\mathsf{Batman}$ is a member of the domain. So, set set $d=\mathsf{Batman}^\mathcal{M}$ and consider  $\llbracket x\rrbracket^\mathcal{M}_{\alpha[x\mapsto\mathsf{Batman}^\mathcal{M}]}=\mathsf{Batman}^\mathcal{M}=\llbracket\mathsf{Batman}\rrbracket^\mathcal{M}_{\alpha[x\mapsto\mathsf{Batman}^\mathcal{M}]}$. So $\llbracket x=\mathsf{Batman}\rrbracket^\mathcal{M}_{\alpha[x\mapsto\mathsf{Batman}^\mathcal{M}]}=1$. So $\llbracket\exists x~x=\mathsf{Batman}\rrbracket^\mathcal{M}_\alpha=1$, which is what we needed to show.		
-		\end{enumerate}
-
-\end{frame}
-
-\begin{frame}{(9.4.2) Examples}
-
-\begin{enumerate}[(i)]
+\itemsep=16pt
 
 \setcounter{enumi}{7}
 
@@ -928,23 +623,21 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 		
 		\end{itemize}
 		
-		In this model, there we can find $a^\mathcal{M}$ such that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}]\vDash P(x)$ and so $\mathcal{M},\alpha\vDash\exists x P(x)$, and we can find $b^\mathcal{M}$ such that $\mathcal{M},\alpha[x\mapsto b^\mathcal{M}]\vDash Q(x)$ and so $\mathcal{M},\alpha\vDash\exists x Q(x)$. But neither $a^\mathcal{M}$ nor $b^\mathcal{M}$ is such that $\mathcal{M},\alpha[x\mapsto a^\mathcal{M}/b^\mathcal{M}]\vDash P(x)\land Q(x)$---nothing is both $P$ and $Q$.
-		
 		\end{enumerate}
 
 \end{frame}
 
-\begin{frame}{(9.4.3) Quantifier Laws}
+\begin{frame}{(9.4.3) Some Useful Quantifier Laws}
 
-		
+	\bigskip		
+	
 		\begin{enumerate}[(i)]
+		\itemsep=6pt
 		
 		\item $\forall x\phi\vDash(\phi)[x:=t]$  where $t$ is a ground term
-%		
+
 		\item $(\phi)[x:=t]\vDash\exists x\phi$ where $t$ is a ground term
 
-		\item $\forall x\phi\vDash\exists x\phi$
-		
 		\item $\forall x\phi\equi \neg \exists x\neg\phi$
 	
 			\item $\exists x\phi\equi \neg \forall x\neg \phi$
@@ -953,15 +646,10 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 	\item $\exists x\exists y\phi\equi \exists y\exists x\phi$
 
-	\item $\exists x\forall y\phi\vDash \forall y \exists x\phi$
-		
 	\item $(\forall x\phi\land \forall x\psi)\equi \forall x(\phi\land \psi)$
 
 	\item $(\exists x\phi\lor \exists x\psi)\equi \exists x(\phi\lor \psi)$
 
-	\item $\forall x\phi\lor \forall x\psi\vDash \forall x(\phi\lor \psi)$  
-
-	\item  $\exists x(\phi\land \psi)\vDash \exists x\phi\land \exists x \psi$  
 	\item $(\phi\to \forall x\psi)\equi \forall x(\phi\to \psi)$ if $x$ is not free in $\phi$
 
 	\item $(\phi\to \exists x\psi)\equi \exists x(\phi\to \psi)$ if $x$ is not free in $\phi$
@@ -976,7 +664,8 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 \begin{frame}{Deduction and ICGNS}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
 		\item \textbf{Theorem} (Deduction Theorem). Let $\phi,\psi\in\mathcal{L}$ be formulas and $\Gamma\subseteq\mathcal{L}$ a set of formulas. Then the following two are equivalent:
 			\begin{enumerate}[1.]
@@ -1005,11 +694,10 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 \begin{frame}{Albert, Betty, and Charles}
 
-\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 		
-		\item Consider the signature $\mathcal{S}=(\{a,b,c\}, \emptyset, \{M^1, L^2\})$.
-
-		\item Our intended reading is that $M$ stands for ``\dots is married'', $L$ stands for ``\dots looks at \underline{\phantom{\dots}}'', $a$ means ``Albert,'' $b$ stands for ``Betty,'' and $c$ stands for ``Charles.''
+		\item Consider $\mathcal{S}=(\{a,b,c\}, \emptyset, \{M^1, L^2\})$, where $M$ formalizes ``\dots is married'', $L$ formalizes ``\dots looks at \underline{\phantom{\dots}}'', $a$ formalizes ``Albert,'' $b$ formalizes ``Betty,'' and $c$ formalizes ``Charles.''
 		
 		\item \emph{Claim}: \[\neg M(a), M(c), L(c,b), L(b,a)\vDash \exists x\exists y(M(x)\land \neg M(y)\land L(x,y)).\]
 		
@@ -1022,9 +710,11 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 
 \begin{frame}{Albert, Betty, and Charles}
 
-\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
+		\item \emph{Proof continued}: 	
 				
-		\item Now, we know that either (i) $b^\mathcal{M}\in M^\mathcal{M}$ or (ii) $b^\mathcal{M}\notin M^\mathcal{M}$. 	
+		\item[] Now, we know that either (i) $b^\mathcal{M}\in M^\mathcal{M}$ or (ii) $b^\mathcal{M}\notin M^\mathcal{M}$. 	
  \begin{itemize}
 			
 			\item If (i) $b^\mathcal{M}\in M^\mathcal{M}$, then we can set $d=b^\mathcal{M}$ and $d'=a^\mathcal{M}$. We'd get $d\in M^\mathcal{M}$ and so $\llbracket M(x))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$; $d'\notin M^\mathcal{M}$ and so $\llbracket\neg M(y)\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$; and $( d,d')\in L^\mathcal{M}$ and so $\llbracket L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$; giving us, $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$. 
@@ -1033,15 +723,13 @@ For signature $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 				
 		\end{itemize}
 
-Either way, we get $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$, which is what we wanted to show.
+Either way, $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y))\rrbracket_{\alpha[x\mapsto d, y\mapsto d']}^\mathcal{M}=1$, which is what we wanted to show.
 
 	\end{itemize}
 
 \end{frame}
 
-
 \begin{frame}
-
 \begin{center}
 \huge \smiley
 \end{center}
@@ -1050,20 +738,19 @@ Either way, we get $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y
 
 \begin{frame}{Core Ideas (Lecture Version)}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item A model interprets the signature by assigning denotation to every constant, a function to every function symbol, and an $n$-ary relation to every $n$-ary relation symbol
+	\item A model interprets the signature of an f.o. language
 		
-		\item An assignment in a model tells us what the variables denote. It plays the role of the context in natural language. 
+	\item An assignment for a model gives `temporary' denotations to variables, like a conversational context in natural language. 
 	
-		\item We can recursively calculate the denotation of arbitrary terms in a model under an assignment.
+	\item We recursively calculate denotations of terms in any $\mathcal{M}/\alpha$.
 		
-		\item We can recursively calculate the truth-value of a formula relative to a model under an assignment.
+	\item We recursively calculate truth-values of formulas in any $\mathcal{M}/\alpha$.
 		
-		\item Validity is defined as in every logic as truth-preservation across models.
+	\item Validity is defined by truth-preservation across all models.
 		
-		\item The Deduction Theorem holds for first-order logic but doesn't lead to decidability.
-					
 	\end{itemize}
 
 \end{frame}
@@ -1076,4 +763,3 @@ Either way, we get $\llbracket \exists x\exists y(M(x)\land \neg M(y)\land L(x,y
 	\end{center}
 
 \end{frame}
-
