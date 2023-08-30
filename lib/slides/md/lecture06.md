@@ -19,7 +19,7 @@ header-includes:
 # {}
 
 \setcounter{framenumber}{156}
-\LectureNo{6}
+\LectureNo{7}
 \maketitle
 
 # Agenda
