@@ -5,7 +5,7 @@ header-includes:
 
 # {}
 
-\setcounter{framenumber}{29}
+\setcounter{framenumber}{31}
 \LectureNo{2}
 \maketitle
 
@@ -44,7 +44,7 @@ header-includes:
 
   ![](img/wooclap-2.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI2>
+  <https://app.wooclap.com/ILOGICA2>
 
 # Wiskundige objecten
 
@@ -98,7 +98,7 @@ header-includes:
 
   ![](img/wooclap-2.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI2>
+  <https://app.wooclap.com/ILOGICA2>
 
 # Twee eisen
 
@@ -160,7 +160,7 @@ header-includes:
 
   ![](img/wooclap-2.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI2>
+  <https://app.wooclap.com/ILOGICA2>
 
 # Eis
 
@@ -183,7 +183,7 @@ header-includes:
 
   ![](img/wooclap-2.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI2>
+  <https://app.wooclap.com/ILOGICA2>
 
 
 # Logische connectieven 

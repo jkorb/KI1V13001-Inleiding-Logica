@@ -1,6 +1,6 @@
 # {}
 
-\setcounter{framenumber}{0}
+\setcounter{framenumber}{1}
 \LectureNo{1}
 \maketitle
 
@@ -9,7 +9,12 @@
   0. Cursushandleiding
   1. Introductie
 
-# Cursusmateriaal 
+# Aanwezigheid
+
+  \centering
+  ![](img/attendance.png){height=50% width=50%}
+
+# Cursusmateriaal
 
   \centering
 
@@ -22,8 +27,8 @@
   \centering
   ![](img/onduidelijk.jpg){ width=50% height=50% }
 
-  + Cursushandleiding: informatie 
-  + Slides: best of 
+  + Cursushandleiding: informatie
+  + Slides: best of
   + Dictaat: the full story
 
 # Grote verwachtingen
@@ -55,7 +60,7 @@
 
 # Vragen, ziekmelding, etc.
 
-  \centering 
+  \centering
   \Large
 
   [inleiding.logica@uu.nl](mailto:inleiding.logica@uu.nl)
@@ -67,14 +72,14 @@
 
   ![](img/wooclap-1.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI1>
+  <https://app.wooclap.com/ILOGICA1>
 
 # Logica
 
   \centering
 
   ![](img/schola-logicae.jpg){width=75% height=75%}
-  
+
 
   + Logica is de studie van *geldige* (2) *inferentie* (1)
 
@@ -95,7 +100,7 @@
   \centering
 
 
-  ![](img/aristotle.jpg){height=45% width=45%} \hfill ![](img/frege.png){height=45% width=45%}  
+  ![](img/aristotle.jpg){height=45% width=45%} \hfill ![](img/frege.png){height=45% width=45%}
 
 # Welk inferenties zijn geldig?
 
@@ -104,7 +109,7 @@
 
   ![](img/wooclap-1.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI1>
+  <https://app.wooclap.com/ILOGICA1>
 
 # Geldigheid (2)
 
@@ -120,7 +125,7 @@
   + Een inferentie is geldig desda ('dan en slechts dan als') het onmogelijk is
     dat de premissen waar zijn en de conclusie onwaar.
 
-# Voorbeelden 
+# Voorbeelden
 
   (1) Als het regent, dan is de straat nat. Het regent. Dus: de straat is nat.
 
@@ -136,8 +141,8 @@
 
   \centering
   \LARGE
-  
-  Wanneer is een inferentie \emph{on}geldig? 
+
+  Wanneer is een inferentie \emph{on}geldig?
 
 # Voorbeeld
 
@@ -158,7 +163,7 @@
 
   ![](img/wooclap-1.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI1>
+  <https://app.wooclap.com/ILOGICA1>
 
 # Logische vorm
 
@@ -224,7 +229,7 @@
   + nonsense
   + \dots
 
-# Principe van explosie 
+# Principe van explosie
 
 
   Een inferentie is altijd geldig als de premissen strijdig zijn:
@@ -233,13 +238,13 @@
 
   > De straat is zowel nat als ook niet nat. Dus: het telefoonnummer van mijn
   moeder is \texttt{+49 (0) 163 1737743}.
- 
+
 
   \vspace{4ex}
 
   \centering
 
-  ![](img/xkcd-explosion.png){height=50% width=50%}
+  ![](img/xkcd-explosion.png){height=50% width=85%}
 
 # Argument
 
@@ -257,7 +262,7 @@
 
 # Logica \& KI
 
-  
+
 
   + Wetenschap van redeneren
   + Basiswetenschap (grondslagen, hulpmiddel, ...)
@@ -266,7 +271,7 @@
     if 0!=1:
       print("Dat is logisch!")
   ~~~~
- 
+
   + Logical AI
 
 # Samenvatting

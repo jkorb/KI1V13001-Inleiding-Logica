@@ -4,11 +4,10 @@
 
 -   Any logic professor, ever.
 
-Per college wordt er één hoofdstuk uit de lecture notes behandeld.
-Aan het einde van elk hoofdstuk vind je bijbehorende opgaven.
-Oplossingen voor een deel van die oefeningen kun je vinden in de
-appendix van de lecture notes. 
-De oefeningen waar een $[h]$ bij staat, zijn huiswerkopgaven.
+Per college wordt er één hoofdstuk uit de lecture notes behandeld. Aan het
+einde van elk hoofdstuk vind je bijbehorende opgaven. Oplossingen voor een deel
+van die oefeningen kun je vinden in de appendix van de lecture notes. De
+oefeningen waar een $[h]$ bij staat, zijn huiswerkopgaven.
 
 Elk student moet tenminste één keer tijdens de cursus een oplossing voor en
 opdracht voorrekenen. Dit is jou *actieve deelname*. Dus als je dat niet doet,
@@ -23,10 +22,9 @@ best mogelijke voorbereiding op het tentamen. De huiswerkopdrachten worden niet
 becijferd.
 
 In je rooster (<https://mytimetable.uu.nl>) kun je zien in welke werkgroep je
-zit.
-Als je jouw werkgroep wilt wisselen, dan kan dat (alleen) in overleg met je
-werkgroepdocent. Een overzicht van welke studentenassistent (SA) bij welke
-werkgroep hoort vind je hier:
+zit. Als je jouw werkgroep wilt wisselen, dan kan dat (alleen) in overleg met
+je werkgroepdocent. Een overzicht van welke studentenassistent (SA) bij welke
+werkgroep hoort, vind je hier:
 
 \TAS
 

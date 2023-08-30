@@ -1,5 +1,6 @@
-\setcounter{framenumber}{224}
+
 \begin{frame}
+  \setcounter{framenumber}{219}
   \LectureNo{8}
   \maketitle
 \end{frame}
@@ -11,20 +12,12 @@
 \section{Rehash}
 \begin{frame}{Rehash}
 	
-\begin{itemize}
-
-	\item Now we move to first-order logic.
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-	\item Propositional logic deals with inferences involving the sentential connectives ``not,'' ``and,'' ``or,'' \dots; \alert{first-order logic also allows for the quantifiers ``for all'' and ``there exists.''}
+	\item Propositional logic deals with inferences involving the connectives ``not,'' ``and,'' ``or,'' \dots; \alert{we now move to first-order logic which allows for quantifiers ``for all'' and ``there exists.''}
 
-	\item We start with syntax:
-	
-		\begin{itemize}
-		
-			\item \alert{We model ordinary language by means of formal languages, artificial languages whose grammar is given by precise mathematical rules.}
-
-		
-		\end{itemize}
+	\item We start with syntax: modeling target aspects of ordinary language by means of a precise, formal language.
 	
 \end{itemize}
 
@@ -36,9 +29,10 @@
 
 \begin{frame}{8.1 First-Order Languages}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 		
-		\item (8.1.1) Remember that in first-order (f.o.) logic we deal with the quantifiers ``for all'' and ``there is'':
+		\item (8.1.1) Reasoning with quantifiers ``for all'' and ``there is'':
 		
 		\begin{enumerate}[(1)]
 		\setcounter{enumii}{2}
@@ -49,7 +43,7 @@
 	
 	\end{enumerate}
 	
-	\item In propositional logic, we can't accurately handle these inferences:
+	\item These arguments are not valid in propositional logic---because the resources of propositional logic are just too limited.
 	\[p,q\nvDash r\]
 	\[p\nvDash q\]
 		
@@ -62,7 +56,8 @@
 
 \begin{frame}{Abstraction}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
 		\item The concrete terms and predicates don't matter:
 				\begin{enumerate}[(1')]
@@ -101,39 +96,28 @@
 
 \begin{frame}{Kinds of Terms}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (8.1.3) In classical f.o. logic, we distinguish \emph{three} kinds of terms:
+		\item (8.1.3) Three kinds of terms in our formal language:
 		
 		\begin{itemize}
 		
-			\item \emph{proper names}, like ``Johannes'' or ``Angela'' (constants)
-			
-			\item \emph{pronouns}, like ``he,'' ``she,'' and ``it'' (variables)
-			
-			\item \emph{functional terms}, like ``the birthplace of Ada Lovelace'' or ``the LCA of Ada Lovelace and Alan Turing'' (\dots functions)
+			\item \emph{constants} invariantly refer to one specific thing, like the names of people ``Johannes'' or places ``Amsterdam'' ($a,b,c,\mathellipsis$)
+
+			\item \emph{variables} require context to refer, but could potentially refer to anything, like the pronouns ``it'' or ``that''  ($x,y,z,\mathellipsis$)
+
+			\item \emph{functional terms} take `input' from a simpler term and map it to an `output' like ``the birthplace of Hein'' ($f(\mathellipsis),g(\mathellipsis),\mathellipsis$)
 		
 		\end{itemize}
 		
-		\item We use:
+		\item (8.1.4) Note how functions can be \emph{nested}:
 		
 			\begin{itemize}
 			
-				\item $a,b,c,\mathellipsis$ as constants
+				\item[] The teacher of both Ada and the teacher of Bob and Cath
 				
-				\item $x,y,z,\mathellipsis$ as variables
-				
-				\item $f,g,h,\mathellipsis$ as function symbols
-			
-			\end{itemize}
-			
-		\item (8.1.4) Note that functions can be \emph{nested}:
-		
-			\begin{itemize}
-			
-				\item[] The LCA of Ada Lovelace and the LCA of Alan Turing and Angela Merkel
-				
-				\item[$\leadsto$]  $f(a,f(b,c))$ 
+				\item[] \; $\leadsto$  $f(a,f(b,c))$ 
 			
 			\end{itemize}
 	
@@ -141,49 +125,71 @@
 
 \end{frame}
 
-\begin{frame}{Quantifiers}
+\begin{frame}{The Universal Quantifier}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (8.1.6) Enter the \emph{quantifiers} ``for all'' and ``there is'' (+ \dots):
+		\item (8.1.6) How to think about quantified sentence structure:
+		
+		\medskip
 		
 		\begin{itemize}
+		\itemsep=10pt
 		\item[] Everything that's scarlet is red.
-		\item[$\leadsto$] Every $\underbrace{\text{object}}_{\text{indefinite}}$ is such that if $\underbrace{\text{it}}_{\text{pronoun}}$ is scarlet, then $\underbrace{\text{it}}_{\text{pronoun}}$ is red.
+		\item[$\leadsto$] 
+		{\footnotesize
+		Every $\underbrace{\text{object}}_{\text{indefinite}}$ is such that if $\underbrace{\text{it}}_{\text{pronoun}}$ is scarlet, then $\underbrace{\text{it}}_{\text{pronoun}}$ is red.
+		}
 		\item[$\leadsto$] Every $x$ is such that if $x$ is scarlet, then $x$ is red.
 		\end{itemize}
 		
-		\item We use the \emph{universal quantifier} $\forall$ for ``every'': 
+		\item In symbols, we write this with the \emph{universal quantifier} $\forall$:
+		\[
+		\forall x(S(x)\to R(x))
+		\]
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Existential Quantifier}
+
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\begin{itemize}
-		\item[$\leadsto$] $\forall x(S(x)\to R(x))$
-		\end{itemize}
-	
-		\item (8.1.7) Similarly, we use the universal quantifier $\exists$ for ``there is'':
+		\item (8.1.7) A different kind of quantified sentence:
+		
+		\medskip
 		
 		\begin{itemize}
-		
-			\item[] There is something in the left drawer
-			\item[$\leadsto$] There is some $\underbrace{\text{object}}_{\text{indefinite}}$ such that $\underbrace{\text{it}}_{\text{pronoun}}$ is in the left drawer
-			\item[$\leadsto$] There is some $x$ such that $x$ is in the left drawer
-			
-			\item[$\leadsto$] $\exists xR(x,b)$
-			
+		\itemsep=10pt
+		\item[] There is something big in the yard.
+		\item[$\leadsto$] 
+		{\footnotesize
+		There is an $\underbrace{\text{object}}_{\text{indefinite}}$ such that $\underbrace{\text{it}}_{\text{pronoun}}$ is big and $\underbrace{\text{it}}_{\text{pronoun}}$ is in the yard.
+		}
+		\item[$\leadsto$] There is an $x$ such that $x$ is big and $x$ is in the yard.
 		\end{itemize}
-	
+		
+		\item In symbols, we write this with the \emph{existential quantifier} $\exists$:
+		\[
+		\exists x(B(x)\land Y(x))
+		\]
+
 	\end{itemize}
 
 \end{frame}
 
 \begin{frame}{Summary}
 
-\begin{tabular}{c | l | l}
+	\begin{tabular}{c | l | l}
 	Symbol & Name & Reading\\\hline
-	$a,b,c,\mathellipsis$ & Constants & Proper names\\
+	$a,b,c,\mathellipsis$ & Constants & Names\\
 	$x,y,z,\mathellipsis$ & Variables & Pronouns\\
 	$f,g,h, \mathellipsis$ & Function symbols & Functional expressions\\
 	$P,Q,R,\mathellipsis$ & Predicate symbols & Properties, relations\\
-	$\forall $ & Universal quantifier & every, for all, each, \dots\\
+	$\forall $ & Universal quantifier & every, for all, \dots\\
 	$\exists$ & Existential quantifier & there exists, for some, \dots
 	\end{tabular}
 
@@ -193,7 +199,8 @@
 \subsection{8.2 Terms and Formulas}
 \begin{frame}{8.2 Terms and Formulas}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
 		\item (8.2.1) A \emph{signature} is a structure $\mathcal{S}=(\mathcal{C}, \mathcal{F}, \mathcal{R}, ar)$ such that:
 		\begin{enumerate}[(i)]
@@ -231,16 +238,16 @@
 				\item $\mathcal{S}_\in=(\{\emptyset\}, \emptyset, \{\in^2\})$
 			
 			
-				\item$\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$			
+				\item$\mathcal{S_\ast}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$			
 			\end{enumerate}	
-
 \end{frame}
 
 \begin{frame}{Logical Vocabulary}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (8.2.4) The \emph{logical} vocabulary of every f.o. language is the same:
+		\item (8.2.4) The same \emph{logical} vocabulary are always around:
 		\begin{enumerate}[(i)]
 		
 			\item the set of \emph{variables}: $\mathcal{V}=\{x,y,z,\mathellipsis\}$
@@ -257,15 +264,13 @@
 
 		\item Note the distinguished, binary \emph{identity predicate} $=$.
 		
-		\item We don't abstract away from identity:
+		\item We write the identity predicate differently (more on that later).
 		
 			\begin{itemize}
 			
-				\item[] The birthplace of Ada Lovelace and Alan Turing is the same.
+				\item[] The birthplace of Ada Lovelace and Bob Ross is the same.
 				
-				\item[$\leadsto$] $f(a)=f(b)$
-				
-				\item[\alert{Not}] $R(f(a),f(b))$
+				\item[] \; $\leadsto$ $f(a)=f(b)$ \;\; \alert{not} $R(f(a),f(b))$
 			
 			\end{itemize}
 	
@@ -275,11 +280,10 @@
 
 \begin{frame}{The Recursive Definition of Terms}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item Because of function nesting, we need to define terms recursively
-	
-		\item (8.2.5). The set $\mathcal{T}$ of \emph{terms} is recursively defined as the smallest set $X$ such that:
+		\item (8.2.5). A particular signature $\mathcal{S}$ generates a recursively defined set $\mathcal{T}$ of \emph{terms}, defined as the smallest set $X$ such that:
 		\begin{enumerate}[(i)]
 		
 			\item \begin{enumerate}[(a)]
@@ -290,7 +294,7 @@
 	
 	\end{enumerate}
 	
-		\item So, the terms are all the variables and constants plus the functional combinations of those.
+		\item Terms of a language includes all variables, all constants, and functional combinations of those (and of those, etc.\ldots).
 		
 	\end{itemize}
 
@@ -298,36 +302,27 @@
 
 \begin{frame}{(8.2.6) Examples}
 
-	\begin{enumerate}[(i)]
+	\begin{itemize}
+	\itemsep=20pt
 			
-				\item In $\mathcal{S}_{PA}$: \[S(0),S(S(0)),\mathellipsis\in\mathcal{T}\]\[S(x), S(y), +(0,0), \cdot(0,0), \cdot (Sx, +(0,0)),\mathellipsis\in\mathcal{T}\]	
+				\item Terms of $\mathcal{S}_{PA}$: \[S(0),S(S(0)),\mathellipsis\in\mathcal{T}\]\[S(x), S(y), +(0,0), \cdot(0,0), \cdot (Sx, +(0,0)),\mathellipsis\in\mathcal{T}\]	
 				
-				\item[] Notational conventions in $\mathcal{S}_{PA}$: 
-				\begin{enumerate}[(a)]
+				\item[] This language has its own history and conventions, such as `infix' notation where we write $(0 + S(0))$ for ${+}(0,S(0))$, etc.
 					
-					\item ${n}$ means $\underbrace{S(\mathellipsis S(0)\mathellipsis)}_{n\text{ times}}$: $1=S(0),2=S(S(0)),\mathellipsis$
-					
-					\item We use ``infix notation:''  $(2\cdot 4)={\cdot}(2,4), (2+ 4)={+}(2,4),$ etc.
-					
-					\item[] 
-					
-					\item[] But watch out for parentheses: $((2\cdot 4)+1)\neq (2\cdot (4+1))$
-				\end{enumerate}
-			
-				\item In $\mathcal{S}_\emptyset$: only $x,y,z,\mathellipsis.$
-				
-				\item In $\mathcal{S}_\in$: only $\emptyset$ and $x,y,z,\mathellipsis.$				
-				\item Assuming that $f^2\in\mathcal{F}$, we have \[f(x,x), f(x,y), f(y,x), f(y,y), f(f(x,y), f(y,x)),\mathellipsis\in\mathcal{T}\]
-			\end{enumerate}
+
+
+				\item Terms of $\mathcal{S_\ast}$, assuming that $f^2\in\mathcal{F}$, we have e.g.: \[f(x,x), f(x,y), f(y,x), f(y,y), f(f(x,y), f(y,x)),\mathellipsis\in\mathcal{T}\]
+			\end{itemize}
 
 
 \end{frame}
 
 \begin{frame}{The Recursive Definition of Formulas}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (8.2.8) The set $\mathcal{L}$ of \emph{formulas} is recursively defined as the smallest set $X$ such that:
+			\item (8.2.8). A particular signature $\mathcal{S}$ also generates a recursively defined set $\mathcal{L}$ of \emph{formulas}, the smallest set $X$ such that:
 		\begin{enumerate}[(i)]
 		
 			\item \begin{enumerate}[(a)]
@@ -350,9 +345,9 @@
 							
 		\end{enumerate}
 		
-		\item $R(t_1, \mathellipsis, t_n)$ and $t_1=t_2$ are called \emph{atomic formulas}.
+		\item (i)(a) and (i)(b) define the \emph{atomic formulas} of the language.
 		
-		\item $t_1\neq t_2$ means $\neg{t_1=t_2}$
+		\item $t_1\neq t_2$ is conventional notation for the formula $\neg{t_1=t_2}$
 
 	
 	\end{itemize}
@@ -362,52 +357,21 @@
 \begin{frame}{(8.2.10.i) Examples}
 
 Formulas in $\mathcal{L}_{PA}$:
-					\[x=10\]
-					\[S(x)=44\]
-					\[2+2=4\]
-					\[1\cdot1=0\]
+					\[x=(S(S(S(S(S(0))))))\]
+					\[S(x)=S(S(0))\]
+					\[0\cdot S(0)=0\]
 					\[\forall x S(x)\neq 0\]
-					\[((2\cdot 2)=5\land S(44)=7)\]
+					\[(S(S(0))\cdot S(S(0)))=S(S(S(S(0))))\]
 					\[\forall x\forall y(x\neq y\to S(x)\neq S(y))\]
-					\[\forall x\forall y(S(x)=y+1\to S(x)=S(y))\]
+					\[\forall x\forall y(S(x)=y+S(0)\to S(x)=S(y))\]
 					\[\forall x\exists yS(x)=y\]
 
 
 \end{frame}
 
-\begin{frame}{(8.2.10.ii) Examples}
-
-Formulas in $\mathcal{L}_\emptyset$:
-				
-				\[x=y\]
-				\[(x=y\land y\neq z)\]
-				\[\forall x\exists y(x=y\land \forall z y\neq z)\]
-				\[\forall x\exists y x\neq y\]
-				\[\exists x\exists y(x\neq y\land \forall z(z=x\lor z=y))\]
-
-\end{frame}
-
-\begin{frame}{(8.2.10.iii) Examples}
-
-Formulas in $\mathcal{L}_\in$:
-				\[{\in}(x,x)\]
-				\[\forall x{\in}(\emptyset,x)\]
-				\[\neg\exists x{\in}(x,\emptyset)\]
-				\[\forall x({\in}(x,y)\to {\in}(x,z))\]
-				\[\forall x\forall(x=y\leftrightarrow\forall z({\in}(z,x)\leftrightarrow {\in}(z,y))) \]			
-				
-Convention: $t\in u$ means ${\in}(t,u)$
-\[x\in x\]
-				\[\forall x~\emptyset\in x\]
-				\[\neg\exists x~x\in \emptyset\]
-				\[\forall x(x\in y\to x\in z)\]
-				\[\forall x\forall y(x=y\leftrightarrow \forall z(z\in x\leftrightarrow z\in y))\]
-
-\end{frame}
-
 \begin{frame}{(8.2.10.iv) Examples}
 
-Formulas in $\mathcal{L}$ over $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
+Formulas in $\mathcal{L_\ast}$ over $\mathcal{S_\ast}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2\})$:
 				
 				\[R(f(g(a,b)),g(f(a),f(b)))\]
 				\[\forall x P(f(a))\]
@@ -420,7 +384,24 @@ Formulas in $\mathcal{L}$ over $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2
 
 \begin{frame}{Induction on $\mathcal{L}$}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
+
+
+	\item \textbf{Theorem}.  Let $\Phi$ be a condition on terms. If we can show:
+		\begin{enumerate}[(i)]
+		
+			\item  \begin{enumerate}[(a)]
+			
+				\item $\Phi(x)$ for all $x\in\mathcal{V}$
+
+				\item $\Phi(a)$ for all $a\in\mathcal{C}$
+							
+			\end{enumerate}
+			
+			\item If $\Phi(t_1), \mathellipsis,\Phi(t_n),$ then $\Phi(f(t_1,\mathellipsis,t_n))$ for all $f\in\mathcal{F}$.
+		\end{enumerate}
+		Then we have shown that $\Phi(t)$ for all $t\in\mathcal{T}$.
 	
 		\item \textbf{Theorem}. Let $\Phi$ be a condition on formulas. If we can show:
 		\begin{enumerate}[(i)]
@@ -429,91 +410,38 @@ Formulas in $\mathcal{L}$ over $\mathcal{S}=(\{a,b,c\}, \{f^1, g^2\}, \{P^1, R^2
 			
 				\item $\Phi(R(t_1,\mathellipsis, t_n))$ for all $R^n\in \mathcal{R}$ and $t_1,\mathellipsis, t_n\in\mathcal{T}$
 				
-				\item $\Phi(t_1=t_2)$ for $t_1,t_2\in \mathcal{T}$
+				\item $\Phi(t_1=t_2)$ for all $t_1,t_2\in \mathcal{T}$
 			
 			\end{enumerate}
 			
 			\item \begin{enumerate}[(a)]
 			
-			\item For all $\phi\in\mathcal{L}$, if $\Phi(\phi)$, then $\Phi(\neg\phi)$.
+			\item If $\Phi(\psi)$, then $\Phi(\neg\psi)$.
 
-			\item For all $\phi,\psi\in\mathcal{L}$, if $\Phi(\phi)$ and $\Phi(\psi)$, then $\Phi((\phi\circ\psi))$, for $\circ=\land,\lor,\to,\leftrightarrow$.
+			\item If $\Phi(\psi)$ and $\Phi(\chi)$, then $\Phi((\psi\circ\chi))$, for $\circ=\land,\lor,\to,\leftrightarrow$.
 			
-			\item For all $\phi\in\mathcal{L}$, if $\Phi(\phi)$, then $\Phi(Qx\phi)$ for $Q=\forall,\exists$.
+			\item If $\Phi(\psi)$, then $\Phi(Qx\psi)$ for $Q=\forall,\exists$.
 
 		
 		\end{enumerate}
 		\end{enumerate}
-		Then we can conclude that for all $\phi\in\mathcal{L}$, $\Phi(\phi)$. 
-
-	\item \textbf{Theorem}.  Let $\Phi$ be a condition on terms. If we can show:
-		\begin{enumerate}[(i)]
-		
-			\item  \begin{enumerate}[(a)]
-			
-				\item $\Phi(a)$ for all $a\in\mathcal{C}$
-				
-				\item $\Phi(x)$ for all $x\in\mathcal{V}$
-			
-			\end{enumerate}
-			
-			\item If $\Phi(t_1), \mathellipsis,\Phi(t_n),$ then $\Phi(f(t_1,\mathellipsis,t_n))$.
-		\end{enumerate}
-		Then we can conclude that for all $t\in\mathcal{T}$, $\Phi(t)$.
+		Then we have shown that $\Phi(\psi)$ for all $\psi\in\mathcal{L}$.
 	
 	\end{itemize}
 
 
 \end{frame}
 
-\begin{frame}{(8.2.15) Recursion on $\mathcal{L}$}
-
-We define $c:\mathcal{T}\to\mathbb{N}$ by:
-
-	\begin{enumerate}[(i)]
-	
-		\item \begin{enumerate}[(a)]
-
-			\item $c(a)=0$ for all $a\in\mathcal{C}$
-			
-			\item $c(x)=0$ for all $x\in \mathcal{V}$
-	
-			\end{enumerate}
-			
-		\item $c(f(t_1, \mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))+1$
-	
-	\end{enumerate}
-
-We define $c:\mathcal{L}\to\mathbb{N}$ by:
-		\begin{enumerate}[(i)]
-		
-			\item  \begin{enumerate}[(a)]
-			
-				\item $c(R(t_1,\mathellipsis, t_n))=max(c(t_1), \mathellipsis, c(t_n))$
-				
-				\item $c(t_1=t_2)=max(c(t_1), c(t_2))$ 			
-			\end{enumerate}
-			
-			\item \begin{enumerate}[(a)]
-			
-			\item $c(\neg\phi)=c(\phi)+1$
-			\item $c(\phi\circ\psi)=max(c(\phi),c(\psi))+1$, for $\circ=\land,\lor,\to,\leftrightarrow$.
-			
-			\item $c(Qx\phi)=c(\phi)+1$ for $Q=\forall,\exists$.
-
-		
-		\end{enumerate}
-		\end{enumerate}
-
-\end{frame}
-
 \subsection{8.3 Parsing Trees and Occurrences}
 \begin{frame}{8.3 Parsing Trees and Occurrences}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (8.3.2) We recursively define $T$, which assigns to $t\in\mathcal{T}$ its parsing tree:
-		
+		\item (8.3.2) We define the parsing tree $T$ operation on terms:
+
+\medskip
+
 \begin{center}
 \begin{tikzpicture}
 \node at (-2,1) {(i)};
@@ -531,23 +459,6 @@ We define $c:\mathcal{L}\to\mathbb{N}$ by:
 
 	
 	\end{itemize}
-
-\end{frame}
-
-\begin{frame}{(8.3.3) Examples}
-
-	\begin{center}
-			\begin{tabular}{c c}
-			$4$ & $(2\cdot (2+1))$\\[2ex]
-			\Tree [.$S(S(S(S(0))))$ [.$S(S(S(0)))$ [.$S(S(0))$ [.$S(0)$ [.$0$ ] ] ] ] ]
-				
-				&
-				
-					\Tree [.$(S(S(0))\cdot (S(S(0))+S(0)))$ [.$S(S(0))$ [.$S(0)$ [.$0$ ] ] ] [.$(S(S(0))+S(0))$ [.$S(S(0))$ [.$S(0)$ [.$0$ ] ]  ] [.$S(0)$ [.$0$ ] ] ] ]
-			\end{tabular}
-		\end{center}
-				
-	
 
 \end{frame}
 
@@ -586,7 +497,7 @@ We define $c:\mathcal{L}\to\mathbb{N}$ by:
 
 \end{frame}
 
-\begin{frame}{(8.3.5) Example}
+\begin{frame}{(8.3.5) Example of Full Parsing Tree}
 
 \begin{center}
 	
@@ -596,7 +507,7 @@ We define $c:\mathcal{L}\to\mathbb{N}$ by:
 
 \end{frame}
 
-\begin{frame}{(8.3.7)  Stripped Parsing Trees via Example (8.3.8)}
+\begin{frame}{(8.3.7) Example of Stripped Parsing Tree}
 
 \begin{center}
 	
@@ -616,27 +527,26 @@ We define $c:\mathcal{L}\to\mathbb{N}$ by:
 
 \begin{frame}{(8.3.9) Naming Nodes}
 
-Take the tree:
-		
 			\begin{center}
 				\Tree [.$\bullet$ [.$\bullet$  [.$\bullet$ [.$\bullet$ ] ] [.$\bullet$ [.$\bullet$ ] [.$\bullet$ ] ] ] ]
 			\end{center}
 
-	\begin{itemize}
+		\medskip
+		
+		\begin{itemize}
 		
 		\item The root is always called $r$.
+
+		\item We name other nodes by giving ``directions'' along edges.
 		
-		\item The first child of the root is called $( r, 1)$.
+		\item The first child of $r$ is $( r, 1)$ -- the \emph{only} child in this example.
 		
 		\item The first child of $( r, 1)$ is called $( r, 1, 1)$.
 		
 		\item The \emph{second} child of $( r, 1)$ is called $( r, 1, 2)$.
 		
-		\item The node $( r, 1, 1, 2)$ doesn't exist in our tree.
+		\item And there is no node called $( r, 1, 1, 2)$ in the example above.
 		
-		\item Nodes: {\small$\{r, ( r,1), ( r,1,1), ( r,1,2),( r,1,1, 1), ( r,1,2,1), ( r,1,2,2)\}.$}
-	
-		\item We name a node by giving the ``directions'' for someone traveling along the edges through the nodes.	
 	\end{itemize}
 
 \end{frame}
@@ -644,11 +554,13 @@ Take the tree:
 \begin{frame}{Occurrences}
 
 {\small
-\begin{itemize}
+\begin{itemize}%[<+->]
+\itemsep=6pt
 	
 		\item (8.3.10) An expression $\sigma$ \emph{occurs} in a term or formula $\tau$ iff $\sigma$ is the label of some node in the (ordinary or stripped) parsing tree of $\tau$.
 	
-	\item (8.3.11.iii) \emph{Example}. $R(x,y)$ occurs at $(r,1,2)$ and at $(r,1,2,1,1,2,1)$ in: 
+	\item $R(x,y)$ occurs in $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$.
+\smallskip
 \begin{center}{\tiny
 \begin{tabular}{c}
 \begin{tikzpicture}[level distance = 3em]
@@ -678,7 +590,7 @@ Take the tree:
 \end{tabular}}
 \end{center}
 
-	\item We define an \emph{occurrence} of $\sigma$ in $\phi$ as a pair $(n,\sigma)$ where $n$ is a node in the parsing tree labelled with $\sigma$.
+	\item An \emph{occurrence} of $\sigma$ in $\phi$ is $(n,\sigma)$ where $n$ is the node of $\sigma$.
 	
 	\end{itemize}
 }
@@ -688,13 +600,11 @@ Take the tree:
 \subsection{8.4 Free and Bound Variables}
 \begin{frame}{8.4 Free and Bound Variables}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (8.4.1) We want to understand the quantificational structure of formulas.
-		
-		\item (8.4.2) The quantifier $\forall x$ at $r$ in $\forall x(P(a)\land \neg R(x,a))$ captures $x$ at $(r,1,2,1,1)$.
-		
-		\item (8.4.4) In $\forall x({N}(x)\to {\exists x}R(x,x))$, $\forall x$ at $r$ binds $x$ at $(r,1,1,1)$, but \emph{not} at $(r,1,2,1,1)$ and  $(r,1,2,1,2)$.
+		\item We use parsing trees to understand quantifiers.
+		Motivation: in the formula $\forall x({N}(x)\to {\exists x}R(x,x))$, we want to say that the quantifier $\forall x$ at $r$ `attaches' to $(r,1,1,1,x)$, but \emph{not} to $(r,1,2,1,1,x)$ or $(r,1,2,1,2,x)$.
 		
 		\begin{center}
 		\Tree [.\alert{$\forall x$} [.$\to$ [.${N}$ [.\alert{$x$} ] ] [.${\color{green}\exists x}$ [.$R$ [.{\color{green}$x$} ] [.{\color{green}$x$} ] ] ] ] ]
@@ -706,8 +616,8 @@ Take the tree:
 
 \begin{frame}{Variable Binding}
 
-\begin{itemize}
-
+\begin{itemize}%[<+->]
+\itemsep=16pt
 
 	\item (8.4.5) Let $( n, x)$ be an occurrence of a variable $x$ in a formula $\phi$ and $( m, Qy)$ an occurrence of a quantifier $Q=\forall,\exists$ in $\phi$. Then, $( n, x)$ is {\it bound} by  $( m, Qy)$ iff
 \begin{enumerate}[(i)]
@@ -716,15 +626,7 @@ Take the tree:
 \item this path from $m$ to $n$ does not go through a node $k$ such that $( k, Q'x)$ is an occurrence of a quantifier $Q'=\forall,\exists$ in $\phi$.
 
 \end{enumerate}
-A variable occurrence that is not bound by any quantifier occurrence is \emph{free}.
-
-\item \emph{Example}: $\forall x(\exists y \neg R(x,y)\lor (P(x)\to R(c,y)))$
-	
-	\begin{center}{\small
-	\begin{tikzpicture}[level distance = 2em]
-	 \Tree [.\alert{$\forall x$} [.$\lor$ [.{\color{green}$\exists y$} [.$\neg$ [.$R$ [.$\alert{x}$ ] [.{\color{green} $y$} ] ] ] ] [.$\to$ [.$P$ [.$\alert{x}$ ] ] [.$R$ [.$c$ ] [.{\color{blue}$y$} ] ] ] ] ]
-	 \end{tikzpicture}}
-	 \end{center}
+If a variable occurrence is not bound, we call it \emph{free}.
 
 \end{itemize}
 
@@ -770,39 +672,45 @@ $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$
 
 \begin{frame}{Open and Closed Formulas}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item (8.4.7) A formula $\phi$ is open iff there is a free variable occurrence in it; otherwise $\phi$ is closed. Closed formulas are called \emph{sentences}.
+		\item (8.4.7) $\phi$ is an open formula iff it has occurrences of free variables; otherwise it called a closed formula or \emph{sentence}.
 		
 		\item (8.4.8) \emph{Examples}:
 		
 		\begin{itemize}
 			
-				\item $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$ is open, since $((r,1,1,2),y)$ is free.
+				\item $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$ is an open formula.
 
 			
-				\item $\forall x(\exists y \neg R(x,y)\lor (P(x)\to R(c,y)))$ is open since $( ( r,1,2,2,2), y)$ is free
-				
-				\item $\forall x({N}(x)\to {\exists x}R(x,x))$ is closed.
+				\item $\forall x(\exists y \neg R(x,y)\lor (P(x)\to R(c,y)))$ is an open formula.
+
+				\item $\forall x({N}(x)\to {\exists x}R(x,x))$ is a sentence.
 			
 			\end{itemize}
 			
 		
-		\item (8.4.9) Open formulas don't have a definite truth-value, only sentcenes do.
+		\item Only sentences represent a `complete thought' that receives a definite truth-value. Only sentences can be used in reasoning. We only care about sentences when we analyze arguments.
 		
 		
 	\end{itemize}
 
 \end{frame}
-\subsection{8.5 Substitution}
-\begin{frame}{8.5 Substitution}
 
-	\begin{itemize}
+\subsection{8.5 Substitution}
+\begin{frame}{8.5 Substitution in Terms}
+
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
 	
-		\item (8.5.1) \emph{Substitution in Terms}. We define $(s)[x:=t]$ recursively by:
+		\item (8.5.1) We define a `re-writing' operation $(s)[x:=t]$ as follows (the result of substituting $t$ for all occurrences of $x$ in $s$):
+		
+		\medskip	
 		
 		\begin{enumerate}[(i)]
+		\itemsep=10pt
 			
 				\item $(s)[x:=t]=\begin{cases} s & \text{if } s\neq x\\ t & \text{ if }s=x\end{cases}$ for $s\in \mathcal{C}\cup\mathcal{V}$
 				
@@ -811,10 +719,22 @@ $\forall x(R(x,y)\to \exists x\forall y(R(y,x)\land \neg R(x,y)))$
 			\end{enumerate} 
 			
 			
-		\item (8.5.2)  \emph{Substitution in Forulas}. We define $(\phi)[x:=t]$ (the result of substituting $t$ for all \emph{free} occurrences of $x$ in $\phi$) recursively as follows:
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{8.5 Substitution in Formulas}
 	
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
+			\item (8.5.2)  We define a `re-writing' operation $(\phi)[x:=t]$ as follows (the result of substituting $t$ for all \emph{free} occurrences of $x$ in $\phi$):
+	
+		
+		\medskip	
+		
 		\begin{enumerate}[(i)]
+		\itemsep=10pt
 	
 			\item \begin{enumerate}[(a)] 
 			
@@ -858,7 +778,8 @@ $(\forall x(\exists y \neg R(x,y)\lor (P(x)\to R(c,y))))[y:=c]$
 \subsection{8.6 Formalization}
 \begin{frame}{8.6 Formalization}
 
-\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 
 	\item (8.6.1) The \emph{translation key} interprets the signature:
 	
@@ -953,29 +874,22 @@ Variables ``are'' pronouns:
 
 \begin{frame}{Core Ideas (Lecture Version)}
 
-	\begin{itemize}
+	\begin{itemize}%[<+->]
+	\itemsep=16pt
 	
-		\item In f.o. logic, we take the grammatical structure of simple sentences into account.
+		\item We analyze the inner structure of atomics in f.o. logic.
 		
-		\item  Singular terms stand for objects, predicates for properties/relations.
+		\item  Terms stand for objects, predicates for properties/relations.
 		
 		\item Quantifiers allow us talk about things in generality.
 		
-		\item The signature consists of a set of constants, of function symbols, and of predicate symbols each.
+		\item A signature has constants, function symbols, and predicates.
 		
-		\item Both terms and formulas are defined inductively in f.o.r logic.
+		\item Both terms and formulas are then defined inductively.
 		
-		\item We have induction for formulas and terms and function recursion.
+		\item A formula without free variables is closed/a sentence.
 		
-		\item Parsing trees are defined for terms and functions.
-		
-		\item Nodes in trees have a canonical way of being named: by the directions for how to find them starting at the root. 
-		
-		\item Variables are bound by quantifiers.
-		
-		\item A formula without free variables is closed, a sentence.
-		
-		\item Just like in propositional logic, there are guidelines for formalization.
+		\item We looked at some guidelines for formalization.
 					
 	\end{itemize}
 
@@ -989,4 +903,3 @@ Variables ``are'' pronouns:
 	\end{center}
 
 \end{frame}
-

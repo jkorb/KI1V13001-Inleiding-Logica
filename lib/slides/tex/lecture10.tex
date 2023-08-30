@@ -1,5 +1,5 @@
-\setcounter{framenumber}{304}
 \begin{frame}
+  \setcounter{framenumber}{290}
   \LectureNo{10}
   \maketitle
 \end{frame}
@@ -11,37 +11,22 @@
 \section{Rehash}
 \begin{frame}{Rehash}
 	
-\begin{itemize}
+	\begin{itemize}
+	\itemsep=16pt
 	
-		\item \alert{A model interprets the signature by assigning denotation to every constant, a function to every function symbol, and an $n$-ary relation to every $n$-ary relation symbol.}
+	\item A model interprets the signature of an f.o. language
 		
-		\item An assignment in a model tells us what the variables denote. It plays the role of the context in natural language. 
+	\item An assignment for a model gives `temporary' denotations to variables, like a conversational context in natural language. 
 	
-		\item We can recursively calculate the denotation of arbitrary terms in a model under an assignment.
+	\item We recursively calculate denotations of terms in any $\mathcal{M}/\alpha$.
 		
-		\item We can recursively calculate the truth-value of a formula relative to a model under an assignment.
+	\item We recursively calculate truth-values of formulas in any $\mathcal{M}/\alpha$.
 		
-		\item Validity is defined as in every logic as truth-preservation across models.
-		
-		\item \alert{The Deduction Theorem holds for first-order logic but doesn't lead to decidability.}
-										
+	\item Validity is defined by truth-preservation across all models.
+					
 	\end{itemize}
 
 \end{frame}
-
-\begin{frame}
-
-
-	
-	\begin{center}
-		\begin{tabular}{c}
-		\includegraphics[width=60ex]{xkcd-tofts}\\[-1ex]
-		{\tiny \textcopyright~\url{https://xkcd.com/447/}, CC BY-NC 2.5}
-		\end{tabular}
-		\end{center}
-
-\end{frame}
-		
 
 \section{10. Tableaux for First-Order Logic}
 \subsection{10.1 Overview}
@@ -49,18 +34,14 @@
 \begin{frame}{10.1 Overview}
 
 	\begin{itemize}
+	\itemsep=10pt
 		
-		\item (10.1.1) Things work \emph{very} similar to how they work in propositional logic:
+		\item Similarity with propositional logic:
 		\[\Gamma\vDash\phi\text{ iff }\Gamma\cup\{\neg\phi\}\text{ is unsatisfiable}\]
 
-		\item (10.1.2) However, things don't work quite as \emph{algorithmically} as before:
-		\begin{itemize}
-			
-			\item We might get \emph{infinite} tableaux.
+		\item But not as \emph{algorithmic} because of \emph{infinite} tableaux.
 		
-		\end{itemize}
-
-		\item (10.1.3) First-order logic is undecidable: 
+		\item First-order logic is undecidable: 
 				
 		\begin{itemize}
 		
@@ -1135,7 +1116,7 @@ close with=\xmark
 
 \begin{frame}{Lemma 10.3.9}
 
-Let $B$ be an open branch of a complete tableau and $\mathcal{M}_B$ the associated model. Then, if $a=b\in B$, then $\mathcal{M}_{B}\vDash a=b$.
+Let $B$ be an open branch of a complete tableau and $\mathcal{M}_B$ the associated model. Then, if $a=b\in B$, then $\mathcal{M}\vDash a=b$.
 
 \vspace{2ex}
 
@@ -1177,7 +1158,7 @@ single branches=true,
 close with=\xmark
 }
 [\forall x\varphi
-	[{(\varphi)[x:=t]^\dagger} ]
+	[{(\varphi)[x:=t]^\ddagger} ]
 ]
 \end{prooftree}\hspace{8ex}
 \begin{prooftree}
@@ -1340,7 +1321,7 @@ close with=\xmark
 
 	\begin{itemize}
 	
-		\item Every time we instantiate $\forall x\neg\forall yR(x,y)$, we're forced to introduce a new parameter for $y$ in $\exists y\neg R(p_i, y)$ for which we have to re-instantiate $\forall x\neg\forall yR(x,y)$, which \dots.
+		\item Every time we instantiate $\forall x\neg\forall yR(x,y)$, we're forced to introduce a new parameter for $y$ $\exists y\neg R(p_i, y)$ for which we have to re-instantiate $\forall x\neg\forall yR(x,y)$, which \dots.
 		
 		\item (10.5.2) Obviously, we can never completely write down this tableau. But that doesn't mean that it doesn't \emph{exists} as a mathematical entity.
 		
