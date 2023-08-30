@@ -8,7 +8,7 @@ header-includes:
 
 # {}
 
-\setcounter{framenumber}{58}
+\setcounter{framenumber}{61}
 \LectureNo{3}
 \maketitle
 
@@ -31,7 +31,7 @@ header-includes:
 
   ![](img/wooclap-3.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI3>
+  <https://app.wooclap.com/ILOGICA3>
 
 
 # Herhaling
@@ -289,7 +289,7 @@ _Bewijs_:
 
   ![](img/wooclap-3.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI3>
+  <https://app.wooclap.com/ILOGICA3>
 
 # Een bewijs
 
@@ -362,7 +362,7 @@ $$f:\{1,2,3,4\}\to \{a,b,c\}$$
 
   ![](img/wooclap-3.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI3>
+  <https://app.wooclap.com/ILOGICA3>
 
 # Zijn ze functies?
 

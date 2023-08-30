@@ -18,7 +18,7 @@ header-includes:
 
 # {}
 
-\setcounter{framenumber}{120}
+\setcounter{framenumber}{156}
 \LectureNo{6}
 \maketitle
 
@@ -178,7 +178,7 @@ header-includes:
 
   ![](img/wooclap-6.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI6>
+  <https://app.wooclap.com/ILOGICA6>
 
 
 # Vervulbaarheid
@@ -194,7 +194,7 @@ header-includes:
 
   ![](img/wooclap-6.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI6>
+  <https://app.wooclap.com/ILOGICA6>
 
 # I Can't Get No Satisfaction
 
@@ -410,7 +410,7 @@ header-includes:
 
   ![](img/wooclap-6.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI6>
+  <https://app.wooclap.com/ILOGICA6>
 
 
 # Geassocieerde valuatie
