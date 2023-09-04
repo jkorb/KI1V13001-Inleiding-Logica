@@ -32,12 +32,12 @@ jobs:
           files: |
             ./pdf/syllabus.pdf
             ./pdf/notes.pdf
-            ./pdf/slides/part-1/lecture1.pdf
-            ./pdf/slides/part-1/lecture2.pdf
-            ./pdf/slides/part-1/lecture3.pdf
-            ./pdf/slides/part-1/lecture4.pdf
-            ./pdf/slides/part-1/lecture5.pdf
-            ./pdf/slides/part-1/lecture6.pdf
+            ./pdf/slides/part-1/lecture01.pdf
+            ./pdf/slides/part-1/lecture02.pdf
+            ./pdf/slides/part-1/lecture03.pdf
+            ./pdf/slides/part-1/lecture04.pdf
+            ./pdf/slides/part-1/lecture05.pdf
+            ./pdf/slides/part-1/lecture06.pdf
             ./pdf/slides/part-2/lecture07.pdf
             ./pdf/slides/part-2/lecture08.pdf
             ./pdf/slides/part-2/lecture09.pdf
