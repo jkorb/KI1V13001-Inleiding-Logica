@@ -17,7 +17,7 @@ INFO				= $(shell find "$(ROOT_DIR)" -name "info.md")
 TOP_LVL				= $(shell git rev-parse --show-toplevel)
 UU_RPT 			    = $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
 # RSRC_DIR			= $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -name "resources")
-export TEXINPUTS   := $(UU_RPT):
+# export TEXINPUTS   := $(UU_RPT):
 
 # Target...
 TARGET    = $(DST_DIR)/syllabus.pdf
