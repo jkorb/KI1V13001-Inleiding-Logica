@@ -16,7 +16,7 @@ export INFO     = "$(TMP_DIR)/info.md"
 
 # My uureport class for corporate identity purposes...
 export UU_RPT    = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
-export TEXINPUTS := $(UU_RPT):
+# export TEXINPUTS := $(UU_RPT):
 
 
 # Here we go...
