@@ -23,9 +23,13 @@ TEMPLATE 		= $(shell find "$(TEX_DIR)" -type f -name "template.tex")
 
 INFO			  = $(shell find "$(ROOT_DIR)" -name "info.md")
 
+# Resources...
 RSRC_DIR		= $(shell find "$(ROOT_DIR)" \( ! -regex '.*/\..*' \) -type d -name "resources")
+TOP_LVL				= $(shell git rev-parse --show-toplevel)
+export UU_CLS      = $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/classes")
+export UU_RESOURCE = $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/resources")
 
-export TEXINPUTS   := $(RSRC_DIR):
+export TEXINPUTS   := $(RSRC_DIR):$(UU_CLS):$(UU_RESOURCE):
 
 slides: $(SLI_DST_1) $(SLI_DST_2)
 
