@@ -15,9 +15,10 @@ INFO				= $(shell find "$(ROOT_DIR)" -name "info.md")
 
 # Resources...
 TOP_LVL				= $(shell git rev-parse --show-toplevel)
-UU_RPT 			    = $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
-# RSRC_DIR			= $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -name "resources")
-# export TEXINPUTS   := $(UU_RPT):
+export UU_CLS      = $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/classes")
+export UU_RESOURCE = $(shell find "$(TOP_LVL)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/resources")
+
+export TEXINPUTS := $(UU_CLS):$(UU_RESOURCE):
 
 # Target...
 TARGET    = $(DST_DIR)/syllabus.pdf

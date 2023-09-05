@@ -15,9 +15,11 @@ export TMP_DIR  = $(CURDIR)/tmp
 export INFO     = "$(TMP_DIR)/info.md"
 
 # My uureport class for corporate identity purposes...
-export UU_RPT    = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -name "uureport")
-# export TEXINPUTS := $(UU_RPT):
+# export UU_RPT    = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -name "classes")
+export UU_CLS      = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/classes")
+export UU_RESOURCE = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/resources")
 
+export TEXINPUTS := $(UU_CLS):$(UU_RESOURCE):
 
 # Here we go...
 .PHONY : all
