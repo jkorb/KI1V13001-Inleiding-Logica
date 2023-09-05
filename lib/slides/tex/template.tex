@@ -1,5 +1,5 @@
 \documentclass[handout]{beamer}
-\usepackage{graphicx}
+\usetheme[english,opensans,nodisclaimer]{uubeamer}
 \graphicspath{{img/}}
 \beamertemplatenavigationsymbolsempty
   \setbeamertemplate
@@ -8,6 +8,7 @@
 \usepackage[utf8]{inputenc}
 \frenchspacing
 \usepackage{amssymb,amsmath,amsthm}
+\usepackage{wasysym}
 \usepackage{stmaryrd}
 \usepackage{enumerate}
 \usepackage{longtable}
@@ -17,7 +18,6 @@
 \usetikzlibrary{fit,shapes}
 \usepackage{tikz-qtree}
 \tikzset{edge from parent/.append style={->}}
-\usepackage{wasysym}
 \usepackage{proof}
 \usepackage{prooftrees}
 \usepackage{pifont}% http://ctan.org/pkg/pifont
@@ -52,7 +52,7 @@ $endfor$
   \reflectbox{$$\vDash$$}\hspace{-0.5ex}\vDash %
 }
 \makeatother
-\title{$academic-year$ Inleiding Logica (KI1V13001)}
+\title{$academic-year$\\ Inleiding Logica\\ (KI1V13001)}
 \author{$for(lecturer)$
   $lecturer.name$$sep$ \and $endfor$}
 \date{%
@@ -74,11 +74,8 @@ $endfor$
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{tabularx}
-\institute{
-  \begin{tabular}{c}
-    Department of Philosophy and Religious Studies\\
-    \includegraphics[width=28ex]{UU_logo_NL_CMYK.png}
-  \end{tabular}
+\institute{%
+    Department of Philosophy and Religious Studies
 }
 \begin{document}
 $body$
