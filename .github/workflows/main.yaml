@@ -15,6 +15,7 @@ jobs:
         with:
           pandoc-version: '2.14.0.2'
       - run: sudo apt-get update && sudo apt-get install zsh texlive latexmk texlive-fonts-extra texlive-lang-european texlive-science
+      - run: /usr/bin/env bash <(curl -fsSL https://raw.githubusercontent.com/UtrechtUniversity/uucls/main/lib/scripts/uucls.sh) script
       - run: ./configure && make all
       - uses: actions/github-script@v4
         with:
