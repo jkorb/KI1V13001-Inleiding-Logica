@@ -12,9 +12,10 @@ NOT_SRC	  = $(SRC_DIR)/notes
 DST_DIR   = pdf
 
 export TMP_DIR  = $(CURDIR)/tmp
-export INFO     = $(TMP_DIR)/info.md
+export INFO     = "$(TMP_DIR)/info.md"
 
 # My uureport class for corporate identity purposes...
+# export UU_RPT    = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -name "classes")
 export UU_CLS      = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/classes")
 export UU_RESOURCE = $(shell find "$(CURDIR)" \( ! -regex '.*/\..*' \) -type d -wholename "*/uucls/lib/resources")
 
