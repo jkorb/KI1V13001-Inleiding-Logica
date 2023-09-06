@@ -8,12 +8,11 @@ header-includes:
 
 # {}
 
-  \LectureNo{3}
-  \maketitle
+\setcounter{framenumber}{61}
+\LectureNo{3}
+\maketitle
 
 # Agenda
-
-  \setcounter{framenumber}{59}
 
   1. Verzamelingen
   2. Inductie

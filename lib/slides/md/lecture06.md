@@ -15,14 +15,14 @@ header-includes:
     - \newcommand{\xmark}{\ding{55}}
 ...
 
+
 # {}
 
-  \LectureNo{7}
-  \maketitle
+\setcounter{framenumber}{156}
+\LectureNo{7}
+\maketitle
 
 # Agenda
-
-  \setcounter{framenumber}{151}
 
   \Large
 
@@ -67,7 +67,7 @@ header-includes:
 
 # Hilbert-systemen
 
-  \large
+  \Large
   \centering
 
   ![](img/hilbert.jpg){height=50% width=50%}
@@ -376,7 +376,7 @@ header-includes:
     [p\lor q, grouped [\neg p, grouped [\neg q, grouped [p, close] [q, close] ] ] ]
   \end{prooftree}
 
-  \vspace{1ex}
+  \vspace{4ex}
 
   ![](img/happiness.jpg){height=50% width=50%}
 

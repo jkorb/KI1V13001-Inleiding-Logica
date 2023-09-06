@@ -13,12 +13,11 @@ header-includes:
 
 # {}
 
-  \LectureNo{6}
-  \maketitle
+\setcounter{framenumber}{125}
+\LectureNo{6}
+\maketitle
 
 # Agenda
-
-  \setcounter{framenumber}{121}
 
   1. Mogelijke situaties en valuaties
   2. Waarheid en recursie

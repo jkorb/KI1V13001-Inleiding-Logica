@@ -10,12 +10,11 @@ header-includes:
 
 # {}
 
+\setcounter{framenumber}{94}
 \LectureNo{4}
 \maketitle
 
 # Agenda
-
-  \setcounter{framenumber}{91}
 
   1. Taal van propositielogica
   2. Vertaling
@@ -186,9 +185,9 @@ header-includes:
 
   + $c((\phi\circ\psi))=max^\dagger(c(\phi),c(\psi))+1$
 
-  \large$\dagger$: $max(n,m)=\begin{cases}n & \text{if }n\geq m \\ m & \text{otherwise}\end{cases}$
+  \vfill
 
-  ![](img/complexity.jpg){height=50% width=50%}
+  \raisebox{7ex}{\large$\dagger$: $max(n,m)=\begin{cases}n & \text{if }n\geq m \\ m & \text{otherwise}\end{cases}$} \hfill ![](img/complexity.jpg){height=50% width=50%}
 
 # Recursief berekenen
 

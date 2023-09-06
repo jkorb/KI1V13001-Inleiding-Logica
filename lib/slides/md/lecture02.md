@@ -5,12 +5,12 @@ header-includes:
 
 # {}
 
-  \LectureNo{2}
-  \maketitle
+\setcounter{framenumber}{31}
+\LectureNo{2}
+\maketitle
+
 
 # Agenda
-
-  \setcounter{framenumber}{30}
 
   \Large
   \centering
@@ -23,7 +23,7 @@ header-includes:
   2. Proposities en logica
 
 # Aanwezigheid
-
+ 
   \centering
   ![](img/attendance.png){height=50% width=50%}
 
@@ -36,10 +36,10 @@ header-includes:
   ![](img/boole.png){height=50% width=50%}
 
   + We geven een _wiskundig model_ van geldige inferentie.
-
+  
 # Waarover gaat wiskunde?
 
-  \centering
+  \centering 
   \Large
 
   ![](img/wooclap-2.png){height=50% width=50%}
@@ -54,6 +54,8 @@ header-includes:
 
   ![](img/mathematical_symbol_fight.png){height=50% width=50%}
 
+  \vspace{4ex}
+
   + Getallen: $0,1,2,\mathellipsis,\frac{1}{2},\frac{2}{3}, \mathellipsis,\sqrt{2},\pi,e,\mathellipsis,1+3i, \omega,\aleph_{0},\mathellipsis$
 
   + Functies: $a+b, x\mapsto x^2, exp(x),\sin(x),\mathellipsis$
@@ -66,7 +68,7 @@ header-includes:
 
   + Stel dat $\underbrace{n}_{\text{variabele}}$ een natuurlijk getal is.
 
-  + $\underbrace{\pi}_{\text{constante}}$ is $3.14159\mathellipsis$
+  + $\underbrace{\pi}_{\text{constante}}$ is $3.14159\mathellipsis$ 
 
   \vspace{4ex}
 
@@ -113,9 +115,9 @@ header-includes:
 
   \Large
 
-  + Eigenschappen: even, continue, oneindig, \dots
+  + Eigenschappen: even, continue, oneindig, \dots 
 
-  + Relaties: groter dan, de afgeleide van, deelverzameling van, \dots
+  + Relaties: groter dan, de afgeleide van, deelverzameling van, \dots 
 
   \hspace{4ex}
 
@@ -126,7 +128,7 @@ header-includes:
   \Large
 
   Uitdrukkingen, die voor eigenschappen of relaties staan.
-
+  
   + Unitair: "$x$ is even"
 
   + Binair: "$x$ is groter dan $y$"
@@ -135,7 +137,7 @@ header-includes:
 
   + \dots
 
-# Definities
+# Definities 
 
   \Large
 
@@ -184,7 +186,7 @@ header-includes:
   <https://app.wooclap.com/ILOGICA2>
 
 
-# Logische connectieven
+# Logische connectieven 
 
   \Large
 
@@ -216,9 +218,9 @@ header-includes:
 
   + "Niet-($A$ of $B$)" is equivalent aan "niet-$A$ en niet-$B$"
 
-# De Morgan
+# De Morgan 
 
-  \centering
+  \centering 
 
   \Large
 
@@ -236,9 +238,9 @@ header-includes:
 
   \Large
 
-  + Als: ofwel $A_1$ of \dots of $A_n$.
+  + Als: ofwel $A_1$ of \dots of $A_n$. 
 
-  + Dan: bewijs $C$ door te laten zien dat elk $A_i$ tot $C$ leidt.
+  + Dan: bewijs $C$ door te laten zien dat elk $A_i$ tot $C$ leidt. 
 
 # Ongerijmte
 
@@ -248,7 +250,7 @@ header-includes:
 
   + Bewijs niet-$A$ door te laten zien dat $A$ tot een contradictie leidt.
 
-# Biconditionaal
+# Biconditionaal 
 
   \Large
 
@@ -270,11 +272,13 @@ header-includes:
 
   ![](img/picsoritdidnt.jpg){height=50% width=50%}
 
+
+
 # Voorbeeld
 
   \Large
 
-  \textbf{Stelling}: Er bestaat geen kleinste positieve reële getal (geen $x>0$ met $x\leq y$ voor all $y>0$).
+  \textbf{Stelling}: Er bestaat geen kleinste positieve reele getal (geen $x>0$ met $x\leq y$ voor all $y>0$).
 
   _Bewijs_:
 

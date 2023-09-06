@@ -1,11 +1,11 @@
 \begin{frame}
+  \setcounter{framenumber}{331}
   \LectureNo{13}
   \maketitle
 \end{frame}
 
 \begin{frame}{Overview}
-  \setcounter{framenumber}{321}
-  \tableofcontents
+\tableofcontents
 \end{frame}
 
 \section{Rehash}
@@ -88,6 +88,8 @@
 		
 	\item The tricky part of this proof concerns the existential quantifier.
 
+	\smallskip
+
 	\begin{center}
 
 			\begin{prooftree}
@@ -163,6 +165,8 @@
 		
 	\item The tricky part of this proof concerns the universal quantifier.
 
+	\smallskip
+
 	\begin{center}
 
 			\begin{prooftree}
@@ -176,6 +180,7 @@
 			[\forall x\phi [\phi\lbrack x:\!{=}\, a\rbrack^\dagger ] ]
 			\end{prooftree}
 
+	\bigskip
 	$\dagger\; a$ any constant or parameter on the branch
 
 	\end{center}
@@ -418,7 +423,7 @@ Let $B$ be a branch of a tableau with faithful model $\mathcal{M}$. If a rule is
 \begin{frame}{Proving the Soundness Lemma}
 
 	\begin{itemize}
-	\itemsep=14pt
+	\itemsep=16pt
   
 	\item Like with propositional logic, we just go through the rules one by one and check that this claim is true for each of them.
 
@@ -498,7 +503,6 @@ Let $B$ be a branch of a tableau with faithful model $\mathcal{M}$. If a rule is
 \medskip
 
 	\begin{itemize}
-      \small
 	\itemsep=10pt
 	
 	\item Suppose that $\mathcal{M}$ is faithful to $B$ and the `next' rule is the positive existential quantifier rule, which extends to branch $B'$.
@@ -516,18 +520,19 @@ Let $B$ be a branch of a tableau with faithful model $\mathcal{M}$. If a rule is
 			[\exists x\phi [\phi\lbrack x:\!{=}\, p\rbrack^\dagger ] ]
 			\end{prooftree}
 
+	\bigskip
 	$\dagger\; p$ any parameter not on the branch
 
 	\end{center}
-	          \item By faithfulness, $\mathcal{M},\alpha\vDash\exists x\phi$.
-                  So, there is $d\in D^\mathcal{M}$ such that \[\mathcal{M},\alpha[x\mapsto d]\vDash \phi\]
+	              \item By faithfulness, $\mathcal{M},\alpha\vDash\exists x\phi$. 
+              So, there is $d\in D^\mathcal{M}$ such that \[\mathcal{M},\alpha[x\mapsto d]\vDash \phi\]
 
-            \item Define $\mathcal{N}$ to be like $\mathcal{M}$ in every way, except $p^\mathcal{N}=d$.
+                  \item Define $\mathcal{N}$ to be like $\mathcal{M}$ in every way, except $p^\mathcal{N}=d$.
 
-            \item By the Denotation Lemma,
-                  $\mathcal{N},\alpha\vDash (\phi)[x:=p]$.
+                    \item By the Denotation Lemma, 
+                      $\mathcal{N},\alpha\vDash (\phi)[x:=p]$.
 
-            \item And, since $\mathcal{N}$ at most differs from $\mathcal{M}$ on interpretation of $p$, which was fresh to the tableau, that means $p$ does not occur in prior formulas, so by Locality we have $\mathcal{N},\alpha\vDash \psi$ for all $\psi\in B$.
+                      \item And, since $\mathcal{N}$ at most differs from $\mathcal{M}$ on interpretation of $p$, which was fresh to the tableau, that means $p$ does not occur in prior formulas, so by Locality we have $\mathcal{N},\alpha\vDash \psi$ for all $\psi\in B$.
  
   \end{itemize}
   

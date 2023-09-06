@@ -1,12 +1,11 @@
 # {}
 
-  \LectureNo{1}
-  \maketitle
+\setcounter{framenumber}{1}
+\LectureNo{1}
+\maketitle
 
 # Agenda
 
-  \setcounter{framenumber}{1}
-  
   0. Cursushandleiding
   1. Introductie
 
@@ -96,8 +95,6 @@
 
   + Definitie: stelsel van uitspraken, bestaand uit premissen en conclusie
 
-  \small
-
   $$\underbrace{\text{Als het regent, dan is de straat nat.}}_{\text{Premisse 1}} \underbrace{\text{Het regent.}}_{\text{Premisse 2}} \underbrace{\text{Dus: de straat is nat.}}_{\text{Conclusie}}$$
 
   \centering
@@ -171,8 +168,6 @@
 # Logische vorm
 
   + Abstraheren van logisch irrelevante uitdrukkingen.
-
-  \small
 
   $$ \text{Als}\underbrace{\text{het regent}}_{A}\text{,
   dan}\underbrace{\text{is de straat nat}}_{B}.\underbrace{\text{Het
@@ -249,7 +244,7 @@
 
   \centering
 
-  ![](img/xkcd-explosion.png){height=50% width=90%}
+  ![](img/xkcd-explosion.png){height=50% width=85%}
 
 # Argument
 
