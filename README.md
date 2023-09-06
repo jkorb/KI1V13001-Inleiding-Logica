@@ -2,7 +2,9 @@
 
 # KI1V13001 - Inleiding Logica
 
-[About](#about) • [Contribute](#contribute) • [GitHub](#GitHub) • [Latex](#latex) • [Compiling](#compiling) • [License](#license) • [Contact](#contact)
+[About](#about) • [Contribute](#contribute) • [GitHub](#GitHub) •
+[Latex](#latex) • [Compiling](#compiling) • [License](#license) •
+[Contact](#contact)
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://gitgub.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/graphs/commit-activity)
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
@@ -12,52 +14,64 @@
 
 ## About
 
-This is the source material for the course **Inleiding Logica** (KI1V13001) at Utrecht University.
-The material consists of:
+This is the source material for the course **Inleiding Logica** (KI1V13001) at
+Utrecht University. The material consists of:
 
   + the syllabus (`lib/syllabus`)
   + the slides (`lib/slides`)
   + the lecture notes (`lib/notes`)
 
-Students currently taking the course can find pdfs of the material under [Course Material](https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/releases/latest).[^1]
+Students currently taking the course can find pdfs of the material under
+[Course
+Material](https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/releases/latest).[^1]
 
 ## Contribute
 
-We encourage contributions, especially but not exclusively from past and present students of the course.
-Two simple ways of contributing are:
+We encourage contributions, especially but not exclusively from past and
+present students of the course. Two simple ways of contributing are:
 
-  + *open issues*, for example to point out typos, mistakes, or make feature requests
-  + *making pull requests*, for example to fix a mistake yourself and become a [contributor](https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/graphs/contributors).
+  + *open issues*, for example to point out typos, mistakes, or make feature
+requests
+  + *making pull requests*, for example to fix a mistake yourself and become a
+  [contributor](https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica/graphs/contributors).
 
-If these things don't tell you anything yet, don't despair! 
-Check the next two sections.
+If these things don't tell you anything yet, don't despair! Check the next two
+sections.
 
 ## GitHub
 
-If you're here and don't know about GitHub already, then you're probably here because you're currently taking the course.
-Note that it's not mandatory to learn git/GitHub, but it's a highly valuable skill and it allows you to contribute to the course material: immortalize yourself in our first-year logic course!
+If you're here and don't know about GitHub already, then you're probably here
+because you're currently taking the course. Note that it's not mandatory to
+learn git/GitHub, but it's a highly valuable skill and it allows you to
+contribute to the course material: immortalize yourself in our first-year logic
+course!
 
-A good place to get started on git/GitHub is [here](https://guides.github.com/).
+A good place to get started on git/GitHub is
+[here](https://guides.github.com/).
 
-## LaTeX 
+## LaTeX
 
-The technical bits of the course material are written in [LaTeX](https://www.latex-project.org/).
-If you want to contribute, you'll need to learn it. 
-Again, this is not mandatory if you're a student taking the course but again, it's a pretty useful skill.
-In fact,
-most scientific writing in formal disciplines (math, physics, computer science, ...) is done in LaTeX.
-Get started here [here](https://www.overleaf.com/learn/latex/Tutorials).
+The technical bits of the course material are written in
+[LaTeX](https://www.latex-project.org/). If you want to contribute, you'll need
+to learn it. Again, this is not mandatory if you're a student taking the course
+but again, it's a pretty useful skill. In fact, most scientific writing in
+formal disciplines (math, physics, computer science, ...) is done in LaTeX. Get
+started here [here](https://www.overleaf.com/learn/latex/Tutorials).
 
-The non-technical bits of the material are written in markdown (such as this readme and the syllabus), a *very* simple markup language.
-Learn more about it [here](https://guides.github.com/features/mastering-markdown/).
+The non-technical bits of the material are written in markdown (such as this
+readme and the syllabus), a *very* simple markup language. Learn more about it
+[here](https://guides.github.com/features/mastering-markdown/).
 
 ## Compiling
 
-If you want to compile the source materials yourself, you need `git`, a standard LaTeX install (e.g. `texlive-core`), `pandoc`, and `make`.
-These are easy to get if you're working on Linux (via your package manager) or Mac (via `homebrew`).
-I don't know about Windows but that should be possible, too (if you know you're way around GNU Make on Windows, please let me know).
+If you want to compile the source materials yourself, you need `git`, a
+standard LaTeX install (e.g. `texlive-core`), `pandoc`, and `make`. These are
+easy to get if you're working on Linux (via your package manager) or Mac (via
+`homebrew`). I don't know about Windows but that should be possible, too (if
+you know you're way around GNU Make on Windows, please let me know).
 
-The standard way of downloading and compiling is via the command line as follows (assuming you have installed the above dependencies):
+The standard way of downloading and compiling is via the command line as
+follows (assuming you have installed the above dependencies):
 
 ``` shell
   git clone --recurse-submodules https://github.com/UtrechtUniversity/KI1V13001-Inleiding-Logica.git
@@ -66,8 +80,27 @@ The standard way of downloading and compiling is via the command line as follows
   make all
 ```
 
-This will create the folder `KI1V13001-Inleiding-Logica` in your current working directory with the course materials in it, and then compile the pdfs into a folder `pdf` inside.
-Don't forget to run the `configure` script, since this will update the source code with the current course specifics (dates, TAs, etc.).
+This will create the folder `KI1V13001-Inleiding-Logica` in your current
+working directory with the course materials in it, and then compile the pdfs
+into a folder `pdf` inside. Don't forget to run the `configure` script, since
+this will update the source code with the current course specifics (dates, TAs,
+etc.).
+
+### Updating
+
+The course material is in continuing development. This means that if you have
+installed the source code one day and continue working on it later that week,
+there might have been changes made in the meanwhile to the source material on
+GitHub. This is why every time before you start working on the material (in
+whatever way), you should run:
+
+``` shell
+
+  git pull
+
+```
+
+More on this [here](https://docs.github.com/en/get-started/using-git/getting-changes-from-a-remote-repository).
 
 ## License
 
@@ -75,8 +108,11 @@ Don't forget to run the `configure` script, since this will update the source co
 
 ## Contact
 
-For communication about a current version of the course, especially current students of the course, please use [inleiding.logica@uu.nl](mailto:inleiding.logica@uu.nl) to get in touch.
+For communication about a current version of the course, especially current
+students of the course, please use
+[inleiding.logica@uu.nl](mailto:inleiding.logica@uu.nl) to get in touch.
 
-For everybody and everything else, use [j.korbmacher@uu.nl](mailto:j.korbmacher@uu.nl).
+For everybody and everything else, use
+[j.korbmacher@uu.nl](mailto:j.korbmacher@uu.nl).
 
 [^1]: Everybody else can find them there, too, of course.
