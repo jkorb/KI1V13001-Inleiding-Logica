@@ -124,7 +124,7 @@ header-includes:
 
   ![](img/wooclap-4.png){height=50% width=50%}
 
-  <https://www.wooclap.com/ILOGI4>
+  <https://www.wooclap.com/ILOGICA4>
 
 # Afsluiten
 
@@ -145,9 +145,9 @@ header-includes:
   
     De straat is niet nat \alert{maar} droog. & $\leadsto$ & $(\neg p\alert{\land} q)$ \\[2ex]
   
-    De kat zit \alert{ofwel} in de rechter \alert{of} in de linker box. & $\leadsto$ & $((p\alert{\lor} q)\alert{\land \neg(p\land q)})$\\[2ex] 
+    De kat zit \alert{ofwel} in de rechter \alert{of} in de linker doos. & $\leadsto$ & $((p\alert{\lor} q)\alert{\land \neg(p\land q)})$\\[2ex] 
   
-    \alert{Alleen} als je slaagt voor het tentamen, \alert{dan} halt je de cursus. & $\leadsto$ & $(\alert{q}\to \alert{p})$
+    \alert{Alleen} als je slaagt voor het tentamen, \alert{dan} haal je de cursus. & $\leadsto$ & $(\alert{q}\to \alert{p})$
   
   \end{tabular}
 
@@ -321,7 +321,7 @@ header-includes:
   \Large
 
 
-  **Definitie** De hoogte van een $T(\phi)$ is de langste pad van de woortel naar een blad. Notatie: $h_{T(\phi)}$.
+  **Definitie** De hoogte van een $T(\phi)$ is het langste pad van de wortel naar een blad. Notatie: $h_{T(\phi)}$.
 
   **Stelling**: $h_{T(\phi)}=c(\phi)$
 
