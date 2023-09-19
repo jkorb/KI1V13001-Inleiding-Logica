@@ -321,7 +321,7 @@ header-includes:
   \Large
 
 
-  **Definitie** De hoogte van een $T(\phi)$ is de langste pad van de woortel naar een blad. Notatie: $h_{T(\phi)}$.
+  **Definitie** De hoogte van een $T(\phi)$ is het langste pad van de wortel naar een blad. Notatie: $h_{T(\phi)}$.
 
   **Stelling**: $h_{T(\phi)}=c(\phi)$
 
